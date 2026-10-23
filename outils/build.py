@@ -121,10 +121,22 @@ v.addEventListener('click',e=>{if(e.target===v)v.classList.remove('ouvert')});
 document.addEventListener('keydown',e=>{if(!v.classList.contains('ouvert'))return;if(e.key==='Escape')v.classList.remove('ouvert');if(e.key==='ArrowLeft')m(i-1);if(e.key==='ArrowRight')m(i+1)})})();</script>
 """
 
+def propre(html_txt):
+    """Adresses courtes : Cloudflare sert hotes.html sous /hotes et index.html sous le dossier."""
+    def f(m):
+        u = m.group(2)
+        if u.startswith(("http", "mailto:", "tel:", "#", "data:")) or not u.endswith(".html"):
+            return m.group(0)
+        u = u[:-5]
+        if u.endswith("index"):
+            u = u[:-5] or "./"
+        return f'{m.group(1)}"{u}"'
+    return re.sub(r'(href=)"([^"]+)"', f, html_txt)
+
 def page(chemin, titre, description, espace, courant, corps, scripts=""):
     prof = chemin.count("/")
     contenu = tete(titre, description, prof) + entete(espace, courant, prof) + "<main>" + corps + "</main>" + pied(espace, prof) + scripts + "</body></html>\n"
-    contenu = contenu.replace("{R}", "../" * prof)
+    contenu = propre(contenu.replace("{R}", "../" * prof))
     f = SITE / chemin
     f.parent.mkdir(parents=True, exist_ok=True)
     f.write_text(contenu, encoding="utf-8")
@@ -164,7 +176,7 @@ def accueil():
     contenu = (tete("Les Piafs des Collines · Appartement vue mer à Nice",
                     "Appartement haut de villa avec vue panoramique sur la Baie des Anges, sur les collines de Bellet à Nice. Location saisonnière et bail mobilité.", 0)
                + "<main>" + corps + "</main>" + pied("mob", 0) + "</body></html>\n")
-    (SITE / "index.html").write_text(contenu, encoding="utf-8")
+    (SITE / "index.html").write_text(propre(contenu), encoding="utf-8")
     print("   index.html")
 
 # ================================================================ SAISONNIÈRE
@@ -578,9 +590,10 @@ def redirections():
     lignes = []
     from urllib.parse import quote
     for a, n in anciennes.items():
+        n = n[:-5] if n.endswith(".html") else n
         lignes.append(f"{quote(a)} {n} 301")
         if quote(a) != a: lignes.append(f"{a} {n} 301")
-    lignes.append("/blog/* /saisonniere/environs.html 301")
+    lignes.append("/blog/* /saisonniere/environs 301")
     (SITE / "_redirects").write_text("\n".join(lignes) + "\n", encoding="utf-8")
     print("   _redirects")
 
