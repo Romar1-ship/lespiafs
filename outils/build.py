@@ -49,16 +49,28 @@ NAV_SAISON = [("", "Appartement"), ("hotes", "Hôtes"), ("environs", "Explorez l
 NAV_MOB = [("#logement", "Le logement"), ("#prix", "Prix"), ("#contrat", "Contrat"),
            ("#acces", "Accès"), ("#avis", "Avis"), ("#demande", "Demande")]
 
-def tete(titre, description, profondeur):
+BASE = "https://www.lespiafsdescollines.com"
+GEO = (43.701472, 7.231682)
+
+def url_propre(chemin):
+    c = chemin[:-10] if chemin.endswith("index.html") else (chemin[:-5] if chemin.endswith(".html") else chemin)
+    return f"{BASE}/{c}"
+
+def tete(titre, description, profondeur, chemin="index.html", jsonld=None, image="terrasse-vue-mer"):
     r = "../" * profondeur
+    ld = "".join(f'<script type="application/ld+json">{json.dumps(j, ensure_ascii=False)}</script>' for j in (jsonld or []))
     return f"""<!doctype html>
 <html lang="fr"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>{E(titre)}</title>
 <meta name="description" content="{E(description)}">
 <link rel="icon" type="image/png" href="{r}assets/img/oiseau.png">
+{'<meta name="robots" content="noindex">' if chemin == "404.html" else f'<link rel="canonical" href="{url_propre(chemin)}">'}
+<meta property="og:type" content="website"><meta property="og:locale" content="fr_FR"><meta property="og:site_name" content="Les Piafs des Collines">
+<meta property="og:url" content="{url_propre(chemin)}">
 <meta property="og:title" content="{E(titre)}"><meta property="og:description" content="{E(description)}">
-<meta property="og:image" content="https://www.lespiafsdescollines.com/assets/img/terrasse-vue-mer.jpg">
+<meta property="og:image" content="{BASE}/assets/img/{image}.jpg"><meta name="twitter:card" content="summary_large_image">
+{ld}
 {FONTS}
 <link rel="stylesheet" href="{r}assets/style.css">
 </head><body>
@@ -133,9 +145,12 @@ def propre(html_txt):
         return f'{m.group(1)}"{u}"'
     return re.sub(r'(href=)"([^"]+)"', f, html_txt)
 
-def page(chemin, titre, description, espace, courant, corps, scripts=""):
+PAGES = []
+
+def page(chemin, titre, description, espace, courant, corps, scripts="", jsonld=None, image="terrasse-vue-mer"):
     prof = chemin.count("/")
-    contenu = tete(titre, description, prof) + entete(espace, courant, prof) + "<main>" + corps + "</main>" + pied(espace, prof) + scripts + "</body></html>\n"
+    PAGES.append(chemin)
+    contenu = tete(titre, description, prof, chemin, jsonld, image) + entete(espace, courant, prof) + "<main>" + corps + "</main>" + pied(espace, prof) + scripts + "</body></html>\n"
     contenu = propre(contenu.replace("{R}", "../" * prof))
     f = SITE / chemin
     f.parent.mkdir(parents=True, exist_ok=True)
@@ -151,11 +166,14 @@ def img(nom, alt, cls=""):
     return f'<img{c} src="{{R}}assets/img/{nom}.jpg" alt="{E(alt)}" loading="lazy">'
 
 # ================================================================ ACCUEIL COMMUN
+ADRESSE_LD = {"@type": "PostalAddress", "streetAddress": "202 bis route de Bellet", "postalCode": "06200",
+              "addressLocality": "Nice", "addressRegion": "Provence-Alpes-Côte d'Azur", "addressCountry": "FR"}
+
 def accueil():
     corps = f"""
 <section class="hero" style="background-image:url(assets/img/bandeau-accueil.jpg)">
-  <img class="logo-hero" src="assets/img/oiseau.png" alt="Les Piafs des Collines">
-  <p class="titre-hero">Les Piafs des Collines</p>
+  <img class="logo-hero" src="assets/img/oiseau.png" alt="Les Piafs des Collines, location meublée vue mer à Nice" width="298" height="365">
+  <h1 class="titre-hero">Les Piafs des Collines<span class="h1-sous">Location meublée vue mer à Nice · bail mobilité et location saisonnière</span></h1>
   <p class="script">Appartement vue mer sur la Colline de Bellet</p>
   <div class="choix">
     <a class="carte-choix" href="saisonniere/">
@@ -171,11 +189,31 @@ def accueil():
       <span class="f">Voir l'offre →</span>
     </a>
   </div>
-</section>"""
-    # l'accueil commun n'a pas d'en-tête de navigation : on l'écrit à part
-    contenu = (tete("Les Piafs des Collines · Appartement vue mer à Nice",
-                    "Appartement haut de villa avec vue panoramique sur la Baie des Anges, sur les collines de Bellet à Nice. Location saisonnière et bail mobilité.", 0)
-               + "<main>" + corps + "</main>" + pied("mob", 0) + "</body></html>\n")
+</section>
+<section class="blanc"><div class="wrap"><div class="split">
+  <div>
+    <span class="sur">Location meublée à Nice</span>
+    <h2>Un appartement vue mer à Nice, pour quelques mois ou pour les vacances</h2>
+    <p>Sur les collines de Bellet, à l'ouest de Nice, Les Piafs des Collines est un appartement entier de 77,51 m² au premier étage d'une villa, avec deux terrasses et une vue totalement dégagée sur la Baie des Anges.</p>
+    <p><strong>En <a href="bail-mobilite/">location en bail mobilité à Nice</a></strong>, il loge pour 1 à 10 mois les professionnels en mission, en formation ou en mutation : meublé, tout compris à partir de 2 880 € par mois, avec arrivée autonome. Les centres hospitaliers niçois sont à 12 à 16 minutes en voiture, l'aéroport à 20 minutes, Monaco à 22 minutes et Sophia Antipolis à 28 minutes.</p>
+    <p><strong>En <a href="saisonniere/">location saisonnière</a></strong>, il accueille jusqu'à 6 voyageurs avec piscine partagée, parking privé et ateliers.</p>
+  </div>
+  {img("terrasse-vue-mer", "Terrasse de l'appartement meublé avec vue sur la Baie des Anges à Nice")}
+</div></div></section>"""
+    jsonld = [
+        {"@context": "https://schema.org", "@type": "WebSite", "name": "Les Piafs des Collines", "url": BASE + "/", "inLanguage": "fr-FR"},
+        {"@context": "https://schema.org", "@type": "Apartment", "name": "Les Piafs des Collines",
+         "description": "Appartement meublé de 77,51 m² avec vue sur la Baie des Anges, à Nice, proposé en bail mobilité de 1 à 10 mois et en location saisonnière.",
+         "url": BASE + "/", "address": ADRESSE_LD, "geo": {"@type": "GeoCoordinates", "latitude": GEO[0], "longitude": GEO[1]},
+         "floorSize": {"@type": "QuantitativeValue", "value": 77.51, "unitCode": "MTK"}, "numberOfRooms": 3, "numberOfBedrooms": 2,
+         "numberOfBathroomsTotal": 2, "image": [f"{BASE}/assets/img/{n}.jpg" for n in ("terrasse-vue-mer", "vue-baie-de-nice", "sejour-salle-a-manger", "chambre-parentale")],
+         "telephone": "+33611948235", "email": MAIL},
+    ]
+    contenu = (tete("Bail mobilité & location saisonnière à Nice, vue mer | Les Piafs des Collines",
+                    "Appartement meublé de 77 m² vue Baie des Anges à Nice : bail mobilité de 1 à 10 mois, tout compris dès 2 880 €/mois, ou location saisonnière.",
+                    0, "index.html", jsonld)
+               + "<main>" + corps.replace("{R}", "") + "</main>" + pied("mob", 0) + "</body></html>\n")
+    PAGES.append("index.html")
     (SITE / "index.html").write_text(propre(contenu), encoding="utf-8")
     print("   index.html")
 
@@ -473,19 +511,43 @@ def saison_legal():
         page(f"saisonniere/{slug}.html", f"{titre} | Les Piafs des Collines", titre, "saison", "", corps)
 
 # ================================================================ BAIL MOBILITÉ
+FAQ_MOB = [
+ ("Qu'est-ce qu'un bail mobilité ?",
+  "C'est un bail de location meublée de 1 à 10 mois, créé par la loi ELAN du 23 novembre 2018 (articles 25-12 et suivants de la loi du 6 juillet 1989). Il n'est ni renouvelable ni reconductible, et le propriétaire ne peut pas demander de dépôt de garantie."),
+ ("Qui peut louer en bail mobilité à Nice ?",
+  "Une personne en formation professionnelle, en études supérieures, en apprentissage, en stage, en service civique, en mutation professionnelle ou en mission temporaire. Le justificatif du motif est demandé avant la signature du bail."),
+ ("Mon employeur peut-il payer le loyer ?",
+  "Oui. Quand une société, une agence de relocation, un assureur ou une production paie, le logement se loue par un bail au nom de la structure, à partir de 3 mois, avec une facture à son nom. Aucun justificatif de motif n'est alors demandé."),
+ ("Que comprend le loyer ?",
+  "Tout : charges, électricité, eau, climatisation, fibre, place de parking privée, accès à la piscine, linge de lit et de toilette, kit d'arrivée et ménage de sortie. Le locataire ne reçoit aucune facture d'énergie."),
+ ("Combien coûte le bail mobilité ?",
+  "2 880 € par mois pour 7 à 10 mois, 3 200 € par mois pour 3 à 6 mois et 3 600 € par mois pour 1 à 2 mois, tout compris."),
+ ("La garantie Visale est-elle acceptée ?",
+  "Visale n'est pas mobilisable à ce niveau de loyer. La garantie prend la forme d'une caution de l'employeur ou d'une caution personnelle."),
+ ("Peut-on louer moins d'un mois ?",
+  "Non. La durée minimale est d'un mois."),
+ ("Comment se passe l'arrivée ?",
+  "L'arrivée est autonome : le code d'accès est communiqué avant la date d'entrée. Il n'y a pas de rendez-vous de remise des clés, ni de contrainte d'horaire."),
+ ("Où se trouve le logement et combien de temps pour rejoindre le centre ?",
+  "Au 202 bis route de Bellet, sur les collines de l'ouest de Nice. En voiture, hors trafic : Clinique Kantys Centre 12 min, campus Valrose 13 min, CHU Pasteur 2 15 min, Centre Antoine Lacassagne 16 min, aéroport 20 min, Monaco 22 min, Sophia Antipolis 28 min. Le bus 60 s'arrête à 50 m et rejoint le tram ligne 2 à Magnan."),
+]
+
+def faq_html(qr):
+    return "".join(f"<details><summary>{E(q)}</summary><p>{E(r)}</p></details>" for q, r in qr)
+
 def bail_mobilite():
     gal = "".join(f'<a href="{{R}}assets/img/{n}.jpg"{" class=\"g\"" if g else ""}>{img(n, a)}</a>' for n, a, g in GALERIE[:9])
     corps = f"""
 <section class="mob-hero" style="background-image:url({{R}}assets/img/terrasse-vue-mer.jpg)"><div class="wrap">
   <span class="sur" style="color:#FFC9A8">Bail mobilité · Nice, collines de Bellet</span>
-  <h1>Un logement de travail avec vue sur la Baie des Anges. Pour 1 à 10 mois, tout compris.</h1>
-  <p class="lead">77,51 m² meublés au premier étage d'une villa. Le locataire arrive avec sa valise, entre avec un code, et travaille le lendemain matin.</p>
+  <h1>Location en bail mobilité à Nice, avec vue sur la Baie des Anges</h1>
+  <p class="lead"><strong>Pour 1 à 10 mois, tout compris.</strong> 77,51 m² meublés au premier étage d'une villa, sur les collines de Bellet. Le locataire arrive avec sa valise, entre avec un code, et travaille le lendemain matin.</p>
   <div class="faits"><span>77,51 m² + 31 m² de terrasses et véranda</span><span>2 chambres · 2 salles d'eau</span><span>Fibre</span><span>Parking privé</span><span>DPE C · A</span><span>À partir de 2 880 €/mois</span></div>
   <a class="bouton" href="#demande">Demander une disponibilité</a> <a class="bouton clair" style="color:#fff;margin-left:8px" href="#prix">Voir les prix</a>
 </div></section>
 
 <section class="blanc" id="logement"><div class="wrap">
-  <span class="sur">Le logement</span><h2>Installé sans rien à faire</h2>
+  <span class="sur">Le logement</span><h2>Un appartement meublé tout équipé : installé sans rien à faire</h2>
   <div class="grille3" style="margin-top:28px">
     <div><h4>Le lit est fait</h4><p>Les draps et les oreillers sont en place, le linge de toilette est sorti. Couettes d'été et d'hiver, cuisine complète, lave-linge et sèche-linge sur place.</p></div>
     <div><h4>Une facture, un prix, un payeur</h4><p>Électricité, eau, climatisation, fibre, parking : déjà dans le loyer. Aucun contrat à ouvrir, aucun compteur à relever, aucune régularisation à la sortie. Le ménage de sortie est compris.</p></div>
@@ -513,7 +575,7 @@ def bail_mobilite():
 </div></div></section>
 
 <section class="blanc" id="prix"><div class="etroit">
-  <span class="sur">Prix</span><h2>Tout compris, par mois</h2>
+  <span class="sur">Prix</span><h2>Prix du bail mobilité à Nice, tout compris</h2>
   <p>Charges, énergie, eau, climatisation, fibre, parking, accès piscine, linge, kit d'arrivée, ménage de sortie.</p>
   <table class="grille-prix" style="margin-top:20px"><thead><tr><th>Durée du séjour</th><th>Loyer mensuel tout compris</th></tr></thead><tbody>
   <tr><td>7 à 10 mois</td><td class="m">2 880 €</td></tr>
@@ -524,7 +586,7 @@ def bail_mobilite():
 </div></section>
 
 <section id="contrat"><div class="wrap">
-  <span class="sur">Contrat</span><h2>Deux formules, selon qui paie</h2>
+  <span class="sur">Contrat</span><h2>Bail mobilité ou bail société : deux formules selon qui paie</h2>
   <div class="regle" style="margin-top:24px">
     <div><h3>L'employeur, une agence, un assureur ou une production paie</h3>
     <p><strong>Bail au nom de la société, à partir de 3 mois.</strong></p>
@@ -536,7 +598,7 @@ def bail_mobilite():
 </div></section>
 
 <section class="blanc" id="acces"><div class="wrap">
-  <span class="sur">Accès</span><h2>Sur les hauteurs, à un quart d'heure de tout</h2>
+  <span class="sur">Accès</span><h2>Sur les hauteurs de Nice Ouest, à un quart d'heure de tout</h2>
   <p>Temps en voiture hors trafic, calculés depuis le 202 bis route de Bellet.</p>
   <div class="trajets" style="margin-top:20px">
     <div><b>12 min</b><span>Clinique Kantys Centre</span></div><div><b>13 min</b><span>Campus Valrose</span></div>
@@ -558,6 +620,11 @@ def bail_mobilite():
   </div>
 </div></section>
 
+<section id="questions"><div class="etroit">
+  <span class="sur">Questions fréquentes</span><h2>Le bail mobilité à Nice, en questions</h2>
+  <div style="margin-top:24px">{faq_html(FAQ_MOB)}</div>
+</div></section>
+
 <section class="blanc" id="demande"><div class="etroit">
   <span class="sur">Demande</span><h2>Demander une disponibilité</h2>
   <p>Indiquez les dates et qui paie le loyer : nous vous répondons avec la formule adaptée et une date d'entrée ferme.</p>
@@ -569,9 +636,23 @@ def bail_mobilite():
     '<div class="plein"><label for="org">Société ou établissement</label><input id="org" name="Société / établissement"></div>')}
   <p class="note" style="margin-top:18px">Ou directement : <a href="mailto:{MAIL}">{MAIL}</a> · <a href="tel:{TEL_LIEN}">{TEL}</a></p>
 </div></section>"""
-    page("bail-mobilite/index.html", "Bail mobilité à Nice · 77 m² vue mer, tout compris | Les Piafs des Collines",
-         "Appartement meublé de 77,51 m² à Nice, vue sur la Baie des Anges, pour 1 à 10 mois. Tout compris, arrivée autonome, à partir de 2 880 € par mois.",
-         "mob", "", corps, SCRIPT_GALERIE)
+    page("bail-mobilite/index.html", "Location bail mobilité Nice · Meublé 77 m² vue mer | Les Piafs des Collines",
+         "Location meublée en bail mobilité à Nice : 77 m² vue Baie des Anges, 2 chambres, parking, fibre. De 1 à 10 mois, tout compris dès 2 880 €/mois.",
+         "mob", "", corps, SCRIPT_GALERIE, jsonld=[
+            {"@context": "https://schema.org", "@type": "Apartment",
+             "name": "Location en bail mobilité à Nice, Les Piafs des Collines",
+             "description": "Appartement meublé de 77,51 m² avec vue sur la Baie des Anges, loué en bail mobilité de 1 à 10 mois, tout compris à partir de 2 880 € par mois.",
+             "url": BASE + "/bail-mobilite/", "address": ADRESSE_LD, "geo": {"@type": "GeoCoordinates", "latitude": GEO[0], "longitude": GEO[1]},
+             "floorSize": {"@type": "QuantitativeValue", "value": 77.51, "unitCode": "MTK"}, "numberOfRooms": 3, "numberOfBedrooms": 2, "numberOfBathroomsTotal": 2,
+             "amenityFeature": [{"@type": "LocationFeatureSpecification", "name": n, "value": True} for n in
+                                ("Fibre haut débit", "Parking privé", "Climatisation réversible", "Lave-linge", "Sèche-linge", "Piscine partagée", "Deux terrasses", "Vue mer")],
+             "image": [f"{BASE}/assets/img/{n}.jpg" for n in ("terrasse-vue-mer", "vue-baie-de-nice", "sejour-salle-a-manger", "chambre-parentale", "cuisine-ilot")],
+             "telephone": "+33611948235", "email": MAIL},
+            {"@context": "https://schema.org", "@type": "FAQPage",
+             "mainEntity": [{"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": r}} for q, r in FAQ_MOB]},
+            {"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [
+             {"@type": "ListItem", "position": 1, "name": "Accueil", "item": BASE + "/"},
+             {"@type": "ListItem", "position": 2, "name": "Bail mobilité à Nice", "item": BASE + "/bail-mobilite/"}]}])
 
 # ================================================================ divers
 def page_404():
@@ -597,8 +678,18 @@ def redirections():
     (SITE / "_redirects").write_text("\n".join(lignes) + "\n", encoding="utf-8")
     print("   _redirects")
 
+def sitemap():
+    import datetime
+    jour = datetime.date.today().isoformat()
+    prio = {"index.html": "1.0", "bail-mobilite/index.html": "0.9", "saisonniere/index.html": "0.8"}
+    urls = "".join(f"<url><loc>{url_propre(c)}</loc><lastmod>{jour}</lastmod><priority>{prio.get(c, '0.5')}</priority></url>"
+                   for c in PAGES if c != "404.html")
+    (SITE / "sitemap.xml").write_text('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">' + urls + "</urlset>\n", encoding="utf-8")
+    (SITE / "robots.txt").write_text(f"User-agent: *\nAllow: /\n\nSitemap: {BASE}/sitemap.xml\n", encoding="utf-8")
+    print("   sitemap.xml, robots.txt")
+
 if __name__ == "__main__":
     print("Génération de site/ :")
     accueil(); saison_appartement(); saison_hotes(); saison_ateliers(); saison_livre_or(); saison_faq()
-    saison_tarifs(); saison_contact(); saison_environs(); saison_legal(); bail_mobilite(); page_404(); redirections()
+    saison_tarifs(); saison_contact(); saison_environs(); saison_legal(); bail_mobilite(); page_404(); redirections(); sitemap()
     print("Terminé.")
