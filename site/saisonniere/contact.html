@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="fr"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Contact | Les Piafs des Collines</title>
+<meta name="description" content="Contactez Marcelle et Serge pour votre séjour.">
+<link rel="icon" type="image/png" href="../assets/img/oiseau.png">
+<meta property="og:title" content="Contact | Les Piafs des Collines"><meta property="og:description" content="Contactez Marcelle et Serge pour votre séjour.">
+<meta property="og:image" content="https://www.lespiafsdescollines.com/assets/img/terrasse-vue-mer.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@400;600;700&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/style.css">
+</head><body>
+<header class="entete"><div class="wrap">
+<a class="marque" href="../index.html"><img src="../assets/img/oiseau-blanc.png" alt="">Les Piafs des Collines</a>
+<button class="burger" aria-label="Menu" onclick="this.nextElementSibling.classList.toggle('ouvert')">☰</button>
+<nav class="nav"><a href="../saisonniere/">Appartement</a><a href="../saisonniere/hotes.html">Hôtes</a><a href="../saisonniere/environs.html">Explorez les environs</a><a href="../saisonniere/ateliers.html">Ateliers</a><a href="../saisonniere/livre-or.html">Livre d&#x27;or</a><a href="../saisonniere/faq.html">F.A.Q.</a><a href="../saisonniere/tarifs.html">Tarifs</a><a href="../saisonniere/contact.html" aria-current="page">Contact</a><a class="cta" href="../saisonniere/contact.html">Réserver</a></nav>
+</div></header>
+<main>
+<div class="bandeau" style="background-image:url(../assets/img/bandeau-accueil.jpg)"><div><h1>Contact</h1></div></div>
+<section><div class="wrap"><div class="split" style="align-items:start">
+  <div><h2>Nous sommes heureux que vous pensiez à notre appartement pour votre séjour !</h2>
+  <p>Si vous avez des questions, c'est avec un grand plaisir que nous y répondrons</p>
+  <h4 style="margin-top:1.4em">Adresse</h4><p>202 bis, Route de Bellet<br>06200 Nice - France</p>
+  <h4>Email</h4><p><a href="mailto:contact@lespiafsdescollines.com">contact@lespiafsdescollines.com</a></p>
+  <h4>Téléphone</h4><p><a href="tel:+33611948235">+33 (0)6 11 94 82 35</a></p>
+  <h4>Réseaux sociaux</h4><p><a href="https://www.facebook.com/lespiafsdescollines" rel="noopener">Facebook</a></p></div>
+  <div class="carte"><div class="corps"><form class="formulaire-mail" data-to="contact@lespiafsdescollines.com" data-sujet="Demande de réservation - location saisonnière">
+<div class="champs">
+<div><label for="prenom">Prénom</label><input id="prenom" name="Prénom" required></div>
+<div><label for="nom">Nom</label><input id="nom" name="Nom" required></div>
+<div><label for="email">Email</label><input id="email" name="Email" type="email" required></div>
+<div><label for="tel">Téléphone</label><input id="tel" name="Téléphone" type="tel"></div>
+<div><label for="arr">Arrivée</label><input id="arr" name="Arrivée" type="date"></div><div><label for="dep">Départ</label><input id="dep" name="Départ" type="date"></div><div class="plein"><label for="pers">Nombre de personnes</label><input id="pers" name="Personnes" type="number" min="1" max="6"></div>
+<div class="plein"><label for="msg">Message</label><textarea id="msg" name="Message" required></textarea></div>
+</div>
+<p style="margin-top:18px"><button class="bouton" type="submit">Envoyer</button></p>
+<p class="note">Le bouton ouvre votre messagerie avec le message prérempli, adressé à contact@lespiafsdescollines.com.</p>
+</form>
+<script>document.querySelectorAll('.formulaire-mail').forEach(f=>f.addEventListener('submit',e=>{e.preventDefault();
+const l=[...new FormData(f)].filter(([k,v])=>v).map(([k,v])=>k+' : '+v).join('\n');
+location.href='mailto:'+f.dataset.to+'?subject='+encodeURIComponent(f.dataset.sujet)+'&body='+encodeURIComponent(l);}));</script></div></div>
+</div></div></section></main><footer class="pied"><div class="wrap"><div class="cols">
+<div><h5>Les Piafs des Collines</h5><p>202 bis, Route de Bellet<br>06200 Nice - France</p>
+<p><a href="mailto:contact@lespiafsdescollines.com">contact@lespiafsdescollines.com</a><br><a href="tel:+33611948235">+33 (0)6 11 94 82 35</a></p>
+<p><a href="https://www.facebook.com/lespiafsdescollines" rel="noopener">Facebook</a></p></div>
+<div><h5>Nos locations</h5><ul>
+<li><a href="../index.html">Accueil</a></li>
+<li><a href="../saisonniere/">Location saisonnière</a></li>
+<li><a href="../bail-mobilite/">Bail mobilité, 1 à 10 mois</a></li></ul></div>
+<div><h5>Informations</h5><ul>
+<li><a href="../saisonniere/conditions-generales.html">Conditions générales</a></li>
+<li><a href="../saisonniere/reglement-interieur.html">Règlement intérieur</a></li>
+<li><a href="../saisonniere/sante-securite.html">Santé &amp; sécurité</a></li>
+<li><a href="../saisonniere/conditions-annulation.html">Conditions d'annulation</a></li>
+<li><a href="../saisonniere/mentions-legales.html">Mentions légales</a></li>
+<li><a href="../saisonniere/politique-de-confidentialite.html">Politique de confidentialité</a></li>
+<li><a href="../saisonniere/politique-utilisation.html">Politique d'utilisation</a></li></ul>
+<p class="note" style="color:#9d9ab0;margin-top:12px">* En réservant, vous acceptez nos <a href="../saisonniere/conditions-generales.html">Conditions Générales</a>, de recevoir des e-mails d'information et vous reconnaissez avoir lu notre <a href="../saisonniere/politique-de-confidentialite.html">Politique de confidentialité</a>.</p></div>
+</div>
+<div class="bas"><span>© 2026 Les Piafs des Collines</span><span>Design by <a href="http://www.creative-explorer.fr" rel="noopener">Creative Explorer</a></span></div>
+</div></footer>
+</body></html>
