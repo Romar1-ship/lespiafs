@@ -23,13 +23,19 @@ git add -A && git commit && git push           # publication
 
 Le contenu de la partie saisonnière est lu mot pour mot dans `_source/site_wix_2026-10-23/blocs/*.json`.
 
-## Cloudflare Pages
+## Cloudflare : Worker avec assets statiques
 
-| Réglage | Valeur |
+Déployé en **Worker**, pas en Pages. La configuration est dans `wrangler.jsonc` : le Worker `lespiafs` sert le dossier `site/`, avec `404.html` en page d'erreur et `_redirects` pour les anciennes adresses Wix.
+
+Mise en ligne par Workers Builds, relié au dépôt `Romar1-ship/lespiafs`, branche `main` : chaque push publie.
+
+| Réglage Workers Builds | Valeur |
 |---|---|
 | Build command | *(vide)* |
-| Build output directory | `site` |
-| Branche de production | `main` |
+| Deploy command | `npx wrangler deploy` |
+| Root directory | *(racine)* |
+
+**Bascule du domaine.** Les deux domaines sont déclarés dans `wrangler.jsonc`. Cloudflare ne les rattache qu'une fois supprimés, dans la zone `lespiafsdescollines.com` (compte LCCA), les trois enregistrements A vers `185.230.63.x` et le CNAME `www` vers `cdn3.wixdns.net`. **Ne jamais toucher aux MX, SPF et SRV : c'est la messagerie OVH.**
 
 ## Ce qui reste à faire
 

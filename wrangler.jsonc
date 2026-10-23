@@ -1,0 +1,20 @@
+{
+	"$schema": "https://unpkg.com/wrangler/config-schema.json",
+	"name": "lespiafs",
+	"compatibility_date": "2026-10-23",
+	// Site entièrement statique : aucun code serveur, Cloudflare sert le dossier site/.
+	// site/_redirects est lu par Cloudflare : les anciennes adresses Wix renvoient vers les nouvelles.
+	"assets": {
+		"directory": "./site",
+		"not_found_handling": "404-page"
+	},
+	// Les deux domaines sont rattachés au Worker. Cloudflare refuse de les prendre
+	// tant que la zone porte encore les enregistrements de Wix : supprimer d'abord
+	// les trois A vers 185.230.63.x et le CNAME www vers cdn3.wixdns.net.
+	// Ne jamais toucher aux MX, SPF et SRV : c'est la messagerie OVH.
+	"routes": [
+		{ "pattern": "lespiafsdescollines.com", "custom_domain": true },
+		{ "pattern": "www.lespiafsdescollines.com", "custom_domain": true }
+	],
+	"observability": { "enabled": true }
+}
