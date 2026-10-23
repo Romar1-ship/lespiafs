@@ -25,7 +25,7 @@ FACEBOOK = "https://www.facebook.com/lespiafsdescollines"
 ENREGISTREMENT = "06088017951MX"
 
 FONTS = ('<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>'
-         '<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@400;600;700&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet">')
+         '<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">')
 
 # ---------------------------------------------------------------- contenu source
 def blocs(nom):
@@ -129,6 +129,12 @@ def pied(espace, profondeur):
 </div></footer>
 """
 
+SCRIPT_REVEAL = """<script>(function(){if(matchMedia('(prefers-reduced-motion: reduce)').matches||!('IntersectionObserver' in window))return;
+const el=[...document.querySelectorAll('main section:not(.hero):not(.mob-hero) :is(.wrap,.etroit) > *')];
+el.forEach(e=>e.classList.add('reveal'));const o=new IntersectionObserver(es=>es.forEach(x=>{if(x.isIntersecting){x.target.classList.add('vu');o.unobserve(x.target)}}),{rootMargin:'0px 0px -8% 0px'});
+el.forEach(e=>o.observe(e))})();</script>
+"""
+
 SCRIPT_GALERIE = """<div class="visionneuse" id="vis"><button class="fermer" aria-label="Fermer">×</button><button class="prec" aria-label="Précédente">‹</button><img alt=""><button class="suiv" aria-label="Suivante">›</button></div>
 <script>(function(){const L=[...document.querySelectorAll('.galerie a')];if(!L.length)return;const v=document.getElementById('vis'),im=v.querySelector('img');let i=0;
 function m(n){i=(n+L.length)%L.length;im.src=L[i].href;im.alt=L[i].querySelector('img').alt;v.classList.add('ouvert')}
@@ -155,7 +161,7 @@ PAGES = []
 def page(chemin, titre, description, espace, courant, corps, scripts="", jsonld=None, image="terrasse-vue-mer"):
     prof = chemin.count("/")
     PAGES.append(chemin)
-    contenu = tete(titre, description, prof, chemin, jsonld, image) + entete(espace, courant, prof) + "<main>" + corps + "</main>" + pied(espace, prof) + scripts + "</body></html>\n"
+    contenu = tete(titre, description, prof, chemin, jsonld, image) + entete(espace, courant, prof) + "<main>" + corps + "</main>" + pied(espace, prof) + scripts + SCRIPT_REVEAL + "</body></html>\n"
     contenu = propre(contenu.replace("{R}", "../" * prof))
     f = SITE / chemin
     f.parent.mkdir(parents=True, exist_ok=True)
@@ -220,7 +226,7 @@ def accueil():
                     "Appartement meublé de 77 m² vue Baie des Anges à Nice en bail mobilité de 1 à 10 mois : tout compris dès 2 880 €/mois, arrivée autonome." if not SAISON_ACTIVE else
                     "Appartement meublé de 77 m² vue Baie des Anges à Nice : bail mobilité de 1 à 10 mois, tout compris dès 2 880 €/mois, ou location saisonnière.",
                     0, "index.html", jsonld)
-               + "<main>" + corps.replace("{R}", "") + "</main>" + pied("mob", 0) + "</body></html>\n")
+               + "<main>" + corps.replace("{R}", "") + "</main>" + pied("mob", 0) + SCRIPT_REVEAL + "</body></html>\n")
     PAGES.append("index.html")
     (SITE / "index.html").write_text(propre(contenu), encoding="utf-8")
     print("   index.html")
@@ -546,13 +552,17 @@ def faq_html(qr):
 def bail_mobilite():
     gal = "".join(f'<a href="{{R}}assets/img/{n}.jpg"{" class=\"g\"" if g else ""}>{img(n, a)}</a>' for n, a, g in GALERIE[:9])
     corps = f"""
-<section class="mob-hero" style="background-image:url({{R}}assets/img/terrasse-vue-mer.jpg)"><div class="wrap">
-  <span class="sur" style="color:#FFC9A8">Bail mobilité · Nice, collines de Bellet</span>
-  <h1>Location en bail mobilité à Nice, avec vue sur la Baie des Anges</h1>
-  <p class="lead"><strong>Pour 1 à 10 mois, tout compris.</strong> 77,51 m² meublés au premier étage d'une villa, sur les collines de Bellet. Le locataire arrive avec sa valise, entre avec un code, et travaille le lendemain matin.</p>
-  <div class="faits"><span>77,51 m² + 31 m² de terrasses et véranda</span><span>2 chambres · 2 salles d'eau</span><span>Fibre</span><span>Parking privé</span><span>DPE C · A</span><span>À partir de 2 880 €/mois</span></div>
-  <a class="bouton" href="#demande">Demander une disponibilité</a> <a class="bouton clair" style="color:#fff;margin-left:8px" href="#prix">Voir les prix</a>
-</div></section>
+<section class="mob-hero">
+  <picture><source media="(max-width:700px)" srcset="{{R}}assets/img/hero-baie-mobile.jpg"><img class="fond" src="{{R}}assets/img/hero-baie.jpg" alt="La Baie des Anges vue depuis l'appartement, sur les collines de Bellet à Nice" fetchpriority="high"></picture>
+  <div class="wrap">
+  <span class="sur">Bail mobilité · Nice, collines de Bellet</span>
+  <h1>Location en bail mobilité à Nice, <em>face à la Baie des Anges</em></h1>
+  <p class="lead">Pour 1 à 10 mois, tout compris. 77,51 m² meublés au premier étage d'une villa : le locataire arrive avec sa valise, entre avec un code, et travaille le lendemain matin.</p>
+  <div class="faits"><span>77,51 m² + 31 m² de terrasses</span><span>2 chambres · 2 salles d'eau</span><span>Fibre</span><span>Parking privé</span><span>Dès 2 880 € par mois</span></div>
+  <a class="bouton" href="#demande">Demander une disponibilité</a> <a class="bouton clair" href="#prix">Voir les prix</a>
+  </div>
+  <a class="defiler" href="#logement" aria-label="Découvrir le logement"><span>Découvrir</span></a>
+</section>
 
 <section class="blanc" id="logement"><div class="wrap">
   <span class="sur">Le logement</span><h2>Un appartement meublé tout équipé : installé sans rien à faire</h2>
@@ -646,7 +656,7 @@ def bail_mobilite():
 </div></section>"""
     page("bail-mobilite/index.html", "Location bail mobilité Nice · Meublé 77 m² vue mer | Les Piafs des Collines",
          "Location meublée en bail mobilité à Nice : 77 m² vue Baie des Anges, 2 chambres, parking, fibre. De 1 à 10 mois, tout compris dès 2 880 €/mois.",
-         "mob", "", corps, SCRIPT_GALERIE, jsonld=[
+         "mob", "", corps, SCRIPT_GALERIE, image="hero-baie", jsonld=[
             {"@context": "https://schema.org", "@type": "Apartment",
              "name": "Location en bail mobilité à Nice, Les Piafs des Collines",
              "description": "Appartement meublé de 77,51 m² avec vue sur la Baie des Anges, loué en bail mobilité de 1 à 10 mois, tout compris à partir de 2 880 € par mois.",

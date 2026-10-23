@@ -10,7 +10,7 @@
 <meta property="og:title" content="La Métropole Nice Côte d’Azur | Les Piafs des Collines"><meta property="og:description" content="La Métropole Nice Côte d’Azur">
 <meta property="og:image" content="https://www.lespiafsdescollines.com/assets/img/terrasse-vue-mer.jpg"><meta name="twitter:card" content="summary_large_image">
 
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@400;600;700&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../../assets/style.css">
 </head><body>
 <header class="entete"><div class="wrap">
@@ -38,4 +38,8 @@
 </div>
 <div class="bas"><span>© 2026 Les Piafs des Collines</span><span>Design by <a href="http://www.creative-explorer.fr" rel="noopener">Creative Explorer</a></span></div>
 </div></footer>
+<script>(function(){if(matchMedia('(prefers-reduced-motion: reduce)').matches||!('IntersectionObserver' in window))return;
+const el=[...document.querySelectorAll('main section:not(.hero):not(.mob-hero) :is(.wrap,.etroit) > *')];
+el.forEach(e=>e.classList.add('reveal'));const o=new IntersectionObserver(es=>es.forEach(x=>{if(x.isIntersecting){x.target.classList.add('vu');o.unobserve(x.target)}}),{rootMargin:'0px 0px -8% 0px'});
+el.forEach(e=>o.observe(e))})();</script>
 </body></html>

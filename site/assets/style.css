@@ -191,3 +191,62 @@ textarea{min-height:130px;resize:vertical}
 .hero .signature-hero{width:min(470px,78vw);height:auto;margin:14px auto 0;display:block}
 .hero h1.titre-hero{margin-bottom:30px}
 .hero .h1-sous{margin-top:18px}
+
+/* ===================== Direction typographique : Cormorant Garamond + Jost ===================== */
+:root{--serif:"Cormorant Garamond",Georgia,"Times New Roman",serif;--titre:"Jost",system-ui,sans-serif;--texte:"Jost",system-ui,sans-serif}
+body{font-weight:400;font-size:18px;line-height:1.7;color:#2c2b33}
+h1,h2,h3,h4{font-family:var(--serif);font-weight:500;letter-spacing:-.005em;color:var(--nuit)}
+h1{font-size:clamp(2.7rem,5.6vw,4.9rem);line-height:1.03}
+h2{font-size:clamp(2.2rem,3.8vw,3.3rem);line-height:1.06}
+h3{font-size:1.75rem;line-height:1.15}
+h4{font-size:1.4rem;line-height:1.2}
+h5,h6{font-family:var(--titre);font-weight:500;letter-spacing:.04em}
+h1 em,h2 em{font-style:italic;font-weight:400}
+section{padding:110px 0}
+.sur{font-family:var(--titre);font-weight:500;letter-spacing:.34em;font-size:.7rem}
+.bouton{font-family:var(--titre);font-weight:500;text-transform:uppercase;letter-spacing:.18em;font-size:.76rem;padding:18px 32px;border-radius:2px}
+.bouton.clair{border-width:1px}
+.nav a{font-family:var(--titre);font-weight:400;letter-spacing:.2em;font-size:.7rem}
+.nav a.cta{border-radius:2px}
+.prix,.trajets b,.grille-prix td.m,.carte-choix .t{font-family:var(--serif);font-weight:500}
+.prix{font-size:2.1rem}.trajets b{font-size:2.4rem;line-height:1.1}.grille-prix td.m{font-size:1.7rem}
+.carte-choix .t{font-size:1.9rem}
+.grille-prix th{font-family:var(--titre);font-weight:500;letter-spacing:.2em}
+summary{font-family:var(--serif);font-size:1.35rem;font-weight:500}
+.equip h4{font-family:var(--titre);font-size:.72rem;letter-spacing:.3em;font-weight:500}
+.bandeau h1{text-transform:none;letter-spacing:.01em;font-weight:500}
+.avis blockquote{font-family:var(--serif);font-size:1.3rem;line-height:1.5;font-style:italic}
+.avis cite{font-family:var(--titre);font-style:normal;letter-spacing:.12em;text-transform:uppercase;font-size:.72rem}
+.chiffres,.pastille,label,.faits span,.carte-choix .k,.carte-choix .f{font-family:var(--titre)}
+
+/* ===================== Hero bail mobilité, plein écran ===================== */
+.mob-hero{position:relative;min-height:100vh;min-height:100svh;display:flex;flex-direction:column;justify-content:flex-end;padding:140px 0 15vh;background:#1b1830;overflow:hidden;color:#fff}
+.mob-hero .fond{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 45%;transform-origin:50% 60%}
+.mob-hero::after{background:linear-gradient(180deg,rgba(14,12,30,.05) 0%,rgba(14,12,30,.15) 35%,rgba(14,12,30,.62) 72%,rgba(14,12,30,.86) 100%)}
+.mob-hero .wrap{position:relative;z-index:1}
+.mob-hero .sur{color:#FFD2B8}
+.mob-hero h1{color:#fff;max-width:960px;margin-bottom:.35em}
+.mob-hero h1 em{color:#FFE2D0}
+.mob-hero p.lead{font-size:1.18rem;font-weight:300;max-width:640px}
+.mob-hero .bouton.clair{color:#fff;border-color:rgba(255,255,255,.75);margin-left:10px}
+.mob-hero .faits span{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.28);font-weight:400;letter-spacing:.04em}
+.defiler{position:absolute;left:50%;bottom:26px;transform:translateX(-50%);z-index:1;color:#fff;text-decoration:none;font-family:var(--titre);font-size:.66rem;letter-spacing:.34em;text-transform:uppercase;display:flex;flex-direction:column;align-items:center;gap:10px;opacity:.85}
+.defiler::after{content:"";width:1px;height:46px;background:linear-gradient(#fff,transparent);animation:defile 2.2s ease-in-out infinite}
+@keyframes defile{0%{transform:scaleY(0);transform-origin:top}45%{transform:scaleY(1);transform-origin:top}55%{transform:scaleY(1);transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
+@supports (animation-timeline: scroll()){
+  .mob-hero .fond{animation:hero-zoom linear both;animation-timeline:scroll(root);animation-range:0 100vh}
+  .mob-hero .wrap{animation:hero-texte linear both;animation-timeline:scroll(root);animation-range:0 85vh}
+}
+@keyframes hero-zoom{from{transform:scale(1.03)}to{transform:scale(1.15) translateY(4%)}}
+@keyframes hero-texte{from{opacity:1;transform:none}to{opacity:0;transform:translateY(-60px)}}
+@media(max-width:700px){.mob-hero{padding-bottom:12vh}.mob-hero .bouton.clair{margin:12px 0 0}.mob-hero .faits{gap:7px}.mob-hero .faits span{font-size:.75rem}}
+
+/* ===================== Apparitions au défilement ===================== */
+.reveal{opacity:0;transform:translateY(28px);transition:opacity 1s cubic-bezier(.2,.7,.2,1),transform 1s cubic-bezier(.2,.7,.2,1)}
+.reveal.vu{opacity:1;transform:none}
+.reveal:nth-child(2){transition-delay:.08s}.reveal:nth-child(3){transition-delay:.16s}.reveal:nth-child(4){transition-delay:.24s}
+@media(prefers-reduced-motion:reduce){.mob-hero .fond,.mob-hero .wrap,.defiler::after{animation:none!important}}
+.mob-hero .fond{object-position:50% 72%}
+@media(max-width:700px){.mob-hero .fond{object-position:8% 70%}}
+h1,h2,h3,h4,.prix,.trajets b,.grille-prix td.m,.carte-choix .t,summary{font-variant-numeric:lining-nums proportional-nums}
+.grille-prix td.m{font-variant-numeric:lining-nums tabular-nums}
