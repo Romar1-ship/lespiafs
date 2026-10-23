@@ -12,6 +12,11 @@ SITE = RACINE / "site"
 BLOCS = RACINE / "_source/site_wix_2026-10-23/blocs"
 E = html.escape
 
+# Interrupteur de la location saisonnière. False depuis le 23/10/2026 : la courte durée est fermée
+# (autorisation échue le 22/10/2026). Les pages restent en ligne mais ne sont ni promues ni indexées,
+# et les anciennes adresses Wix mènent au bail mobilité. Passer à True pour tout rallumer.
+SAISON_ACTIVE = False
+
 TEL = "+33 (0)6 11 94 82 35"
 TEL_LIEN = "+33611948235"
 MAIL = "contact@lespiafsdescollines.com"
@@ -65,7 +70,7 @@ def tete(titre, description, profondeur, chemin="index.html", jsonld=None, image
 <title>{E(titre)}</title>
 <meta name="description" content="{E(description)}">
 <link rel="icon" type="image/png" href="{r}assets/img/oiseau.png">
-{'<meta name="robots" content="noindex">' if chemin == "404.html" else f'<link rel="canonical" href="{url_propre(chemin)}">'}
+{'<meta name="robots" content="noindex">' if chemin == "404.html" or (chemin.startswith("saisonniere/") and not SAISON_ACTIVE) else f'<link rel="canonical" href="{url_propre(chemin)}">'}
 <meta property="og:type" content="website"><meta property="og:locale" content="fr_FR"><meta property="og:site_name" content="Les Piafs des Collines">
 <meta property="og:url" content="{url_propre(chemin)}">
 <meta property="og:title" content="{E(titre)}"><meta property="og:description" content="{E(description)}">
@@ -116,7 +121,7 @@ def pied(espace, profondeur):
 <p><a href="{FACEBOOK}" rel="noopener">Facebook</a></p></div>
 <div><h5>Nos locations</h5><ul>
 <li><a href="{r}index.html">Accueil</a></li>
-<li><a href="{r}saisonniere/">Location saisonnière</a></li>
+{f'<li><a href="{r}saisonniere/">Location saisonnière</a></li>' if SAISON_ACTIVE else ""}
 <li><a href="{r}bail-mobilite/">Bail mobilité, 1 à 10 mois</a></li></ul></div>
 <div>{legal}</div>
 </div>
@@ -169,19 +174,22 @@ def img(nom, alt, cls=""):
 ADRESSE_LD = {"@type": "PostalAddress", "streetAddress": "202 bis route de Bellet", "postalCode": "06200",
               "addressLocality": "Nice", "addressRegion": "Provence-Alpes-Côte d'Azur", "addressCountry": "FR"}
 
-def accueil():
-    corps = f"""
-<section class="hero" style="background-image:url(assets/img/bandeau-accueil.jpg)">
-  <img class="logo-hero" src="assets/img/oiseau.png" alt="Les Piafs des Collines, location meublée vue mer à Nice" width="298" height="365">
-  <h1 class="titre-hero">Les Piafs des Collines<span class="h1-sous">Location meublée vue mer à Nice · bail mobilité et location saisonnière</span></h1>
-  <p class="script">Appartement vue mer sur la Colline de Bellet</p>
-  <div class="choix">
-    <a class="carte-choix" href="saisonniere/">
+CARTE_SAISON = """<a class="carte-choix" href="saisonniere/">
       <span class="k">Vacances à Nice</span>
       <span class="t">Location saisonnière</span>
       <span class="d">L'appartement haut de villa, sa vue panoramique sur la Baie des Anges, sa piscine et ses ateliers.</span>
       <span class="f">Découvrir l'appartement →</span>
-    </a>
+    </a>"""
+PARA_SAISON = """<p><strong>En <a href="saisonniere/">location saisonnière</a></strong>, il accueille jusqu'à 6 voyageurs avec piscine partagée, parking privé et ateliers.</p>"""
+
+def accueil():
+    corps = f"""
+<section class="hero" style="background-image:url(assets/img/bandeau-accueil.jpg)">
+  <img class="logo-hero" src="assets/img/oiseau.png" alt="Les Piafs des Collines, location meublée vue mer à Nice" width="298" height="365">
+  <h1 class="titre-hero">Les Piafs des Collines<span class="h1-sous">{"Location meublée vue mer à Nice · bail mobilité et location saisonnière" if SAISON_ACTIVE else "Location meublée vue mer à Nice en bail mobilité, de 1 à 10 mois"}</span></h1>
+  <p class="script">Appartement vue mer sur la Colline de Bellet</p>
+  <div class="choix{"" if SAISON_ACTIVE else " seul"}">
+    {CARTE_SAISON if SAISON_ACTIVE else ""}
     <a class="carte-choix mob" href="bail-mobilite/">
       <span class="k">Mission, formation, mutation</span>
       <span class="t">Bail mobilité, 1 à 10 mois</span>
@@ -193,23 +201,24 @@ def accueil():
 <section class="blanc"><div class="wrap"><div class="split">
   <div>
     <span class="sur">Location meublée à Nice</span>
-    <h2>Un appartement vue mer à Nice, pour quelques mois ou pour les vacances</h2>
+    <h2>{"Un appartement vue mer à Nice, pour quelques mois ou pour les vacances" if SAISON_ACTIVE else "Un appartement vue mer à Nice, pour 1 à 10 mois"}</h2>
     <p>Sur les collines de Bellet, à l'ouest de Nice, Les Piafs des Collines est un appartement entier de 77,51 m² au premier étage d'une villa, avec deux terrasses et une vue totalement dégagée sur la Baie des Anges.</p>
     <p><strong>En <a href="bail-mobilite/">location en bail mobilité à Nice</a></strong>, il loge pour 1 à 10 mois les professionnels en mission, en formation ou en mutation : meublé, tout compris à partir de 2 880 € par mois, avec arrivée autonome. Les centres hospitaliers niçois sont à 12 à 16 minutes en voiture, l'aéroport à 20 minutes, Monaco à 22 minutes et Sophia Antipolis à 28 minutes.</p>
-    <p><strong>En <a href="saisonniere/">location saisonnière</a></strong>, il accueille jusqu'à 6 voyageurs avec piscine partagée, parking privé et ateliers.</p>
+    {PARA_SAISON if SAISON_ACTIVE else '<p>Deux vraies chambres, deux salles d\'eau, fibre, parking privé, linge fourni et ménage de sortie compris : on arrive avec sa valise. <a class="bouton prune" style="margin-top:10px" href="bail-mobilite/">Voir l\'offre bail mobilité</a></p>'}
   </div>
   {img("terrasse-vue-mer", "Terrasse de l'appartement meublé avec vue sur la Baie des Anges à Nice")}
 </div></div></section>"""
     jsonld = [
         {"@context": "https://schema.org", "@type": "WebSite", "name": "Les Piafs des Collines", "url": BASE + "/", "inLanguage": "fr-FR"},
         {"@context": "https://schema.org", "@type": "Apartment", "name": "Les Piafs des Collines",
-         "description": "Appartement meublé de 77,51 m² avec vue sur la Baie des Anges, à Nice, proposé en bail mobilité de 1 à 10 mois et en location saisonnière.",
+         "description": "Appartement meublé de 77,51 m² avec vue sur la Baie des Anges, à Nice, proposé en bail mobilité de 1 à 10 mois.",
          "url": BASE + "/", "address": ADRESSE_LD, "geo": {"@type": "GeoCoordinates", "latitude": GEO[0], "longitude": GEO[1]},
          "floorSize": {"@type": "QuantitativeValue", "value": 77.51, "unitCode": "MTK"}, "numberOfRooms": 3, "numberOfBedrooms": 2,
          "numberOfBathroomsTotal": 2, "image": [f"{BASE}/assets/img/{n}.jpg" for n in ("terrasse-vue-mer", "vue-baie-de-nice", "sejour-salle-a-manger", "chambre-parentale")],
          "telephone": "+33611948235", "email": MAIL},
     ]
-    contenu = (tete("Bail mobilité & location saisonnière à Nice, vue mer | Les Piafs des Collines",
+    contenu = (tete("Location bail mobilité à Nice, appartement vue mer | Les Piafs des Collines" if not SAISON_ACTIVE else "Bail mobilité & location saisonnière à Nice, vue mer | Les Piafs des Collines",
+                    "Appartement meublé de 77 m² vue Baie des Anges à Nice en bail mobilité de 1 à 10 mois : tout compris dès 2 880 €/mois, arrivée autonome." if not SAISON_ACTIVE else
                     "Appartement meublé de 77 m² vue Baie des Anges à Nice : bail mobilité de 1 à 10 mois, tout compris dès 2 880 €/mois, ou location saisonnière.",
                     0, "index.html", jsonld)
                + "<main>" + corps.replace("{R}", "") + "</main>" + pied("mob", 0) + "</body></html>\n")
@@ -668,13 +677,17 @@ def redirections():
                  "/post/créez-un-superbe-blog": "/saisonniere/environs/nissa-la-bella.html"}
     for slug, src, _ in LEGAL:
         anciennes["/" + src] = f"/saisonniere/{slug}.html"
+    if not SAISON_ACTIVE:
+        # offre saisonnière éteinte : tout mène au bail mobilité, sauf les deux pages légales du site
+        garder = {"/mentions-légales", "/politique-de-confidentialité"}
+        anciennes = {a: (n if a in garder else "/bail-mobilite/") for a, n in anciennes.items()}
     lignes = []
     from urllib.parse import quote
     for a, n in anciennes.items():
         n = n[:-5] if n.endswith(".html") else n
         lignes.append(f"{quote(a)} {n} 301")
         if quote(a) != a: lignes.append(f"{a} {n} 301")
-    lignes.append("/blog/* /saisonniere/environs 301")
+    lignes.append("/blog/* " + ("/saisonniere/environs" if SAISON_ACTIVE else "/bail-mobilite/") + " 301")
     (SITE / "_redirects").write_text("\n".join(lignes) + "\n", encoding="utf-8")
     print("   _redirects")
 
@@ -683,7 +696,7 @@ def sitemap():
     jour = datetime.date.today().isoformat()
     prio = {"index.html": "1.0", "bail-mobilite/index.html": "0.9", "saisonniere/index.html": "0.8"}
     urls = "".join(f"<url><loc>{url_propre(c)}</loc><lastmod>{jour}</lastmod><priority>{prio.get(c, '0.5')}</priority></url>"
-                   for c in PAGES if c != "404.html")
+                   for c in PAGES if c != "404.html" and (SAISON_ACTIVE or not c.startswith("saisonniere/")))
     (SITE / "sitemap.xml").write_text('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">' + urls + "</urlset>\n", encoding="utf-8")
     (SITE / "robots.txt").write_text(f"User-agent: *\nAllow: /\n\nSitemap: {BASE}/sitemap.xml\n", encoding="utf-8")
     print("   sitemap.xml, robots.txt")

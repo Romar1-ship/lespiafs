@@ -45,6 +45,12 @@ Pour que chaque push publie, relier le Worker au dépôt `Romar1-ship/lespiafs` 
 
 **Domaines.** `lespiafsdescollines.com` et `www.` sont rattachés au Worker (custom domains, déclarés dans `wrangler.jsonc`). Les anciens enregistrements Wix ont été supprimés le 23/10/2026. Les adresses sont courtes : Cloudflare sert `hotes.html` sous `/saisonniere/hotes`, et le générateur écrit directement ces adresses. **Ne jamais toucher aux MX, SPF et SRV : c'est la messagerie OVH.**
 
+## La location saisonnière est éteinte
+
+Depuis le 23/10/2026, `SAISON_ACTIVE = False` en tête de `outils/build.py` : l'autorisation de location courte durée a expiré le 22/10/2026. Les pages `saisonniere/` restent en ligne mais ne sont ni dans l'accueil, ni dans le pied de page, ni dans le sitemap, et portent un `noindex`. Les anciennes adresses Wix mènent à `/bail-mobilite/`, sauf les mentions légales et la politique de confidentialité.
+
+**Pour tout rallumer** : passer `SAISON_ACTIVE = True`, relancer `python3 outils/build.py`, publier.
+
 ## Ce qui reste à faire
 
 - Le formulaire de contact ouvre la messagerie du visiteur (mailto). Pas de traitement côté serveur.
