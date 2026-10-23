@@ -27,7 +27,15 @@ Le contenu de la partie saisonnière est lu mot pour mot dans `_source/site_wix_
 
 Déployé en **Worker**, pas en Pages. La configuration est dans `wrangler.jsonc` : le Worker `lespiafs` sert le dossier `site/`, avec `404.html` en page d'erreur et `_redirects` pour les anciennes adresses Wix.
 
-Mise en ligne par Workers Builds, relié au dépôt `Romar1-ship/lespiafs`, branche `main` : chaque push publie.
+**En ligne depuis le 23/10/2026**, Worker `lespiafs` du compte Cloudflare LCCA (`319ca0bc4d9526bc7655c49937e301a9`).
+
+**Le Worker n'est pas encore relié à GitHub** : un push ne publie rien. On publie avec :
+
+```
+CLOUDFLARE_API_TOKEN=$CLOUDFLARE_LCCA_API_TOKEN CLOUDFLARE_ACCOUNT_ID=319ca0bc4d9526bc7655c49937e301a9 npx wrangler deploy
+```
+
+Pour que chaque push publie, relier le Worker au dépôt `Romar1-ship/lespiafs` dans le tableau de bord (Workers Builds, autorisation GitHub), avec les réglages ci-dessous.
 
 | Réglage Workers Builds | Valeur |
 |---|---|
@@ -35,7 +43,7 @@ Mise en ligne par Workers Builds, relié au dépôt `Romar1-ship/lespiafs`, bran
 | Deploy command | `npx wrangler deploy` |
 | Root directory | *(racine)* |
 
-**Bascule du domaine.** Les deux domaines sont déclarés dans `wrangler.jsonc`. Cloudflare ne les rattache qu'une fois supprimés, dans la zone `lespiafsdescollines.com` (compte LCCA), les trois enregistrements A vers `185.230.63.x` et le CNAME `www` vers `cdn3.wixdns.net`. **Ne jamais toucher aux MX, SPF et SRV : c'est la messagerie OVH.**
+**Domaines.** `lespiafsdescollines.com` et `www.` sont rattachés au Worker (custom domains, déclarés dans `wrangler.jsonc`). Les anciens enregistrements Wix ont été supprimés le 23/10/2026. Les adresses sont courtes : Cloudflare sert `hotes.html` sous `/saisonniere/hotes`, et le générateur écrit directement ces adresses. **Ne jamais toucher aux MX, SPF et SRV : c'est la messagerie OVH.**
 
 ## Ce qui reste à faire
 
