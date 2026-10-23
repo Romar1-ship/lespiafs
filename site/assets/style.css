@@ -180,3 +180,14 @@ textarea{min-height:130px;resize:vertical}
 .hero .h1-sous{display:block;font-family:var(--texte);letter-spacing:.04em;text-transform:none;font-size:clamp(.85rem,1.6vw,1rem);opacity:.9;margin-top:8px}
 .choix.seul{grid-template-columns:minmax(0,420px)}
 .choix.seul .carte-choix{text-align:center;align-items:center}
+/* Logo d'origine (SVG Creative Explorer) */
+.marque{gap:12px}
+.marque .m-oiseau{height:36px;width:auto;filter:none}
+.marque .m-nom{height:11px;width:auto;filter:none}
+@media(max-width:420px){.marque .m-nom{height:9px}}
+.hero .logo-hero{width:min(190px,40vw);height:auto;filter:drop-shadow(0 4px 18px rgba(255,255,255,.25))}
+.hero h1.titre-hero{margin:14px 0 0;letter-spacing:0}
+.hero .nom-hero{display:block;width:min(560px,84vw);height:auto;margin:0 auto}
+.hero .signature-hero{width:min(470px,78vw);height:auto;margin:14px auto 0;display:block}
+.hero h1.titre-hero{margin-bottom:30px}
+.hero .h1-sous{margin-top:18px}

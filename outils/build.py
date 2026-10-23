@@ -69,7 +69,7 @@ def tete(titre, description, profondeur, chemin="index.html", jsonld=None, image
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>{E(titre)}</title>
 <meta name="description" content="{E(description)}">
-<link rel="icon" type="image/png" href="{r}assets/img/oiseau.png">
+<link rel="icon" type="image/png" href="{r}assets/img/favicon.png">
 {'<meta name="robots" content="noindex">' if chemin == "404.html" or (chemin.startswith("saisonniere/") and not SAISON_ACTIVE) else f'<link rel="canonical" href="{url_propre(chemin)}">'}
 <meta property="og:type" content="website"><meta property="og:locale" content="fr_FR"><meta property="og:site_name" content="Les Piafs des Collines">
 <meta property="og:url" content="{url_propre(chemin)}">
@@ -92,7 +92,7 @@ def entete(espace, courant, profondeur):
         liens = "".join(f'<a href="{a}">{E(l)}</a>' for a, l in NAV_MOB)
         liens += '<a class="cta" href="#demande">Demander une disponibilité</a>'
     return f"""<header class="entete"><div class="wrap">
-<a class="marque" href="{r}index.html"><img src="{r}assets/img/oiseau-blanc.png" alt="">Les Piafs des Collines</a>
+<a class="marque" href="{r}index.html"><img class="m-oiseau" src="{r}assets/img/logo-oiseau-blanc.svg" alt=""><img class="m-nom" src="{r}assets/img/logo-nom-blanc.svg" alt="Les Piafs des Collines"></a>
 <button class="burger" aria-label="Menu" onclick="this.nextElementSibling.classList.toggle('ouvert')">☰</button>
 <nav class="nav">{liens}</nav>
 </div></header>
@@ -185,9 +185,8 @@ PARA_SAISON = """<p><strong>En <a href="saisonniere/">location saisonnière</a><
 def accueil():
     corps = f"""
 <section class="hero" style="background-image:url(assets/img/bandeau-accueil.jpg)">
-  <img class="logo-hero" src="assets/img/oiseau.png" alt="Les Piafs des Collines, location meublée vue mer à Nice" width="298" height="365">
-  <h1 class="titre-hero">Les Piafs des Collines<span class="h1-sous">{"Location meublée vue mer à Nice · bail mobilité et location saisonnière" if SAISON_ACTIVE else "Location meublée vue mer à Nice en bail mobilité, de 1 à 10 mois"}</span></h1>
-  <p class="script">Appartement vue mer sur la Colline de Bellet</p>
+  <img class="logo-hero" src="assets/img/logo-oiseau.svg" alt="" width="300" height="366">
+  <h1 class="titre-hero"><img class="nom-hero" src="assets/img/logo-nom-blanc.svg" alt="Les Piafs des Collines" width="974" height="36"><img class="signature-hero" src="assets/img/logo-signature-blanc.svg" alt="Appartement vue mer panoramique sur les Collines de Bellet" width="710" height="90"><span class="h1-sous">{"Location meublée vue mer à Nice · bail mobilité et location saisonnière" if SAISON_ACTIVE else "Location meublée vue mer à Nice en bail mobilité, de 1 à 10 mois"}</span></h1>
   <div class="choix{"" if SAISON_ACTIVE else " seul"}">
     {CARTE_SAISON if SAISON_ACTIVE else ""}
     <a class="carte-choix mob" href="bail-mobilite/">
