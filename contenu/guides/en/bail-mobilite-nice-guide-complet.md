@@ -63,7 +63,7 @@ So you do not pay any blocked sum when you move in.
 
 Visale is a free guarantee from Action Logement. It is only granted if the rent, charges included, stays under a ceiling set by Action Logement.
 
-At this apartment's rent level, Visale is not available. The guarantee takes the form of an employer guarantee or a personal guarantor.
+At this apartment's rent level, Visale is not available. The guarantee takes the form of a guarantor: your employer or a private individual.
 
 ## Can the employer rent in its own name?
 

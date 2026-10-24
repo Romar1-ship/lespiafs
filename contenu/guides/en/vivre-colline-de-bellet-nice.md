@@ -92,7 +92,7 @@ You must show a reason before signing: professional training, higher education, 
 
 **Your employer pays.** A company, a relocation agency, an insurer or a production rents in its own name, from 3 months. The invoice is in its name, with no proof of reason.
 
-The guarantee takes the form of an employer guarantee or a personal guarantor. Visale is not available at this rent level.
+The guarantee takes the form of a guarantor: your employer or a private individual. Visale is not available at this rent level.
 
 ## How much does a home in Bellet cost?
 

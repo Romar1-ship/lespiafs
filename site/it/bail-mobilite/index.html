@@ -73,7 +73,7 @@
 </div></section>
 
 <section class="blanc" id="contrat"><div class="wrap">
-  <span class="sur">Contratto</span><h2>Contratto personale o aziendale</h2>
+  <span class="sur">Contratto</span><h2>Bail mobilité o contratto intestato alla società</h2>
   <div class="deux-formules">
     <div><svg class="pic" aria-hidden="true"><use href="#i-societe" /></svg><h3>Paga il datore di lavoro</h3><p>Contratto intestato alla società, da 3 mesi.<br>Nessun documento sul motivo.</p></div>
     <div><svg class="pic" aria-hidden="true"><use href="#i-personne" /></svg><h3>Paga l'inquilino</h3><p>Bail mobilité, da 1 a 10 mesi.<br>Documento di mobilità, garante datore di lavoro o personale.</p></div>
@@ -107,7 +107,7 @@
 <div class="plein"><label for="msg">Messaggio</label><textarea id="msg" name="Message" required></textarea></div>
 </div>
 <p style="margin-top:18px"><button class="bouton" type="submit">Invia</button></p>
-<p class="note">Il pulsante apre la Sua posta con il messaggio precompilato, indirizzato a contact@lespiafsdescollines.com. Rispondiamo in italiano.</p>
+<p class="note">Il pulsante apre la Sua posta con il messaggio precompilato, indirizzato a contact@lespiafsdescollines.com.</p>
 </form>
 <script>document.querySelectorAll('.formulaire-mail').forEach(f=>f.addEventListener('submit',e=>{e.preventDefault();
 const l=[...new FormData(f)].filter(([k,v])=>v).map(([k,v])=>k+' : '+v).join('\n');
@@ -120,7 +120,7 @@ location.href='mailto:'+f.dataset.to+'?subject='+encodeURIComponent(f.dataset.su
 <div><h5>I nostri affitti</h5><ul>
 <li><a href="/it/">Home</a></li>
 
-<li><a href="/it/bail-mobilite/">Affitto medio termine, da 1 a 10 mesi</a></li>
+<li><a href="/it/bail-mobilite/">Bail mobilité (affitto medio termine), da 1 a 10 mesi</a></li>
 <li><a href="/it/guides/">Guide</a></li></ul></div>
 <div><h5>Informazioni</h5><ul>
 <li><a href="/saisonniere/mentions-legales">Note legali (in francese)</a></li>

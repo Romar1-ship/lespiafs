@@ -24,7 +24,7 @@ For a bail mobilité:
 
 - your assignment order, your transfer letter or your assignment contract;
 - an ID;
-- the guarantee: employer guarantee or personal guarantor. Visale is not available at this rent level.
+- the guarantee: a guarantor, your employer or a private individual. Visale is not available at this rent level.
 
 For a lease in the company's name: the contact details of the organisation that pays and the name of the occupant.
 

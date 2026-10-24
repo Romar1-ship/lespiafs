@@ -59,7 +59,7 @@ Your transfer letter or your assignment order serves as proof. If you are hired 
 
 ## What guarantee?
 
-Visale is not available at this rent level. The guarantee takes the form of an employer guarantee or a personal guarantor.
+Visale is not available at this rent level. The guarantee takes the form of a guarantor: your employer or a private individual.
 
 ## How much does a home in Nice cost when you work in Monaco?
 
