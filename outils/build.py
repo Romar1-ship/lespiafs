@@ -1072,6 +1072,7 @@ def guides_langue(langue):
     if langue != "fr":  # le texte des articles est déjà dans la langue : il ne passe pas par le dictionnaire
         for a in articles:
             ignorer |= i18n.textes(md_html(a["corps"])) | {i18n.norme(a["titre"]), i18n.norme(a["description"]), i18n.norme(a["title_seo"])}
+            ignorer |= {i18n.norme(x) for x in a.get("chapo", "").split("|")}
     for i, a in enumerate(articles):
         couv, couleur, (photo, avant), reperes = VISUELS[a["fichier"]]
         corps_html = md_html(a["corps"])
