@@ -788,6 +788,11 @@ CREDITS = {
     "affiche-nice-plm": ("Affiche PLM « Nice », F. Hugo d'Alési", "Domaine public", "https://commons.wikimedia.org/wiki/File:Affiche_PLM_Nice.jpg"),
     "affiche-monaco-broders": ("Affiche PLM « Monaco, Monte-Carlo, au pays du soleil », Roger Broders", "Domaine public", "https://commons.wikimedia.org/wiki/File:Flickr_-_%E2%80%A6trialsanderrors_-_Monaco,_Monte-Carlo,_au_pays_du_soleil,_travel_poster_for_PLM,_ca._1920.jpg"),
     "affiche-villefranche": ("Affiche « Villefranche-sur-Mer, port de tourisme », Roger Broders", "Domaine public", "https://commons.wikimedia.org/wiki/File:Edit%C3%A9_par_le_Syndicat_d%27Initiative_-_Villefranche_s-_Mer,_Port_de_tourisme_-_affiche_-_Roger_Broders_-_btv1b9012820q.jpg"),
+    "affiche-matisse-nice": ("Affiche « France Côte d'Azur, Nice », Henri Matisse", "Domaine public", "https://commons.wikimedia.org/wiki/File:France._Cote_d%27azur_-_Nice..._-_affiche_-_Henri_Matisse_-_btv1b9005291c.jpg"),
+    "affiche-ceria-cote-d-azur": ("Affiche SNCF « Côte d'Azur », Edmond Céria", "Domaine public", "https://commons.wikimedia.org/wiki/File:C%C3%B4te_d%27Azur_-_Soci%C3%A9t%C3%A9_Nationale_des_Chemins_de_Fer_Fran%C3%A7ais_-_affiche_-_C%C3%A9ria_-_btv1b53074563g.jpg"),
+    "affiche-cheret-hiver-a-nice": ("Affiche « L'Hiver à Nice », Jules Chéret", "Domaine public", "https://commons.wikimedia.org/wiki/File:L%27Hiver_%C3%A0_Nice_-_affiche_-_Jules_Ch%C3%A9ret_-_btv1b90105736.jpg"),
+    "affiche-chanteau-nice-digne": ("Affiche « Nice à Digne par l'autorail », Gabriel Chanteau, 1935", "Domaine public", "https://commons.wikimedia.org/wiki/File:Affiche_publicitaire_Chemins_de_fer_de_la_Provence_%22Nice_%C3%A0_Digne_par_l%27autorail%22,_par_Gabriel_Chanteau_(1874-1955),_1935.jpg"),
+    "affiche-broders-montagnes": ("Affiche « La Côte d'Azur, ses montagnes », Roger Broders", "Domaine public", "https://commons.wikimedia.org/wiki/File:La_C%C3%B4te_d%27Azur_ses_montagnes._Edition_de_la_F%C3%A9d%C3%A9ration_des_Essi_C%C3%B4te_d%27Azur_et_Corse_-_affiche_-_Roger_Broders_-_btv1b90039507.jpg"),
     "hopital-pasteur": ("Hôpital Pasteur, Nice. Photo Jesmar", "CC BY-SA 3.0", "https://commons.wikimedia.org/wiki/File:H%C3%B4pital_Pasteur_P1010629.JPG"),
     "tram-ligne-2": ("Tramway de Nice, ligne 2. Photo Snoopy 31", "CC BY-SA 4.0", "https://commons.wikimedia.org/wiki/File:Ligne_2_Tram_de_Nice_07-20.jpg"),
     "chateau-de-bellet": ("Château de Bellet, Nice. Photo Château de Bellet", "CC BY-SA 4.0", "https://commons.wikimedia.org/wiki/File:ChateaudeBellet_Boonz-drone2.jpg"),
@@ -796,15 +801,15 @@ CREDITS = {
 }
 # Par article : couverture, couleur du bloc, photo insérée avant le n-ième intertitre, et trois repères chiffrés.
 VISUELS = {
-    "bail-mobilite-nice-guide-complet": ("affiche-cote-d-azur", "azur", ("baie-des-anges", 5),
+    "bail-mobilite-nice-guide-complet": ("affiche-ceria-cote-d-azur", "azur", ("baie-des-anges", 5),
         [("1 à 10", "mois de bail"), ("0 €", "de dépôt de garantie"), ("1", "mois de préavis pour le locataire")]),
-    "logement-interne-chu-nice": ("affiche-hiver-a-nice", "corail", ("hopital-pasteur", 2),
+    "logement-interne-chu-nice": ("affiche-cheret-hiver-a-nice", "corail", ("hopital-pasteur", 2),
         [("15", "min du CHU Pasteur 2"), ("16", "min du Centre Lacassagne"), ("3 mai", "2027, changement de semestre")]),
     "logement-monaco-nice": ("affiche-monaco-broders", "nuit", ("baie-des-anges", 4),
         [("22", "min de Monaco en voiture"), ("1 sur 4", "salarié du privé de Monaco vit à Nice"), ("20", "min de l'aéroport")]),
-    "mission-nice-3-a-10-mois": ("affiche-nice-plm", "ocre", ("tram-ligne-2", 3),
+    "mission-nice-3-a-10-mois": ("affiche-chanteau-nice-digne", "ocre", ("tram-ligne-2", 3),
         [("3 à 10", "mois de mission"), ("28", "min de Sophia Antipolis"), ("1", "facture, tout compris")]),
-    "vivre-colline-de-bellet-nice": ("chateau-de-bellet", "mer", ("vignoble-saint-jean-bellet", 2),
+    "vivre-colline-de-bellet-nice": ("affiche-broders-montagnes", "mer", ("vignoble-saint-jean-bellet", 2),
         [("1941", "AOC Bellet, par décret"), ("26 m²", "de terrasses vue mer"), ("13", "min du campus Valrose")]),
 }
 
@@ -936,7 +941,7 @@ def guides():
 </div>
 <section class="azur guide-fin"><div class="etroit centre">
   <span class="sur">Les Piafs des Collines</span>
-  <h2 class="phrase-prix">77 m² sur la colline de Bellet, face à la Baie des Anges, <em>de 1 à 10 mois.</em></h2>
+  <h2 class="phrase-prix">77 m² sur la colline de Bellet, face à la Baie&nbsp;des&nbsp;Anges,<br><em>de 1&nbsp;à 10&nbsp;mois.</em></h2>
   <a class="bouton" href="../bail-mobilite/">Voir le logement</a>
 </div></section>
 <section class="g-suite"><div class="wrap"><span class="sur">À lire aussi</span><div class="g-tuiles">{suite}</div></div></section>"""
@@ -954,10 +959,10 @@ def guides():
 <section class="g-hero azur g-index">
   <div class="g-hero-texte">
     <span class="sur">Les guides des Piafs</span>
-    <h1>Se loger à Nice, <em>de 1 à 10 mois.</em></h1>
+    <h1>Se loger à Nice,<br><em>de 1&nbsp;à 10&nbsp;mois.</em></h1>
     <p class="chapo">Bail mobilité, internat, mission, Monaco, vie de quartier : ce qu'il faut savoir avant de poser sa valise sur la Riviera.</p>
   </div>
-  <figure class="g-hero-image cadre"><span class="passe">{gimg("affiche-villefranche", CREDITS["affiche-villefranche"][0], charge="eager")}</span><figcaption>{credit("affiche-villefranche")}</figcaption></figure>
+  <figure class="g-hero-image cadre"><span class="passe">{gimg("affiche-matisse-nice", CREDITS["affiche-matisse-nice"][0], charge="eager")}</span><figcaption>{credit("affiche-matisse-nice")}</figcaption></figure>
 </section>
 <div class="store" aria-hidden="true"></div>
 <section class="g-une-section"><div class="wrap">
@@ -965,10 +970,10 @@ def guides():
     <div><span class="n">Guide n° 1 · À lire en premier</span><span class="t">{E(une["titre"])}</span><span class="d">{E(une["description"])}</span><span class="f">Lire le guide →</span></div></a>
 </div></section>
 <section class="g-liste"><div class="wrap"><div class="g-tuiles quatre">{tuiles}</div>
-  <p class="note g-credits">Affiches de la Compagnie PLM, domaine public. Photos libres de Wikimedia Commons, créditées sous chaque image.</p></div></section>"""
+  <p class="note g-credits">Affiches anciennes de la Côte d’Azur, domaine public. Photos libres de Wikimedia Commons, créditées sous chaque image.</p></div></section>"""
     page("guides/index.html", "Guides : se loger à Nice en bail mobilité | Les Piafs des Collines",
          "Bail mobilité à Nice, logement près du CHU, travailler à Monaco : nos guides pour se loger à Nice pour 1 à 10 mois.", "guides", "", corps,
-         image="guides/affiche-villefranche")
+         image="guides/affiche-matisse-nice")
 
 # ================================================================ divers
 def page_cookies():

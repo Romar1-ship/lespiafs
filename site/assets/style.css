@@ -595,3 +595,15 @@ h1,h2,h3,h4,.geants b,.montants b,.carte-trajets b,.phrase-prix,.legende,.g-repe
 /* Fiche technique : libellés et valeurs dans la même encre */
 .fiche dt{color:var(--nuit);font-weight:500;font-size:.98rem}
 .fiche dd{color:var(--nuit);font-size:.98rem}
+/* ===================== Texte courant : Josefin Sans, plus petit ===================== */
+:root{--texte:"Josefin Sans",system-ui,sans-serif}
+body{font-size:17px;line-height:1.75;font-weight:400;letter-spacing:.005em}
+.guide{font-size:1rem;line-height:1.8}
+.guide>p:first-child{font-size:1.3rem}
+.chapo,.panneau p,.citation,.guide>p:first-child,.guide blockquote{font-family:var(--serif)}
+.fiche dt,.fiche dd{font-size:.95rem}
+details p{font-size:.98rem}
+.g-hero-image.cadre{flex-direction:column;gap:14px}
+.g-hero-image.cadre figcaption{position:static;transform:none;color:inherit;opacity:.75;padding:0}
+.g-hero-image.cadre .passe img{height:calc(100svh - 66px - 2 * clamp(20px,5vh,56px) - 2 * clamp(10px,1.8vh,20px) - 64px)}
+@media(max-width:860px){.g-hero-image.cadre .passe img{height:calc(100svh - 66px - 390px)}}
