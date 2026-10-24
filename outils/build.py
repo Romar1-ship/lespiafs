@@ -22,8 +22,8 @@ SAISON_ACTIVE = False
 # Passer à True une fois les articles validés par Géraldine.
 GUIDES_VALIDES = False
 
-# Pages anglaises et italiennes : en ligne, hors index, tant que Themis n'a pas relu leurs mentions juridiques.
-LANGUES_VALIDEES = False
+# Pages anglaises et italiennes : relues par Themis et ouvertes à l'index le 24/10/2026.
+LANGUES_VALIDEES = True
 
 TEL = "+33 (0)6 11 94 82 35"
 TEL_LIEN = "+33611948235"
@@ -182,6 +182,7 @@ def pied(espace, profondeur):
 <li><a href="{r}guides/">Guides</a></li></ul></div>
 <div>{legal}</div>
 </div>
+<p class="note droit-pied">Le contrat est régi par le droit français et rédigé en français. Les traductions sont fournies à titre d'information.</p>
 <div class="bas"><span>© {2026} Les Piafs des Collines</span><span>Design by <a href="http://www.creative-explorer.fr" rel="noopener">Creative Explorer</a></span></div>
 </div></footer>
 """
@@ -754,6 +755,7 @@ def bail_mobilite():
     <div>{pic("societe")}<h3>L'employeur paie</h3><p>Bail au nom de la société, dès 3 mois.<br>Aucun justificatif de motif.</p></div>
     <div>{pic("personne")}<h3>Le locataire paie</h3><p>Bail mobilité, de 1 à 10 mois.<br>Justificatif de mobilité, caution employeur ou personnelle.</p></div>
   </div>
+  <p class="note droit">Le contrat est régi par le droit français et rédigé en français. Les traductions sont fournies à titre d'information.</p>
 </div></section>
 
 <section class="nuit" id="avis"><div class="etroit centre">
