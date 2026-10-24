@@ -6,6 +6,7 @@ Le contenu saisonnier est repris mot pour mot depuis _source/site_wix_2026-10-23
 """
 import json, html, os, re, unicodedata
 from pathlib import Path
+import i18n
 
 RACINE = Path(__file__).resolve().parent.parent
 SITE = RACINE / "site"
@@ -20,6 +21,9 @@ SAISON_ACTIVE = False
 # Guides en relecture : en ligne et accessibles depuis le menu, mais ni indexés ni dans le sitemap.
 # Passer à True une fois les articles validés par Géraldine.
 GUIDES_VALIDES = False
+
+# Pages anglaises et italiennes : en ligne, hors index, tant que Themis n'a pas relu leurs mentions juridiques.
+LANGUES_VALIDEES = False
 
 TEL = "+33 (0)6 11 94 82 35"
 TEL_LIEN = "+33611948235"
@@ -116,6 +120,7 @@ def tete(titre, description, profondeur, chemin="index.html", jsonld=None, image
 <title>{E(titre)}</title>
 <meta name="description" content="{E(description)}">
 <link rel="icon" type="image/png" href="{r}assets/img/favicon.png">
+<!--HREFLANG-->
 {'<meta name="robots" content="noindex">' if chemin == "404.html" or (chemin.startswith("saisonniere/") and not SAISON_ACTIVE) or (chemin.startswith("guides/") and not GUIDES_VALIDES) else f'<link rel="canonical" href="{url_propre(chemin)}">'}
 <meta property="og:type" content="website"><meta property="og:locale" content="fr_FR"><meta property="og:site_name" content="Les Piafs des Collines">
 <meta property="og:url" content="{url_propre(chemin)}">
@@ -143,8 +148,8 @@ def entete(espace, courant, profondeur):
     return f"""<header class="entete"><div class="wrap">
 <a class="marque" href="{r}index.html"><img class="m-oiseau" src="{r}assets/img/logo-oiseau-blanc.svg" alt=""><span class="m-texte"><img class="m-nom" src="{r}assets/img/logo-nom-blanc.svg" alt="Les Piafs des Collines"><span class="m-sous">Location bail mobilité</span></span></a>
 <button class="burger" aria-label="Menu" onclick="this.nextElementSibling.classList.toggle('ouvert')">☰</button>
-<nav class="nav">{liens}<span class="cta-mobile">{cta}</span></nav>
-<div class="cta-droite">{cta}</div>
+<nav class="nav">{liens}<span class="cta-mobile"><!--LANGUES-->{cta}</span></nav>
+<div class="cta-droite"><!--LANGUES-->{cta}</div>
 </div></header>
 """
 
@@ -210,15 +215,78 @@ def propre(html_txt):
 
 PAGES = []
 
-def page(chemin, titre, description, espace, courant, corps, scripts="", jsonld=None, image="terrasse-vue-mer"):
+# ---------------------------------------------------------------- langues
+# Les pages de l'offre existent en français, anglais et italien. Le français est la source :
+# l'anglais et l'italien sont produits par outils/i18n.py à partir de contenu/i18n/{langue}.json.
+# La location saisonnière reste en français seul.
+TRADUITES = {"index.html": "accueil", "bail-mobilite/index.html": "bail", "cookies.html": "cookies", "guides/index.html": "guides"}
+ALTS = {}     # clé de page -> {langue: adresse}
+ROUTES = {}   # langue -> {adresse française ou locale : adresse dans la langue}
+
+def court(chemin):
+    c = chemin[:-5] if chemin.endswith(".html") else chemin
+    c = c[:-5] if c.endswith("index") else c
+    return "/" + c
+
+def routes():
+    for chemin, cle in TRADUITES.items():
+        ALTS[cle] = {"fr": court(chemin), **{l: f"/{l}{court(chemin)}" for l in i18n.LANGUES}}
+    for f in sorted(GUIDES.glob("*.md")) if GUIDES.exists() else []:
+        ALTS["guide:" + f.stem] = {"fr": f"/guides/{lire_md(f)['slug']}"}
+        for l in i18n.LANGUES:
+            g = GUIDES / l / f.name
+            if g.exists():
+                ALTS["guide:" + f.stem][l] = f"/{l}/guides/{lire_md(g)['slug']}"
+    for l in i18n.LANGUES:
+        ROUTES[l] = {}
+        for alt in ALTS.values():
+            if l in alt:
+                ROUTES[l][alt["fr"]] = alt[l]
+                ROUTES[l][alt[l][len(l) + 1:]] = alt[l]
+
+def lien_langue(l):
+    def f(chemin):
+        c = chemin[:-5] if chemin.endswith(".html") else chemin
+        c = c[:-5] if c.endswith("/index") else c
+        return ROUTES[l].get(c) or ROUTES[l].get(c.rstrip("/") + "/")
+    return f
+
+NOMS_LANGUES = {"fr": "FR", "en": "EN", "it": "IT"}
+
+def poser_langues(contenu, cle, l):
+    alt = ALTS.get(cle, {})
+    if len(alt) < 2:
+        return contenu.replace("<!--HREFLANG-->", "").replace("<!--LANGUES-->", "")
+    hreflang = "".join(f'<link rel="alternate" hreflang="{x}" href="{BASE}{u}">' for x, u in alt.items()) + f'<link rel="alternate" hreflang="x-default" href="{BASE}{alt["fr"]}">'
+    choix = '<span class="langues">' + "".join(
+        f'<a href="{u}" hreflang="{x}" lang="{x}"{" aria-current=\"true\"" if x == l else ""}>{NOMS_LANGUES[x]}</a>' for x, u in alt.items()) + "</span>"
+    return contenu.replace("<!--HREFLANG-->", hreflang).replace("<!--LANGUES-->", choix)
+
+def ecrire(chemin, contenu, cle=None, langue="fr", ignorer=()):
+    """Écrit la page française et, si elle est traduite, ses versions anglaise et italienne."""
+    cle = cle or TRADUITES.get(chemin)
+    sorties = [] if langue != "fr" else [("fr", chemin, contenu)]
+    auto = langue == "fr" and cle in ALTS and not cle.startswith("guide:") and cle != "guides"
+    langues = i18n.LANGUES if auto else ((langue,) if langue != "fr" else ())
+    for l in langues:
+        cible = ALTS[cle][l].lstrip("/")
+        cible = (cible + "index.html") if cible.endswith("/") or not cible else cible + ".html"
+        t = contenu.replace(url_propre(chemin), BASE + ALTS[cle][l])
+        if not LANGUES_VALIDEES:
+            t = re.sub(r'<link rel="canonical" href="[^"]*">', '<meta name="robots" content="noindex">', t)
+        sorties.append((l, cible, i18n.traduire(t, l, chemin, lien_langue(l), ignorer)))
+    for l, c, txt in sorties:
+        f = SITE / c
+        f.parent.mkdir(parents=True, exist_ok=True)
+        f.write_text(poser_langues(txt, cle, l), encoding="utf-8")
+        PAGES.append(c)
+        print("  ", c)
+
+def page(chemin, titre, description, espace, courant, corps, scripts="", jsonld=None, image="terrasse-vue-mer", cle=None, langue="fr", ignorer=()):
     prof = chemin.count("/")
-    PAGES.append(chemin)
     contenu = tete(titre, description, prof, chemin, jsonld, image) + entete(espace, courant, prof) + "<main>" + corps + "</main>" + pied(espace, prof) + scripts + SCRIPT_REVEAL + "</body></html>\n"
     contenu = propre(contenu.replace("{R}", "../" * prof))
-    f = SITE / chemin
-    f.parent.mkdir(parents=True, exist_ok=True)
-    f.write_text(contenu, encoding="utf-8")
-    print("  ", chemin)
+    ecrire(chemin, contenu, cle, langue, ignorer)
 
 def bandeau(img, titre, sous=""):
     s = f"<p>{E(sous)}</p>" if sous else ""
@@ -280,9 +348,7 @@ def accueil():
                     "Appartement meublé de 77 m² vue Baie des Anges à Nice : bail mobilité de 1 à 10 mois, tout compris dès 2 880 €/mois, ou location saisonnière.",
                     0, "index.html", jsonld)
                + "<main>" + corps.replace("{R}", "") + "</main>" + pied("mob", 0) + SCRIPT_REVEAL + "</body></html>\n")
-    PAGES.append("index.html")
-    (SITE / "index.html").write_text(propre(contenu), encoding="utf-8")
-    print("   index.html")
+    ecrire("index.html", propre(contenu))
 
 # ================================================================ SAISONNIÈRE
 GALERIE = [("terrasse-vue-mer", "La terrasse principale face à la mer", True),
@@ -774,15 +840,19 @@ def md_html(texte):
     vider()
     return "".join(out)
 
-def lire_guides():
-    articles = []
-    for f in sorted(GUIDES.glob("*.md")) if GUIDES.exists() else []:
-        tete_md, corps = f.read_text(encoding="utf-8").split("---", 2)[1:]
-        meta = dict(l.split(": ", 1) for l in tete_md.strip().splitlines())
-        meta["corps"] = corps.strip()
-        articles.append(meta)
-    ordre = ["bail-mobilite-nice-guide-complet"]
-    return sorted(articles, key=lambda a: (a["slug"] not in ordre, a["titre"]))
+def lire_md(f):
+    tete_md, corps = f.read_text(encoding="utf-8").split("---", 2)[1:]
+    meta = dict(l.split(": ", 1) for l in tete_md.strip().splitlines())
+    meta["corps"], meta["fichier"] = corps.strip(), f.stem
+    return meta
+
+def lire_guides(dossier=None):
+    """Articles d'une langue, dans l'ordre des titres français (le guide complet en premier)."""
+    dossier = dossier or GUIDES
+    fr = sorted((lire_md(f) for f in GUIDES.glob("*.md")), key=lambda a: (a["fichier"] != "bail-mobilite-nice-guide-complet", a["titre"])) if GUIDES.exists() else []
+    ordre = [a["fichier"] for a in fr]
+    articles = [lire_md(f) for f in dossier.glob("*.md")] if dossier.exists() else []
+    return sorted(articles, key=lambda a: ordre.index(a["fichier"]) if a["fichier"] in ordre else 99)
 
 # Images des Guides : aucune photo du logement. Affiches PLM du domaine public et photos libres de Wikimedia Commons.
 CREDITS = {
@@ -904,15 +974,23 @@ DATAGRAPHIE = {
 }
 
 def guides():
-    articles = lire_guides()
+    for langue in ("fr",) + i18n.LANGUES:
+        guides_langue(langue)
+
+def guides_langue(langue):
+    articles = lire_guides(GUIDES if langue == "fr" else GUIDES / langue)
     if not articles: return
+    ignorer = set()
+    if langue != "fr":  # le texte des articles est déjà dans la langue : il ne passe pas par le dictionnaire
+        for a in articles:
+            ignorer |= i18n.textes(md_html(a["corps"])) | {i18n.norme(a["titre"]), i18n.norme(a["description"]), i18n.norme(a["title_seo"])}
     for i, a in enumerate(articles):
-        couv, couleur, (photo, avant), reperes = VISUELS[a["slug"]]
+        couv, couleur, (photo, avant), reperes = VISUELS[a["fichier"]]
         corps_html = md_html(a["corps"])
         titres = re.findall(r"<h2>(.+?)</h2>", corps_html)
         for k, t in enumerate(titres):
             corps_html = corps_html.replace(f"<h2>{t}</h2>", f'<h2 id="s{k + 1}"><span class="num">{pic(picto_titre(t), "pic-s")}{k + 1:02d}</span>{t}</h2>', 1)
-        for n, bloc in DATAGRAPHIE.get(a["slug"], []):
+        for n, bloc in DATAGRAPHIE.get(a["fichier"], []):
             tableau = re.search(r'<div class="table">(?:(?!</div>).)*3 600 €.*?</div>', corps_html, re.S) if "dg-prix" in bloc else None
             if tableau:  # le graphique des prix remplace le tableau des prix de l'article
                 corps_html = corps_html.replace(tableau.group(0), bloc, 1); continue
@@ -924,14 +1002,14 @@ def guides():
         sommaire = "".join(f'<li><a href="#s{k + 1}">{re.sub("<[^>]+>", "", t)}</a></li>' for k, t in enumerate(titres))
         rep = "".join(f'<div><b>{E(c)}</b><span>{E(l)}</span></div>' for c, l in reperes)
         autres = [b for b in articles if b is not a][:3]
-        suite = "".join(f'<a class="g-tuile {VISUELS[b["slug"]][1]}" href="{b["slug"]}.html">{gimg(VISUELS[b["slug"]][0], b["titre"])}<span class="t">{E(b["titre"])}</span></a>' for b in autres)
+        suite = "".join(f'<a class="g-tuile {VISUELS[b["fichier"]][1]}" href="{b["slug"]}.html">{gimg(VISUELS[b["fichier"]][0], b["titre"])}<span class="t">{E(b["titre"])}</span></a>' for b in autres)
         corps = f"""
 <section class="g-hero {couleur}">
   <div class="g-hero-texte">
-    <a class="sur" href="./">Guide n° {i + 1} · Se loger à Nice</a>
+    <a class="sur" href="./"><span>Guide n°</span>&nbsp;{i + 1} · <span>Se loger à Nice</span></a>
     <h1>{E(a["titre"])}</h1>
     <p class="chapo">{E(a["description"])}</p>
-    <span class="g-meta">{max(1, round(mots(a["corps"]) / 220))} min de lecture</span>
+    <span class="g-meta">{max(1, round(mots(a["corps"]) / 220))}&nbsp;<span>min de lecture</span></span>
   </div>
   <figure class="g-hero-image{" cadre" if couv.startswith("affiche") else ""}"><span class="passe">{gimg(couv, CREDITS[couv][0], charge="eager")}</span><figcaption>{credit(couv)}</figcaption></figure>
 </section>
@@ -948,8 +1026,9 @@ def guides():
   <a class="bouton" href="../bail-mobilite/">Voir le logement</a>
 </div></section>
 <section class="g-suite"><div class="wrap"><span class="sur">À lire aussi</span><div class="g-tuiles">{suite}</div></div></section>"""
-        page(f"guides/{a['slug']}.html", a["title_seo"], a["description"], "guides", "", corps, image=f"guides/{couv}", jsonld=[
-            {"@context": "https://schema.org", "@type": "Article", "headline": a["titre"], "description": a["description"], "inLanguage": "fr-FR",
+        page(f"guides/{a['slug']}.html", a["title_seo"], a["description"], "guides", "", corps, image=f"guides/{couv}",
+             cle="guide:" + a["fichier"], langue=langue, ignorer=ignorer, jsonld=[
+            {"@context": "https://schema.org", "@type": "Article", "headline": a["titre"], "description": a["description"], "inLanguage": {"fr": "fr-FR", "en": "en", "it": "it-IT"}[langue],
              "image": f"{BASE}/assets/img/guides/{couv}.jpg", "url": url_propre(f"guides/{a['slug']}.html"),
              "publisher": {"@type": "Organization", "name": "Les Piafs des Collines", "url": BASE + "/"}},
             {"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [
@@ -957,7 +1036,7 @@ def guides():
              {"@type": "ListItem", "position": 2, "name": "Guides", "item": BASE + "/guides/"},
              {"@type": "ListItem", "position": 3, "name": a["titre"], "item": url_propre(f"guides/{a['slug']}.html")}]}])
     une, reste = articles[0], articles[1:]
-    tuiles = "".join(f'<a class="g-tuile {VISUELS[b["slug"]][1]}" href="{b["slug"]}.html">{gimg(VISUELS[b["slug"]][0], b["titre"])}<span class="n">Guide n° {k + 2}</span><span class="t">{E(b["titre"])}</span><span class="d">{E(b["description"])}</span></a>' for k, b in enumerate(reste))
+    tuiles = "".join(f'<a class="g-tuile {VISUELS[b["fichier"]][1]}" href="{b["slug"]}.html">{gimg(VISUELS[b["fichier"]][0], b["titre"])}<span class="n"><span>Guide n°</span> {k + 2}</span><span class="t">{E(b["titre"])}</span><span class="d">{E(b["description"])}</span></a>' for k, b in enumerate(reste))
     corps = f"""
 <section class="g-hero azur g-index">
   <div class="g-hero-texte">
@@ -969,14 +1048,14 @@ def guides():
 </section>
 <div class="store" aria-hidden="true"></div>
 <section class="g-une-section"><div class="wrap">
-  <a class="g-une" href="{une["slug"]}.html"><span class="g-une-cadre"><span class="passe">{gimg(VISUELS[une["slug"]][0], une["titre"])}</span></span>
-    <div><span class="n">Guide n° 1 · À lire en premier</span><span class="t">{E(une["titre"])}</span><span class="d">{E(une["description"])}</span><span class="f">Lire le guide →</span></div></a>
+  <a class="g-une" href="{une["slug"]}.html"><span class="g-une-cadre"><span class="passe">{gimg(VISUELS[une["fichier"]][0], une["titre"])}</span></span>
+    <div><span class="n"><span>Guide n°</span> 1 · <span>À lire en premier</span></span><span class="t">{E(une["titre"])}</span><span class="d">{E(une["description"])}</span><span class="f">Lire le guide →</span></div></a>
 </div></section>
 <section class="g-liste"><div class="wrap"><div class="g-tuiles quatre">{tuiles}</div>
   <p class="note g-credits">Affiches anciennes de la Côte d’Azur, domaine public. Photos libres de Wikimedia Commons, créditées sous chaque image.</p></div></section>"""
     page("guides/index.html", "Guides : se loger à Nice en bail mobilité | Les Piafs des Collines",
          "Bail mobilité à Nice, logement près du CHU, travailler à Monaco : nos guides pour se loger à Nice pour 1 à 10 mois.", "guides", "", corps,
-         image="guides/affiche-matisse-nice")
+         image="guides/affiche-matisse-nice", cle="guides", langue=langue, ignorer=ignorer)
 
 # ================================================================ divers
 def page_cookies():
@@ -1029,13 +1108,16 @@ def sitemap():
     jour = datetime.date.today().isoformat()
     prio = {"index.html": "1.0", "bail-mobilite/index.html": "0.9", "saisonniere/index.html": "0.8", "guides/index.html": "0.7"}
     urls = "".join(f"<url><loc>{url_propre(c)}</loc><lastmod>{jour}</lastmod><priority>{prio.get(c, '0.5')}</priority></url>"
-                   for c in PAGES if c != "404.html" and (SAISON_ACTIVE or not c.startswith("saisonniere/")) and (GUIDES_VALIDES or not c.startswith("guides/")))
+                   for c in PAGES if c != "404.html" and (SAISON_ACTIVE or not c.startswith("saisonniere/")) and (GUIDES_VALIDES or "guides/" not in c) and (LANGUES_VALIDEES or not c.startswith(("en/", "it/"))))
     (SITE / "sitemap.xml").write_text('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">' + urls + "</urlset>\n", encoding="utf-8")
     (SITE / "robots.txt").write_text(f"User-agent: *\nAllow: /\n\nSitemap: {BASE}/sitemap.xml\n", encoding="utf-8")
     print("   sitemap.xml, robots.txt")
 
 if __name__ == "__main__":
     print("Génération de site/ :")
+    routes()
     accueil(); saison_appartement(); saison_hotes(); saison_ateliers(); saison_livre_or(); saison_faq()
     saison_tarifs(); saison_contact(); saison_environs(); saison_legal(); bail_mobilite(); guides(); page_cookies(); page_404(); redirections(); sitemap()
+    n = i18n.rapport()
+    print(f"Textes à traduire : {n} (contenu/i18n/manquants-*.json)" if n else "Traductions complètes.")
     print("Terminé.")
