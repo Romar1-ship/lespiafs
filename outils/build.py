@@ -25,7 +25,35 @@ FACEBOOK = "https://www.facebook.com/lespiafsdescollines"
 ENREGISTREMENT = "06088017951MX"
 
 FONTS = ('<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>'
-         '<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">')
+         '<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;1,6..96,400;1,6..96,500&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">')
+
+# Pictos en trait fin (viewBox 32), dessinés pour le site : un <symbol> par picto, appelés par pic().
+ICONES = {
+    "hopital": '<path d="M4 28h24M7 28V9l9-5 9 5v19"/><path d="M12.5 11v9M19.5 11v9M12.5 15.5h7M14 28v-4h4v4"/>',
+    "soleil": '<circle cx="16" cy="13" r="5"/><path d="M16 3v2M6 13H4M28 13h-2M8.9 5.9l1.4 1.4M23.1 5.9l-1.4 1.4M3 23c3-2 5-2 8 0s5 2 8 0 5-2 8 0M3 28c3-2 5-2 8 0s5 2 8 0 5-2 8 0"/>',
+    "facture": '<path d="M8 4h16v24l-3-2-2.7 2-2.3-2-2.3 2-2.7-2-3 2z"/><path d="M12 11h8M12 15h8M12 19h5"/>',
+    "calendrier": '<rect x="5" y="7" width="22" height="20" rx="2"/><path d="M5 13h22M11 4v6M21 4v6"/>',
+    "plan": '<rect x="5" y="5" width="22" height="22"/><path d="M5 17h9v10M14 5v7M19 17h8"/>',
+    "energie": '<path d="M11 5c-4 6-6 9-6 12a6 6 0 0012 0c0-3-2-6-6-12z"/><path d="M23 5l-4 9h5l-3 9"/>',
+    "cle": '<circle cx="10" cy="16" r="5"/><path d="M15 16h13M24 16v4M28 16v3"/>',
+    "plume": '<path d="M26 5C16 6 9 13 7 25M26 5c0 8-6 14-14 15M7 25l-2 3M5 28h22"/>',
+    "wifi": '<path d="M4 12a17 17 0 0124 0M8 17a11 11 0 0116 0M12 21.5a5 5 0 018 0"/><circle cx="16" cy="25.5" r="1"/>',
+    "lit": '<path d="M4 25V8M4 19h24v6M28 19v-4a3 3 0 00-3-3H14v7M8 16a2 2 0 104 0 2 2 0 10-4 0"/>',
+    "valise": '<rect x="5" y="10" width="22" height="16" rx="2"/><path d="M12 10V6h8v4M11 10v16M21 10v16"/>',
+    "campus": '<path d="M2 12l14-6 14 6-14 6z"/><path d="M8 15v6c4 3 12 3 16 0v-6M30 12v8"/>',
+    "avion": '<path d="M14 4c0-1 4-1 4 0v9l10 6v3l-10-3v6l3 3v2l-5-1.5-5 1.5v-2l3-3v-6L4 22v-3l10-6z"/>',
+    "couronne": '<path d="M5 24h22M6 24L4 10l7 6 5-9 5 9 7-6-2 14"/>',
+    "puce": '<rect x="9" y="9" width="14" height="14" rx="1"/><path d="M13 9V5M19 9V5M13 27v-4M19 27v-4M9 13H5M9 19H5M27 13h-4M27 19h-4"/>',
+    "parasol": '<path d="M4 15a12 9 0 0124 0zM16 15v13M16 6V4M3 28h26"/>',
+    "societe": '<path d="M5 28V8h13v20M18 13h9v15M3 28h26M9 12h2M13 12h2M9 17h2M13 17h2M9 22h2M13 22h2M22 18h2M22 23h2"/>',
+    "personne": '<circle cx="16" cy="10" r="5"/><path d="M6 28c0-6 4.5-10 10-10s10 4 10 10"/>',
+    "equipement": '<path d="M6 28V6h20v22M6 13h20M11 9.5h2M20 18v5"/>',
+}
+SPRITE = '<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>' + "".join(
+    f'<symbol id="i-{n}" viewBox="0 0 32 32">{d}</symbol>' for n, d in ICONES.items()) + '</defs></svg>'
+
+def pic(n, cls="pic"):
+    return f'<svg class="{cls}" aria-hidden="true"><use href="#i-{n}"/></svg>'
 
 # ---------------------------------------------------------------- contenu source
 def blocs(nom):
@@ -79,6 +107,7 @@ def tete(titre, description, profondeur, chemin="index.html", jsonld=None, image
 {FONTS}
 <link rel="stylesheet" href="{r}assets/style.css">
 </head><body>
+{SPRITE}
 """
 
 def entete(espace, courant, profondeur):
@@ -115,7 +144,7 @@ def pied(espace, profondeur):
         legal = f"""<h5>Informations</h5><ul>
 <li><a href="{s}mentions-legales.html">Mentions légales</a></li>
 <li><a href="{s}politique-de-confidentialite.html">Politique de confidentialité</a></li></ul>"""
-    return f"""<footer class="pied"><div class="wrap"><div class="cols">
+    return f"""<div class="store" aria-hidden="true"></div><footer class="pied"><div class="wrap"><div class="cols">
 <div><h5>Les Piafs des Collines</h5><p>{ADRESSE}</p>
 <p><a href="mailto:{MAIL}">{MAIL}</a><br><a href="tel:{TEL_LIEN}">{TEL}</a></p>
 <p><a href="{FACEBOOK}" rel="noopener">Facebook</a></p></div>
@@ -190,7 +219,7 @@ PARA_SAISON = """<p><strong>En <a href="saisonniere/">location saisonnière</a><
 
 def accueil():
     corps = f"""
-<section class="hero" style="background-image:url(assets/img/bandeau-accueil.jpg)">
+<section class="hero" style="background-image:url(assets/img/hero-baie.jpg)">
   <img class="logo-hero" src="assets/img/logo-oiseau.svg" alt="" width="300" height="366">
   <h1 class="titre-hero"><img class="nom-hero" src="assets/img/logo-nom-blanc.svg" alt="Les Piafs des Collines" width="974" height="36"><img class="signature-hero" src="assets/img/logo-signature-blanc.svg" alt="Appartement vue mer panoramique sur les Collines de Bellet" width="710" height="90"><span class="h1-sous">{"Location meublée vue mer à Nice · bail mobilité et location saisonnière" if SAISON_ACTIVE else "Location meublée vue mer à Nice en bail mobilité, de 1 à 10 mois"}</span></h1>
   <div class="choix{"" if SAISON_ACTIVE else " seul"}">
@@ -203,13 +232,14 @@ def accueil():
     </a>
   </div>
 </section>
+<div class="store" aria-hidden="true"></div>
 <section class="blanc"><div class="wrap"><div class="split">
   <div>
     <span class="sur">Location meublée à Nice</span>
     <h2>{"Un appartement vue mer à Nice, pour quelques mois ou pour les vacances" if SAISON_ACTIVE else "Un appartement vue mer à Nice, pour 1 à 10 mois"}</h2>
     <p>Sur les collines de Bellet, à l'ouest de Nice, Les Piafs des Collines est un appartement entier de 77,51 m² au premier étage d'une villa, avec deux terrasses et une vue totalement dégagée sur la Baie des Anges.</p>
     <p><strong>En <a href="bail-mobilite/">location en bail mobilité à Nice</a></strong>, il loge pour 1 à 10 mois les professionnels en mission, en formation ou en mutation : meublé, tout compris à partir de 2 880 € par mois, avec arrivée autonome. Les centres hospitaliers niçois sont à 12 à 16 minutes en voiture, l'aéroport à 20 minutes, Monaco à 22 minutes et Sophia Antipolis à 28 minutes.</p>
-    {PARA_SAISON if SAISON_ACTIVE else '<p>Deux vraies chambres, deux salles d\'eau, fibre, parking privé, linge fourni et ménage de sortie compris : on arrive avec sa valise. <a class="bouton prune" style="margin-top:10px" href="bail-mobilite/">Voir l\'offre bail mobilité</a></p>'}
+    {PARA_SAISON if SAISON_ACTIVE else '<p>Deux vraies chambres, deux salles d\'eau, fibre, parking privé, linge fourni et ménage de sortie compris : on arrive avec sa valise. <a class="bouton azur" style="margin-top:10px" href="bail-mobilite/">Voir l\'offre bail mobilité</a></p>'}
   </div>
   {img("terrasse-vue-mer", "Terrasse de l'appartement meublé avec vue sur la Baie des Anges à Nice")}
 </div></div></section>"""
@@ -351,7 +381,7 @@ def saison_hotes():
 <section class="blanc"><div class="etroit">
   <h2>Bonjour</h2>
   {para(texte("hôtes", "Nous nous présentons"))}{para(texte("hôtes", "Situé sur les hauteurs"))}{para(texte("hôtes", "Passionnés tous les deux"))}
-  <p style="font-family:var(--script);font-size:2rem;color:var(--prune)">Marcelle &amp; Serge</p>
+  <p style="font-family:var(--script);font-size:2rem;color:var(--azur)">Marcelle &amp; Serge</p>
 </div></section>
 <section><div class="wrap">
   <div class="split" style="margin-bottom:56px">
@@ -485,7 +515,7 @@ ARTICLES = [("la-metropole-nice-cote-d-azur", "post_la-métropole-nice-côte-d-a
             ("nissa-la-bella", "post_créez-un-superbe-blog", "Nissa la Bella", "blog-nissa-la-bella", "11 oct. 2021")]
 
 def saison_environs():
-    cartes = "".join(f'<a class="carte" style="text-decoration:none;color:inherit" href="environs/{slug}.html">{img(im, t)}<div class="corps"><p class="note">{d}</p><h3>{E(t)}</h3><span class="f" style="color:var(--prune);font-family:var(--titre);font-weight:600">Lire →</span></div></a>' for slug, _, t, im, d in ARTICLES)
+    cartes = "".join(f'<a class="carte" style="text-decoration:none;color:inherit" href="environs/{slug}.html">{img(im, t)}<div class="corps"><p class="note">{d}</p><h3>{E(t)}</h3><span class="f" style="color:var(--azur);font-family:var(--titre);font-weight:600">Lire →</span></div></a>' for slug, _, t, im, d in ARTICLES)
     corps = f"""{bandeau("bandeau-environs", "Explorez les environs")}<section><div class="wrap"><div class="grille2">{cartes}</div></div></section>"""
     page("saisonniere/environs.html", "Explorez les environs | Les Piafs des Collines", "Nice, la Métropole, l'arrière-pays : nos coups de cœur autour de l'appartement.", "saison", "environs", corps)
     for slug, src, t, im, d in ARTICLES:
@@ -568,9 +598,10 @@ def bail_mobilite():
                      ("Facturation", "Exonérée de TVA, au nom du payeur"), ("Arrivée", "Autonome, code d'accès"),
                      ("Adresse", "202 bis route de Bellet, 06200 Nice")]),
     ]
-    fiche_html = "".join(f'<div class="fiche-bloc"><h3>{E(t)}</h3><dl>' + "".join(f"<dt>{E(k)}</dt><dd>{E(v)}</dd>" for k, v in lignes) + "</dl></div>" for t, lignes in fiche)
-    def panneau(image, titre, l1, l2, cote=""):
-        return f'''<figure class="panneau {cote}">{img(image, titre.capitalize())}<figcaption><h3>{E(titre)}</h3><p>{E(l1)}<br>{E(l2)}</p></figcaption></figure>'''
+    icones = {"Le logement": "plan", "Énergie et confort": "energie", "Équipements": "equipement", "Contrat": "plume"}
+    fiche_html = "".join(f'<div class="fiche-bloc"><h3>{pic(icones[t])}{E(t)}</h3><dl>' + "".join(f"<dt>{E(k)}</dt><dd>{E(v)}</dd>" for k, v in lignes) + "</dl></div>" for t, lignes in fiche)
+    def panneau(image, titre, l1, l2, cote="", icone="soleil"):
+        return f'''<figure class="panneau {cote}">{img(image, titre.capitalize())}<figcaption><h3>{pic(icone, "pic-s")}{E(titre)}</h3><p>{E(l1)}<br>{E(l2)}</p></figcaption></figure>'''
     corps = f"""
 <section class="mob-hero">
   <picture><source media="(max-width:700px)" srcset="{{R}}assets/img/hero-baie-mobile.jpg"><img class="fond" src="{{R}}assets/img/hero-baie.jpg" alt="La Baie des Anges vue depuis l'appartement, sur les collines de Bellet à Nice" fetchpriority="high"></picture>
@@ -579,43 +610,45 @@ def bail_mobilite():
     <p class="legende">Face à la Baie des Anges.<br><em>De 1&nbsp;à 10&nbsp;mois.</em></p>
     <a class="bouton" href="#demande">Demander une disponibilité</a>
   </div>
+  <div class="timbre" aria-hidden="true">Nice<span>Bellet</span>Côte d'Azur</div>
   <a class="defiler" href="#chiffres" aria-label="Découvrir le logement"><span>Découvrir</span></a>
 </section>
+<div class="store" aria-hidden="true"></div>
 
 <section class="blanc" id="chiffres"><div class="wrap">
   <div class="geants">
-    <div><b>15<small>min</small></b><span>du CHU Pasteur</span></div>
-    <div><b>26<small>m²</small></b><span>de terrasses vue mer</span></div>
-    <div><b>1</b><span>facture, tout compris</span></div>
+    <div>{pic("hopital")}<b>15<small>min</small></b><span>du CHU Pasteur</span></div>
+    <div>{pic("soleil")}<b>26<small>m<sup>2</sup></small></b><span>de terrasses vue mer</span></div>
+    <div>{pic("facture")}<b>1</b><span>facture, tout compris</span></div>
   </div>
 </div></section>
 
 <section id="logement" class="panneaux"><div class="wrap">
   <h2 class="cache">Un appartement meublé de 77 m² à Nice</h2>
-  {panneau("terrasse-vue-mer", "DEUX TERRASSES", "26 m² exposés sud, face à la mer.", "Une table pour six, sous store.")}
-  {panneau("chambre-parentale", "DEUX VRAIES CHAMBRES", "13,91 et 12,88 m², chacune avec son placard.", "Une salle de bain privative, une salle d'eau, un WC indépendant.", "droite")}
-  {panneau("cuisine-sejour", "ARRIVER AVEC SA VALISE", "Lit fait, linge sorti, code d'accès.", "Fibre, parking et ménage de sortie compris.")}
+  {panneau("terrasse-vue-mer", "DEUX TERRASSES", "26 m² exposés sud, face à la mer.", "Une table pour six, sous store.", icone="soleil")}
+  {panneau("chambre-parentale", "DEUX VRAIES CHAMBRES", "13,91 et 12,88 m², chacune avec son placard.", "Une salle de bain privative, une salle d'eau, un WC indépendant.", "droite", "lit")}
+  {panneau("cuisine-sejour", "ARRIVER AVEC SA VALISE", "Lit fait, linge sorti, code d'accès.", "Fibre, parking et ménage de sortie compris.", icone="valise")}
   <div class="galerie" style="margin-top:70px">{gal}</div>
 </div></section>
 
-<section class="blanc" id="prix"><div class="etroit centre">
-  <span class="sur">Prix du bail mobilité à Nice, tout compris</span>
-  <h2 class="phrase-prix">Plus vous restez, moins vous payez : <em>720&nbsp;€ de moins par mois</em> sur 7&nbsp;à&nbsp;10&nbsp;mois.</h2>
-  <div class="montants">
-    <div><span>1 à 2 mois</span><b>3 600 €</b></div>
-    <div><span>3 à 6 mois</span><b>3 200 €</b></div>
-    <div><span>7 à 10 mois</span><b>2 880 €</b></div>
+<section class="azur" id="prix"><div class="wrap prix-grille">
+  <div><span class="sur">Prix du bail mobilité à Nice, tout compris</span>
+  <h2 class="phrase-prix">Plus vous restez, moins vous payez : <em>720&nbsp;€ de moins par mois</em> sur 7&nbsp;à&nbsp;10&nbsp;mois.</h2></div>
+  <div><div class="montants">
+    <div><span>{pic("calendrier", "pic-s")}1 à 2 mois</span><b>3 600 €<i>/ mois</i></b></div>
+    <div><span>{pic("calendrier", "pic-s")}3 à 6 mois</span><b>3 200 €<i>/ mois</i></b></div>
+    <div><span>{pic("calendrier", "pic-s")}7 à 10 mois</span><b>2 880 €<i>/ mois</i></b></div>
   </div>
-  <p class="note">Par mois. Charges, énergie, fibre, parking, linge et ménage de sortie compris. Facture exonérée de TVA.</p>
+  <p class="note">Par mois. Charges, énergie, fibre, parking, linge et ménage de sortie compris. Facture exonérée de TVA.</p></div>
 </div></section>
 
 <section class="sable" id="acces"><div class="wrap">
   <span class="sur">Accès</span><h2>À un quart d'heure de tout</h2>
   <div class="carte-trajets">
-    <div><b>12</b><span>Clinique Kantys Centre</span></div><div><b>13</b><span>Campus Valrose</span></div>
-    <div><b>15</b><span>CHU Pasteur 2</span></div><div><b>16</b><span>Centre Lacassagne</span></div>
-    <div><b>20</b><span>Aéroport</span></div><div><b>22</b><span>Monaco</span></div>
-    <div><b>28</b><span>Sophia Antipolis</span></div><div><b>7</b><span>La plage</span></div>
+    <div>{pic("hopital", "pic-s")}<b>12</b><span>Clinique Kantys Centre</span></div><div>{pic("campus", "pic-s")}<b>13</b><span>Campus Valrose</span></div>
+    <div>{pic("hopital", "pic-s")}<b>15</b><span>CHU Pasteur 2</span></div><div>{pic("hopital", "pic-s")}<b>16</b><span>Centre Lacassagne</span></div>
+    <div>{pic("avion", "pic-s")}<b>20</b><span>Aéroport</span></div><div>{pic("couronne", "pic-s")}<b>22</b><span>Monaco</span></div>
+    <div>{pic("puce", "pic-s")}<b>28</b><span>Sophia Antipolis</span></div><div>{pic("parasol", "pic-s")}<b>7</b><span>La plage</span></div>
   </div>
   <p class="note">Minutes en voiture, hors trafic. Bus 60 à 50 m, vers le tram ligne 2.</p>
 </div></section>
@@ -623,8 +656,8 @@ def bail_mobilite():
 <section class="blanc" id="contrat"><div class="wrap">
   <span class="sur">Contrat</span><h2>Bail mobilité ou bail société</h2>
   <div class="deux-formules">
-    <div><h3>L'employeur paie</h3><p>Bail au nom de la société, dès 3 mois.<br>Aucun justificatif de motif.</p></div>
-    <div><h3>Le locataire paie</h3><p>Bail mobilité, de 1 à 10 mois.<br>Justificatif de mobilité, caution employeur ou personnelle.</p></div>
+    <div>{pic("societe")}<h3>L'employeur paie</h3><p>Bail au nom de la société, dès 3 mois.<br>Aucun justificatif de motif.</p></div>
+    <div>{pic("personne")}<h3>Le locataire paie</h3><p>Bail mobilité, de 1 à 10 mois.<br>Justificatif de mobilité, caution employeur ou personnelle.</p></div>
   </div>
 </div></section>
 

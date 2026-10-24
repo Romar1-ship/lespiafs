@@ -1,8 +1,8 @@
 /* Les Piafs des Collines — feuille unique */
 :root{
-  --prune:#5B2A6E; --prune-fonce:#3E1A4C; --corail:#E5734A; --orange:#F2A23A;
-  --nuit:#1F2333; --encre:#2A2A30; --gris:#6B6B75; --ligne:#E7E1D8;
-  --ivoire:#FBF8F3; --sable:#F4EEE5; --blanc:#fff;
+  --azur:#0B5FA5; --mer:#0A4F8A; --corail:#F2735F; --orange:#E2A94B; --dore:#F6D9A8;
+  --nuit:#1C2B45; --encre:#24324d; --gris:#56627c; --ligne:#E3D9C8;
+  --ivoire:#FBF8F2; --sable:#F7F1E7; --blanc:#fff;
   --rayon:14px; --ombre:0 10px 30px rgba(31,35,51,.10);
   --titre:"Montserrat",system-ui,sans-serif; --texte:"Source Sans 3",system-ui,sans-serif;
   --script:"Great Vibes",cursive;
@@ -11,7 +11,7 @@
 html{scroll-behavior:smooth}
 body{margin:0;font-family:var(--texte);font-size:18px;line-height:1.65;color:var(--encre);background:var(--ivoire)}
 img{max-width:100%;display:block}
-a{color:var(--prune)}
+a{color:var(--azur)}
 h1,h2,h3,h4,h5,h6{font-family:var(--titre);color:var(--nuit);line-height:1.25;margin:0 0 .6em;font-weight:600}
 h1{font-size:clamp(1.9rem,4vw,2.8rem)} h2{font-size:clamp(1.5rem,3vw,2.1rem)} h3{font-size:1.35rem} h4{font-size:1.1rem} h5{font-size:1rem}
 p{margin:0 0 1em}
@@ -61,15 +61,15 @@ section.blanc{background:var(--blanc)}
 .carte-choix .k{font-family:var(--titre);font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;color:var(--corail);font-weight:600}
 .carte-choix .t{font-family:var(--titre);font-size:1.45rem;font-weight:700;line-height:1.2}
 .carte-choix .d{color:var(--gris);font-size:1rem}
-.carte-choix .f{margin-top:10px;font-family:var(--titre);font-weight:600;color:var(--prune)}
-.carte-choix.mob .k{color:var(--prune)}
+.carte-choix .f{margin-top:10px;font-family:var(--titre);font-weight:600;color:var(--azur)}
+.carte-choix.mob .k{color:var(--azur)}
 @media(max-width:760px){.choix{grid-template-columns:1fr}}
 
 /* Composants */
 .bouton{display:inline-block;background:var(--corail);color:#fff;text-decoration:none;font-family:var(--titre);font-weight:600;letter-spacing:.06em;padding:14px 26px;border-radius:999px;border:0;cursor:pointer;font-size:1rem}
 .bouton:hover{background:#d5603a}
-.bouton.prune{background:var(--prune)} .bouton.prune:hover{background:var(--prune-fonce)}
-.bouton.clair{background:transparent;border:2px solid currentColor;color:var(--prune)}
+.bouton.azur{background:var(--azur)} .bouton.azur:hover{background:var(--mer)}
+.bouton.clair{background:transparent;border:2px solid currentColor;color:var(--azur)}
 .grille2{display:grid;grid-template-columns:repeat(2,1fr);gap:28px}
 .grille3{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
 .grille4{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
@@ -110,16 +110,16 @@ section.blanc{background:var(--blanc)}
 .plus{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
 @media(max-width:760px){.plus{grid-template-columns:1fr}}
 .plus div{background:#fff;border-radius:var(--rayon);padding:22px;box-shadow:var(--ombre)}
-.plus h4{color:var(--prune)}
+.plus h4{color:var(--azur)}
 
 /* Tarifs */
 .saison{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:20px}
 .saison .carte img{aspect-ratio:16/10}
-.prix{font-family:var(--titre);font-size:1.6rem;font-weight:700;color:var(--prune)}
+.prix{font-family:var(--titre);font-size:1.6rem;font-weight:700;color:var(--azur)}
 table.grille-prix{width:100%;border-collapse:collapse;background:#fff;border-radius:var(--rayon);overflow:hidden;box-shadow:var(--ombre)}
 .grille-prix th,.grille-prix td{padding:16px 18px;text-align:left;border-bottom:1px solid var(--ligne)}
 .grille-prix th{font-family:var(--titre);font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;background:var(--nuit);color:#fff}
-.grille-prix td.m{font-family:var(--titre);font-weight:700;font-size:1.25rem;color:var(--prune);white-space:nowrap}
+.grille-prix td.m{font-family:var(--titre);font-weight:700;font-size:1.25rem;color:var(--azur);white-space:nowrap}
 
 /* FAQ */
 details{background:#fff;border-radius:12px;padding:18px 22px;margin-bottom:12px;box-shadow:0 4px 14px rgba(31,35,51,.06)}
@@ -133,7 +133,7 @@ details p{margin:.8em 0 0;color:#3d3d45}
 .avis{columns:2 320px;column-gap:24px}
 .avis blockquote{break-inside:avoid;margin:0 0 24px;background:#fff;border-radius:var(--rayon);padding:26px 26px 20px;box-shadow:var(--ombre);position:relative}
 .avis blockquote::before{content:"“";position:absolute;top:-6px;left:18px;font-size:4rem;color:var(--corail);font-family:Georgia,serif;line-height:1}
-.avis cite{display:block;margin-top:10px;font-style:normal;font-family:var(--titre);font-size:.85rem;color:var(--prune);font-weight:600}
+.avis cite{display:block;margin-top:10px;font-style:normal;font-family:var(--titre);font-size:.85rem;color:var(--azur);font-weight:600}
 
 /* Formulaires */
 form .champs{display:grid;grid-template-columns:1fr 1fr;gap:16px}
@@ -154,12 +154,12 @@ textarea{min-height:130px;resize:vertical}
 .faits span{background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.25);border-radius:999px;padding:7px 14px;font-family:var(--titre);font-size:.82rem}
 .regle{display:grid;grid-template-columns:repeat(2,1fr);gap:22px}
 @media(max-width:760px){.regle{grid-template-columns:1fr}}
-.regle>div{background:#fff;border-radius:var(--rayon);padding:26px;box-shadow:var(--ombre);border-top:4px solid var(--prune)}
+.regle>div{background:#fff;border-radius:var(--rayon);padding:26px;box-shadow:var(--ombre);border-top:4px solid var(--azur)}
 .regle>div.b{border-top-color:var(--corail)}
 .trajets{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
 @media(max-width:760px){.trajets{grid-template-columns:repeat(2,1fr)}}
 .trajets div{background:#fff;border-radius:12px;padding:16px 18px;box-shadow:0 4px 14px rgba(31,35,51,.06)}
-.trajets b{display:block;font-family:var(--titre);font-size:1.5rem;color:var(--prune)}
+.trajets b{display:block;font-family:var(--titre);font-size:1.5rem;color:var(--azur)}
 .trajets span{font-size:.92rem;color:var(--gris)}
 
 /* Pied */
@@ -192,9 +192,9 @@ textarea{min-height:130px;resize:vertical}
 .hero h1.titre-hero{margin-bottom:30px}
 .hero .h1-sous{margin-top:18px}
 
-/* ===================== Direction typographique : Cormorant Garamond + Jost ===================== */
-:root{--serif:"Cormorant Garamond",Georgia,"Times New Roman",serif;--titre:"Jost",system-ui,sans-serif;--texte:"Jost",system-ui,sans-serif}
-body{font-weight:400;font-size:18px;line-height:1.7;color:#2c2b33}
+/* ===================== Direction typographique : Bodoni Moda + Manrope ===================== */
+:root{--serif:"Bodoni Moda",Didot,"Times New Roman",serif;--titre:"Manrope",system-ui,sans-serif;--texte:"Manrope",system-ui,sans-serif}
+body{font-weight:400;font-size:17px;line-height:1.7;color:var(--encre)}
 h1,h2,h3,h4{font-family:var(--serif);font-weight:500;letter-spacing:-.005em;color:var(--nuit)}
 h1{font-size:clamp(2.7rem,5.6vw,4.9rem);line-height:1.03}
 h2{font-size:clamp(2.2rem,3.8vw,3.3rem);line-height:1.06}
@@ -260,7 +260,7 @@ h1,h2,h3,h4,.prix,.trajets b,.grille-prix td.m,.carte-choix .t,summary{font-vari
 /* Chiffres géants, façon Apple */
 .geants{display:grid;grid-template-columns:repeat(3,1fr);gap:40px;text-align:center}
 .geants b{display:block;font-family:var(--serif);font-weight:400;font-size:clamp(5rem,11vw,9.5rem);line-height:.9;color:var(--nuit);font-variant-numeric:lining-nums}
-.geants b small{font-size:.32em;margin-left:.08em;color:var(--prune);font-style:italic}
+.geants b small{font-size:.32em;margin-left:.08em;color:var(--azur);font-style:italic}
 .geants span{display:block;margin-top:16px;font-family:var(--titre);font-size:.74rem;letter-spacing:.3em;text-transform:uppercase;color:var(--gris)}
 @media(max-width:700px){.geants{grid-template-columns:1fr;gap:56px}}
 /* Panneaux image + titre court, façon Les Roches Rouges */
@@ -274,7 +274,7 @@ h1,h2,h3,h4,.prix,.trajets b,.grille-prix td.m,.carte-choix .t,summary{font-vari
 @media(max-width:760px){.panneau img{aspect-ratio:4/3}.panneau figcaption,.panneau.droite figcaption{position:static;max-width:none;padding:22px 4px 0;background:none}}
 /* Le prix en une phrase, façon Stripe */
 .phrase-prix{font-size:clamp(2rem,3.8vw,3.1rem);line-height:1.15;max-width:820px;margin:0 auto 54px}
-.phrase-prix em{color:var(--prune)}
+.phrase-prix em{color:var(--azur)}
 .montants{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--ligne);border-bottom:1px solid var(--ligne);margin-bottom:22px}
 .montants div{padding:30px 10px}
 .montants div+div{border-left:1px solid var(--ligne)}
@@ -284,7 +284,7 @@ h1,h2,h3,h4,.prix,.trajets b,.grille-prix td.m,.carte-choix .t,summary{font-vari
 /* Carte des trajets : les minutes en grand */
 .carte-trajets{display:grid;grid-template-columns:repeat(4,1fr);gap:36px 24px;margin:40px 0 26px}
 .carte-trajets b{display:block;font-family:var(--serif);font-weight:400;font-size:clamp(3.4rem,6vw,5rem);line-height:1;color:var(--nuit);font-variant-numeric:lining-nums}
-.carte-trajets b::after{content:"min";font-size:.3em;font-style:italic;color:var(--prune);margin-left:.15em}
+.carte-trajets b::after{content:"min";font-size:.3em;font-style:italic;color:var(--azur);margin-left:.15em}
 .carte-trajets span{display:block;margin-top:8px;font-family:var(--titre);font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gris)}
 @media(max-width:760px){.carte-trajets{grid-template-columns:repeat(2,1fr)}}
 /* Deux formules */
@@ -307,3 +307,82 @@ section.nuit{background:var(--nuit);color:#fff;padding:130px 0}
 .fiche dd{margin:0;font-size:.95rem;color:var(--nuit)}
 @media(max-width:760px){.fiche-bloc{grid-template-columns:1fr}.fiche dl{grid-template-columns:1fr;gap:2px}.fiche dd{margin-bottom:12px}}
 .mob-hero .legende,.phrase-prix,.panneau p,.citation{font-variant-numeric:lining-nums}
+
+/* ===================== Direction Riviera : azur, corail, sable, rayures de store ===================== */
+h1,h2,h3,h4{font-weight:400;letter-spacing:-.012em}
+h2{font-size:clamp(2.2rem,4vw,3.4rem);line-height:1.04}
+.sur{color:var(--azur);font-weight:700;letter-spacing:.3em;font-size:.68rem}
+.entete{background:rgba(28,43,69,.97)}
+.nav a{font-weight:600;letter-spacing:.22em;font-size:.66rem}
+.bouton,.nav a.cta{border-radius:999px;font-weight:700;letter-spacing:.2em}
+.bouton{font-size:.72rem;padding:18px 32px}
+.bouton:hover,.nav a.cta:hover{background:#e35f4b}
+.store{height:12px;background:repeating-linear-gradient(90deg,var(--azur) 0 24px,var(--ivoire) 24px 48px)}
+/* pictos */
+.pic{display:block;width:40px;height:40px;fill:none;stroke:var(--corail);stroke-width:1.4;stroke-linecap:round;stroke-linejoin:round;margin-bottom:22px}
+.pic-s{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;vertical-align:-5px;margin-right:10px;flex:none}
+/* hero bail mobilité */
+.mob-hero::after{background:linear-gradient(180deg,rgba(10,40,80,.28) 0,transparent 26%,transparent 46%,rgba(12,30,62,.84) 100%)}
+.mob-hero h1.sur{color:#fff;display:flex;align-items:center;gap:14px}
+.mob-hero h1.sur::before{content:"";width:44px;height:1px;background:var(--orange)}
+.mob-hero .legende{font-size:clamp(3rem,7.4vw,6.4rem);line-height:.96;letter-spacing:-.018em}
+.mob-hero .legende em,.mob-hero h1 em{color:var(--dore)}
+.timbre{position:absolute;z-index:1;top:110px;right:clamp(24px,5vw,64px);width:128px;height:128px;border-radius:50%;border:1px solid rgba(255,255,255,.8);color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;font-family:var(--titre);font-size:.58rem;font-weight:700;letter-spacing:.26em;text-transform:uppercase}
+.timbre span{font-family:var(--serif);font-style:italic;font-weight:400;font-size:1.85rem;letter-spacing:0;text-transform:none;margin:3px 0}
+@media(max-width:700px){.timbre{display:none}}
+@supports (animation-timeline: scroll()){.timbre{animation:hero-texte linear both;animation-timeline:scroll(root);animation-range:0 60vh}}
+/* chiffres géants */
+.geants{text-align:left}
+.geants>div{padding-left:36px;border-left:1px solid var(--ligne)}
+.geants>div:first-child{border:0;padding-left:0}
+.geants b{font-size:clamp(5.5rem,12vw,10.5rem);line-height:.82;color:var(--azur);letter-spacing:-.03em}
+.geants b small{font-size:.31em;color:var(--azur);letter-spacing:0;margin-left:.06em}
+.geants b sup{font-size:.5em;vertical-align:.9em}
+.geants span{font-weight:600;letter-spacing:.26em;margin-top:22px}
+@media(max-width:700px){.geants>div{border:0;padding-left:0}}
+/* panneaux */
+.panneau h3{display:flex;align-items:center;color:var(--azur);font-weight:700;font-size:.72rem}
+.panneau p{font-family:var(--serif);font-size:1.3rem;color:var(--nuit)}
+.panneau figcaption{background:rgba(251,248,242,.95)}
+/* prix sur aplat azur */
+section.azur{background:var(--azur);color:#fff}
+section.azur .sur{color:var(--dore)}
+.prix-grille{display:grid;grid-template-columns:1.2fr 1fr;gap:70px;align-items:end}
+section.azur .phrase-prix{color:#fff;margin:0;max-width:none;font-size:clamp(2.1rem,4vw,3.4rem);line-height:1.1}
+section.azur .phrase-prix em{color:var(--dore)}
+section.azur .montants{display:block;border-top:1px solid rgba(255,255,255,.35);border-bottom:0}
+section.azur .montants div{display:flex;justify-content:space-between;align-items:baseline;padding:20px 0;border:0;border-bottom:1px solid rgba(255,255,255,.35)}
+section.azur .montants span{display:flex;align-items:center;color:#fff;opacity:.9;margin:0;font-weight:700}
+section.azur .montants b{color:#fff;font-weight:400;font-size:clamp(2rem,3.4vw,2.7rem)}
+section.azur .montants b i{font-family:var(--titre);font-style:normal;font-size:.9rem;opacity:.75;margin-left:8px}
+section.azur .montants div:last-child b{color:var(--dore)}
+section.azur .note{color:rgba(255,255,255,.75);margin-top:16px}
+@media(max-width:860px){.prix-grille{grid-template-columns:1fr;gap:40px}}
+/* trajets */
+.carte-trajets>div{color:var(--azur)}
+.carte-trajets b{color:var(--azur);margin-top:10px}
+.carte-trajets b::after{color:var(--azur)}
+.carte-trajets span{font-weight:600}
+/* deux formules */
+.deux-formules .pic{margin:6px 0 18px}
+/* citation */
+section.nuit{background:var(--nuit)}
+.citation cite{color:var(--dore)}
+/* fiche technique */
+.fiche-bloc h3{display:flex;flex-direction:column;color:var(--azur);font-weight:700}
+.fiche-bloc h3 .pic{width:34px;height:34px;margin-bottom:14px}
+.fiche dt{font-weight:600;color:var(--gris)}
+/* accueil */
+.hero{background-position:50% 72%}
+.hero::after{background:linear-gradient(180deg,rgba(10,40,80,.35) 0%,rgba(10,40,80,.15) 40%,rgba(12,30,62,.82) 100%)}
+.carte-choix{border-radius:4px}
+.carte-choix .k,.carte-choix.mob .k{color:var(--azur);font-weight:700}
+.carte-choix .t{font-weight:400}
+.carte-choix .f{color:var(--corail);font-weight:700;letter-spacing:.06em}
+details{border-radius:4px}
+summary{font-size:1.25rem;font-weight:400}
+summary::after{color:var(--corail)}
+.pied{background:var(--nuit);color:#c4cbdb}
+.pied h5{color:var(--dore);font-weight:700}
+.carte-trajets .pic-s{width:28px;height:28px;stroke-width:1.3;color:var(--corail)}
+.split img,.galerie a,.carte{border-radius:4px}
