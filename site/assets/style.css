@@ -753,3 +753,18 @@ section.nuit .sur{color:var(--dore)}
 .guide-fin::before{content:"";display:block;height:10px;margin:-140px 0 130px;background:repeating-linear-gradient(90deg,var(--ivoire) 0 24px,transparent 24px 48px);opacity:.5}
 .p-nom,.p-min,.p-ville text,.p-piafs-nom,.p-piafs-sous{paint-order:stroke;stroke:#F3E7CF;stroke-width:5px;stroke-linejoin:round}
 .p-lieu .p-nom,.p-lieu .p-min{stroke:#F3E7CF}
+/* ===================== Pages légales ===================== */
+.legal-tete{background:var(--azur);color:#fff;padding:120px 0 60px;position:relative}
+.legal-tete::before{content:"";position:absolute;left:0;top:0;bottom:0;width:14px;background:repeating-linear-gradient(180deg,var(--ivoire) 0 22px,var(--azur) 22px 44px);opacity:.9}
+.legal-tete .sur{color:var(--dore)}
+.legal-tete h1{color:#fff;font-size:clamp(2.4rem,5vw,4.2rem);margin:.2em 0 .3em}
+.legal-tete .chapo{color:rgba(255,255,255,.9);max-width:760px}
+.legal-onglets{display:flex;flex-wrap:wrap;gap:10px;margin-top:34px}
+.legal-onglets a{color:#fff;text-decoration:none;font-family:var(--titre);font-size:.72rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;padding:10px 16px 9px;border:1.5px solid rgba(255,255,255,.45);border-radius:999px}
+.legal-onglets a:hover{border-color:#fff}
+.legal-onglets a[aria-current]{background:var(--corail);border-color:var(--corail)}
+.legal-corps{grid-template-columns:240px minmax(0,860px);padding-top:60px}
+.guide.legal{font-size:.98rem}
+.guide.legal h2{font-size:clamp(1.5rem,2.4vw,2rem)}
+.guide.legal>p:first-child{font-family:var(--texte);font-size:1.05rem}
+.guide.legal .encart{background:#fff;border-radius:4px;padding:22px 26px;box-shadow:0 10px 30px rgba(28,43,69,.06)}

@@ -183,7 +183,7 @@ def pied(espace, profondeur):
 <div>{legal}</div>
 </div>
 <p class="note droit-pied">Le contrat est régi par le droit français et rédigé en français. Les traductions sont fournies à titre d'information.</p>
-<div class="bas"><span>© {2026} Les Piafs des Collines</span><span>Design by <a href="http://www.creative-explorer.fr" rel="noopener">Creative Explorer</a></span></div>
+<div class="bas"><span>© {2026} Les Piafs des Collines</span><span>Site <a href="https://creativeagency-lc.com" rel="noopener">LCCA</a> · Logo <a href="http://www.creative-explorer.fr" rel="noopener">Creative Explorer</a></span></div>
 </div></footer>
 """
 
@@ -1146,6 +1146,38 @@ def guides_langue(langue):
          image="guides/affiche-hiver-a-nice", cle="guides", langue=langue, ignorer=ignorer)
 
 # ================================================================ divers
+# ---------------------------------------------------------------- pages légales (bail mobilité)
+# Textes rédigés par Themis dans contenu/legal/*.md. Elles remplacent les sept pages de l'ancienne location saisonnière.
+LEGAL_DIR = RACINE / "contenu/legal"
+PAGES_LEGALES = [("mentions-legales", "Mentions légales"), ("conditions-de-location", "Conditions de location"),
+                 ("reglement-interieur", "Règlement intérieur"), ("confidentialite", "Confidentialité et cookies")]
+
+def pages_legales():
+    for slug, nom in PAGES_LEGALES:
+        f = LEGAL_DIR / f"{slug}.md"
+        if not f.exists():
+            continue
+        a = lire_md(f)
+        corps_html = md_html(a["corps"])
+        titres = re.findall(r"<h2>(.+?)</h2>", corps_html)
+        for k, t2 in enumerate(titres):
+            corps_html = corps_html.replace(f"<h2>{t2}</h2>", f'<h2 id="s{k + 1}"><span class="num">{k + 1:02d}</span>{t2}</h2>', 1)
+        sommaire = "".join(f'<li><a href="#s{k + 1}">{re.sub("<[^>]+>", "", t2)}</a></li>' for k, t2 in enumerate(titres))
+        autres = "".join(f'<a href="{s}.html"{" aria-current=\"page\"" if s == slug else ""}>{E(n)}</a>' for s, n in PAGES_LEGALES if (LEGAL_DIR / f"{s}.md").exists())
+        corps = f"""
+<section class="legal-tete"><div class="wrap">
+  <span class="sur">Informations</span>
+  <h1>{E(a["titre"])}</h1>
+  <p class="chapo">{E(a["description"])}</p>
+  <nav class="legal-onglets">{autres}</nav>
+</div></section>
+<div class="store" aria-hidden="true"></div>
+<div class="wrap g-corps legal-corps">
+  <aside class="g-sommaire"><span class="sur">Sommaire</span><ol>{sommaire}</ol></aside>
+  <article class="guide legal">{corps_html}</article>
+</div>"""
+        page(f"{slug}.html", f"{a['titre']} | Les Piafs des Collines", a["description"], "info", "", corps)
+
 def page_cookies():
     corps = f"""
 <section class="guide-tete"><div class="etroit">
@@ -1205,7 +1237,7 @@ if __name__ == "__main__":
     print("Génération de site/ :")
     routes()
     accueil(); saison_appartement(); saison_hotes(); saison_ateliers(); saison_livre_or(); saison_faq()
-    saison_tarifs(); saison_contact(); saison_environs(); saison_legal(); bail_mobilite(); guides(); page_cookies(); page_404(); redirections(); sitemap()
+    saison_tarifs(); saison_contact(); saison_environs(); saison_legal(); bail_mobilite(); guides(); pages_legales(); page_cookies(); page_404(); redirections(); sitemap()
     n = i18n.rapport()
     print(f"Textes à traduire : {n} (contenu/i18n/manquants-*.json)" if n else "Traductions complètes.")
     print("Terminé.")
