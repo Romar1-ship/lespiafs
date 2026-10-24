@@ -25,6 +25,9 @@ GUIDES_VALIDES = False
 # Pages anglaises et italiennes : relues par Themis et ouvertes à l'index le 24/10/2026.
 LANGUES_VALIDEES = True
 
+# Pages légales réécrites par Themis : hors index et sans lien tant que Géraldine n'a pas complété les [À COMPLÉTER].
+LEGALES_VALIDEES = False
+
 TEL = "+33 (0)6 11 94 82 35"
 TEL_LIEN = "+33611948235"
 MAIL = "contact@lespiafsdescollines.com"
@@ -121,7 +124,7 @@ def tete(titre, description, profondeur, chemin="index.html", jsonld=None, image
 <meta name="description" content="{E(description)}">
 <link rel="icon" type="image/png" href="{r}assets/img/favicon.png">
 <!--HREFLANG-->
-{'<meta name="robots" content="noindex">' if chemin == "404.html" or (chemin.startswith("saisonniere/") and not SAISON_ACTIVE) or (chemin.startswith("guides/") and not GUIDES_VALIDES) else f'<link rel="canonical" href="{url_propre(chemin)}">'}
+{'<meta name="robots" content="noindex">' if chemin == "404.html" or (chemin.startswith("saisonniere/") and not SAISON_ACTIVE) or (chemin.startswith("guides/") and not GUIDES_VALIDES) or (chemin[:-5] in {s for s, _ in PAGES_LEGALES} and not LEGALES_VALIDEES) else f'<link rel="canonical" href="{url_propre(chemin)}">'}
 <meta property="og:type" content="website"><meta property="og:locale" content="fr_FR"><meta property="og:site_name" content="Les Piafs des Collines">
 <meta property="og:url" content="{url_propre(chemin)}">
 <meta property="og:title" content="{E(titre)}"><meta property="og:description" content="{E(description)}">
@@ -890,8 +893,9 @@ PICTO_LISTE = [("linge de lit", "linge"), ("bed linen", "linge"), ("biancheria",
                ("ménage", "menage"), ("cleaning", "menage"), ("pulizia", "menage"), ("facture", "facture"), ("invoice", "facture"), ("fattura", "facture")]
 
 def picto_liste(texte):
+    """Mots entiers seulement : « air » ne doit pas se reconnaître dans « faire »."""
     t = texte.lower()
-    return next((n for k, n in PICTO_LISTE if k in t), None)
+    return next((n for k, n in PICTO_LISTE if re.search(r"(?<![\w-])" + re.escape(k.strip()) + r"(?![\w-])" if len(k.strip()) <= 5 else re.escape(k), t)), None)
 
 def md_html(texte):
     """Markdown des articles -> HTML : intertitres, paragraphes, listes, tableaux, gras, liens."""
@@ -1159,7 +1163,8 @@ def pages_legales():
         if not f.exists():
             continue
         a = lire_md(f)
-        corps_html = md_html(a["corps"])
+        corps_html = md_html(re.sub(r"^# .+\n+", "", a["corps"]))
+        corps_html = re.sub(r"\[À COMPLÉTER[^\]]*\]", lambda m: f'<mark class="a-completer">{m.group(0)}</mark>', corps_html)
         titres = re.findall(r"<h2>(.+?)</h2>", corps_html)
         for k, t2 in enumerate(titres):
             corps_html = corps_html.replace(f"<h2>{t2}</h2>", f'<h2 id="s{k + 1}"><span class="num">{k + 1:02d}</span>{t2}</h2>', 1)
