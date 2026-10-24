@@ -81,7 +81,7 @@ Vous découvrez les quartiers, vous testez vos trajets, puis vous choisissez où
 
 ## À quoi ressemble l'appartement ?
 
-77,51 m² au 1er étage d'une villa, sur les collines de Bellet, à l'ouest de Nice.
+77,51 m² au 1er étage d'une villa, sur la colline de Bellet, à l'ouest de Nice.
 
 - 2 chambres de 13,91 et 12,88 m² ;
 - 2 salles d'eau, dont 1 privative avec douche à l'italienne ;

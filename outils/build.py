@@ -24,7 +24,7 @@ GUIDES_VALIDES = False
 TEL = "+33 (0)6 11 94 82 35"
 TEL_LIEN = "+33611948235"
 MAIL = "contact@lespiafsdescollines.com"
-ADRESSE = "Collines de Bellet<br>Nice, Côte d'Azur"  # l'adresse exacte n'est publiée nulle part
+ADRESSE = "Colline de Bellet<br>Nice, Côte d'Azur"  # l'adresse exacte n'est publiée nulle part
 FACEBOOK = "https://www.facebook.com/lespiafsdescollines"
 ENREGISTREMENT = "06088017951MX"
 
@@ -51,6 +51,21 @@ ICONES = {
     "parasol": '<path d="M4 15a12 9 0 0124 0zM16 15v13M16 6V4M3 28h26"/>',
     "societe": '<path d="M5 28V8h13v20M18 13h9v15M3 28h26M9 12h2M13 12h2M9 17h2M13 17h2M9 22h2M13 22h2M22 18h2M22 23h2"/>',
     "personne": '<circle cx="16" cy="10" r="5"/><path d="M6 28c0-6 4.5-10 10-10s10 4 10 10"/>',
+    "repere": '<path d="M16 29s-9-8.5-9-16a9 9 0 0118 0c0 7.5-9 16-9 16z"/><circle cx="16" cy="13" r="3.2"/>',
+    "verre": '<path d="M10 4h12l-1 8a5 5 0 01-10 0zM16 17v9M11 28h10M10.6 9h10.8"/>',
+    "panier": '<path d="M4 12h24l-3 14H7zM10 12l4-7M22 12l-4-7M12 17v5M16 17v5M20 17v5"/>',
+    "scooter": '<circle cx="8" cy="24" r="3"/><circle cx="24" cy="24" r="3"/><path d="M11 24h10l-2-9h-6M19 15l-2-7h-4M24 21l-3-8h4"/>',
+    "ordi": '<rect x="6" y="7" width="20" height="13" rx="1"/><path d="M3 25h26l-2-5H5z"/>',
+    "parking": '<rect x="5" y="5" width="22" height="22" rx="3"/><path d="M13 23V10h5a4 4 0 010 8h-5"/>',
+    "menage": '<path d="M16 4l2.2 5.8L24 12l-5.8 2.2L16 20l-2.2-5.8L8 12l5.8-2.2zM25 19l1 2.6 2.6 1-2.6 1L25 26l-1-2.4-2.6-1 2.6-1zM7 21l.8 2 2 .8-2 .8L7 27l-.8-2.4-2-.8 2-.8z"/>',
+    "maison": '<path d="M4 15L16 5l12 10M7 13v14h18V13M13 27v-7h6v7"/>',
+    "douche": '<path d="M8 28V8a4 4 0 018 0v1M12 9h8l-1 3h-6zM13 16v1M16 16v2M19 16v1M14 21v1M18 21v1"/>',
+    "clim": '<path d="M16 3v26M5 9.5l22 13M5 22.5l22-13M13 5l3 3 3-3M13 27l3-3 3 3"/>',
+    "cuisine": '<path d="M5 14h22v4a8 8 0 01-8 8h-6a8 8 0 01-8-8zM2 14h3M27 14h3M11 10c0-2 2-2 2-4M16 10c0-2 2-2 2-4M21 10c0-2 2-2 2-4"/>',
+    "machine": '<rect x="6" y="4" width="20" height="24" rx="2"/><circle cx="16" cy="17" r="6"/><path d="M6 9h20M10 6.5h2"/>',
+    "piscine": '<path d="M10 22V8a3 3 0 016 0M20 22V8a3 3 0 016 0M10 12h10M10 17h10M3 25c3-2 5-2 8 0s5 2 8 0 5-2 8 0"/>',
+    "table": '<path d="M3 10h26M6 10l-1 16M26 10l1 16M10 10v8h12v-8M16 4v6"/>',
+    "porte": '<path d="M7 28V4h18v24M3 28h26M20 16v2"/>',
     "equipement": '<path d="M6 28V6h20v22M6 13h20M11 9.5h2M20 18v5"/>',
 }
 SPRITE = '<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>' + "".join(
@@ -126,7 +141,7 @@ def entete(espace, courant, profondeur):
         liens += f'<a href="{r}guides/"{" aria-current=\"page\"" if espace == "guides" else ""}>Guides</a>'
         liens += f'<a class="cta" href="{ancre}#demande">Demander une disponibilité</a>'
     return f"""<header class="entete"><div class="wrap">
-<a class="marque" href="{r}index.html"><img class="m-oiseau" src="{r}assets/img/logo-oiseau-blanc.svg" alt=""><img class="m-nom" src="{r}assets/img/logo-nom-blanc.svg" alt="Les Piafs des Collines"></a>
+<a class="marque" href="{r}index.html"><img class="m-oiseau" src="{r}assets/img/logo-oiseau-blanc.svg" alt=""><span class="m-texte"><img class="m-nom" src="{r}assets/img/logo-nom-blanc.svg" alt="Les Piafs des Collines"><span class="m-sous">Location bail mobilité</span></span></a>
 <button class="burger" aria-label="Menu" onclick="this.nextElementSibling.classList.toggle('ouvert')">☰</button>
 <nav class="nav">{liens}</nav>
 </div></header>
@@ -148,11 +163,12 @@ def pied(espace, profondeur):
     else:
         legal = f"""<h5>Informations</h5><ul>
 <li><a href="{s}mentions-legales.html">Mentions légales</a></li>
-<li><a href="{s}politique-de-confidentialite.html">Politique de confidentialité</a></li></ul>"""
+<li><a href="{s}politique-de-confidentialite.html">Politique de confidentialité</a></li>
+<li><a href="{r}cookies.html">Cookies</a></li></ul>"""
     return f"""<div class="store" aria-hidden="true"></div><footer class="pied"><div class="wrap"><div class="cols">
 <div><h5>Les Piafs des Collines</h5><p>{ADRESSE}</p>
 <p><a href="mailto:{MAIL}">{MAIL}</a><br><a href="tel:{TEL_LIEN}">{TEL}</a></p>
-<p><a href="{FACEBOOK}" rel="noopener">Facebook</a></p></div>
+<p><a class="reseau" href="{FACEBOOK}" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13.5 21v-7.5h2.6l.4-3h-3V8.6c0-.9.3-1.5 1.5-1.5h1.6V4.4c-.3 0-1.2-.1-2.3-.1-2.3 0-3.9 1.4-3.9 4v2.2H7.8v3h2.6V21z"/></svg></a></p></div>
 <div><h5>Nos locations</h5><ul>
 <li><a href="{r}index.html">Accueil</a></li>
 {f'<li><a href="{r}saisonniere/">Location saisonnière</a></li>' if SAISON_ACTIVE else ""}
@@ -243,7 +259,7 @@ def accueil():
   <div>
     <span class="sur">Location meublée à Nice</span>
     <h2>{"Un appartement vue mer à Nice, pour quelques mois ou pour les vacances" if SAISON_ACTIVE else "Un appartement vue mer à Nice, pour 1 à 10 mois"}</h2>
-    <p>Sur les collines de Bellet, à l'ouest de Nice, Les Piafs des Collines est un appartement entier de 77,51 m² au premier étage d'une villa, avec deux terrasses et une vue totalement dégagée sur la Baie des Anges.</p>
+    <p>Sur la colline de Bellet, à l'ouest de Nice, Les Piafs des Collines est un appartement entier de 77,51 m² au premier étage d'une villa, avec deux terrasses et une vue totalement dégagée sur la Baie des Anges.</p>
     <p><strong>En <a href="bail-mobilite/">location en bail mobilité à Nice</a></strong>, il loge pour 1 à 10 mois les professionnels en mission, en formation ou en mutation : meublé, tout compris à partir de 2 880 € par mois, avec arrivée autonome. Les centres hospitaliers niçois sont à 12 à 16 minutes en voiture, l'aéroport à 20 minutes, Monaco à 22 minutes et Sophia Antipolis à 28 minutes.</p>
     {PARA_SAISON if SAISON_ACTIVE else '<p>Deux vraies chambres, deux salles d\'eau, fibre, parking privé, linge fourni et ménage de sortie compris : on arrive avec sa valise. <a class="bouton azur" style="margin-top:10px" href="bail-mobilite/">Voir l\'offre bail mobilité</a></p>'}
   </div>
@@ -579,7 +595,7 @@ FAQ_MOB = [
  ("Comment se passe l'arrivée ?",
   "L'arrivée est autonome : le code d'accès est communiqué avant la date d'entrée. Il n'y a pas de rendez-vous de remise des clés, ni de contrainte d'horaire."),
  ("Où se trouve le logement et combien de temps pour rejoindre le centre ?",
-  "Sur les collines de Bellet, à l'ouest de Nice. En voiture, hors trafic : Clinique Kantys Centre 12 min, campus Valrose 13 min, CHU Pasteur 2 15 min, Centre Antoine Lacassagne 16 min, aéroport 20 min, Monaco 22 min, Sophia Antipolis 28 min. Le bus 60 s'arrête à 50 m et rejoint le tram ligne 2 à Magnan."),
+  "Sur la colline de Bellet, à l'ouest de Nice. En voiture, hors trafic : Clinique Kantys Centre 12 min, campus Valrose 13 min, CHU Pasteur 2 15 min, Centre Antoine Lacassagne 16 min, aéroport 20 min, Monaco 22 min, Sophia Antipolis 28 min. Le bus 60 s'arrête à 50 m et rejoint le tram ligne 2 à Magnan."),
 ]
 
 def faq_html(qr):
@@ -604,15 +620,22 @@ def bail_mobilite():
                      ("Facturation", "Exonérée de TVA, au nom du payeur"), ("Arrivée", "Autonome, code d'accès")]),
     ]
     icones = {"Le logement": "plan", "Énergie et confort": "energie", "Équipements": "equipement", "Contrat": "plume"}
-    fiche_html = "".join(f'<div class="fiche-bloc"><h3>{pic(icones[t])}{E(t)}</h3><dl>' + "".join(f"<dt>{E(k)}</dt><dd>{E(v)}</dd>" for k, v in lignes) + "</dl></div>" for t, lignes in fiche)
+    picto_ligne = {"Surface habitable": "plan", "Terrasses": "soleil", "Véranda buanderie": "machine", "Pièces": "porte", "Chambres": "lit",
+                   "Salles d'eau": "douche", "WC": "douche", "Situation": "maison", "Vue": "soleil", "DPE": "energie",
+                   "Coût énergie estimé": "facture", "Chauffage et climatisation": "clim", "Internet": "wifi", "Cuisine": "cuisine",
+                   "Linge": "machine", "Literie": "lit", "Extérieur": "table", "Stationnement": "parking", "Piscine": "piscine",
+                   "Famille": "personne", "Payeur personne morale": "societe", "Payeur particulier": "personne", "Durée minimale": "calendrier",
+                   "Garantie": "cle", "Facturation": "facture", "Arrivée": "valise"}
+    fiche_html = "".join(f'<div class="fiche-bloc"><h3>{pic(icones[t])}{E(t)}</h3><dl>' + "".join(
+        f'<dt>{pic(picto_ligne.get(k, "plume" if t == "Contrat" else "plan"), "pic-s")}{E(k)}</dt><dd>{E(v)}</dd>' for k, v in lignes) + "</dl></div>" for t, lignes in fiche)
     def panneau(image, titre, l1, l2, cote="", icone="soleil"):
         return f'''<figure class="panneau {cote}">{img(image, titre.capitalize())}<figcaption><h3>{pic(icone, "pic-s")}{E(titre)}</h3><p>{E(l1)}<br>{E(l2)}</p></figcaption></figure>'''
     corps = f"""
 <section class="mob-hero">
-  <picture><source media="(max-width:700px)" srcset="{{R}}assets/img/hero-baie-mobile.jpg"><img class="fond" src="{{R}}assets/img/hero-baie.jpg" alt="La Baie des Anges vue depuis l'appartement, sur les collines de Bellet à Nice" fetchpriority="high"></picture>
+  <picture><source media="(max-width:700px)" srcset="{{R}}assets/img/hero-baie-mobile.jpg"><img class="fond" src="{{R}}assets/img/hero-baie.jpg" alt="La Baie des Anges vue depuis l'appartement, sur la colline de Bellet à Nice" fetchpriority="high"></picture>
   <div class="wrap">
     <h1 class="sur">Location en bail mobilité à Nice</h1>
-    <p class="legende">Face à la Baie des Anges.<br><em>De 1&nbsp;à 10&nbsp;mois.</em></p>
+    <p class="legende">Sur la colline de Bellet, face à la Baie des Anges.<br><em>De 1&nbsp;à 10&nbsp;mois.</em></p>
     <a class="bouton" href="#demande">Demander une disponibilité</a>
   </div>
   <div class="timbre" aria-hidden="true">Nice<span>Bellet</span>Côte d'Azur</div>
@@ -780,7 +803,7 @@ VISUELS = {
         [("22", "min de Monaco en voiture"), ("1 sur 4", "salarié du privé de Monaco vit à Nice"), ("20", "min de l'aéroport")]),
     "mission-nice-3-a-10-mois": ("affiche-nice-plm", "ocre", ("tram-ligne-2", 3),
         [("3 à 10", "mois de mission"), ("28", "min de Sophia Antipolis"), ("1", "facture, tout compris")]),
-    "vivre-collines-de-bellet-nice": ("chateau-de-bellet", "mer", ("vignoble-saint-jean-bellet", 2),
+    "vivre-colline-de-bellet-nice": ("chateau-de-bellet", "mer", ("vignoble-saint-jean-bellet", 2),
         [("1941", "AOC Bellet, par décret"), ("26 m²", "de terrasses vue mer"), ("13", "min du campus Valrose")]),
 }
 
@@ -795,6 +818,82 @@ def gimg(n, alt, cls="", charge="lazy"):
 def mots(texte):
     return len(re.findall(r"\w+", texte))
 
+# Pictos des intertitres : le premier mot-clé trouvé dans le titre décide.
+PICTO_TITRE = [("monaco", "couronne"), ("vin", "verre"), ("domaines", "verre"), ("courses", "panier"), ("scooter", "scooter"),
+               ("travailler depuis", "ordi"), ("garantie", "cle"), ("dépôt", "cle"), ("visale", "cle"), ("arrivée", "valise"),
+               ("employeur", "societe"), ("hôpital ou", "societe"), ("coûte", "facture"), ("comprend", "facture"), ("impôts", "facture"),
+               ("ressemble", "plan"), ("transition", "valise"), ("semestre", "calendrier"), ("dure", "calendrier"), ("réserver", "calendrier"),
+               ("qui peut", "personne"), ("salariés", "personne"), ("chu", "hopital"), ("minutes", "repere"), ("aller", "repere"),
+               ("déplacer", "repere"), ("voiture", "repere"), ("où se", "repere"), ("se trouve", "repere"), ("pièces", "plume"),
+               ("démarches", "plume"), ("contrat", "plume"), ("résilier", "plume"), ("dossier", "plume"), ("demande", "plume"),
+               ("bail", "plume"), ("logement", "plan")]
+
+def picto_titre(titre):
+    t = titre.lower()
+    return next((n for k, n in PICTO_TITRE if k in t), "repere")
+
+TRAJETS = [("Clinique Kantys Centre", 12, "hopital"), ("Campus Valrose", 13, "campus"), ("CHU Pasteur 2", 15, "hopital"),
+           ("Centre Antoine Lacassagne", 16, "hopital"), ("Aéroport", 20, "avion"), ("Monaco", 22, "couronne"),
+           ("Sophia Antipolis", 28, "puce"), ("La plage", 7, "parasol")]
+
+def dg_trajets(focus=()):
+    lignes = "".join(f'<li class="{"f" if l in focus else ""}"><span class="l">{pic(i, "pic-s")}{E(l)}</span><span class="barre"><i style="width:{m / 30 * 100:.0f}%"></i></span><b>{m}<small> min</small></b></li>'
+                     for l, m, i in sorted(TRAJETS, key=lambda x: x[1]))
+    return f'<figure class="dg dg-trajets"><figcaption class="dg-titre">{pic("repere", "pic-s")}Depuis l\'appartement, en voiture</figcaption><ul>{lignes}</ul><p class="dg-note">Minutes hors trafic. Bus 60 vers le tram ligne 2 à Magnan.</p></figure>'
+
+def dg_prix():
+    rangs = [("1 à 2 mois", 3600), ("3 à 6 mois", 3200), ("7 à 10 mois", 2880)]
+    lignes = "".join(f'<li><span class="l">{pic("calendrier", "pic-s")}{l}</span><span class="barre"><i style="width:{p / 3600 * 100:.0f}%"></i></span><b>{p:,} €</b></li>'.replace(",", " ") for l, p in rangs)
+    return f'<figure class="dg dg-prix"><figcaption class="dg-titre">{pic("facture", "pic-s")}Prix par mois, tout compris</figcaption><ul>{lignes}</ul><p class="dg-gain"><b>− 720 €</b> par mois sur 7 à 10 mois, par rapport à 1 à 2 mois.</p></figure>'
+
+def dg_duree():
+    case = "".join(f'<span class="c {"a" if m <= 2 else "b" if m <= 6 else "d"}">{m}</span>' for m in range(1, 11))
+    return f'''<figure class="dg dg-duree"><figcaption class="dg-titre">{pic("calendrier", "pic-s")}Durée du bail, en mois</figcaption>
+<div class="mois">{case}</div>
+<div class="legende-dg"><span><i class="a"></i>1 à 2 mois · 3 600 €</span><span><i class="b"></i>3 à 6 mois · 3 200 €</span><span><i class="d"></i>7 à 10 mois · 2 880 €</span></div>
+<div class="societe-dg"><span style="margin-left:20%">{pic("societe", "pic-s")}Bail au nom de l\'employeur : à partir de 3 mois</span></div></figure>'''
+
+def dg_semestres():
+    mois = ["nov.", "déc.", "janv.", "févr.", "mars", "avr.", "mai", "juin", "juil.", "août", "sept.", "oct."]
+    cases = "".join(f'<span class="{"h" if k < 6 else "e"}">{m}</span>' for k, m in enumerate(mois))
+    return f'''<figure class="dg dg-semestres"><figcaption class="dg-titre">{pic("calendrier", "pic-s")}L'année d'internat à Nice</figcaption>
+<div class="noms"><span>Semestre d'hiver</span><span>Semestre d'été</span></div><div class="mois12">{cases}</div>
+<div class="bail6"><span>Un semestre = 6 mois, dans un bail mobilité de 1 à 10 mois</span></div>
+<p class="dg-note">Prochain changement de semestre : 3 mai 2027 (ARS Provence-Alpes-Côte d'Azur).</p></figure>'''
+
+def dg_un_sur_quatre():
+    gens = "".join(f'<span class="{"f" if k == 0 else ""}">{pic("personne", "pic")}</span>' for k in range(4))
+    return f'''<figure class="dg dg-quatre"><div class="gens">{gens}</div><div><b>1 sur 4</b><p>salarié du secteur privé de Monaco vit à Nice : plus de 16 000 personnes.</p><p class="dg-note">Source : IMSEE, Observatoire de l'Emploi 2025.</p></div></figure>'''
+
+def dg_compris():
+    items = [("energie", "Eau, électricité, chauffage"), ("wifi", "Fibre"), ("parking", "Place de parking privée"),
+             ("linge", "Linge de lit et de toilette, fourni à l'arrivée"), ("menage", "Ménage de sortie"), ("facture", "Une seule facture")]
+    tuiles = "".join(f'<div>{pic(i)}<span>{E(l)}</span></div>' for i, l in items)
+    return f'<figure class="dg dg-compris"><figcaption class="dg-titre">{pic("facture", "pic-s")}Compris dans le prix mensuel</figcaption><div class="tuiles6">{tuiles}</div></figure>'
+
+def encadre(titre, points, icone="plume"):
+    return f'<aside class="encadre"><span class="sur">{pic(icone, "pic-s")}{E(titre)}</span><ul>' + "".join(f"<li>{E(p)}</li>" for p in points) + "</ul></aside>"
+
+# Par article : (avant l'intertitre n, bloc). n = 0 : en tête d'article ; n au-delà du dernier : en fin.
+DATAGRAPHIE = {
+    "bail-mobilite-nice-guide-complet": [
+        (1, encadre("À retenir", ["De 1 à 10 mois, ni renouvelable ni reconductible.", "Aucun dépôt de garantie.", "Le justificatif du motif est demandé avant la signature."])),
+        (3, dg_duree()), (9, dg_compris()), (10, dg_prix()), (13, dg_trajets(("CHU Pasteur 2", "Monaco", "Sophia Antipolis")))],
+    "logement-interne-chu-nice": [
+        (1, encadre("À retenir", ["Un semestre de 6 mois tient dans un bail mobilité.", "Le bail peut être au nom de l'établissement à partir de 3 mois.", "Aucun dépôt de garantie en bail mobilité."])),
+        (2, dg_semestres()), (4, dg_trajets(("CHU Pasteur 2", "Centre Antoine Lacassagne", "Clinique Kantys Centre"))), (8, dg_prix())],
+    "logement-monaco-nice": [
+        (2, dg_un_sur_quatre()), (3, dg_trajets(("Monaco", "Aéroport"))),
+        (5, encadre("À retenir", ["Monaco à 22 minutes en voiture, hors trafic.", "Bail au nom de l'employeur à partir de 3 mois.", "Un prix mensuel tout compris, une facture."])), (8, dg_prix())],
+    "mission-nice-3-a-10-mois": [
+        (2, encadre("À retenir", ["Bail mobilité de 1 à 10 mois, ou bail au nom de la société à partir de 3 mois.", "Une seule facture, tout compris.", "Facture exonérée de TVA, au nom du payeur."])),
+        (4, dg_prix()), (6, dg_trajets(("Sophia Antipolis", "Aéroport", "Monaco"))), (8, dg_compris())],
+    "vivre-colline-de-bellet-nice": [
+        (2, dg_trajets(("La plage", "Campus Valrose", "Aéroport"))),
+        (3, encadre("À retenir", ["Sur la colline de Bellet, à l'ouest de Nice.", "Vue sur la Baie des Anges depuis deux terrasses.", "AOC Bellet, reconnue par décret en 1941."], "verre")),
+        (8, dg_compris()), (99, dg_prix())],
+}
+
 def guides():
     articles = lire_guides()
     if not articles: return
@@ -803,7 +902,13 @@ def guides():
         corps_html = md_html(a["corps"])
         titres = re.findall(r"<h2>(.+?)</h2>", corps_html)
         for k, t in enumerate(titres):
-            corps_html = corps_html.replace(f"<h2>{t}</h2>", f'<h2 id="s{k + 1}"><span class="num">{k + 1:02d}</span>{t}</h2>', 1)
+            corps_html = corps_html.replace(f"<h2>{t}</h2>", f'<h2 id="s{k + 1}"><span class="num">{pic(picto_titre(t), "pic-s")}{k + 1:02d}</span>{t}</h2>', 1)
+        for n, bloc in DATAGRAPHIE.get(a["slug"], []):
+            tableau = re.search(r'<div class="table">(?:(?!</div>).)*3 600 €.*?</div>', corps_html, re.S) if "dg-prix" in bloc else None
+            if tableau:  # le graphique des prix remplace le tableau des prix de l'article
+                corps_html = corps_html.replace(tableau.group(0), bloc, 1); continue
+            cible = f'<h2 id="s{n}"'
+            corps_html = corps_html.replace(cible, bloc + cible, 1) if cible in corps_html else corps_html + bloc
         fig = f'<figure class="g-photo">{gimg(photo, CREDITS[photo][0])}<figcaption>{credit(photo)}</figcaption></figure>'
         cible = f'<h2 id="s{avant}"'
         corps_html = corps_html.replace(cible, fig + cible, 1) if cible in corps_html else corps_html + fig
@@ -819,7 +924,7 @@ def guides():
     <p class="chapo">{E(a["description"])}</p>
     <span class="g-meta">{max(1, round(mots(a["corps"]) / 220))} min de lecture</span>
   </div>
-  <figure class="g-hero-image">{gimg(couv, CREDITS[couv][0], charge="eager")}<figcaption>{credit(couv)}</figcaption></figure>
+  <figure class="g-hero-image{" cadre" if couv.startswith("affiche") else ""}"><span class="passe">{gimg(couv, CREDITS[couv][0], charge="eager")}</span><figcaption>{credit(couv)}</figcaption></figure>
 </section>
 <div class="store" aria-hidden="true"></div>
 <section class="g-reperes"><div class="wrap">{rep}</div></section>
@@ -830,7 +935,7 @@ def guides():
 </div>
 <section class="azur guide-fin"><div class="etroit centre">
   <span class="sur">Les Piafs des Collines</span>
-  <h2 class="phrase-prix">77 m² face à la Baie des Anges, <em>de 1 à 10 mois.</em></h2>
+  <h2 class="phrase-prix">77 m² sur la colline de Bellet, face à la Baie des Anges, <em>de 1 à 10 mois.</em></h2>
   <a class="bouton" href="../bail-mobilite/">Voir le logement</a>
 </div></section>
 <section class="g-suite"><div class="wrap"><span class="sur">À lire aussi</span><div class="g-tuiles">{suite}</div></div></section>"""
@@ -851,11 +956,11 @@ def guides():
     <h1>Se loger à Nice, <em>de 1 à 10 mois.</em></h1>
     <p class="chapo">Bail mobilité, internat, mission, Monaco, vie de quartier : ce qu'il faut savoir avant de poser sa valise sur la Riviera.</p>
   </div>
-  <figure class="g-hero-image">{gimg("affiche-villefranche", CREDITS["affiche-villefranche"][0], charge="eager")}<figcaption>{credit("affiche-villefranche")}</figcaption></figure>
+  <figure class="g-hero-image cadre"><span class="passe">{gimg("affiche-villefranche", CREDITS["affiche-villefranche"][0], charge="eager")}</span><figcaption>{credit("affiche-villefranche")}</figcaption></figure>
 </section>
 <div class="store" aria-hidden="true"></div>
 <section class="g-une-section"><div class="wrap">
-  <a class="g-une" href="{une["slug"]}.html">{gimg(VISUELS[une["slug"]][0], une["titre"])}
+  <a class="g-une" href="{une["slug"]}.html"><span class="g-une-cadre"><span class="passe">{gimg(VISUELS[une["slug"]][0], une["titre"])}</span></span>
     <div><span class="n">Guide n° 1 · À lire en premier</span><span class="t">{E(une["titre"])}</span><span class="d">{E(une["description"])}</span><span class="f">Lire le guide →</span></div></a>
 </div></section>
 <section class="g-liste"><div class="wrap"><div class="g-tuiles quatre">{tuiles}</div>
@@ -865,6 +970,23 @@ def guides():
          image="guides/affiche-villefranche")
 
 # ================================================================ divers
+def page_cookies():
+    corps = f"""
+<section class="guide-tete"><div class="etroit">
+  <span class="sur">Informations</span><h1>Cookies</h1>
+</div></section>
+<article class="etroit guide">
+<h2>Ce site ne dépose aucun cookie</h2>
+<p>Aucun cookie n'est déposé sur votre appareil, ni pour la mesure d'audience, ni pour la publicité, ni pour le partage sur les réseaux sociaux. Aucun consentement ne vous est donc demandé.</p>
+<h2>Ressources techniques</h2>
+<p>Le site est hébergé par Cloudflare, qui traite les données techniques de connexion nécessaires à l'affichage des pages. Les polices de caractères sont chargées depuis Google Fonts : votre adresse IP est transmise à Google à cette occasion.</p>
+<h2>Formulaire de demande</h2>
+<p>Le formulaire de demande ouvre votre logiciel de messagerie. Le site n'enregistre aucune des informations que vous y saisissez.</p>
+<h2>Une question ?</h2>
+<p>Écrivez à <a href="mailto:{MAIL}">{MAIL}</a>.</p>
+</article>"""
+    page("cookies.html", "Cookies | Les Piafs des Collines", "Le site Les Piafs des Collines ne dépose aucun cookie.", "info", "", corps)
+
 def page_404():
     corps = f"""{bandeau("bandeau-accueil", "Page introuvable")}<section><div class="etroit centre"><p>Cette page n'existe pas ou a changé d'adresse.</p><p><a class="bouton" href="/">Retour à l'accueil</a></p></div></section>"""
     page("404.html", "Page introuvable | Les Piafs des Collines", "", "saison", "", corps.replace("{R}", "/"))
@@ -888,6 +1010,7 @@ def redirections():
         n = n[:-5] if n.endswith(".html") else n
         lignes.append(f"{quote(a)} {n} 301")
         if quote(a) != a: lignes.append(f"{a} {n} 301")
+    lignes.append("/guides/vivre-collines-de-bellet-nice /guides/vivre-colline-de-bellet-nice 301")
     lignes.append("/blog/* " + ("/saisonniere/environs" if SAISON_ACTIVE else "/bail-mobilite/") + " 301")
     (SITE / "_redirects").write_text("\n".join(lignes) + "\n", encoding="utf-8")
     print("   _redirects")
@@ -905,5 +1028,5 @@ def sitemap():
 if __name__ == "__main__":
     print("Génération de site/ :")
     accueil(); saison_appartement(); saison_hotes(); saison_ateliers(); saison_livre_or(); saison_faq()
-    saison_tarifs(); saison_contact(); saison_environs(); saison_legal(); bail_mobilite(); guides(); page_404(); redirections(); sitemap()
+    saison_tarifs(); saison_contact(); saison_environs(); saison_legal(); bail_mobilite(); guides(); page_cookies(); page_404(); redirections(); sitemap()
     print("Terminé.")

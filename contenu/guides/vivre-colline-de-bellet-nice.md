@@ -1,8 +1,8 @@
 ---
-titre: Vivre quelques mois sur les collines de Bellet à Nice
+titre: Vivre quelques mois sur la colline de Bellet à Nice
 title_seo: Vivre à Bellet, Nice | Les Piafs des Collines
 description: Bellet, à l'ouest de Nice : vignes AOC, vue sur la Baie des Anges, bus 60 vers le tram. Ce qu'il faut savoir pour y vivre de 1 à 10 mois en meublé.
-slug: vivre-collines-de-bellet-nice
+slug: vivre-colline-de-bellet-nice
 image: jardin
 ---
 
@@ -10,11 +10,11 @@ Bellet est un quartier de Nice. Il se trouve sur les collines de l'ouest de la v
 
 Vous y venez pour quelques mois, pour une mission, une formation ou un poste. Voici à quoi ressemble la vie au quotidien sur ces collines.
 
-## Où se trouvent les collines de Bellet ?
+## Où se trouve la colline de Bellet ?
 
 Bellet fait partie de la commune de Nice. Ses coteaux dominent la rive gauche du Var, au nord-ouest du centre-ville.
 
-L'appartement des Piafs des Collines est sur les collines de Bellet, à l'ouest de Nice. Depuis ses deux terrasses, la vue s'ouvre sur la Baie des Anges.
+L'appartement des Piafs des Collines est sur la colline de Bellet, à l'ouest de Nice. Depuis ses deux terrasses, la vue s'ouvre sur la Baie des Anges.
 
 ## Qu'est-ce que le vin de Bellet ?
 
@@ -108,4 +108,4 @@ Le prix comprend les charges, l'énergie, la fibre, le parking privé, le linge 
 
 L'arrivée est autonome : le code d'accès vous est communiqué avant la date d'entrée. L'état des lieux d'entrée et l'inventaire du mobilier sont établis contradictoirement avec vous à l'entrée dans les lieux.
 
-[Demander une disponibilité](/bail-mobilite/) pour vivre de 1 à 10 mois sur les collines de Bellet.
+[Demander une disponibilité](/bail-mobilite/) pour vivre de 1 à 10 mois sur la colline de Bellet.
