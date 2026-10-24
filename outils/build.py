@@ -33,7 +33,7 @@ FACEBOOK = "https://www.facebook.com/lespiafsdescollines"
 ENREGISTREMENT = "06088017951MX"
 
 FONTS = ('<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>'
-         '<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT@0,9..144,300..600,50;1,9..144,300..600,50&family=Sora:wght@300;400;500;600&display=swap" rel="stylesheet">')
+         '<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..600;1,9..144,300..600&family=Sora:wght@300;400;500;600&display=swap" rel="stylesheet">')
 
 # Pictos en trait fin (viewBox 32), dessinés pour le site : un <symbol> par picto, appelés par pic().
 ICONES = {

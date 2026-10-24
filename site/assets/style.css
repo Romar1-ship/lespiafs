@@ -633,3 +633,8 @@ strong,b,.fiche dt{font-weight:500}
 h1,h2,.legende,.phrase-prix{letter-spacing:-.015em}
 .cta-droite{display:flex;align-items:center;white-space:nowrap}
 .g-reperes .pic{width:38px;height:38px;margin-bottom:18px}
+/* ===================== Fraunces réglée comme colineperrot.fr : graisse 600, sans arrondi, approche serrée ===================== */
+h1,h2,h3,h4,.legende,.phrase-prix,.geants b,.montants b,.carte-trajets b,.g-reperes b,.dg li b,.g-tuile .t,.g-une .t,.guide-carte .t,.lbl b,.dg-gain b,.dg-quatre b,.dg-duree .c,.timbre span{font-family:var(--serif);font-weight:600;font-variation-settings:normal;letter-spacing:-.02em}
+h1 em,h2 em,.legende em,.phrase-prix em{font-weight:600}
+.chapo,.panneau p,.citation,.guide>p:first-child,summary{font-family:var(--serif);font-weight:400;font-variation-settings:normal;letter-spacing:-.01em}
+h1,.legende{line-height:1.12}
