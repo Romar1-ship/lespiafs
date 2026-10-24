@@ -185,8 +185,9 @@ def pied(espace, profondeur):
 <li><a href="{r}guides/">Guides</a></li></ul></div>
 <div>{legal}</div>
 </div>
+<p class="note droit-pied mention-pied">En nous écrivant, vous reconnaissez avoir lu nos conditions de location et notre politique de confidentialité. Vos coordonnées servent uniquement à répondre à votre demande.</p>
 <p class="note droit-pied">Le contrat est régi par le droit français et rédigé en français. Les traductions sont fournies à titre d'information.</p>
-<div class="bas"><span>© {2026} Les Piafs des Collines</span><span>Site <a href="https://creativeagency-lc.com" rel="noopener">LCCA</a> · Logo <a href="http://www.creative-explorer.fr" rel="noopener">Creative Explorer</a></span></div>
+<div class="bas"><span>© {2026} Les Piafs des Collines</span><span>Site <a href="https://creativeagency-lc.com" rel="noopener">LCCA</a></span></div>
 </div></footer>
 """
 

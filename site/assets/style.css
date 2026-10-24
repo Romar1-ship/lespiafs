@@ -769,3 +769,4 @@ section.nuit .sur{color:var(--dore)}
 .guide.legal>p:first-child{font-family:var(--texte);font-size:1.05rem}
 .guide.legal .encart{background:#fff;border-radius:4px;padding:22px 26px;box-shadow:0 10px 30px rgba(28,43,69,.06)}
 .a-completer{background:#FFE7A8;color:var(--nuit);padding:1px 6px;border-radius:3px;font-weight:500}
+.pied .mention-pied{margin-top:22px}
