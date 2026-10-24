@@ -51,8 +51,8 @@ def ligne(s):
 NAV_SAISON = [("", "Appartement"), ("hotes", "Hôtes"), ("environs", "Explorez les environs"),
               ("ateliers", "Ateliers"), ("livre-or", "Livre d'or"), ("faq", "F.A.Q."),
               ("tarifs", "Tarifs"), ("contact", "Contact")]
-NAV_MOB = [("#logement", "Le logement"), ("#prix", "Prix"), ("#contrat", "Contrat"),
-           ("#acces", "Accès"), ("#avis", "Avis"), ("#demande", "Demande")]
+NAV_MOB = [("#logement", "Le logement"), ("#prix", "Prix"), ("#acces", "Accès"),
+           ("#contrat", "Contrat"), ("#fiche", "Fiche technique")]
 
 BASE = "https://www.lespiafsdescollines.com"
 GEO = (43.701472, 7.231682)
@@ -551,91 +551,90 @@ def faq_html(qr):
 
 def bail_mobilite():
     gal = "".join(f'<a href="{{R}}assets/img/{n}.jpg"{" class=\"g\"" if g else ""}>{img(n, a)}</a>' for n, a, g in GALERIE[:9])
+    fiche = [
+        ("Le logement", [("Surface habitable", "77,51 m² (mesurage loi Boutin, 27/09/2026)"), ("Terrasses", "10,58 m² + 15,75 m², Sud-Est et Sud-Ouest"),
+                         ("Véranda buanderie", "4,95 m²"), ("Pièces", "3, dont 2 chambres"), ("Chambres", "13,91 m² et 12,88 m²"),
+                         ("Salles d'eau", "2, dont 1 privative avec douche à l'italienne"), ("WC", "1 indépendant"),
+                         ("Situation", "1er étage d'une villa, logement traversant"), ("Vue", "Baie des Anges, dégagée")]),
+        ("Énergie et confort", [("DPE", "C en énergie, A en climat, valable jusqu'au 26/09/2036"), ("Coût énergie estimé", "850 à 1 210 € par an, inclus dans le loyer"),
+                                ("Chauffage et climatisation", "Pompe à chaleur, climatisation réversible"), ("Internet", "Fibre")]),
+        ("Équipements", [("Cuisine", "Îlot à induction, four, micro-ondes, lave-vaisselle, réfrigérateur-congélateur"),
+                         ("Linge", "Lave-linge, sèche-linge, fer à repasser"), ("Literie", "Draps, oreillers, couettes d'été et d'hiver, linge de toilette fournis"),
+                         ("Extérieur", "Table à rallonge 6 personnes sous store électrique, plancha"), ("Stationnement", "1 place privée dans l'enceinte"),
+                         ("Piscine", "Partagée, selon horaires"), ("Famille", "Chaise haute, lit parapluie, cache-prises sur demande")]),
+        ("Contrat", [("Payeur personne morale", "Bail au nom de la société, à partir de 3 mois"), ("Payeur particulier", "Bail mobilité, de 1 à 10 mois"),
+                     ("Durée minimale", "1 mois"), ("Pièces", "Justificatif du motif de mobilité avant signature, pour le bail mobilité"),
+                     ("Garantie", "Caution de l'employeur ou caution personnelle. Visale non mobilisable à ce niveau de loyer"),
+                     ("Facturation", "Exonérée de TVA, au nom du payeur"), ("Arrivée", "Autonome, code d'accès"),
+                     ("Adresse", "202 bis route de Bellet, 06200 Nice")]),
+    ]
+    fiche_html = "".join(f'<div class="fiche-bloc"><h3>{E(t)}</h3><dl>' + "".join(f"<dt>{E(k)}</dt><dd>{E(v)}</dd>" for k, v in lignes) + "</dl></div>" for t, lignes in fiche)
+    def panneau(image, titre, l1, l2, cote=""):
+        return f'''<figure class="panneau {cote}">{img(image, titre.capitalize())}<figcaption><h3>{E(titre)}</h3><p>{E(l1)}<br>{E(l2)}</p></figcaption></figure>'''
     corps = f"""
 <section class="mob-hero">
   <picture><source media="(max-width:700px)" srcset="{{R}}assets/img/hero-baie-mobile.jpg"><img class="fond" src="{{R}}assets/img/hero-baie.jpg" alt="La Baie des Anges vue depuis l'appartement, sur les collines de Bellet à Nice" fetchpriority="high"></picture>
   <div class="wrap">
-  <span class="sur">Bail mobilité · Nice, collines de Bellet</span>
-  <h1>Location en bail mobilité à Nice, <em>face à la Baie des Anges</em></h1>
-  <p class="lead">Pour 1 à 10 mois, tout compris. 77,51 m² meublés au premier étage d'une villa : le locataire arrive avec sa valise, entre avec un code, et travaille le lendemain matin.</p>
-  <div class="faits"><span>77,51 m² + 31 m² de terrasses</span><span>2 chambres · 2 salles d'eau</span><span>Fibre</span><span>Parking privé</span><span>Dès 2 880 € par mois</span></div>
-  <a class="bouton" href="#demande">Demander une disponibilité</a> <a class="bouton clair" href="#prix">Voir les prix</a>
+    <h1 class="sur">Location en bail mobilité à Nice</h1>
+    <p class="legende">Face à la Baie des Anges.<br><em>De 1&nbsp;à 10&nbsp;mois.</em></p>
+    <a class="bouton" href="#demande">Demander une disponibilité</a>
   </div>
-  <a class="defiler" href="#logement" aria-label="Découvrir le logement"><span>Découvrir</span></a>
+  <a class="defiler" href="#chiffres" aria-label="Découvrir le logement"><span>Découvrir</span></a>
 </section>
 
-<section class="blanc" id="logement"><div class="wrap">
-  <span class="sur">Le logement</span><h2>Un appartement meublé tout équipé : installé sans rien à faire</h2>
-  <div class="grille3" style="margin-top:28px">
-    <div><h4>Le lit est fait</h4><p>Les draps et les oreillers sont en place, le linge de toilette est sorti. Couettes d'été et d'hiver, cuisine complète, lave-linge et sèche-linge sur place.</p></div>
-    <div><h4>Une facture, un prix, un payeur</h4><p>Électricité, eau, climatisation, fibre, parking : déjà dans le loyer. Aucun contrat à ouvrir, aucun compteur à relever, aucune régularisation à la sortie. Le ménage de sortie est compris.</p></div>
-    <div><h4>Arrivée autonome</h4><p>Code d'accès communiqué avant la date d'entrée. Aucun rendez-vous de remise de clés, aucune contrainte d'horaire : un locataire qui atterrit à 23 h entre chez lui à 23 h 20.</p></div>
-    <div><h4>Une connexion qui tient une visio</h4><p>Fibre haut débit. Trois pièces principales et deux terrasses : on prend un appel sans déranger la personne d'à côté.</p></div>
-    <div><h4>Deux professionnels sans se gêner</h4><p>Chambre parentale avec salle de bain privative et douche à l'italienne, seconde chambre avec salle d'eau, WC indépendant. Deux vraies chambres, de 13,91 et 12,88 m².</p></div>
-    <div><h4>De quoi recevoir sa famille</h4><p>Canapé-lit, table à rallonge pour 6 sous store électrique, piscine partagée, potager, ping-pong. Chaise haute, lit parapluie et cache-prises sur demande.</p></div>
-  </div>
-  <div class="galerie" style="margin-top:40px">{gal}</div>
-</div></section>
-
-<section><div class="wrap"><div class="split">
-  <div><span class="sur">Les surfaces</span><h2>77,51 m² habitables, mesurés</h2>
-  <p class="note">Mesurage loi Boutin du 27/09/2026.</p>
-  <table class="grille-prix"><tbody>
-  <tr><td>Séjour</td><td>25,00 m²</td></tr><tr><td>Chambre 1, avec salle de bain privative</td><td>13,91 m²</td></tr>
-  <tr><td>Chambre 2</td><td>12,88 m²</td></tr><tr><td>Cuisine</td><td>12,57 m²</td></tr>
-  <tr><td>Salles d'eau, WC, entrée, dégagement</td><td>13,15 m²</td></tr>
-  <tr><td><strong>Terrasses</strong>, Sud-Est et Sud-Ouest</td><td><strong>10,58 + 15,75 m²</strong></td></tr>
-  <tr><td>Véranda buanderie</td><td>4,95 m²</td></tr></tbody></table></div>
-  <div><span class="sur">Le confort, attesté</span><h2>DPE C en énergie, A en climat</h2>
-  <p>Le diagnostic du 27/09/2026, valable jusqu'en 2036, relève une bonne inertie, un logement traversant, une toiture isolée, des fenêtres à volets extérieurs et une pompe à chaleur. Le confort d'été est établi par un rapport officiel.</p>
-  <p>Le diagnostiqueur estime l'énergie entre <strong>850 et 1 210 € par an</strong>. Ce montant est dans le loyer : le locataire ne reçoit aucune facture, climatisation comprise.</p>
-  <p>Vue totalement dégagée sur la Baie des Anges depuis la terrasse principale.</p></div>
-</div></div></section>
-
-<section class="blanc" id="prix"><div class="etroit">
-  <span class="sur">Prix</span><h2>Prix du bail mobilité à Nice, tout compris</h2>
-  <p>Charges, énergie, eau, climatisation, fibre, parking, accès piscine, linge, kit d'arrivée, ménage de sortie.</p>
-  <table class="grille-prix" style="margin-top:20px"><thead><tr><th>Durée du séjour</th><th>Loyer mensuel tout compris</th></tr></thead><tbody>
-  <tr><td>7 à 10 mois</td><td class="m">2 880 €</td></tr>
-  <tr><td>3 à 6 mois</td><td class="m">3 200 €</td></tr>
-  <tr><td>1 à 2 mois</td><td class="m">3 600 €</td></tr></tbody></table>
-  <p style="margin-top:18px">Pour une mission courte, l'alternative est la résidence de services : un studio de 27 m² y coûte autour de 3 800 € par mois. Ici, le même budget loge dans 77,51 m² avec deux chambres, deux terrasses et la vue.</p>
-  <p class="note">Ménage hebdomadaire et poste de travail équipé disponibles en option. Facture exonérée de TVA.</p>
-</div></section>
-
-<section id="contrat"><div class="wrap">
-  <span class="sur">Contrat</span><h2>Bail mobilité ou bail société : deux formules selon qui paie</h2>
-  <div class="regle" style="margin-top:24px">
-    <div><h3>L'employeur, une agence, un assureur ou une production paie</h3>
-    <p><strong>Bail au nom de la société, à partir de 3 mois.</strong></p>
-    <ul><li>Durée adaptée à la mission</li><li>Dépôt de garantie possible</li><li>Aucun justificatif de motif à produire</li><li>Une facture au nom de la structure qui paie</li></ul></div>
-    <div class="b"><h3>Le locataire paie en son nom</h3>
-    <p><strong>Bail mobilité, de 1 à 10 mois.</strong></p>
-    <ul><li>Pour une formation, des études, un stage, une mutation ou une mission temporaire</li><li>Le justificatif du motif est demandé avant la signature</li><li>Visale n'est pas mobilisable à ce niveau de loyer : caution de l'employeur ou caution personnelle</li></ul></div>
+<section class="blanc" id="chiffres"><div class="wrap">
+  <div class="geants">
+    <div><b>15<small>min</small></b><span>du CHU Pasteur</span></div>
+    <div><b>26<small>m²</small></b><span>de terrasses vue mer</span></div>
+    <div><b>1</b><span>facture, tout compris</span></div>
   </div>
 </div></section>
 
-<section class="blanc" id="acces"><div class="wrap">
-  <span class="sur">Accès</span><h2>Sur les hauteurs de Nice Ouest, à un quart d'heure de tout</h2>
-  <p>Temps en voiture hors trafic, calculés depuis le 202 bis route de Bellet.</p>
-  <div class="trajets" style="margin-top:20px">
-    <div><b>12 min</b><span>Clinique Kantys Centre</span></div><div><b>13 min</b><span>Campus Valrose</span></div>
-    <div><b>15 min</b><span>CHU Pasteur 2</span></div><div><b>16 min</b><span>Centre Antoine Lacassagne</span></div>
-    <div><b>20 min</b><span>Aéroport Nice Côte d'Azur</span></div><div><b>22 min</b><span>Monaco</span></div>
-    <div><b>28 min</b><span>Sophia Antipolis</span></div><div><b>7 min</b><span>La plage, 20 min à pied</span></div>
-    <div><b>50 m</b><span>Arrêt du bus 60, vers le tram ligne 2 à Magnan</span></div>
-  </div>
-  <p style="margin-top:22px">Place de parking privée comprise. Pour un séjour de plusieurs mois sans voiture, le scooter est la solution pratique : il se loue au mois et se remise dans l'enceinte de la propriété, comme les vélos.</p>
+<section id="logement" class="panneaux"><div class="wrap">
+  <h2 class="cache">Un appartement meublé de 77 m² à Nice</h2>
+  {panneau("terrasse-vue-mer", "DEUX TERRASSES", "26 m² exposés sud, face à la mer.", "Une table pour six, sous store.")}
+  {panneau("chambre-parentale", "DEUX VRAIES CHAMBRES", "13,91 et 12,88 m², chacune avec son placard.", "Une salle de bain privative, une salle d'eau, un WC indépendant.", "droite")}
+  {panneau("cuisine-sejour", "ARRIVER AVEC SA VALISE", "Lit fait, linge sorti, code d'accès.", "Fibre, parking et ménage de sortie compris.")}
+  <div class="galerie" style="margin-top:70px">{gal}</div>
 </div></section>
 
-<section class="sable" id="avis"><div class="wrap">
-  <span class="sur">Avis</span><h2>Ce que les locataires ont écrit</h2>
-  <div class="avis" style="margin-top:24px">
-    <blockquote>Une vue à couper le souffle, un appartement des plus agréables et d'une propreté irréprochable.<cite>Mélody - Nancy</cite></blockquote>
-    <blockquote>Un appartement au top, moderne, bien équipé, au goût du jour.<cite>Chantal, Serge, Sabrina &amp; Anthony - Doubs</cite></blockquote>
-    <blockquote>Everything was perfectly organised. The view is magnificent.<cite>Salma &amp; Omar</cite></blockquote>
-    <blockquote>You have the most beautiful view from the flat and everything you need here!<cite>Family Traude</cite></blockquote>
+<section class="blanc" id="prix"><div class="etroit centre">
+  <span class="sur">Prix du bail mobilité à Nice, tout compris</span>
+  <h2 class="phrase-prix">Plus vous restez, moins vous payez : <em>720&nbsp;€ de moins par mois</em> sur 7&nbsp;à&nbsp;10&nbsp;mois.</h2>
+  <div class="montants">
+    <div><span>1 à 2 mois</span><b>3 600 €</b></div>
+    <div><span>3 à 6 mois</span><b>3 200 €</b></div>
+    <div><span>7 à 10 mois</span><b>2 880 €</b></div>
   </div>
+  <p class="note">Par mois. Charges, énergie, fibre, parking, linge et ménage de sortie compris. Facture exonérée de TVA.</p>
+</div></section>
+
+<section class="sable" id="acces"><div class="wrap">
+  <span class="sur">Accès</span><h2>À un quart d'heure de tout</h2>
+  <div class="carte-trajets">
+    <div><b>12</b><span>Clinique Kantys Centre</span></div><div><b>13</b><span>Campus Valrose</span></div>
+    <div><b>15</b><span>CHU Pasteur 2</span></div><div><b>16</b><span>Centre Lacassagne</span></div>
+    <div><b>20</b><span>Aéroport</span></div><div><b>22</b><span>Monaco</span></div>
+    <div><b>28</b><span>Sophia Antipolis</span></div><div><b>7</b><span>La plage</span></div>
+  </div>
+  <p class="note">Minutes en voiture, hors trafic. Bus 60 à 50 m, vers le tram ligne 2.</p>
+</div></section>
+
+<section class="blanc" id="contrat"><div class="wrap">
+  <span class="sur">Contrat</span><h2>Bail mobilité ou bail société</h2>
+  <div class="deux-formules">
+    <div><h3>L'employeur paie</h3><p>Bail au nom de la société, dès 3 mois.<br>Aucun justificatif de motif.</p></div>
+    <div><h3>Le locataire paie</h3><p>Bail mobilité, de 1 à 10 mois.<br>Justificatif de mobilité, caution employeur ou personnelle.</p></div>
+  </div>
+</div></section>
+
+<section class="nuit" id="avis"><div class="etroit centre">
+  <blockquote class="citation">« Une vue à couper le souffle, un appartement des plus agréables et d'une propreté irréprochable. »<cite>Mélody, Nancy</cite></blockquote>
+</div></section>
+
+<section class="blanc" id="fiche"><div class="wrap">
+  <span class="sur">Fiche technique</span><h2>Pour valider le dossier</h2>
+  <div class="fiche">{fiche_html}</div>
 </div></section>
 
 <section id="questions"><div class="etroit">
@@ -645,7 +644,7 @@ def bail_mobilite():
 
 <section class="blanc" id="demande"><div class="etroit">
   <span class="sur">Demande</span><h2>Demander une disponibilité</h2>
-  <p>Indiquez les dates et qui paie le loyer : nous vous répondons avec la formule adaptée et une date d'entrée ferme.</p>
+  <p>Les dates, et qui paie le loyer. Réponse avec une date d'entrée ferme.</p>
   {formulaire("Demande bail mobilité",
     '<div><label for="ent">Date d\'entrée souhaitée</label><input id="ent" name="Entrée" type="date"></div>'
     '<div><label for="duree">Durée</label><select id="duree" name="Durée"><option>1 à 2 mois</option><option>3 à 6 mois</option><option>7 à 10 mois</option></select></div>'
