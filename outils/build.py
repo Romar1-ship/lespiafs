@@ -870,7 +870,8 @@ def md_ligne(s):
     return re.sub(r"\[([^\]]+)\]\(([^)]+)\)", lien, s)
 
 # Pictos devant les éléments de liste : le premier mot-clé trouvé dans l'élément décide (français, anglais, italien).
-PICTO_LISTE = [("clinique", "hopital"), ("chu", "hopital"), ("hôpital", "hopital"), ("hospital", "hopital"), ("ospedale", "hopital"),
+PICTO_LISTE = [("linge de lit", "linge"), ("bed linen", "linge"), ("biancheria", "linge"), ("lave-linge", "machine"), ("buanderie", "machine"), ("laundry", "machine"), ("lavanderia", "machine"),
+               ("bus ", "repere"), ("bus 60", "repere"), ("tram", "repere"), ("clinique", "hopital"), ("chu", "hopital"), ("hôpital", "hopital"), ("hospital", "hopital"), ("ospedale", "hopital"),
                ("lacassagne", "hopital"), ("valrose", "campus"), ("campus", "campus"), ("aéroport", "avion"), ("airport", "avion"),
                ("aeroporto", "avion"), ("monaco", "couronne"), ("sophia", "puce"), ("plage", "parasol"), ("beach", "parasol"), ("spiaggia", "parasol"),
                ("scooter", "scooter"), ("deux-roues", "scooter"), ("bus", "repere"), ("tram", "repere"), ("train", "repere"), ("ter ", "repere"),
@@ -964,13 +965,13 @@ CREDITS = {
 VISUELS = {
     "bail-mobilite-nice-guide-complet": ("affiche-ceria-cote-d-azur", "azur", ("baie-des-anges", 5),
         [("1 à 10", "mois de bail", "calendrier"), ("0 €", "de dépôt de garantie", "cle"), ("1", "mois de préavis pour le locataire", "plume")]),
-    "logement-interne-chu-nice": ("affiche-cheret-hiver-a-nice", "corail", ("hopital-pasteur", 2),
+    "logement-interne-chu-nice": ("affiche-cheret-hiver-a-nice", "corail", ("hopital-pasteur", 4),
         [("15", "min du CHU Pasteur 2", "hopital"), ("16", "min du Centre Lacassagne", "hopital"), ("3 mai", "2027, changement de semestre", "calendrier")]),
     "logement-monaco-nice": ("affiche-monaco-broders", "nuit", ("baie-des-anges", 4),
         [("22", "min de Monaco en voiture", "couronne"), ("1 sur 4", "salarié du privé de Monaco vit à Nice", "personne"), ("20", "min de l'aéroport", "avion")]),
-    "mission-nice-3-a-10-mois": ("affiche-chanteau-nice-digne", "ocre", ("tram-ligne-2", 3),
+    "mission-nice-3-a-10-mois": ("affiche-chanteau-nice-digne", "ocre", ("tram-ligne-2", 6),
         [("3 à 10", "mois de mission", "calendrier"), ("28", "min de Sophia Antipolis", "puce"), ("1", "facture, tout compris", "facture")]),
-    "vivre-colline-de-bellet-nice": ("affiche-broders-montagnes", "mer", ("vignoble-saint-jean-bellet", 2),
+    "vivre-colline-de-bellet-nice": ("affiche-broders-montagnes", "mer", ("vignoble-saint-jean-bellet", 3),
         [("1941", "AOC Bellet, par décret", "verre"), ("26 m²", "de terrasses vue mer", "soleil"), ("13", "min du campus Valrose", "campus")]),
 }
 
@@ -1045,20 +1046,19 @@ def encadre(titre, points, icone="plume"):
 DATAGRAPHIE = {
     "bail-mobilite-nice-guide-complet": [
         (1, encadre("À retenir", ["De 1 à 10 mois, ni renouvelable ni reconductible.", "Aucun dépôt de garantie.", "Le justificatif du motif est demandé avant la signature."])),
-        (3, dg_duree()), (9, dg_compris()), (10, dg_prix()), (13, dg_trajets(("CHU Pasteur 2", "Monaco", "Sophia Antipolis")))],
+        (3, dg_duree()), (9, dg_compris()), (10, dg_prix())],
     "logement-interne-chu-nice": [
         (1, encadre("À retenir", ["Un semestre de 6 mois tient dans un bail mobilité.", "Le bail peut être au nom de l'établissement à partir de 3 mois.", "Aucun dépôt de garantie en bail mobilité."])),
-        (2, dg_semestres()), (4, dg_trajets(("CHU Pasteur 2", "Centre Antoine Lacassagne", "Clinique Kantys Centre"))), (8, dg_prix())],
+        (2, dg_semestres()), (5, dg_trajets(("CHU Pasteur 2", "Centre Antoine Lacassagne", "Clinique Kantys Centre"))), (7, dg_prix())],
     "logement-monaco-nice": [
         (2, dg_un_sur_quatre()), (3, dg_trajets(("Monaco", "Aéroport"))),
-        (5, encadre("À retenir", ["Monaco à 22 minutes en voiture, hors trafic.", "Bail au nom de l'employeur à partir de 3 mois.", "Un prix mensuel tout compris, une facture."])), (8, dg_prix())],
+        (6, encadre("À retenir", ["Monaco à 22 minutes en voiture, hors trafic.", "Bail au nom de l'employeur à partir de 3 mois.", "Un prix mensuel tout compris, une facture."]))],
     "mission-nice-3-a-10-mois": [
-        (2, encadre("À retenir", ["Bail mobilité de 1 à 10 mois, ou bail au nom de la société à partir de 3 mois.", "Une seule facture, tout compris.", "Facture exonérée de TVA, au nom du payeur."])),
-        (4, dg_prix()), (6, dg_trajets(("Sophia Antipolis", "Aéroport", "Monaco"))), (8, dg_compris())],
+        (1, encadre("À retenir", ["Bail mobilité de 1 à 10 mois, ou bail au nom de la société à partir de 3 mois.", "Une seule facture, tout compris.", "Facture exonérée de TVA, au nom du payeur."])),
+        (2, dg_prix()), (2, dg_compris())],
     "vivre-colline-de-bellet-nice": [
-        (2, dg_trajets(("La plage", "Campus Valrose", "Aéroport"))),
-        (3, encadre("À retenir", ["Sur la colline de Bellet, à l'ouest de Nice.", "Vue sur la Baie des Anges depuis deux terrasses.", "AOC Bellet, reconnue par décret en 1941."], "verre")),
-        (8, dg_compris()), (99, dg_prix())],
+        (2, encadre("À retenir", ["Sur la colline de Bellet, à l'ouest de Nice.", "Vue sur la Baie des Anges depuis deux terrasses.", "AOC Bellet, reconnue par décret en 1941."], "verre")),
+        (6, dg_trajets(("La plage", "Campus Valrose", "Aéroport")))],
 }
 
 def guides():
