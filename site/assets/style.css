@@ -659,3 +659,17 @@ h1,.legende{line-height:1.12}
   .nav a{padding:12px}
   .cta-mobile{display:block;padding:12px}
 }
+/* ===================== Hero : phrase sur deux lignes, plus grande, centrée en hauteur ===================== */
+.mob-hero{justify-content:center;padding-top:0;padding-bottom:0}
+.mob-hero .legende{font-size:clamp(2.6rem,min(6.6vw,10.5vh),7.6rem);line-height:1.04;margin-bottom:clamp(20px,4vh,40px)}
+.mob-hero .legende .ligne{white-space:nowrap}
+.mob-hero .legende em{display:inline-block;margin-top:.12em}
+@media(max-width:860px){.mob-hero .legende{font-size:clamp(2.2rem,9.4vw,3.6rem)}.mob-hero .legende .ligne{white-space:normal}}
+@media(max-width:860px){.mob-hero .legende{font-size:7.2vw}.mob-hero .legende .ligne{white-space:nowrap}}
+/* Cachet : NICE en gras et plus grand, Bellet sur toute la largeur du cercle */
+.timbre .t-haut{font-family:var(--titre);font-size:.78rem;font-weight:700;letter-spacing:.28em;font-style:normal;margin:0}
+.timbre .t-nom{font-family:var(--serif);font-style:italic;font-weight:600;font-size:2.55rem;letter-spacing:-.02em;line-height:1;text-transform:none;margin:4px 0 6px}
+.timbre .t-bas{font-family:var(--titre);font-size:.58rem;font-weight:500;letter-spacing:.24em;font-style:normal;margin:0}
+html[lang="it"] .mob-hero .legende{font-size:clamp(2.4rem,min(5.8vw,10vh),6.6rem)}
+@media(max-width:860px){html[lang="it"] .mob-hero .legende{font-size:5.5vw}}
+.timbre .t-haut,.timbre .t-bas{text-transform:uppercase}

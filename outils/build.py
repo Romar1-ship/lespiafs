@@ -703,10 +703,10 @@ def bail_mobilite():
   <picture><source media="(max-width:700px)" srcset="{{R}}assets/img/hero-baie-mobile.jpg"><img class="fond" src="{{R}}assets/img/hero-baie.jpg" alt="La Baie des Anges vue depuis l'appartement, sur la colline de Bellet à Nice" fetchpriority="high"></picture>
   <div class="wrap">
     <h1 class="sur">Location en bail mobilité à Nice</h1>
-    <p class="legende"><span class="ligne1">Sur la colline de Bellet, face à la Baie&nbsp;des&nbsp;Anges,</span><br><em>de 1&nbsp;à 10&nbsp;mois</em></p>
+    <p class="legende"><span class="ligne">Sur la colline de Bellet,</span><br><span class="ligne">face à la Baie&nbsp;des&nbsp;Anges,</span><br><em>de 1&nbsp;à 10&nbsp;mois</em></p>
     <a class="bouton" href="#demande">Demander une disponibilité</a>
   </div>
-  <div class="timbre" aria-hidden="true">Nice<span>Bellet</span>Côte d'Azur</div>
+  <div class="timbre" aria-hidden="true"><span class="t-haut">Nice</span><span class="t-nom">Bellet</span><span class="t-bas">Côte d'Azur</span></div>
   <a class="defiler" href="#chiffres" aria-label="Découvrir le logement"><span>Découvrir</span></a>
 </section>
 <div class="store" aria-hidden="true"></div>
