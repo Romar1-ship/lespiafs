@@ -29,13 +29,9 @@ Déployé en **Worker**, pas en Pages. La configuration est dans `wrangler.jsonc
 
 **En ligne depuis le 23/10/2026**, Worker `lespiafs` du compte Cloudflare LCCA (`319ca0bc4d9526bc7655c49937e301a9`).
 
-**Le Worker n'est pas encore relié à GitHub** : un push ne publie rien. On publie avec :
+**On publie par le dépôt, jamais en direct** (règle de Géraldine, 24/10/2026) : on génère `site/` en local avec `python3 outils/build.py`, on commite, on pousse sur `main`, et Cloudflare déploie depuis GitHub. Aucun `wrangler deploy` lancé depuis un poste.
 
-```
-CLOUDFLARE_API_TOKEN=$CLOUDFLARE_LCCA_API_TOKEN CLOUDFLARE_ACCOUNT_ID=319ca0bc4d9526bc7655c49937e301a9 npx wrangler deploy
-```
-
-Pour que chaque push publie, relier le Worker au dépôt `Romar1-ship/lespiafs` dans le tableau de bord (Workers Builds, autorisation GitHub), avec les réglages ci-dessous.
+La liaison se fait dans le tableau de bord, car elle demande l'autorisation GitHub : Workers & Pages › `lespiafs` › Settings › Builds › Connect, dépôt `Romar1-ship/lespiafs`, branche `main`, avec les réglages ci-dessous. Tant qu'elle n'est pas faite, un push ne publie rien.
 
 | Réglage Workers Builds | Valeur |
 |---|---|
