@@ -620,3 +620,16 @@ h1 em,h2 em,.legende em,.phrase-prix em{font-weight:300}
 .cta-mobile .langues{display:flex;margin:0 0 10px}
 .note.droit{margin-top:22px;font-size:.88rem}
 .pied .droit-pied{margin:26px 0 0;font-size:.8rem;color:#9aa6bd}
+/* ===================== Paire de colineperrot.fr : Fraunces (titres) + Sora (texte, étiquettes, menu) ===================== */
+:root{--texte:"Sora",system-ui,sans-serif;--titre:"Sora",system-ui,sans-serif}
+body{font-family:var(--texte);font-size:16px;font-weight:300;line-height:1.75;letter-spacing:0}
+.guide{font-size:1rem;line-height:1.8}
+strong,b,.fiche dt{font-weight:500}
+.sur,.nav a,.bouton,.cta-droite .cta,.cta-mobile .cta,.langues a,.m-sous,.g-meta,.dg-titre,.fiche-bloc h3,.panneau h3,.pied h5,.timbre,.encadre .sur,.g-tuile .n,.g-une .n,.g-une .f,.carte-choix .k,.montants span,.geants span,.carte-trajets span,.g-reperes span,.table th,label{font-family:var(--titre);font-weight:500}
+.bouton,.nav a.cta,.cta-droite .cta,.cta-mobile .cta{padding-top:15px;padding-bottom:14px}
+.cta-droite .cta{padding:12px 22px}
+.nav a{padding-top:9px;padding-bottom:9px}
+.langues a{padding:7px 7px}
+h1,h2,.legende,.phrase-prix{letter-spacing:-.015em}
+.cta-droite{display:flex;align-items:center;white-space:nowrap}
+.g-reperes .pic{width:38px;height:38px;margin-bottom:18px}

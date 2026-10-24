@@ -33,7 +33,7 @@ FACEBOOK = "https://www.facebook.com/lespiafsdescollines"
 ENREGISTREMENT = "06088017951MX"
 
 FONTS = ('<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>'
-         '<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT@0,9..144,300..500,50;1,9..144,300..500,50&family=Josefin+Sans:wght@400;600;700&display=swap" rel="stylesheet">')
+         '<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT@0,9..144,300..600,50;1,9..144,300..600,50&family=Sora:wght@300;400;500;600&display=swap" rel="stylesheet">')
 
 # Pictos en trait fin (viewBox 32), dessinés pour le site : un <symbol> par picto, appelés par pic().
 ICONES = {
@@ -877,15 +877,15 @@ CREDITS = {
 # Par article : couverture, couleur du bloc, photo insérée avant le n-ième intertitre, et trois repères chiffrés.
 VISUELS = {
     "bail-mobilite-nice-guide-complet": ("affiche-ceria-cote-d-azur", "azur", ("baie-des-anges", 5),
-        [("1 à 10", "mois de bail"), ("0 €", "de dépôt de garantie"), ("1", "mois de préavis pour le locataire")]),
+        [("1 à 10", "mois de bail", "calendrier"), ("0 €", "de dépôt de garantie", "cle"), ("1", "mois de préavis pour le locataire", "plume")]),
     "logement-interne-chu-nice": ("affiche-cheret-hiver-a-nice", "corail", ("hopital-pasteur", 2),
-        [("15", "min du CHU Pasteur 2"), ("16", "min du Centre Lacassagne"), ("3 mai", "2027, changement de semestre")]),
+        [("15", "min du CHU Pasteur 2", "hopital"), ("16", "min du Centre Lacassagne", "hopital"), ("3 mai", "2027, changement de semestre", "calendrier")]),
     "logement-monaco-nice": ("affiche-monaco-broders", "nuit", ("baie-des-anges", 4),
-        [("22", "min de Monaco en voiture"), ("1 sur 4", "salarié du privé de Monaco vit à Nice"), ("20", "min de l'aéroport")]),
+        [("22", "min de Monaco en voiture", "couronne"), ("1 sur 4", "salarié du privé de Monaco vit à Nice", "personne"), ("20", "min de l'aéroport", "avion")]),
     "mission-nice-3-a-10-mois": ("affiche-chanteau-nice-digne", "ocre", ("tram-ligne-2", 3),
-        [("3 à 10", "mois de mission"), ("28", "min de Sophia Antipolis"), ("1", "facture, tout compris")]),
+        [("3 à 10", "mois de mission", "calendrier"), ("28", "min de Sophia Antipolis", "puce"), ("1", "facture, tout compris", "facture")]),
     "vivre-colline-de-bellet-nice": ("affiche-broders-montagnes", "mer", ("vignoble-saint-jean-bellet", 2),
-        [("1941", "AOC Bellet, par décret"), ("26 m²", "de terrasses vue mer"), ("13", "min du campus Valrose")]),
+        [("1941", "AOC Bellet, par décret", "verre"), ("26 m²", "de terrasses vue mer", "soleil"), ("13", "min du campus Valrose", "campus")]),
 }
 
 def credit(n):
@@ -1002,7 +1002,7 @@ def guides_langue(langue):
         cible = f'<h2 id="s{avant}"'
         corps_html = corps_html.replace(cible, fig + cible, 1) if cible in corps_html else corps_html + fig
         sommaire = "".join(f'<li><a href="#s{k + 1}">{re.sub("<[^>]+>", "", t)}</a></li>' for k, t in enumerate(titres))
-        rep = "".join(f'<div><b>{E(c)}</b><span>{E(l)}</span></div>' for c, l in reperes)
+        rep = "".join(f'<div>{pic(i)}<b>{E(c)}</b><span>{E(l)}</span></div>' for c, l, i in reperes)
         autres = [b for b in articles if b is not a][:3]
         suite = "".join(f'<a class="g-tuile {VISUELS[b["fichier"]][1]}" href="{b["slug"]}.html">{gimg(VISUELS[b["fichier"]][0], b["titre"])}<span class="t">{E(b["titre"])}</span></a>' for b in autres)
         corps = f"""
