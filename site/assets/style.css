@@ -607,3 +607,8 @@ details p{font-size:.98rem}
 .g-hero-image.cadre figcaption{position:static;transform:none;color:inherit;opacity:.75;padding:0}
 .g-hero-image.cadre .passe img{height:calc(100svh - 66px - 2 * clamp(20px,5vh,56px) - 2 * clamp(10px,1.8vh,20px) - 64px)}
 @media(max-width:860px){.g-hero-image.cadre .passe img{height:calc(100svh - 66px - 390px)}}
+/* ===================== Titres : Fraunces fine et douce ===================== */
+:root{--serif:"Fraunces",Georgia,serif}
+h1,h2,h3,h4,.legende,.phrase-prix,.geants b,.montants b,.carte-trajets b,.g-reperes b,.dg li b,.g-tuile .t,.g-une .t,.guide-carte .t,summary,.citation,.chapo,.panneau p,.guide>p:first-child,.timbre span,.lbl b,.dg-gain b,.dg-quatre b,.dg-duree .c{font-family:var(--serif);font-weight:300;font-variation-settings:"SOFT" 50;letter-spacing:0}
+h1 em,h2 em,.legende em,.phrase-prix em{font-weight:300}
+.chapo,.panneau p,.citation,.guide>p:first-child,summary{font-weight:350}

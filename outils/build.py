@@ -29,7 +29,7 @@ FACEBOOK = "https://www.facebook.com/lespiafsdescollines"
 ENREGISTREMENT = "06088017951MX"
 
 FONTS = ('<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>'
-         '<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300..600;1,6..72,300..600&family=Josefin+Sans:wght@400;600;700&display=swap" rel="stylesheet">')
+         '<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT@0,9..144,300..500,50;1,9..144,300..500,50&family=Josefin+Sans:wght@400;600;700&display=swap" rel="stylesheet">')
 
 # Pictos en trait fin (viewBox 32), dessinés pour le site : un <symbol> par picto, appelés par pic().
 ICONES = {
@@ -600,7 +600,7 @@ FAQ_MOB = [
 ]
 
 def faq_html(qr):
-    return "".join(f"<details><summary>{E(q)}</summary><p>{E(r)}</p></details>" for q, r in qr)
+    return "".join(f"<details><summary>{fine(E(q))}</summary><p>{fine(E(r))}</p></details>" for q, r in qr)
 
 def bail_mobilite():
     gal = "".join(f'<a href="{{R}}assets/img/{n}.jpg"{" class=\"g\"" if g else ""}>{img(n, a)}</a>' for n, a, g in GALERIE[:9])
@@ -736,8 +736,11 @@ def bail_mobilite():
 # ================================================================ GUIDES
 GUIDES = Path(os.environ.get("GUIDES_DIR", RACINE / "contenu/guides"))
 
+def fine(s):
+    return re.sub(r" ([?!;»])", "\u202f\\1", s)
+
 def md_ligne(s):
-    s = E(s, quote=False)
+    s = fine(E(s, quote=False))
     s = re.sub(r"\*\*(.+?)\*\*", r"<strong>\1</strong>", s)
     return re.sub(r"\[([^\]]+)\]\(([^)]+)\)", r'<a href="\2">\1</a>', s)
 
