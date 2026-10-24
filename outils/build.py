@@ -18,6 +18,10 @@ E = html.escape
 # et les anciennes adresses Wix mènent au bail mobilité. Passer à True pour tout rallumer.
 SAISON_ACTIVE = False
 
+# Accueil désactivé le 24/10/2026 : le nom de domaine mène directement à la page bail mobilité
+# (redirection temporaire, dans chaque langue). Passer à True pour rallumer l'accueil.
+ACCUEIL_ACTIF = False
+
 # Guides en relecture : en ligne et accessibles depuis le menu, mais ni indexés ni dans le sitemap.
 # Passer à True une fois les articles validés par Géraldine.
 GUIDES_VALIDES = False
@@ -150,7 +154,7 @@ def entete(espace, courant, profondeur):
         liens += f'<a class="lien-guides" href="{r}guides/"{" aria-current=\"page\"" if espace == "guides" else ""}>Guides</a>'
         cta = f'<a class="cta" href="{ancre}#demande">Demander une disponibilité</a>'
     return f"""<header class="entete"><div class="wrap">
-<a class="marque" href="{r}index.html"><img class="m-oiseau" src="{r}assets/img/logo-oiseau-blanc.svg" alt=""><span class="m-texte"><img class="m-nom" src="{r}assets/img/logo-nom-blanc.svg" alt="Les Piafs des Collines"><span class="m-sous">Location bail mobilité</span></span></a>
+<a class="marque" href="{r}{"index.html" if ACCUEIL_ACTIF else "bail-mobilite/"}"><img class="m-oiseau" src="{r}assets/img/logo-oiseau-blanc.svg" alt=""><span class="m-texte"><img class="m-nom" src="{r}assets/img/logo-nom-blanc.svg" alt="Les Piafs des Collines"><span class="m-sous">Location bail mobilité</span></span></a>
 <button class="burger" aria-label="Menu" onclick="this.nextElementSibling.classList.toggle('ouvert')">☰</button>
 <nav class="nav">{liens}<span class="cta-mobile"><!--LANGUES-->{cta}</span></nav>
 <div class="cta-droite"><!--LANGUES-->{cta}</div>
@@ -177,7 +181,7 @@ def pied(espace, profondeur):
 <p><a href="mailto:{MAIL}">{MAIL}</a><br><a href="tel:{TEL_LIEN}">{TEL}</a></p>
 <p><a class="reseau" href="{FACEBOOK}" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13.5 21v-7.5h2.6l.4-3h-3V8.6c0-.9.3-1.5 1.5-1.5h1.6V4.4c-.3 0-1.2-.1-2.3-.1-2.3 0-3.9 1.4-3.9 4v2.2H7.8v3h2.6V21z"/></svg></a></p></div>
 <div><h5>Nos locations</h5><ul>
-<li><a href="{r}index.html">Accueil</a></li>
+{f'<li><a href="{r}index.html">Accueil</a></li>' if ACCUEIL_ACTIF else ""}
 {f'<li><a href="{r}saisonniere/">Location saisonnière</a></li>' if SAISON_ACTIVE else ""}
 <li><a href="{r}bail-mobilite/">Bail mobilité, 1 à 10 mois</a></li>
 <li><a href="{r}guides/">Guides</a></li></ul></div>
@@ -352,6 +356,9 @@ def accueil():
                     0, "index.html", jsonld)
                + "<main>" + corps.replace("{R}", "") + "</main>" + pied("mob", 0) + SCRIPT_REVEAL + "</body></html>\n")
     ecrire("index.html", propre(contenu))
+    if not ACCUEIL_ACTIF:
+        for l in ("", "en/", "it/"):
+            renvoi(f"{l}index.html", f"/{l}bail-mobilite/")
 
 # ================================================================ SAISONNIÈRE
 GALERIE = [("terrasse-vue-mer", "La terrasse principale face à la mer", True),
@@ -1247,6 +1254,8 @@ def redirections():
         lignes.append(f"{quote(a)} {n} 301")
         if quote(a) != a: lignes.append(f"{a} {n} 301")
     lignes.append("/guides/vivre-collines-de-bellet-nice /guides/vivre-colline-de-bellet-nice 301")
+    if not ACCUEIL_ACTIF:
+        lignes += ["/ /bail-mobilite/ 302", "/en/ /en/bail-mobilite/ 302", "/it/ /it/bail-mobilite/ 302"]
     lignes.append("/blog/* " + ("/saisonniere/environs" if SAISON_ACTIVE else "/bail-mobilite/") + " 301")
     (SITE / "_redirects").write_text("\n".join(lignes) + "\n", encoding="utf-8")
     print("   _redirects")
@@ -1256,7 +1265,7 @@ def sitemap():
     jour = datetime.date.today().isoformat()
     prio = {"index.html": "1.0", "bail-mobilite/index.html": "0.9", "saisonniere/index.html": "0.8", "guides/index.html": "0.7"}
     urls = "".join(f"<url><loc>{url_propre(c)}</loc><lastmod>{jour}</lastmod><priority>{prio.get(c, '0.5')}</priority></url>"
-                   for c in PAGES if c != "404.html" and (SAISON_ACTIVE or not c.startswith("saisonniere/")) and (GUIDES_VALIDES or "guides/" not in c) and (LANGUES_VALIDEES or not c.startswith(("en/", "it/"))))
+                   for c in PAGES if c != "404.html" and (SAISON_ACTIVE or not c.startswith("saisonniere/")) and (GUIDES_VALIDES or "guides/" not in c) and (LANGUES_VALIDEES or not c.startswith(("en/", "it/"))) and (ACCUEIL_ACTIF or c not in ("index.html", "en/index.html", "it/index.html")))
     (SITE / "sitemap.xml").write_text('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">' + urls + "</urlset>\n", encoding="utf-8")
     (SITE / "robots.txt").write_text(f"User-agent: *\nAllow: /\n\nSitemap: {BASE}/sitemap.xml\n", encoding="utf-8")
     print("   sitemap.xml, robots.txt")
