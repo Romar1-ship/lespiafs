@@ -29,7 +29,7 @@ FACEBOOK = "https://www.facebook.com/lespiafsdescollines"
 ENREGISTREMENT = "06088017951MX"
 
 FONTS = ('<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>'
-         '<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;1,6..96,400;1,6..96,500&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">')
+         '<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300..600;1,6..72,300..600&family=Josefin+Sans:wght@400;600;700&display=swap" rel="stylesheet">')
 
 # Pictos en trait fin (viewBox 32), dessinés pour le site : un <symbol> par picto, appelés par pic().
 ICONES = {
@@ -134,16 +134,17 @@ def entete(espace, courant, profondeur):
         liens = "".join(
             f'<a href="{r}saisonniere/{(slug + ".html") if slug else ""}"{" aria-current=\"page\"" if slug == courant else ""}>{E(lib)}</a>'
             for slug, lib in NAV_SAISON)
-        liens += f'<a class="cta" href="{r}saisonniere/contact.html">Réserver</a>'
+        cta = f'<a class="cta" href="{r}saisonniere/contact.html">Réserver</a>'
     else:
         ancre = "" if espace == "mob" else f"{r}bail-mobilite/"
         liens = "".join(f'<a href="{ancre}{a}">{E(l)}</a>' for a, l in NAV_MOB) if espace == "mob" else f'<a href="{r}bail-mobilite/">Bail mobilité</a>'
         liens += f'<a href="{r}guides/"{" aria-current=\"page\"" if espace == "guides" else ""}>Guides</a>'
-        liens += f'<a class="cta" href="{ancre}#demande">Demander une disponibilité</a>'
+        cta = f'<a class="cta" href="{ancre}#demande">Demander une disponibilité</a>'
     return f"""<header class="entete"><div class="wrap">
 <a class="marque" href="{r}index.html"><img class="m-oiseau" src="{r}assets/img/logo-oiseau-blanc.svg" alt=""><span class="m-texte"><img class="m-nom" src="{r}assets/img/logo-nom-blanc.svg" alt="Les Piafs des Collines"><span class="m-sous">Location bail mobilité</span></span></a>
 <button class="burger" aria-label="Menu" onclick="this.nextElementSibling.classList.toggle('ouvert')">☰</button>
-<nav class="nav">{liens}</nav>
+<nav class="nav">{liens}<span class="cta-mobile">{cta}</span></nav>
+<div class="cta-droite">{cta}</div>
 </div></header>
 """
 
@@ -635,7 +636,7 @@ def bail_mobilite():
   <picture><source media="(max-width:700px)" srcset="{{R}}assets/img/hero-baie-mobile.jpg"><img class="fond" src="{{R}}assets/img/hero-baie.jpg" alt="La Baie des Anges vue depuis l'appartement, sur la colline de Bellet à Nice" fetchpriority="high"></picture>
   <div class="wrap">
     <h1 class="sur">Location en bail mobilité à Nice</h1>
-    <p class="legende">Sur la colline de Bellet, face à la Baie des Anges.<br><em>De 1&nbsp;à 10&nbsp;mois.</em></p>
+    <p class="legende"><span class="ligne1">Sur la colline de Bellet, face à la Baie&nbsp;des&nbsp;Anges,</span><br><em>de 1&nbsp;à 10&nbsp;mois.</em></p>
     <a class="bouton" href="#demande">Demander une disponibilité</a>
   </div>
   <div class="timbre" aria-hidden="true">Nice<span>Bellet</span>Côte d'Azur</div>

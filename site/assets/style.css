@@ -563,3 +563,35 @@ summary::after{color:var(--corail)}
   .nav.ouvert{display:flex}
   .nav a{padding:12px}
 }
+
+/* ===================== Typo : Newsreader (titres, texte) + Josefin Sans (étiquettes) ===================== */
+:root{--serif:"Newsreader",Georgia,serif;--texte:"Newsreader",Georgia,serif;--titre:"Josefin Sans",system-ui,sans-serif}
+body{font-family:var(--texte);font-size:19px;line-height:1.65;font-optical-sizing:auto}
+h1,h2,h3,h4,.geants b,.montants b,.carte-trajets b,.phrase-prix,.legende,.g-reperes b,.dg li b,.g-tuile .t,.g-une .t,.citation,.chapo{font-weight:400;letter-spacing:-.01em}
+.mob-hero .legende,.g-hero h1,h1,h2{font-weight:400}
+.geants b,.g-reperes b{font-weight:350}
+.sur,.nav a,.bouton,.carte-choix .k,.montants span,.geants span,.carte-trajets span,.g-meta,.dg-titre,.fiche-bloc h3,.panneau h3,.pied h5,.timbre,.encadre .sur,.g-tuile .n,.g-une .n,.g-une .f,label,.table th{font-family:var(--titre)}
+.bouton,.nav a.cta{padding-top:19px;padding-bottom:16px}
+.nav a{padding-top:11px;padding-bottom:8px}
+.dg li,.tuiles6 div,.dg-note,.dg-gain,.legende-dg,.societe-dg,.dg-quatre p,.g-tuile .d,.g-une .d,.guide-carte .d{font-family:var(--texte)}
+/* Hero : la phrase sur une ligne */
+.mob-hero .legende{font-size:clamp(2.2rem,min(3.9vw,7vh),4.4rem);line-height:1.08;max-width:none}
+.mob-hero .legende em{font-style:italic}
+@media(min-width:861px){.mob-hero .legende .ligne1{white-space:nowrap}}
+@media(max-width:860px){.mob-hero .legende{font-size:clamp(2rem,8.4vw,3rem)}}
+/* En-tête : logo à gauche, menu au centre, bouton à droite */
+.entete .wrap{max-width:none;padding:0 clamp(20px,3vw,44px);display:grid;grid-template-columns:1fr auto 1fr;gap:24px}
+.entete .nav{justify-content:center}
+.cta-droite{justify-self:end}
+.cta-droite .cta,.cta-mobile .cta{display:inline-block;background:var(--corail);color:#fff;text-decoration:none;font-family:var(--titre);font-weight:700;font-size:.66rem;letter-spacing:.2em;text-transform:uppercase;padding:13px 22px 10px;border-radius:999px;white-space:nowrap}
+.cta-droite .cta:hover{background:#e35f4b}
+.cta-mobile{display:none}
+@media(max-width:1240px){
+  .entete .wrap{grid-template-columns:1fr auto}
+  .cta-droite{display:none}
+  .cta-mobile{display:block;padding:12px}
+  .burger{grid-column:2}
+}
+/* Fiche technique : libellés et valeurs dans la même encre */
+.fiche dt{color:var(--nuit);font-weight:500;font-size:.98rem}
+.fiche dd{color:var(--nuit);font-size:.98rem}
