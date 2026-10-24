@@ -25,7 +25,7 @@ L'appartement se loue meublé, pour 1 à 10 mois. Cette page explique le chemin,
 - Le bail est signé par la société, l'agence de relocation, l'assureur ou la production qui paie. Il est régi par le Code civil.
 - Aucun justificatif de motif n'est demandé.
 - La facture est établie au nom du payeur.
-- [À COMPLÉTER : dépôt de garantie demandé ou non pour le bail société, et son montant]
+- Un dépôt de garantie d'un mois de loyer est versé à la signature. Il est restitué dans le mois qui suit la remise des clés si l'état des lieux de sortie est conforme à celui d'entrée, et dans les 2 mois dans le cas contraire, déduction faite des sommes dues et justifiées.
 
 ## Le prix
 
@@ -39,7 +39,7 @@ Indiquez la date d'entrée souhaitée, la durée et qui paiera le loyer.
 
 ## 2. Notre réponse
 
-Nous répondons par e-mail sous [À COMPLÉTER : délai de réponse], avec une date d'entrée ferme ou une autre date possible.
+Nous répondons par e-mail sous 48 heures ouvrées, avec une date d'entrée ferme ou une autre date possible.
 
 ## 3. Le dossier
 
@@ -52,7 +52,7 @@ Nous ne demandons aucune pièce interdite par le décret n° 2015-1437 du 5 nove
 
 ## 4. La signature
 
-Le bail est signé hors du site, [À COMPLÉTER : par signature électronique ou sur papier]. Avec le bail, vous recevez :
+Le bail est signé hors du site, par signature électronique. Si vous le préférez, nous le signons sur papier. Avec le bail, vous recevez :
 
 - l'inventaire du mobilier ;
 - le diagnostic de performance énergétique et les autres diagnostics obligatoires ;
@@ -64,7 +64,7 @@ Rien à payer, rien à justifier. Aucune somme n'est demandée avant la signatur
 
 ## Après la signature
 
-- **Le paiement** : [À COMPLÉTER : date et moyen de paiement du loyer, par exemple par virement le 1er de chaque mois]
+- **Le paiement** : le loyer se paie d'avance, par virement, le 1er de chaque mois. Le premier mois est calculé au prorata des jours si vous entrez en cours de mois. Pour le bail mobilité, une quittance vous est remise gratuitement sur demande (article 21 de la loi du 6 juillet 1989). Pour le bail société, une facture est adressée au payeur.
 - **L'assurance** : vous assurez le logement contre les risques locatifs, comme le prévoit le bail.
 - **L'arrivée** : elle est autonome. Le code d'accès vous est donné avant la date d'entrée.
 - **Le départ** : un état des lieux de sortie est établi, que nous comparons à celui d'entrée.

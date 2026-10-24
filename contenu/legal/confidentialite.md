@@ -19,6 +19,10 @@ Le bouton « Envoyer » ouvre votre propre messagerie, avec un message prérempl
 
 Quand vous nous écrivez, nous recevons ce que vous avez choisi d'indiquer : nom, prénom, e-mail, téléphone, date d'entrée, durée, payeur, motif du séjour, société et message.
 
+Sous le formulaire, cette phrase s'affiche :
+
+> En nous écrivant, vous reconnaissez avoir lu nos conditions de location et notre politique de confidentialité. Vos coordonnées servent uniquement à répondre à votre demande.
+
 ## Ce que nous en faisons
 
 | Usage | Base légale (RGPD, art. 6) |
@@ -28,7 +32,7 @@ Quand vous nous écrivez, nous recevons ce que vous avez choisi d'indiquer : nom
 | Tenir la comptabilité et répondre à l'administration | Obligation légale (art. 6.1.c) |
 | Défendre nos droits en cas de litige | Intérêt légitime (art. 6.1.f) |
 
-Nous ne vous envoyons aucune lettre d'information ni offre commerciale sans votre accord exprès (article L34-5 du Code des postes et des communications électroniques). Vos données ne sont ni vendues, ni louées, ni cédées.
+Nous n'envoyons ni lettre d'information ni offre commerciale, et nous ne collectons aucune adresse pour en envoyer. Vos données ne sont ni vendues, ni louées, ni cédées.
 
 ## Combien de temps nous les gardons
 
@@ -42,12 +46,13 @@ Nous seuls, et les prestataires techniques qui font fonctionner le site et la me
 
 | Prestataire | Rôle | Lieu des données |
 |---|---|---|
-| OVH SAS, 2 rue Kellermann, 59100 Roubaix, France [À COMPLÉTER : adresse à vérifier] | Messagerie contact@lespiafsdescollines.com | France |
-| Cloudflare, Inc. | Hébergement du site depuis le 23/10/2026 | États-Unis, entreprise certifiée au Data Privacy Framework UE-États-Unis [À COMPLÉTER : certification à vérifier sur dataprivacyframework.gov] |
-| Google LLC (Google Fonts) | Polices de caractères du site : votre adresse IP est transmise à Google à l'affichage des pages | États-Unis, Data Privacy Framework [À COMPLÉTER : certification à vérifier] |
+| OVH SAS, 2 rue Kellermann, 59100 Roubaix, France (RCS Lille Métropole 424 761 419) | Messagerie contact@lespiafsdescollines.com | France |
+| Cloudflare, Inc., 101 Townsend Street, San Francisco, CA 94107, États-Unis | Hébergement du site depuis le 23/10/2026 | États-Unis, entreprise adhérant au Data Privacy Framework UE-États-Unis, selon sa politique de confidentialité |
 | Wix.com Ltd. | Hébergement de l'ancien site, jusqu'au 23/10/2026 | Israël, pays reconnu adéquat par la Commission européenne (décision 2011/61/UE) |
 
-[À COMPLÉTER : sort des données reçues par les formulaires de l'ancien site Wix : supprimées ou exportées, et à quelle date]
+## L'ancien site
+
+L'ancien site, hébergé par Wix jusqu'au 23/10/2026, n'avait aucun formulaire. Quelques personnes nous ont écrit par sa messagerie pour louer : ces messages ont servi seulement à leur répondre. Ils n'ont été ni conservés, ni réutilisés, ni vendus.
 
 ## Les données techniques
 
@@ -79,4 +84,4 @@ Si notre réponse ne vous convient pas, vous pouvez saisir la CNIL : [www.cnil.f
 - Les textes et les photos sont protégés : voir les [mentions légales](/mentions-legales).
 - Nous pouvons faire évoluer le site et cette page. La date de mise à jour figure ci-dessous.
 
-Mise à jour : [À COMPLÉTER : date de mise en ligne].
+Mise à jour : 24 octobre 2026.

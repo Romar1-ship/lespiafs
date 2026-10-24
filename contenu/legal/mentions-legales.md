@@ -6,19 +6,17 @@ slug: mentions-legales
 
 # Mentions légales
 
-Le site lespiafsdescollines présente un appartement meublé de 77,51 m² sur la colline de Bellet, à Nice. Ses propriétaires le louent en direct, en bail mobilité ou en bail au nom d'une société. Le site ne prend ni réservation ni paiement.
+Le site lespiafsdescollines présente un appartement meublé de 77,51 m² sur la colline de Bellet, à Nice. Son propriétaire le loue en direct, en bail mobilité ou en bail au nom d'une société. Le site ne prend ni réservation ni paiement.
 
 ## Éditeur
 
 - **Nom** : Serge Pierrot, entrepreneur individuel
 - **SIRET** : 315 951 087 00040
 - **Activité** : location de logements (code APE 68.20A)
-- **Adresse** : [À COMPLÉTER : adresse d'établissement publiée, voir la note LCEN du rapport]
+- **Adresse** : 202 B route de Bellet, 06200 Nice
 - **Téléphone** : +33 (0)6 11 94 82 35
 - **E-mail** : contact@lespiafsdescollines.com
-- **TVA** : [À COMPLÉTER : régime de TVA exact et, s'il existe, numéro de TVA intracommunautaire]
-
-[À COMPLÉTER : si Marcelle Pierrot est co-bailleresse et co-éditrice du site, ajouter son nom et, s'il existe, son numéro SIREN]
+- **TVA** : TVA non applicable, location meublée d'habitation exonérée (article 261 D 4° du Code général des impôts)
 
 ## Directeur de la publication
 
@@ -31,15 +29,13 @@ Depuis le 23 octobre 2026, le site est hébergé par :
 - **Cloudflare, Inc.**
 - 101 Townsend Street, San Francisco, CA 94107, États-Unis
 - Téléphone : +1 (650) 319-8930
-- [À COMPLÉTER : raison sociale, adresse et téléphone à vérifier sur cloudflare.com avant publication]
 
 Jusqu'au 23 octobre 2026, le site était hébergé par Wix.com Ltd., 40 Namal Tel Aviv St., 6350671 Tel Aviv, Israël.
 
 ## Crédits
 
 - **Conception et réalisation du site** : LCCA, [creativeagency-lc.com](https://creativeagency-lc.com)
-- **Logo et identité visuelle** : Creative Explorer, [www.creative-explorer.fr](http://www.creative-explorer.fr)
-- **Photographies** : [À COMPLÉTER : auteur des photos]
+- **Photographies** : © Les Piafs des Collines
 
 ## Propriété intellectuelle
 
@@ -65,7 +61,6 @@ Le site et les contrats sont régis par le droit français. Le contrat est rédi
 
 Pour un désaccord sur un bail mobilité (loyer, état des lieux, charges, réparations), vous pouvez saisir gratuitement la commission départementale de conciliation des Alpes-Maritimes (article 20 de la loi du 6 juillet 1989).
 
-[À COMPLÉTER : nom et coordonnées du médiateur de la consommation, si les propriétaires en désignent un]
 
 ## Vos données
 

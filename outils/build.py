@@ -25,8 +25,8 @@ GUIDES_VALIDES = False
 # Pages anglaises et italiennes : relues par Themis et ouvertes à l'index le 24/10/2026.
 LANGUES_VALIDEES = True
 
-# Pages légales réécrites par Themis : hors index et sans lien tant que Géraldine n'a pas complété les [À COMPLÉTER].
-LEGALES_VALIDEES = False
+# Pages légales réécrites par Themis, complétées avec Géraldine et ouvertes le 24/10/2026.
+LEGALES_VALIDEES = True
 
 TEL = "+33 (0)6 11 94 82 35"
 TEL_LIEN = "+33611948235"
@@ -35,8 +35,7 @@ ADRESSE = "Colline de Bellet<br>Nice, Côte d'Azur"  # l'adresse exacte n'est pu
 FACEBOOK = "https://www.facebook.com/lespiafsdescollines"
 ENREGISTREMENT = "06088017951MX"
 
-FONTS = ('<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>'
-         '<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..600;1,9..144,300..600&family=Sora:wght@300;400;500;600&display=swap" rel="stylesheet">')
+# Polices hébergées sur le site (site/assets/fonts) : Fraunces pour les titres, Sora pour le texte. Aucune requête vers Google.
 
 # Pictos en trait fin (viewBox 32), dessinés pour le site : un <symbol> par picto, appelés par pic().
 ICONES = {
@@ -130,7 +129,9 @@ def tete(titre, description, profondeur, chemin="index.html", jsonld=None, image
 <meta property="og:title" content="{E(titre)}"><meta property="og:description" content="{E(description)}">
 <meta property="og:image" content="{BASE}/assets/img/{image}.jpg"><meta name="twitter:card" content="summary_large_image">
 {ld}
-{FONTS}
+<link rel="preload" href="{r}assets/fonts/fraunces-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="{r}assets/fonts/sora-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="{r}assets/fonts/fonts.css">
 <link rel="stylesheet" href="{r}assets/style.css">
 </head><body>
 {SPRITE}
@@ -170,10 +171,7 @@ def pied(espace, profondeur):
 <li><a href="{s}politique-utilisation.html">Politique d'utilisation</a></li></ul>
 <p class="note" style="color:#9d9ab0;margin-top:12px">* En réservant, vous acceptez nos <a href="{s}conditions-generales.html">Conditions Générales</a>, de recevoir des e-mails d'information et vous reconnaissez avoir lu notre <a href="{s}politique-de-confidentialite.html">Politique de confidentialité</a>.</p>"""
     else:
-        legal = f"""<h5>Informations</h5><ul>
-<li><a href="{s}mentions-legales.html">Mentions légales</a></li>
-<li><a href="{s}politique-de-confidentialite.html">Politique de confidentialité</a></li>
-<li><a href="{r}cookies.html">Cookies</a></li></ul>"""
+        legal = "<h5>Informations</h5><ul>" + "".join(f'<li><a href="{r}{slug}.html">{E(nom)}</a></li>' for slug, nom in PAGES_LEGALES) + "</ul>"
     return f"""<div class="store" aria-hidden="true"></div><footer class="pied"><div class="wrap"><div class="cols">
 <div><h5>Les Piafs des Collines</h5><p>{ADRESSE}</p>
 <p><a href="mailto:{MAIL}">{MAIL}</a><br><a href="tel:{TEL_LIEN}">{TEL}</a></p>
@@ -224,7 +222,7 @@ PAGES = []
 # Les pages de l'offre existent en français, anglais et italien. Le français est la source :
 # l'anglais et l'italien sont produits par outils/i18n.py à partir de contenu/i18n/{langue}.json.
 # La location saisonnière reste en français seul.
-TRADUITES = {"index.html": "accueil", "bail-mobilite/index.html": "bail", "cookies.html": "cookies", "guides/index.html": "guides"}
+TRADUITES = {"index.html": "accueil", "bail-mobilite/index.html": "bail", "guides/index.html": "guides"}
 ALTS = {}     # clé de page -> {langue: adresse}
 ROUTES = {}   # langue -> {adresse française ou locale : adresse dans la langue}
 
@@ -633,7 +631,24 @@ LEGAL = [("conditions-generales", "copie-de-conditions-d-utilisation", "Conditio
          ("politique-de-confidentialite", "politique-de-confidentialité", "Politique de confidentialité"),
          ("politique-utilisation", "conditions-d-utilisation", "Politique d'utilisation")]
 
+RENVOIS_LEGAUX = {"conditions-generales": "conditions-de-location", "reglement-interieur": "reglement-interieur", "sante-securite": "reglement-interieur",
+                  "conditions-annulation": "conditions-de-location", "mentions-legales": "mentions-legales",
+                  "politique-de-confidentialite": "confidentialite", "politique-utilisation": "confidentialite"}
+
+def renvoi(chemin, cible):
+    """Page de renvoi vers une nouvelle adresse (sans supprimer l'ancienne)."""
+    f = SITE / chemin
+    f.parent.mkdir(parents=True, exist_ok=True)
+    f.write_text(f'<!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="robots" content="noindex">'
+                 f'<link rel="canonical" href="{BASE}{cible}"><meta http-equiv="refresh" content="0; url={cible}"><title>Les Piafs des Collines</title></head>'
+                 f'<body><p><a href="{cible}">Cette page a changé d\'adresse.</a></p></body></html>\n', encoding="utf-8")
+    print("  ", chemin, "->", cible)
+
 def saison_legal():
+    if not SAISON_ACTIVE:
+        for slug, _, _ in LEGAL:
+            renvoi(f"saisonniere/{slug}.html", "/" + RENVOIS_LEGAUX[slug])
+        return
     for slug, src, titre in LEGAL:
         out = []; premier = True
         for t, s, _ in blocs(src):
@@ -898,7 +913,7 @@ def picto_liste(texte):
     t = texte.lower()
     return next((n for k, n in PICTO_LISTE if re.search(r"(?<![\w-])" + re.escape(k.strip()) + r"(?![\w-])" if len(k.strip()) <= 5 else re.escape(k), t)), None)
 
-def md_html(texte):
+def md_html(texte, pictos=True):
     """Markdown des articles -> HTML : intertitres, paragraphes, listes, tableaux, gras, liens."""
     out, bloc = [], []
     def vider():
@@ -907,7 +922,7 @@ def md_html(texte):
             items = [l[2:] for l in bloc]
             if all(re.match(r"\[[ xX]\] ", i) for i in items):  # liste à cocher
                 out.append('<ul class="a-cocher">' + "".join(f'<li><span class="case" aria-hidden="true"></span>{md_ligne(i[4:])}</li>' for i in items) + "</ul>")
-            elif sum(1 for i in items if picto_liste(i)) * 2 >= len(items):  # liste de lieux ou d'équipements : un picto par ligne
+            elif pictos and sum(1 for i in items if picto_liste(i)) * 2 >= len(items):  # liste de lieux ou d'équipements : un picto par ligne
                 out.append('<ul class="pictos">' + "".join(f'<li>{pic(picto_liste(i) or "repere", "pic-s")}<span>{md_ligne(i)}</span></li>' for i in items) + "</ul>")
             else:
                 out.append("<ul>" + "".join(f"<li>{md_ligne(i)}</li>" for i in items) + "</ul>")
@@ -1164,7 +1179,7 @@ def pages_legales():
         if not f.exists():
             continue
         a = lire_md(f)
-        corps_html = md_html(re.sub(r"^# .+\n+", "", a["corps"]))
+        corps_html = md_html(re.sub(r"^# .+\n+", "", a["corps"]), pictos=False)
         corps_html = re.sub(r"\[À COMPLÉTER[^\]]*\]", lambda m: f'<mark class="a-completer">{m.group(0)}</mark>', corps_html)
         titres = re.findall(r"<h2>(.+?)</h2>", corps_html)
         for k, t2 in enumerate(titres):
@@ -1186,6 +1201,12 @@ def pages_legales():
         page(f"{slug}.html", f"{a['titre']} | Les Piafs des Collines", a["description"], "info", "", corps)
 
 def page_cookies():
+    # fondue dans la page « Confidentialité et cookies » le 24/10/2026
+    for c in ("cookies.html", "en/cookies.html", "it/cookies.html"):
+        renvoi(c, "/confidentialite")
+    return
+
+def ancienne_page_cookies():
     corps = f"""
 <section class="guide-tete"><div class="etroit">
   <span class="sur">Informations</span><h1>Cookies</h1>
@@ -1216,9 +1237,9 @@ def redirections():
     for slug, src, _ in LEGAL:
         anciennes["/" + src] = f"/saisonniere/{slug}.html"
     if not SAISON_ACTIVE:
-        # offre saisonnière éteinte : tout mène au bail mobilité, sauf les deux pages légales du site
-        garder = {"/mentions-légales", "/politique-de-confidentialité"}
-        anciennes = {a: (n if a in garder else "/bail-mobilite/") for a, n in anciennes.items()}
+        # offre saisonnière éteinte : tout mène au bail mobilité, sauf les pages légales, qui mènent aux nouvelles
+        legales = {"/" + src: "/" + RENVOIS_LEGAUX[slug] for slug, src, _ in LEGAL}
+        anciennes = {a: legales.get(a, "/bail-mobilite/") for a, n in anciennes.items()}
     lignes = []
     from urllib.parse import quote
     for a, n in anciennes.items():

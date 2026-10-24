@@ -14,7 +14,9 @@ Vous allez vivre ici plusieurs semaines ou plusieurs mois. L'appartement est le 
 - Ne déplacez pas les meubles d'une pièce à l'autre sans nous en parler.
 - Signalez-nous vite une panne, une fuite ou une casse. Plus c'est tôt, plus c'est simple à réparer.
 - Ne jetez rien dans les éviers et les toilettes qui puisse boucher les canalisations.
-- Le nombre d'occupants est celui inscrit au bail : [À COMPLÉTER : nombre maximal d'occupants].
+- Les occupants sont ceux déclarés au bail. L'appartement est prévu pour 1 ou 2 personnes et compte 6 couchages : jamais plus de 6 personnes n'y dorment en même temps.
+- Vous pouvez recevoir vos proches et vos invités de passage sans nous le demander. Si une personne vient habiter avec vous pendant le bail, prévenez-nous.
+- La sous-location, y compris en location de courte durée, demande notre accord écrit (article 8 de la loi du 6 juillet 1989).
 
 ## Le voisinage
 
@@ -28,11 +30,11 @@ La plupart des voisins vivent ici toute l'année.
 
 ## La piscine partagée
 
-- Horaires : [À COMPLÉTER : horaires de la piscine].
+- Horaires : tous les jours, de 9 h à 12 h et de 14 h à 19 h, par respect pour les voisins.
 - Douche avant la baignade.
 - Pas de verre au bord du bassin : utilisez les gobelets prévus.
 - Les enfants ne s'approchent jamais de la piscine sans un adulte qui les surveille.
-- Refermez le dispositif de sécurité après chaque passage : [À COMPLÉTER : dispositif installé (barrière, alarme, couverture ou abri)].
+- La piscine est protégée par une barrière. Refermez-la après chaque passage.
 
 ## Le tabac
 
@@ -41,7 +43,9 @@ La plupart des voisins vivent ici toute l'année.
 
 ## Les animaux
 
-Votre animal de compagnie est le bienvenu (article 10 de la loi n° 70-598 du 9 juillet 1970). Vous répondez de ses dégâts et de sa tranquillité. Les chiens de 1re catégorie ne sont pas admis.
+L'appartement est prévu pour un séjour sans animal : la maison, le jardin et la piscine se partagent avec des voisins qui vivent ici toute l'année. Si vous avez un animal, dites-le-nous dans votre demande, avant toute signature.
+
+La loi vous permet de garder un animal familier pendant le bail, à condition qu'il ne cause aucun dégât au logement ni aucun trouble aux autres occupants de la villa (article 10 de la loi n° 70-598 du 9 juillet 1970). Vous en répondez entièrement. Il n'entre pas dans l'enclos de la piscine. Les chiens de 1re catégorie sont interdits.
 
 ## Les terrasses et les stores
 
@@ -54,7 +58,7 @@ Une place privée vous est réservée dans l'enceinte. Refermez le portail derri
 
 ## Les déchets
 
-Triez vos déchets selon les consignes de la Métropole Nice Côte d'Azur. Les bacs se trouvent [À COMPLÉTER : emplacement des bacs].
+Triez vos déchets selon les consignes de la Métropole Nice Côte d'Azur. Les bacs se trouvent sous l'escalier, au rez-de-chaussée, à côté du parking.
 
 ## L'énergie
 
