@@ -770,3 +770,9 @@ section.nuit .sur{color:var(--dore)}
 .guide.legal .encart{background:#fff;border-radius:4px;padding:22px 26px;box-shadow:0 10px 30px rgba(28,43,69,.06)}
 .a-completer{background:#FFE7A8;color:var(--nuit);padding:1px 6px;border-radius:3px;font-weight:500}
 .pied .mention-pied{margin-top:22px}
+/* Accueil des Guides : affiche agrandie, nette, sans fond flouté ni débordement */
+.g-index .g-hero-image.cadre{background:var(--mer);overflow:hidden;padding:clamp(16px,2.6vh,28px) clamp(16px,2vw,32px) 10px}
+.g-index .g-hero-image.cadre::before{display:none}
+.g-index .g-hero-image.cadre .passe img{height:calc(100svh - 66px - 2 * clamp(16px,2.6vh,28px) - 2 * clamp(10px,1.8vh,20px) - 34px);max-height:none}
+.g-index .g-hero-image.cadre figcaption{color:rgba(255,255,255,.7)}
+@media(max-width:860px){.g-index .g-hero-image.cadre{padding:22px 22px 10px}.g-index .g-hero-image.cadre .passe img{height:calc(100svh - 66px - 400px);min-height:200px}}
