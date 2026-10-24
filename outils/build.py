@@ -701,12 +701,12 @@ def faq_html(qr):
 def plan_nice():
     cote = "M0 560 C 120 566, 230 572, 318 584 C 350 590, 372 604, 398 606 C 430 604, 470 568, 540 532 C 620 492, 700 462, 780 448 C 820 441, 850 446, 880 440 C 930 428, 1010 408, 1100 398 L 1100 660 L 0 660 Z"
     vagues = "".join(f'<path class="p-vague" d="M{x} {y}q12 -8 24 0t24 0t24 0"/>' for x, y in ((120, 618), (300, 640), (520, 600), (700, 560), (900, 520), (980, 610), (640, 640)))
-    collines = ('<path class="p-colline c1" d="M180 420 C 260 230, 380 150, 500 190 C 590 220, 640 300, 690 380 Z"/>'
-                '<path class="p-colline c2" d="M300 430 C 360 320, 450 290, 530 320 C 590 345, 620 390, 650 430 Z"/>'
-                '<path class="p-colline c3" d="M660 360 C 730 220, 850 170, 960 220 C 1020 250, 1060 300, 1100 330 L 1100 380 Z"/>')
+    collines = ('<path class="p-colline c1" d="M190 430 C 270 330, 370 278, 455 282 C 560 288, 640 360, 705 430 Z"/>'
+                '<path class="p-colline c2" d="M300 440 C 370 392, 450 368, 530 378 C 590 388, 630 412, 665 440 Z"/>'
+                '<path class="p-colline c3" d="M660 410 C 740 330, 850 300, 960 322 C 1020 336, 1060 358, 1100 372 L 1100 420 Z"/>')
     var = '<path class="p-var" d="M285 0 C 300 160, 270 330, 300 450 C 312 500, 316 545, 324 586"/>'
-    ax, ay = 450, 268
-    lieux = [("CHU Pasteur 2", "hopital", 905, 255, "15", 1), ("Campus Valrose", "campus", 780, 300, "13", 1),
+    ax, ay = 455, 292
+    lieux = [("CHU Pasteur 2", "hopital", 905, 300, "15", 1), ("Campus Valrose", "campus", 790, 320, "13", 1),
              ("Centre Lacassagne", "hopital", 590, 392, "16", 1), ("Clinique Kantys", "hopital", 735, 380, "12", 1),
              ("Aéroport", "avion", 400, 590, "20", -1), ("La plage", "parasol", 545, 528, "7", -1)]
     traits, points = "", ""
