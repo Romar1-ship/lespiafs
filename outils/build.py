@@ -143,7 +143,7 @@ def entete(espace, courant, profondeur):
     else:
         ancre = "" if espace == "mob" else f"{r}bail-mobilite/"
         liens = "".join(f'<a href="{ancre}{a}">{E(l)}</a>' for a, l in NAV_MOB) if espace == "mob" else f'<a href="{r}bail-mobilite/">Bail mobilité</a>'
-        liens += f'<a href="{r}guides/"{" aria-current=\"page\"" if espace == "guides" else ""}>Guides</a>'
+        liens += f'<a class="lien-guides" href="{r}guides/"{" aria-current=\"page\"" if espace == "guides" else ""}>Guides</a>'
         cta = f'<a class="cta" href="{ancre}#demande">Demander une disponibilité</a>'
     return f"""<header class="entete"><div class="wrap">
 <a class="marque" href="{r}index.html"><img class="m-oiseau" src="{r}assets/img/logo-oiseau-blanc.svg" alt=""><span class="m-texte"><img class="m-nom" src="{r}assets/img/logo-nom-blanc.svg" alt="Les Piafs des Collines"><span class="m-sous">Location bail mobilité</span></span></a>
@@ -666,8 +666,50 @@ FAQ_MOB = [
   "Sur la colline de Bellet, à l'ouest de Nice. En voiture, hors trafic : Clinique Kantys Centre 12 min, campus Valrose 13 min, CHU Pasteur 2 15 min, Centre Antoine Lacassagne 16 min, aéroport 20 min, Monaco 22 min, Sophia Antipolis 28 min. Le bus 60 s'arrête à 50 m et rejoint le tram ligne 2 à Magnan."),
 ]
 
+# Livre d'or : seuls les passages sur le logement, sans ce qui touche à l'accueil des hôtes.
+AVIS = [("Une vue à couper le souffle, un appartement des plus agréables et d'une propreté irréprochable.", "Mélody, Nancy"),
+        ("Un appartement au top, moderne, bien équipé, au goût du jour. Qu'il est agréable de s'asseoir sur la terrasse et de contempler la mer et ses bateaux.", "Chantal, Serge, Sabrina et Anthony, Doubs"),
+        ("L'appartement est très bien situé et d'une propreté irréprochable. La vue est magnifique.", "Anaïs, Nord"),
+        ("We had a lovely stay at this cute and well equipped apartment. The view is magnificent.", "Salma et Omar"),
+        ("You have the most beautiful view from the flat and everything you need here!", "Famille Traude"),
+        ("Super séjour ! Rien à redire, tout était parfait !", "Hugo, Nancy")]
+
 def faq_html(qr):
     return "".join(f"<details><summary>{fine(E(q))}</summary><p>{fine(E(r))}</p></details>" for q, r in qr)
+
+# ---------------------------------------------------------------- plan stylisé de Nice
+# Plan schématique, façon affiche : pas une carte. Positions composées à la main, ouest à gauche, mer en bas.
+def plan_nice():
+    cote = "M0 560 C 120 566, 230 572, 318 584 C 350 590, 372 604, 398 606 C 430 604, 470 568, 540 532 C 620 492, 700 462, 780 448 C 820 441, 850 446, 880 440 C 930 428, 1010 408, 1100 398 L 1100 660 L 0 660 Z"
+    vagues = "".join(f'<path class="p-vague" d="M{x} {y}q12 -8 24 0t24 0t24 0"/>' for x, y in ((120, 618), (300, 640), (520, 600), (700, 560), (900, 520), (980, 610), (640, 640)))
+    collines = ('<path class="p-colline c1" d="M180 420 C 260 230, 380 150, 500 190 C 590 220, 640 300, 690 380 Z"/>'
+                '<path class="p-colline c2" d="M300 430 C 360 320, 450 290, 530 320 C 590 345, 620 390, 650 430 Z"/>'
+                '<path class="p-colline c3" d="M660 360 C 730 220, 850 170, 960 220 C 1020 250, 1060 300, 1100 330 L 1100 380 Z"/>')
+    var = '<path class="p-var" d="M285 0 C 300 160, 270 330, 300 450 C 312 500, 316 545, 324 586"/>'
+    ax, ay = 450, 268
+    lieux = [("CHU Pasteur 2", "hopital", 905, 255, "15", 1), ("Campus Valrose", "campus", 780, 300, "13", 1),
+             ("Centre Lacassagne", "hopital", 590, 392, "16", 1), ("Clinique Kantys", "hopital", 735, 380, "12", 1),
+             ("Aéroport", "avion", 400, 590, "20", -1), ("La plage", "parasol", 545, 528, "7", -1)]
+    traits, points = "", ""
+    for nom, ico, x, y, mn, sens in lieux:
+        traits += f'<path class="p-trajet" d="M{ax} {ay} Q {(ax + x) / 2:.0f} {min(ay, y) - 60} {x} {y}"/>'
+        ty = 38 if sens > 0 else -50
+        points += (f'<g class="p-lieu" transform="translate({x} {y})"><circle r="17"/><use href="#i-{ico}" x="-11" y="-11" width="22" height="22"/>'
+                   f'<text class="p-nom" y="{ty}" text-anchor="middle">{E(nom)}</text><text class="p-min" y="{ty + 21}" text-anchor="middle">{mn} min</text></g>')
+    bords = ('<g class="p-bord" transform="translate(1030 170)"><use href="#i-couronne" x="-12" y="-38" width="24" height="24"/>'
+             '<text text-anchor="middle" class="p-nom">Monaco</text><text y="21" text-anchor="middle" class="p-min">22 min →</text></g>'
+             '<g class="p-bord" transform="translate(110 440)"><use href="#i-puce" x="-12" y="-38" width="24" height="24"/>'
+             '<text text-anchor="middle" class="p-nom">Sophia Antipolis</text><text y="21" text-anchor="middle" class="p-min">← 28 min</text></g>')
+    reperes = ('<g class="p-ville" transform="translate(880 432)"><circle r="7"/><text x="14" y="-12">Centre-ville</text></g>'
+               '<text class="p-promenade" x="560" y="560" transform="rotate(-17 560 560)">Promenade des Anglais</text>'
+               '<text class="p-baie" x="680" y="625">Baie des Anges</text>'
+               '<text class="p-varnom" x="262" y="220" transform="rotate(86 262 220)">le Var</text>')
+    maison = (f'<g class="p-piafs" transform="translate({ax} {ay})"><circle r="36"/><image href="{{R}}assets/img/logo-oiseau-blanc.svg" x="-20" y="-24" width="40" height="44"/>'
+              '<text class="p-piafs-nom" y="-56" text-anchor="middle">Les Piafs des Collines</text>'
+              '<text class="p-piafs-sous" y="-36" text-anchor="middle">sur la colline de Bellet</text></g>')
+    return (f'<figure class="plan-nice"><svg viewBox="0 0 1100 660" role="img" aria-label="Plan schématique de Nice : le logement sur la colline de Bellet, à 7 à 28 minutes en voiture des hôpitaux, du campus, de l\'aéroport, de la plage, de Monaco et de Sophia Antipolis">'
+            f'<rect class="p-terre" width="1100" height="660"/>{collines}{var}<path class="p-mer" d="{cote}"/>{vagues}{reperes}{traits}{points}{bords}{maison}</svg>'
+            '<figcaption>Plan schématique, pas à l\'échelle. Temps en voiture, hors trafic.</figcaption></figure>')
 
 def bail_mobilite():
     gal = "".join(f'<a href="{{R}}assets/img/{n}.jpg"{" class=\"g\"" if g else ""}>{img(n, a)}</a>' for n, a, g in GALERIE[:9])
@@ -739,7 +781,9 @@ def bail_mobilite():
 </div></section>
 
 <section class="sable" id="acces"><div class="wrap">
-  <span class="sur">Accès</span><h2>À un quart d'heure de tout</h2>
+  <span class="sur">Accès</span><h2>Sur la colline, à un quart d'heure de tout</h2>
+  <p class="intro-plan">Ni en bord de mer, ni en centre-ville : sur la colline de Bellet, à l'ouest de Nice, au calme et face à la mer.</p>
+  {plan_nice()}
   <div class="carte-trajets">
     <div>{pic("hopital", "pic-s")}<b>12</b><span>Clinique Kantys Centre</span></div><div>{pic("campus", "pic-s")}<b>13</b><span>Campus Valrose</span></div>
     <div>{pic("hopital", "pic-s")}<b>15</b><span>CHU Pasteur 2</span></div><div>{pic("hopital", "pic-s")}<b>16</b><span>Centre Lacassagne</span></div>
@@ -758,9 +802,19 @@ def bail_mobilite():
   <p class="note droit">Le contrat est régi par le droit français et rédigé en français. Les traductions sont fournies à titre d'information.</p>
 </div></section>
 
+<div class="store" aria-hidden="true"></div>
 <section class="nuit" id="avis"><div class="etroit centre">
-  <blockquote class="citation">« Une vue à couper le souffle, un appartement des plus agréables et d'une propreté irréprochable. »<cite>Mélody, Nancy</cite></blockquote>
+  <span class="sur">Le livre d'or</span>
+  <div class="avis-defile" aria-roledescription="carrousel">
+    {"".join(f'<blockquote class="citation"><p>« {E(q)} »</p><cite>{E(c)}</cite></blockquote>' for q, c in AVIS)}
+  </div>
+  <div class="avis-points" aria-hidden="true">{"".join("<span></span>" for _ in AVIS)}</div>
+  <p class="note avis-source">Extraits du livre d'or de l'appartement.</p>
 </div></section>
+<script>(function(){{const d=document.querySelector('.avis-defile');if(!d)return;const p=[...document.querySelectorAll('.avis-points span')];let i=0;
+function va(n){{i=(n+p.length)%p.length;d.scrollTo({{left:d.clientWidth*i,behavior:'smooth'}});p.forEach((x,k)=>x.classList.toggle('on',k===i))}}
+p.forEach((x,k)=>x.addEventListener('click',()=>va(k)));va(0);
+if(!matchMedia('(prefers-reduced-motion: reduce)').matches)setInterval(()=>{{if(!d.matches(':hover'))va(i+1)}},6500)}})();</script>
 
 <section class="blanc" id="fiche"><div class="wrap">
   <span class="sur">Fiche technique</span><h2>Pour valider le dossier</h2>
@@ -810,7 +864,33 @@ def fine(s):
 def md_ligne(s):
     s = fine(E(s, quote=False))
     s = re.sub(r"\*\*(.+?)\*\*", r"<strong>\1</strong>", s)
-    return re.sub(r"\[([^\]]+)\]\(([^)]+)\)", r'<a href="\2">\1</a>', s)
+    def lien(m):
+        bouton = re.search(r"disponibilit|availability", m.group(1), re.I)
+        return f'<a class="bouton" href="{m.group(2)}">{m.group(1)}</a>' if bouton else f'<a href="{m.group(2)}">{m.group(1)}</a>'
+    return re.sub(r"\[([^\]]+)\]\(([^)]+)\)", lien, s)
+
+# Pictos devant les éléments de liste : le premier mot-clé trouvé dans l'élément décide (français, anglais, italien).
+PICTO_LISTE = [("clinique", "hopital"), ("chu", "hopital"), ("hôpital", "hopital"), ("hospital", "hopital"), ("ospedale", "hopital"),
+               ("lacassagne", "hopital"), ("valrose", "campus"), ("campus", "campus"), ("aéroport", "avion"), ("airport", "avion"),
+               ("aeroporto", "avion"), ("monaco", "couronne"), ("sophia", "puce"), ("plage", "parasol"), ("beach", "parasol"), ("spiaggia", "parasol"),
+               ("scooter", "scooter"), ("deux-roues", "scooter"), ("bus", "repere"), ("tram", "repere"), ("train", "repere"), ("ter ", "repere"),
+               ("chambre", "lit"), ("bedroom", "lit"), ("camer", "lit"), ("salle", "douche"), ("bathroom", "douche"), ("shower", "douche"),
+               ("bagn", "douche"), ("wc", "douche"), ("toilet", "douche"), ("terrasse", "soleil"), ("terrace", "soleil"), ("terrazz", "soleil"),
+               ("vue", "soleil"), ("view", "soleil"), ("vista", "soleil"), ("linge", "linge"), ("linen", "linge"), ("biancheria", "linge"),
+               ("lave-linge", "machine"), ("washing", "machine"), ("lavatrice", "machine"), ("cuisine", "cuisine"), ("kitchen", "cuisine"),
+               ("cucina", "cuisine"), ("fibre", "wifi"), ("fibra", "wifi"), ("internet", "wifi"), ("wifi", "wifi"), ("bureau", "ordi"),
+               ("poste de travail", "ordi"), ("desk", "ordi"), ("scrivania", "ordi"), ("parking", "parking"), ("parcheggio", "parking"),
+               ("piscine", "piscine"), ("pool", "piscine"), ("piscina", "piscine"), ("clim", "clim"), ("air", "clim"), ("chauffage", "clim"),
+               ("villa", "maison"), ("étage", "maison"), ("floor", "maison"), ("piano", "maison"), ("m²", "plan"), ("calme", "soleil"),
+               ("pièce d'identité", "personne"), ("identity", "personne"), ("identità", "personne"), ("garantie", "cle"), ("guarant", "cle"),
+               ("garanzia", "cle"), ("contrat", "plume"), ("contract", "plume"), ("contratto", "plume"), ("convention", "plume"),
+               ("attestation", "plume"), ("certificate", "plume"), ("ordre de mission", "plume"), ("lettre", "plume"), ("letter", "plume"),
+               ("vin", "verre"), ("wine", "verre"), ("vino", "verre"), ("courses", "panier"), ("supermarché", "panier"), ("shopping", "panier"),
+               ("ménage", "menage"), ("cleaning", "menage"), ("pulizia", "menage"), ("facture", "facture"), ("invoice", "facture"), ("fattura", "facture")]
+
+def picto_liste(texte):
+    t = texte.lower()
+    return next((n for k, n in PICTO_LISTE if k in t), None)
 
 def md_html(texte):
     """Markdown des articles -> HTML : intertitres, paragraphes, listes, tableaux, gras, liens."""
@@ -818,7 +898,13 @@ def md_html(texte):
     def vider():
         if not bloc: return
         if bloc[0].startswith(("- ", "* ")):
-            out.append("<ul>" + "".join(f"<li>{md_ligne(l[2:])}</li>" for l in bloc) + "</ul>")
+            items = [l[2:] for l in bloc]
+            if all(re.match(r"\[[ xX]\] ", i) for i in items):  # liste à cocher
+                out.append('<ul class="a-cocher">' + "".join(f'<li><span class="case" aria-hidden="true"></span>{md_ligne(i[4:])}</li>' for i in items) + "</ul>")
+            elif sum(1 for i in items if picto_liste(i)) * 2 >= len(items):  # liste de lieux ou d'équipements : un picto par ligne
+                out.append('<ul class="pictos">' + "".join(f'<li>{pic(picto_liste(i) or "repere", "pic-s")}<span>{md_ligne(i)}</span></li>' for i in items) + "</ul>")
+            else:
+                out.append("<ul>" + "".join(f"<li>{md_ligne(i)}</li>" for i in items) + "</ul>")
         elif re.match(r"\d+\. ", bloc[0]):
             out.append("<ol>" + "".join(f"<li>{md_ligne(l.split('. ', 1)[1])}</li>" for l in bloc) + "</ol>")
         elif bloc[0].startswith("|"):
@@ -1010,10 +1096,10 @@ def guides_langue(langue):
   <div class="g-hero-texte">
     <a class="sur" href="./"><span>Guide n°</span>&nbsp;{i + 1} · <span>Se loger à Nice</span></a>
     <h1>{E(a["titre"])}</h1>
-    <p class="chapo">{E(a["description"])}</p>
+    <p class="chapo">{"<br>".join(E(x.strip()) for x in a.get("chapo", a["description"]).split("|"))}</p>
     <span class="g-meta">{max(1, round(mots(a["corps"]) / 220))}&nbsp;<span>min de lecture</span></span>
   </div>
-  <figure class="g-hero-image{" cadre" if couv.startswith("affiche") else ""}"><span class="passe">{gimg(couv, CREDITS[couv][0], charge="eager")}</span><figcaption>{credit(couv)}</figcaption></figure>
+  <figure class="g-hero-image{" cadre" if couv.startswith("affiche") else ""}" style="--fond:url({{R}}assets/img/guides/{couv}.jpg)"><span class="passe">{gimg(couv, CREDITS[couv][0], charge="eager")}</span><figcaption>{credit(couv)}</figcaption></figure>
 </section>
 <div class="store" aria-hidden="true"></div>
 <section class="g-reperes"><div class="wrap">{rep}</div></section>
@@ -1044,9 +1130,9 @@ def guides_langue(langue):
   <div class="g-hero-texte">
     <span class="sur">Les guides des Piafs</span>
     <h1>Se loger à Nice,<br><em>de 1&nbsp;à 10&nbsp;mois</em></h1>
-    <p class="chapo">Bail mobilité, internat, mission, Monaco, vie de quartier : ce qu'il faut savoir avant de poser sa valise sur la Riviera.</p>
+    <p class="chapo">Bail mobilité, internat, mission, Monaco, vie de quartier<br><span class="chapo-sans">Ce qu'il faut savoir avant de poser sa valise sur la Riviera</span></p>
   </div>
-  <figure class="g-hero-image cadre"><span class="passe">{gimg("affiche-matisse-nice", CREDITS["affiche-matisse-nice"][0], charge="eager")}</span><figcaption>{credit("affiche-matisse-nice")}</figcaption></figure>
+  <figure class="g-hero-image cadre rayee" style="--fond:url({{R}}assets/img/guides/affiche-hiver-a-nice.jpg)"><span class="passe">{gimg("affiche-hiver-a-nice", CREDITS["affiche-hiver-a-nice"][0], charge="eager")}</span><figcaption>{credit("affiche-hiver-a-nice")}</figcaption></figure>
 </section>
 <div class="store" aria-hidden="true"></div>
 <section class="g-une-section"><div class="wrap">
@@ -1057,7 +1143,7 @@ def guides_langue(langue):
   <p class="note g-credits">Affiches anciennes de la Côte d’Azur, domaine public. Photos libres de Wikimedia Commons, créditées sous chaque image.</p></div></section>"""
     page("guides/index.html", "Guides : se loger à Nice en bail mobilité | Les Piafs des Collines",
          "Bail mobilité à Nice, logement près du CHU, travailler à Monaco : nos guides pour se loger à Nice pour 1 à 10 mois.", "guides", "", corps,
-         image="guides/affiche-matisse-nice", cle="guides", langue=langue, ignorer=ignorer)
+         image="guides/affiche-hiver-a-nice", cle="guides", langue=langue, ignorer=ignorer)
 
 # ================================================================ divers
 def page_cookies():

@@ -673,3 +673,83 @@ h1,.legende{line-height:1.12}
 html[lang="it"] .mob-hero .legende{font-size:clamp(2.4rem,min(5.8vw,10vh),6.6rem)}
 @media(max-width:860px){html[lang="it"] .mob-hero .legende{font-size:5.5vw}}
 .timbre .t-haut,.timbre .t-bas{text-transform:uppercase}
+
+/* ===================== Retours du 24/10 soir ===================== */
+/* Hero : titre un peu plus fin, ombre légère bleutée, aligné sur la colonne de texte */
+.mob-hero .wrap{max-width:1180px;margin:0 auto;padding:0 24px;width:100%}
+.mob-hero .legende{font-weight:500;font-size:clamp(2.6rem,min(6vw,10vh),6rem);text-shadow:0 2px 24px rgba(16,60,120,.32)}
+.mob-hero .legende em{font-weight:500}
+@media(max-width:860px){.mob-hero .legende{font-size:7.2vw}}
+html[lang="it"] .mob-hero .legende{font-size:clamp(2.4rem,min(5.2vw,9.4vh),5.4rem)}
+@media(max-width:860px){html[lang="it"] .mob-hero .legende{font-size:5.5vw}}
+/* Rayures sous la barre de menu, sur toutes les pages */
+.entete{position:sticky}
+.entete::after{content:"";position:absolute;left:0;right:0;bottom:-10px;height:10px;background:repeating-linear-gradient(90deg,var(--azur) 0 24px,var(--ivoire) 24px 48px);pointer-events:none}
+/* Menu : Guides en corail */
+.nav a.lien-guides{color:var(--corail)}
+.nav a.lien-guides:hover,.nav a.lien-guides[aria-current]{color:#ff8f7e}
+/* Témoignages : carrousel, Fraunces fine, sans italique */
+.avis-defile{display:flex;overflow-x:hidden;scroll-snap-type:x mandatory;margin-top:18px}
+.avis-defile .citation{flex:0 0 100%;scroll-snap-align:start;margin:0;padding:0 4%}
+.citation,.citation p{font-family:var(--serif);font-style:normal;font-weight:300;font-size:clamp(1.6rem,3vw,2.4rem);line-height:1.3;letter-spacing:-.01em;margin:0}
+.citation cite{font-family:var(--titre);font-weight:500}
+.avis-points{display:flex;gap:10px;justify-content:center;margin-top:30px}
+.avis-points span{width:9px;height:9px;border-radius:50%;border:1.5px solid var(--corail);cursor:pointer}
+.avis-points span.on{background:var(--corail)}
+.avis-source{color:rgba(255,255,255,.55);margin-top:18px}
+section.nuit .sur{color:var(--dore)}
+/* Plan stylisé */
+.intro-plan{max-width:640px;color:var(--nuit);margin:-6px 0 26px}
+.plan-nice{margin:0 0 40px}
+.plan-nice svg{width:100%;height:auto;display:block;border-radius:4px;box-shadow:0 0 0 1px rgba(0,0,0,.06),0 0 0 9px #fff,0 0 0 10px var(--ligne)}
+.p-terre{fill:#F3E7CF}
+.p-colline.c1{fill:#C9C58F}.p-colline.c2{fill:#B5B57A}.p-colline.c3{fill:#D9C99B}
+.p-mer{fill:var(--azur)}
+.p-vague{fill:none;stroke:rgba(255,255,255,.45);stroke-width:2;stroke-linecap:round}
+.p-var{fill:none;stroke:#7FA9CF;stroke-width:6;stroke-linecap:round}
+.p-trajet{fill:none;stroke:var(--corail);stroke-width:2.2;stroke-dasharray:2 7;stroke-linecap:round}
+.p-lieu circle{fill:#fff;stroke:var(--nuit);stroke-width:1.5}
+.p-lieu use,.p-bord use{fill:none;stroke:var(--nuit);stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.p-nom{font-family:var(--titre);font-size:15px;font-weight:600;fill:var(--nuit)}
+.p-min{font-family:var(--serif);font-size:20px;font-weight:600;fill:var(--corail)}
+.p-bord .p-nom{fill:var(--nuit)}
+.p-ville circle{fill:var(--nuit)}
+.p-ville text{font-family:var(--titre);font-size:14px;font-weight:600;fill:var(--nuit);letter-spacing:.06em}
+.p-promenade{font-family:var(--titre);font-size:12px;letter-spacing:.2em;text-transform:uppercase;fill:#fff;opacity:.8}
+.p-baie{font-family:var(--serif);font-size:34px;font-weight:400;fill:#fff;opacity:.9}
+.p-varnom{font-family:var(--serif);font-style:italic;font-size:16px;fill:#4F7FAF}
+.p-piafs circle{fill:var(--corail);stroke:#fff;stroke-width:4}
+.p-piafs-nom{font-family:var(--serif);font-size:24px;font-weight:600;fill:var(--nuit)}
+.p-piafs-sous{font-family:var(--titre);font-size:12px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;fill:var(--corail)}
+.plan-nice figcaption{font-size:.8rem;color:var(--gris);margin-top:16px}
+@media(max-width:700px){.plan-nice{margin-left:-12px;margin-right:-12px}.p-nom{font-size:19px}.p-min{font-size:24px}}
+/* Guides : listes à pictos, cases à cocher, liens en bouton */
+.guide ul.pictos,.guide ul.a-cocher{list-style:none;padding:0;margin:1.2em 0}
+.guide ul.pictos li,.guide ul.a-cocher li{display:flex;gap:14px;align-items:flex-start;padding:9px 0;border-bottom:1px solid var(--ligne);margin:0}
+.guide ul.pictos li .pic-s{color:var(--corail);width:22px;height:22px;margin:2px 0 0;flex:none}
+.guide ul.a-cocher .case{flex:none;width:20px;height:20px;border:1.5px solid var(--azur);border-radius:3px;margin-top:3px}
+.guide a.bouton{color:#fff;text-decoration:none;display:inline-block;margin:.4em 0}
+.guide p:has(> a.bouton:only-child){margin:1.6em 0}
+/* Index des Guides : chapo en deux typos */
+.chapo-sans{display:block;font-family:var(--texte);font-weight:300;font-size:.82em;margin-top:.6em;opacity:.9}
+/* Hero des Guides : fond immersif tiré de l'affiche, rayures sur l'index */
+.g-hero-image{position:relative;isolation:isolate}
+.g-hero-image.cadre::before{content:"";position:absolute;inset:-30px;z-index:-1;background:var(--fond) center/cover;filter:blur(22px) saturate(1.15);opacity:.55}
+.g-hero-image.rayee::after{content:"";position:absolute;left:0;top:0;bottom:0;width:14px;z-index:1;background:repeating-linear-gradient(180deg,var(--ivoire) 0 22px,var(--azur) 22px 44px)}
+.g-hero{overflow:hidden}
+/* Tuiles : affiche entière dans un cadre, plus de débordement */
+.g-tuile{justify-content:flex-start;padding:0 0 28px;min-height:0;background:var(--c-plein,var(--nuit))}
+.g-tuiles.quatre .g-tuile{min-height:0}
+.g-tuile::after{display:none}
+.g-tuile img{position:static;display:block;height:340px;width:auto;max-width:calc(100% - 56px);margin:30px auto 24px;object-fit:contain;border:10px solid var(--ivoire);box-shadow:0 0 0 1px rgba(0,0,0,.2),0 0 0 6px #C8A15A,0 18px 34px rgba(0,0,0,.28);z-index:0}
+.g-tuile:hover img{transform:translateY(-4px)}
+.g-tuile .n,.g-tuile .t,.g-tuile .d{padding:0 28px}
+.g-tuile.azur{--c-plein:var(--azur)}.g-tuile.corail{--c-plein:var(--corail)}.g-tuile.nuit{--c-plein:var(--nuit)}.g-tuile.mer{--c-plein:var(--mer)}.g-tuile.ocre{--c-plein:var(--orange)}
+.g-tuiles:not(.quatre) .g-tuile img{height:260px}
+/* Fin d'article : plus d'air autour du bloc */
+.guide-fin{padding:140px 0 160px}
+.guide-fin .phrase-prix{margin-bottom:44px}
+.guide-fin .bouton{margin-bottom:24px}
+.guide-fin::before{content:"";display:block;height:10px;margin:-140px 0 130px;background:repeating-linear-gradient(90deg,var(--ivoire) 0 24px,transparent 24px 48px);opacity:.5}
+.p-nom,.p-min,.p-ville text,.p-piafs-nom,.p-piafs-sous{paint-order:stroke;stroke:#F3E7CF;stroke-width:5px;stroke-linejoin:round}
+.p-lieu .p-nom,.p-lieu .p-min{stroke:#F3E7CF}
