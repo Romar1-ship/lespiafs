@@ -461,3 +461,23 @@ summary::after{color:var(--corail)}
 @media(max-width:860px){.g-hero{grid-template-columns:1fr;min-height:0}.g-hero-image{order:-1;height:62vh}.g-hero-texte{padding:48px 24px 56px}
   .g-une{grid-template-columns:1fr}.g-une img{min-height:340px}.g-tuiles,.g-tuiles.quatre{grid-template-columns:1fr}.g-tuile,.g-tuiles.quatre .g-tuile{min-height:420px}
   .g-reperes .wrap{grid-template-columns:1fr;gap:36px}.g-reperes div div{border:0;padding:0}}
+/* ===================== Hero : un seul écran, sans défilement ===================== */
+.g-hero{height:calc(100vh - 66px);height:calc(100svh - 66px);min-height:520px}
+.g-hero-texte{min-height:0;overflow:hidden;padding-top:clamp(28px,6vh,80px);padding-bottom:clamp(28px,6vh,80px)}
+.g-hero h1{font-size:clamp(2rem,min(5vw,7.4vh),5rem);margin:.3em 0 .4em}
+.g-hero .chapo{font-size:clamp(1rem,min(1.6vw,2.4vh),1.4rem);margin:0}
+.g-meta{margin-top:clamp(12px,2.6vh,26px)}
+.g-hero-image{min-height:0}
+.g-hero-image img{position:absolute;inset:0}
+.mob-hero{min-height:calc(100vh - 66px);min-height:calc(100svh - 66px);height:calc(100svh - 66px);padding-top:0;padding-bottom:clamp(40px,11vh,130px)}
+.mob-hero .legende{font-size:clamp(2.4rem,min(7.4vw,10vh),6.4rem);margin-bottom:clamp(18px,4vh,38px)}
+.hero{min-height:100vh;min-height:100svh;height:100svh}
+@media(max-width:860px){
+  .g-hero{grid-template-rows:minmax(0,1fr) auto;min-height:0}
+  .g-hero-image{height:auto}
+  .g-hero-texte{padding:22px 22px 26px}
+  .g-hero h1{font-size:clamp(1.7rem,4.4vh,2.6rem)}
+  .g-hero .chapo{font-size:.98rem;line-height:1.5}
+}
+@media(max-width:560px){.hero{justify-content:center;padding-top:20px}.hero .logo-hero{width:min(130px,32vw)}}
+.g-hero{padding:0}
