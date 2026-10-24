@@ -703,7 +703,7 @@ def bail_mobilite():
   <picture><source media="(max-width:700px)" srcset="{{R}}assets/img/hero-baie-mobile.jpg"><img class="fond" src="{{R}}assets/img/hero-baie.jpg" alt="La Baie des Anges vue depuis l'appartement, sur la colline de Bellet à Nice" fetchpriority="high"></picture>
   <div class="wrap">
     <h1 class="sur">Location en bail mobilité à Nice</h1>
-    <p class="legende"><span class="ligne1">Sur la colline de Bellet, face à la Baie&nbsp;des&nbsp;Anges,</span><br><em>de 1&nbsp;à 10&nbsp;mois.</em></p>
+    <p class="legende"><span class="ligne1">Sur la colline de Bellet, face à la Baie&nbsp;des&nbsp;Anges,</span><br><em>de 1&nbsp;à 10&nbsp;mois</em></p>
     <a class="bouton" href="#demande">Demander une disponibilité</a>
   </div>
   <div class="timbre" aria-hidden="true">Nice<span>Bellet</span>Côte d'Azur</div>
@@ -1043,7 +1043,7 @@ def guides_langue(langue):
 <section class="g-hero azur g-index">
   <div class="g-hero-texte">
     <span class="sur">Les guides des Piafs</span>
-    <h1>Se loger à Nice,<br><em>de 1&nbsp;à 10&nbsp;mois.</em></h1>
+    <h1>Se loger à Nice,<br><em>de 1&nbsp;à 10&nbsp;mois</em></h1>
     <p class="chapo">Bail mobilité, internat, mission, Monaco, vie de quartier : ce qu'il faut savoir avant de poser sa valise sur la Riviera.</p>
   </div>
   <figure class="g-hero-image cadre"><span class="passe">{gimg("affiche-matisse-nice", CREDITS["affiche-matisse-nice"][0], charge="eager")}</span><figcaption>{credit("affiche-matisse-nice")}</figcaption></figure>
