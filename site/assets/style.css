@@ -776,3 +776,6 @@ section.nuit .sur{color:var(--dore)}
 .g-index .g-hero-image.cadre .passe img{height:calc(100svh - 66px - 2 * clamp(16px,2.6vh,28px) - 2 * clamp(10px,1.8vh,20px) - 34px);max-height:none}
 .g-index .g-hero-image.cadre figcaption{color:rgba(255,255,255,.7)}
 @media(max-width:860px){.g-index .g-hero-image.cadre{padding:22px 22px 10px}.g-index .g-hero-image.cadre .passe img{height:calc(100svh - 66px - 400px);min-height:200px}}
+.g-index .g-hero-image.cadre{background:var(--fond) center 30%/cover no-repeat}
+.g-index .g-hero-image.cadre{background-size:auto 175%;background-position:42% 38%}
+.g-index .g-hero-image.cadre figcaption{background:rgba(20,32,55,.72);color:#fff;padding:4px 10px;border-radius:3px}
