@@ -759,41 +759,112 @@ def lire_guides():
     ordre = ["bail-mobilite-nice-guide-complet"]
     return sorted(articles, key=lambda a: (a["slug"] not in ordre, a["titre"]))
 
+# Images des Guides : aucune photo du logement. Affiches PLM du domaine public et photos libres de Wikimedia Commons.
+CREDITS = {
+    "affiche-cote-d-azur": ("Affiche PLM « Côte d'Azur », F. Hugo d'Alési", "Domaine public", "https://commons.wikimedia.org/wiki/File:Chemin_de_fer_du_nord_et_de_PLM._C%C3%B4te_d%27Azur._Cannes,_Nice,_Monaco_(...)_-_affiche_-_(F._Hugo_d%27Al%C3%A9si)_;_Ateliers_F._Hugo_d%27Al%C3%A9si,_5_Place_Pigalle,_Paris_-_btv1b9004457q.jpg"),
+    "affiche-hiver-a-nice": ("Affiche PLM « L'Hiver à Nice », F. Hugo d'Alési", "Domaine public", "https://commons.wikimedia.org/wiki/File:Chemins_de_fer_P._L._M._L%27Hiver_%C3%A0_Nice_(...)_-_affiche_-_F._Hugo_d%27Al%C3%A9si_-_btv1b90160043.jpg"),
+    "affiche-nice-plm": ("Affiche PLM « Nice », F. Hugo d'Alési", "Domaine public", "https://commons.wikimedia.org/wiki/File:Affiche_PLM_Nice.jpg"),
+    "affiche-monaco-broders": ("Affiche PLM « Monaco, Monte-Carlo, au pays du soleil », Roger Broders", "Domaine public", "https://commons.wikimedia.org/wiki/File:Flickr_-_%E2%80%A6trialsanderrors_-_Monaco,_Monte-Carlo,_au_pays_du_soleil,_travel_poster_for_PLM,_ca._1920.jpg"),
+    "affiche-villefranche": ("Affiche « Villefranche-sur-Mer, port de tourisme », Roger Broders", "Domaine public", "https://commons.wikimedia.org/wiki/File:Edit%C3%A9_par_le_Syndicat_d%27Initiative_-_Villefranche_s-_Mer,_Port_de_tourisme_-_affiche_-_Roger_Broders_-_btv1b9012820q.jpg"),
+    "hopital-pasteur": ("Hôpital Pasteur, Nice. Photo Jesmar", "CC BY-SA 3.0", "https://commons.wikimedia.org/wiki/File:H%C3%B4pital_Pasteur_P1010629.JPG"),
+    "tram-ligne-2": ("Tramway de Nice, ligne 2. Photo Snoopy 31", "CC BY-SA 4.0", "https://commons.wikimedia.org/wiki/File:Ligne_2_Tram_de_Nice_07-20.jpg"),
+    "chateau-de-bellet": ("Château de Bellet, Nice. Photo Château de Bellet", "CC BY-SA 4.0", "https://commons.wikimedia.org/wiki/File:ChateaudeBellet_Boonz-drone2.jpg"),
+    "vignoble-saint-jean-bellet": ("Vignoble de Saint-Jean de Bellet. Photo Magnetto", "CC BY-SA 3.0", "https://commons.wikimedia.org/wiki/File:Saint_Jean_Bellet,_le_vignoble.jpg"),
+    "baie-des-anges": ("La Baie des Anges, Nice. Photo GFreihalter", "CC BY-SA 4.0", "https://commons.wikimedia.org/wiki/File:Nice_(06)_Baie_des_Anges_773.jpg"),
+}
+# Par article : couverture, couleur du bloc, photo insérée avant le n-ième intertitre, et trois repères chiffrés.
+VISUELS = {
+    "bail-mobilite-nice-guide-complet": ("affiche-cote-d-azur", "azur", ("baie-des-anges", 5),
+        [("1 à 10", "mois de bail"), ("0 €", "de dépôt de garantie"), ("1", "mois de préavis pour le locataire")]),
+    "logement-interne-chu-nice": ("affiche-hiver-a-nice", "corail", ("hopital-pasteur", 2),
+        [("15", "min du CHU Pasteur 2"), ("16", "min du Centre Lacassagne"), ("3 mai", "2027, changement de semestre")]),
+    "logement-monaco-nice": ("affiche-monaco-broders", "nuit", ("baie-des-anges", 4),
+        [("22", "min de Monaco en voiture"), ("1 sur 4", "salarié du privé de Monaco vit à Nice"), ("20", "min de l'aéroport")]),
+    "mission-nice-3-a-10-mois": ("affiche-nice-plm", "ocre", ("tram-ligne-2", 3),
+        [("3 à 10", "mois de mission"), ("28", "min de Sophia Antipolis"), ("1", "facture, tout compris")]),
+    "vivre-collines-de-bellet-nice": ("chateau-de-bellet", "mer", ("vignoble-saint-jean-bellet", 2),
+        [("1941", "AOC Bellet, par décret"), ("26 m²", "de terrasses vue mer"), ("13", "min du campus Valrose")]),
+}
+
+def credit(n):
+    t, lic, url = CREDITS[n]
+    return f'<a href="{url}" rel="noopener">{E(t)}</a> · {E(lic)}'
+
+def gimg(n, alt, cls="", charge="lazy"):
+    c = f' class="{cls}"' if cls else ""
+    return f'<img{c} src="{{R}}assets/img/guides/{n}.jpg" alt="{E(alt)}" loading="{charge}">'
+
+def mots(texte):
+    return len(re.findall(r"\w+", texte))
+
 def guides():
     articles = lire_guides()
     if not articles: return
-    for a in articles:
+    for i, a in enumerate(articles):
+        couv, couleur, (photo, avant), reperes = VISUELS[a["slug"]]
+        corps_html = md_html(a["corps"])
+        titres = re.findall(r"<h2>(.+?)</h2>", corps_html)
+        for k, t in enumerate(titres):
+            corps_html = corps_html.replace(f"<h2>{t}</h2>", f'<h2 id="s{k + 1}"><span class="num">{k + 1:02d}</span>{t}</h2>', 1)
+        fig = f'<figure class="g-photo">{gimg(photo, CREDITS[photo][0])}<figcaption>{credit(photo)}</figcaption></figure>'
+        cible = f'<h2 id="s{avant}"'
+        corps_html = corps_html.replace(cible, fig + cible, 1) if cible in corps_html else corps_html + fig
+        sommaire = "".join(f'<li><a href="#s{k + 1}">{re.sub("<[^>]+>", "", t)}</a></li>' for k, t in enumerate(titres))
+        rep = "".join(f'<div><b>{E(c)}</b><span>{E(l)}</span></div>' for c, l in reperes)
+        autres = [b for b in articles if b is not a][:3]
+        suite = "".join(f'<a class="g-tuile {VISUELS[b["slug"]][1]}" href="{b["slug"]}.html">{gimg(VISUELS[b["slug"]][0], b["titre"])}<span class="t">{E(b["titre"])}</span></a>' for b in autres)
         corps = f"""
-<section class="guide-tete"><div class="etroit">
-  <a class="sur" href="./">Guides · Bail mobilité à Nice</a>
-  <h1>{E(a["titre"])}</h1>
-  <p class="chapo">{E(a["description"])}</p>
-</div></section>
-<div class="etroit"><figure class="guide-image">{img(a["image"], a["titre"])}</figure></div>
-<article class="etroit guide">{md_html(a["corps"])}</article>
+<section class="g-hero {couleur}">
+  <div class="g-hero-texte">
+    <a class="sur" href="./">Guide n° {i + 1} · Se loger à Nice</a>
+    <h1>{E(a["titre"])}</h1>
+    <p class="chapo">{E(a["description"])}</p>
+    <span class="g-meta">{max(1, round(mots(a["corps"]) / 220))} min de lecture</span>
+  </div>
+  <figure class="g-hero-image">{gimg(couv, CREDITS[couv][0], charge="eager")}<figcaption>{credit(couv)}</figcaption></figure>
+</section>
+<div class="store" aria-hidden="true"></div>
+<section class="g-reperes"><div class="wrap">{rep}</div></section>
+<div class="wrap g-corps">
+  <aside class="g-sommaire"><span class="sur">Sommaire</span><ol>{sommaire}</ol>
+    <a class="bouton" href="../bail-mobilite/#demande">Demander une disponibilité</a></aside>
+  <article class="guide">{corps_html}</article>
+</div>
 <section class="azur guide-fin"><div class="etroit centre">
   <span class="sur">Les Piafs des Collines</span>
   <h2 class="phrase-prix">77 m² face à la Baie des Anges, <em>de 1 à 10 mois.</em></h2>
-  <a class="bouton" href="../bail-mobilite/#demande">Demander une disponibilité</a>
-</div></section>"""
-        page(f"guides/{a['slug']}.html", a["title_seo"], a["description"], "guides", "", corps, image=a["image"], jsonld=[
+  <a class="bouton" href="../bail-mobilite/">Voir le logement</a>
+</div></section>
+<section class="g-suite"><div class="wrap"><span class="sur">À lire aussi</span><div class="g-tuiles">{suite}</div></div></section>"""
+        page(f"guides/{a['slug']}.html", a["title_seo"], a["description"], "guides", "", corps, image=f"guides/{couv}", jsonld=[
             {"@context": "https://schema.org", "@type": "Article", "headline": a["titre"], "description": a["description"], "inLanguage": "fr-FR",
-             "image": f"{BASE}/assets/img/{a['image']}.jpg", "url": url_propre(f"guides/{a['slug']}.html"),
+             "image": f"{BASE}/assets/img/guides/{couv}.jpg", "url": url_propre(f"guides/{a['slug']}.html"),
              "publisher": {"@type": "Organization", "name": "Les Piafs des Collines", "url": BASE + "/"}},
             {"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [
              {"@type": "ListItem", "position": 1, "name": "Accueil", "item": BASE + "/"},
              {"@type": "ListItem", "position": 2, "name": "Guides", "item": BASE + "/guides/"},
              {"@type": "ListItem", "position": 3, "name": a["titre"], "item": url_propre(f"guides/{a['slug']}.html")}]}])
-    cartes = "".join(f'<a class="guide-carte" href="{a["slug"]}.html">{img(a["image"], a["titre"])}<span class="t">{E(a["titre"])}</span><span class="d">{E(a["description"])}</span><span class="f">Lire le guide →</span></a>' for a in articles)
+    une, reste = articles[0], articles[1:]
+    tuiles = "".join(f'<a class="g-tuile {VISUELS[b["slug"]][1]}" href="{b["slug"]}.html">{gimg(VISUELS[b["slug"]][0], b["titre"])}<span class="n">Guide n° {k + 2}</span><span class="t">{E(b["titre"])}</span><span class="d">{E(b["description"])}</span></a>' for k, b in enumerate(reste))
     corps = f"""
-<section class="guide-tete"><div class="wrap">
-  <span class="sur">Guides</span>
-  <h1>Se loger à Nice <em>pour 1 à 10 mois.</em></h1>
-  <p class="chapo">Bail mobilité, internat, mission, Monaco : ce qu'il faut savoir avant de signer.</p>
+<section class="g-hero azur g-index">
+  <div class="g-hero-texte">
+    <span class="sur">Les guides des Piafs</span>
+    <h1>Se loger à Nice, <em>de 1 à 10 mois.</em></h1>
+    <p class="chapo">Bail mobilité, internat, mission, Monaco, vie de quartier : ce qu'il faut savoir avant de poser sa valise sur la Riviera.</p>
+  </div>
+  <figure class="g-hero-image">{gimg("affiche-villefranche", CREDITS["affiche-villefranche"][0], charge="eager")}<figcaption>{credit("affiche-villefranche")}</figcaption></figure>
+</section>
+<div class="store" aria-hidden="true"></div>
+<section class="g-une-section"><div class="wrap">
+  <a class="g-une" href="{une["slug"]}.html">{gimg(VISUELS[une["slug"]][0], une["titre"])}
+    <div><span class="n">Guide n° 1 · À lire en premier</span><span class="t">{E(une["titre"])}</span><span class="d">{E(une["description"])}</span><span class="f">Lire le guide →</span></div></a>
 </div></section>
-<section class="blanc"><div class="wrap"><div class="guides-grille">{cartes}</div></div></section>"""
+<section class="g-liste"><div class="wrap"><div class="g-tuiles quatre">{tuiles}</div>
+  <p class="note g-credits">Affiches de la Compagnie PLM, domaine public. Photos libres de Wikimedia Commons, créditées sous chaque image.</p></div></section>"""
     page("guides/index.html", "Guides : se loger à Nice en bail mobilité | Les Piafs des Collines",
-         "Bail mobilité à Nice, logement près du CHU, travailler à Monaco : nos guides pour se loger à Nice pour 1 à 10 mois.", "guides", "", corps)
+         "Bail mobilité à Nice, logement près du CHU, travailler à Monaco : nos guides pour se loger à Nice pour 1 à 10 mois.", "guides", "", corps,
+         image="guides/affiche-villefranche")
 
 # ================================================================ divers
 def page_404():
