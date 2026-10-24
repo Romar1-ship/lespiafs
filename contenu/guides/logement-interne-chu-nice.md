@@ -24,7 +24,7 @@ Le Centre Antoine Lacassagne est un centre de lutte contre le cancer. Il est au 
 
 ## À combien de minutes se trouve le logement ?
 
-L'appartement des Piafs des Collines est au 202 bis route de Bellet, sur les collines de l'ouest de Nice. En voiture, hors trafic :
+L'appartement des Piafs des Collines est sur les collines de Bellet, à l'ouest de Nice. En voiture, hors trafic :
 
 - CHU Pasteur 2 : 15 min ;
 - Centre Antoine Lacassagne : 16 min ;

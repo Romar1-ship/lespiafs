@@ -14,7 +14,7 @@ Vous y venez pour quelques mois, pour une mission, une formation ou un poste. Vo
 
 Bellet fait partie de la commune de Nice. Ses coteaux dominent la rive gauche du Var, au nord-ouest du centre-ville.
 
-L'appartement des Piafs des Collines est au 202 bis route de Bellet, 06200 Nice. Depuis ses deux terrasses, la vue s'ouvre sur la Baie des Anges.
+L'appartement des Piafs des Collines est sur les collines de Bellet, à l'ouest de Nice. Depuis ses deux terrasses, la vue s'ouvre sur la Baie des Anges.
 
 ## Qu'est-ce que le vin de Bellet ?
 

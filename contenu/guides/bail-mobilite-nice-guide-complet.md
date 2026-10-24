@@ -107,7 +107,7 @@ Le locataire peut quitter le logement avant la fin du bail. Il donne un préavis
 
 ## À quoi ressemble le logement ?
 
-Un appartement meublé de 77,51 m² au 1er étage d'une villa, 202 bis route de Bellet, 06200 Nice.
+Un appartement meublé de 77,51 m² au 1er étage d'une villa, sur les collines de Bellet, à l'ouest de Nice.
 
 - 2 chambres de 13,91 et 12,88 m² ;
 - 2 salles d'eau, dont 1 privative avec douche à l'italienne ;

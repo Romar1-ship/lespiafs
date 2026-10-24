@@ -24,7 +24,7 @@ GUIDES_VALIDES = False
 TEL = "+33 (0)6 11 94 82 35"
 TEL_LIEN = "+33611948235"
 MAIL = "contact@lespiafsdescollines.com"
-ADRESSE = "202 bis, Route de Bellet<br>06200 Nice - France"
+ADRESSE = "Collines de Bellet<br>Nice, Côte d'Azur"  # l'adresse exacte n'est publiée nulle part
 FACEBOOK = "https://www.facebook.com/lespiafsdescollines"
 ENREGISTREMENT = "06088017951MX"
 
@@ -87,7 +87,6 @@ NAV_MOB = [("#logement", "Le logement"), ("#prix", "Prix"), ("#acces", "Accès")
            ("#contrat", "Contrat"), ("#fiche", "Fiche technique")]
 
 BASE = "https://www.lespiafsdescollines.com"
-GEO = (43.701472, 7.231682)
 
 def url_propre(chemin):
     c = chemin[:-10] if chemin.endswith("index.html") else (chemin[:-5] if chemin.endswith(".html") else chemin)
@@ -213,7 +212,7 @@ def img(nom, alt, cls=""):
     return f'<img{c} src="{{R}}assets/img/{nom}.jpg" alt="{E(alt)}" loading="lazy">'
 
 # ================================================================ ACCUEIL COMMUN
-ADRESSE_LD = {"@type": "PostalAddress", "streetAddress": "202 bis route de Bellet", "postalCode": "06200",
+ADRESSE_LD = {"@type": "PostalAddress",
               "addressLocality": "Nice", "addressRegion": "Provence-Alpes-Côte d'Azur", "addressCountry": "FR"}
 
 CARTE_SAISON = """<a class="carte-choix" href="saisonniere/">
@@ -254,7 +253,7 @@ def accueil():
         {"@context": "https://schema.org", "@type": "WebSite", "name": "Les Piafs des Collines", "url": BASE + "/", "inLanguage": "fr-FR"},
         {"@context": "https://schema.org", "@type": "Apartment", "name": "Les Piafs des Collines",
          "description": "Appartement meublé de 77,51 m² avec vue sur la Baie des Anges, à Nice, proposé en bail mobilité de 1 à 10 mois.",
-         "url": BASE + "/", "address": ADRESSE_LD, "geo": {"@type": "GeoCoordinates", "latitude": GEO[0], "longitude": GEO[1]},
+         "url": BASE + "/", "address": ADRESSE_LD,
          "floorSize": {"@type": "QuantitativeValue", "value": 77.51, "unitCode": "MTK"}, "numberOfRooms": 3, "numberOfBedrooms": 2,
          "numberOfBathroomsTotal": 2, "image": [f"{BASE}/assets/img/{n}.jpg" for n in ("terrasse-vue-mer", "vue-baie-de-nice", "sejour-salle-a-manger", "chambre-parentale")],
          "telephone": "+33611948235", "email": MAIL},
@@ -580,7 +579,7 @@ FAQ_MOB = [
  ("Comment se passe l'arrivée ?",
   "L'arrivée est autonome : le code d'accès est communiqué avant la date d'entrée. Il n'y a pas de rendez-vous de remise des clés, ni de contrainte d'horaire."),
  ("Où se trouve le logement et combien de temps pour rejoindre le centre ?",
-  "Au 202 bis route de Bellet, sur les collines de l'ouest de Nice. En voiture, hors trafic : Clinique Kantys Centre 12 min, campus Valrose 13 min, CHU Pasteur 2 15 min, Centre Antoine Lacassagne 16 min, aéroport 20 min, Monaco 22 min, Sophia Antipolis 28 min. Le bus 60 s'arrête à 50 m et rejoint le tram ligne 2 à Magnan."),
+  "Sur les collines de Bellet, à l'ouest de Nice. En voiture, hors trafic : Clinique Kantys Centre 12 min, campus Valrose 13 min, CHU Pasteur 2 15 min, Centre Antoine Lacassagne 16 min, aéroport 20 min, Monaco 22 min, Sophia Antipolis 28 min. Le bus 60 s'arrête à 50 m et rejoint le tram ligne 2 à Magnan."),
 ]
 
 def faq_html(qr):
@@ -602,8 +601,7 @@ def bail_mobilite():
         ("Contrat", [("Payeur personne morale", "Bail au nom de la société, à partir de 3 mois"), ("Payeur particulier", "Bail mobilité, de 1 à 10 mois"),
                      ("Durée minimale", "1 mois"), ("Pièces", "Justificatif du motif de mobilité avant signature, pour le bail mobilité"),
                      ("Garantie", "Caution de l'employeur ou caution personnelle. Visale non mobilisable à ce niveau de loyer"),
-                     ("Facturation", "Exonérée de TVA, au nom du payeur"), ("Arrivée", "Autonome, code d'accès"),
-                     ("Adresse", "202 bis route de Bellet, 06200 Nice")]),
+                     ("Facturation", "Exonérée de TVA, au nom du payeur"), ("Arrivée", "Autonome, code d'accès")]),
     ]
     icones = {"Le logement": "plan", "Énergie et confort": "energie", "Équipements": "equipement", "Contrat": "plume"}
     fiche_html = "".join(f'<div class="fiche-bloc"><h3>{pic(icones[t])}{E(t)}</h3><dl>' + "".join(f"<dt>{E(k)}</dt><dd>{E(v)}</dd>" for k, v in lignes) + "</dl></div>" for t, lignes in fiche)
@@ -699,7 +697,7 @@ def bail_mobilite():
             {"@context": "https://schema.org", "@type": "Apartment",
              "name": "Location en bail mobilité à Nice, Les Piafs des Collines",
              "description": "Appartement meublé de 77,51 m² avec vue sur la Baie des Anges, loué en bail mobilité de 1 à 10 mois, tout compris à partir de 2 880 € par mois.",
-             "url": BASE + "/bail-mobilite/", "address": ADRESSE_LD, "geo": {"@type": "GeoCoordinates", "latitude": GEO[0], "longitude": GEO[1]},
+             "url": BASE + "/bail-mobilite/", "address": ADRESSE_LD,
              "floorSize": {"@type": "QuantitativeValue", "value": 77.51, "unitCode": "MTK"}, "numberOfRooms": 3, "numberOfBedrooms": 2, "numberOfBathroomsTotal": 2,
              "amenityFeature": [{"@type": "LocationFeatureSpecification", "name": n, "value": True} for n in
                                 ("Fibre haut débit", "Parking privé", "Climatisation réversible", "Lave-linge", "Sèche-linge", "Piscine partagée", "Deux terrasses", "Vue mer")],
