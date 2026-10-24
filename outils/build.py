@@ -17,6 +17,10 @@ E = html.escape
 # et les anciennes adresses Wix mènent au bail mobilité. Passer à True pour tout rallumer.
 SAISON_ACTIVE = False
 
+# Guides en relecture : en ligne et accessibles depuis le menu, mais ni indexés ni dans le sitemap.
+# Passer à True une fois les articles validés par Géraldine.
+GUIDES_VALIDES = False
+
 TEL = "+33 (0)6 11 94 82 35"
 TEL_LIEN = "+33611948235"
 MAIL = "contact@lespiafsdescollines.com"
@@ -98,7 +102,7 @@ def tete(titre, description, profondeur, chemin="index.html", jsonld=None, image
 <title>{E(titre)}</title>
 <meta name="description" content="{E(description)}">
 <link rel="icon" type="image/png" href="{r}assets/img/favicon.png">
-{'<meta name="robots" content="noindex">' if chemin == "404.html" or (chemin.startswith("saisonniere/") and not SAISON_ACTIVE) else f'<link rel="canonical" href="{url_propre(chemin)}">'}
+{'<meta name="robots" content="noindex">' if chemin == "404.html" or (chemin.startswith("saisonniere/") and not SAISON_ACTIVE) or (chemin.startswith("guides/") and not GUIDES_VALIDES) else f'<link rel="canonical" href="{url_propre(chemin)}">'}
 <meta property="og:type" content="website"><meta property="og:locale" content="fr_FR"><meta property="og:site_name" content="Les Piafs des Collines">
 <meta property="og:url" content="{url_propre(chemin)}">
 <meta property="og:title" content="{E(titre)}"><meta property="og:description" content="{E(description)}">
@@ -118,8 +122,10 @@ def entete(espace, courant, profondeur):
             for slug, lib in NAV_SAISON)
         liens += f'<a class="cta" href="{r}saisonniere/contact.html">Réserver</a>'
     else:
-        liens = "".join(f'<a href="{a}">{E(l)}</a>' for a, l in NAV_MOB)
-        liens += '<a class="cta" href="#demande">Demander une disponibilité</a>'
+        ancre = "" if espace == "mob" else f"{r}bail-mobilite/"
+        liens = "".join(f'<a href="{ancre}{a}">{E(l)}</a>' for a, l in NAV_MOB) if espace == "mob" else f'<a href="{r}bail-mobilite/">Bail mobilité</a>'
+        liens += f'<a href="{r}guides/"{" aria-current=\"page\"" if espace == "guides" else ""}>Guides</a>'
+        liens += f'<a class="cta" href="{ancre}#demande">Demander une disponibilité</a>'
     return f"""<header class="entete"><div class="wrap">
 <a class="marque" href="{r}index.html"><img class="m-oiseau" src="{r}assets/img/logo-oiseau-blanc.svg" alt=""><img class="m-nom" src="{r}assets/img/logo-nom-blanc.svg" alt="Les Piafs des Collines"></a>
 <button class="burger" aria-label="Menu" onclick="this.nextElementSibling.classList.toggle('ouvert')">☰</button>
@@ -151,7 +157,8 @@ def pied(espace, profondeur):
 <div><h5>Nos locations</h5><ul>
 <li><a href="{r}index.html">Accueil</a></li>
 {f'<li><a href="{r}saisonniere/">Location saisonnière</a></li>' if SAISON_ACTIVE else ""}
-<li><a href="{r}bail-mobilite/">Bail mobilité, 1 à 10 mois</a></li></ul></div>
+<li><a href="{r}bail-mobilite/">Bail mobilité, 1 à 10 mois</a></li>
+<li><a href="{r}guides/">Guides</a></li></ul></div>
 <div>{legal}</div>
 </div>
 <div class="bas"><span>© {2026} Les Piafs des Collines</span><span>Design by <a href="http://www.creative-explorer.fr" rel="noopener">Creative Explorer</a></span></div>
@@ -704,6 +711,90 @@ def bail_mobilite():
              {"@type": "ListItem", "position": 1, "name": "Accueil", "item": BASE + "/"},
              {"@type": "ListItem", "position": 2, "name": "Bail mobilité à Nice", "item": BASE + "/bail-mobilite/"}]}])
 
+# ================================================================ GUIDES
+GUIDES = Path(os.environ.get("GUIDES_DIR", RACINE / "contenu/guides"))
+
+def md_ligne(s):
+    s = E(s, quote=False)
+    s = re.sub(r"\*\*(.+?)\*\*", r"<strong>\1</strong>", s)
+    return re.sub(r"\[([^\]]+)\]\(([^)]+)\)", r'<a href="\2">\1</a>', s)
+
+def md_html(texte):
+    """Markdown des articles -> HTML : intertitres, paragraphes, listes, tableaux, gras, liens."""
+    out, bloc = [], []
+    def vider():
+        if not bloc: return
+        if bloc[0].startswith(("- ", "* ")):
+            out.append("<ul>" + "".join(f"<li>{md_ligne(l[2:])}</li>" for l in bloc) + "</ul>")
+        elif re.match(r"\d+\. ", bloc[0]):
+            out.append("<ol>" + "".join(f"<li>{md_ligne(l.split('. ', 1)[1])}</li>" for l in bloc) + "</ol>")
+        elif bloc[0].startswith("|"):
+            rangs = [[c.strip() for c in l.strip("|").split("|")] for l in bloc if not re.match(r"^\|[\s:|-]+\|$", l)]
+            out.append('<div class="table"><table><thead><tr>' + "".join(f"<th>{md_ligne(c)}</th>" for c in rangs[0]) + "</tr></thead><tbody>"
+                       + "".join("<tr>" + "".join(f"<td>{md_ligne(c)}</td>" for c in r) + "</tr>" for r in rangs[1:]) + "</tbody></table></div>")
+        elif bloc[0].startswith("> "):
+            out.append("<blockquote>" + md_ligne(" ".join(l[2:] for l in bloc)) + "</blockquote>")
+        else:
+            out.append(f"<p>{md_ligne(' '.join(bloc))}</p>")
+        bloc.clear()
+    for l in texte.splitlines():
+        l = l.rstrip()
+        if not l: vider(); continue
+        m = re.match(r"(#{2,3}) (.+)", l)
+        if m:
+            vider(); n = len(m.group(1)); out.append(f"<h{n}>{md_ligne(m.group(2))}</h{n}>"); continue
+        if bloc and (l[:2] in ("- ", "* ") or l.startswith("|") or re.match(r"\d+\. ", l)) != (bloc[0][:2] in ("- ", "* ") or bloc[0].startswith("|") or bool(re.match(r"\d+\. ", bloc[0]))):
+            vider()
+        bloc.append(l)
+    vider()
+    return "".join(out)
+
+def lire_guides():
+    articles = []
+    for f in sorted(GUIDES.glob("*.md")) if GUIDES.exists() else []:
+        tete_md, corps = f.read_text(encoding="utf-8").split("---", 2)[1:]
+        meta = dict(l.split(": ", 1) for l in tete_md.strip().splitlines())
+        meta["corps"] = corps.strip()
+        articles.append(meta)
+    ordre = ["bail-mobilite-nice-guide-complet"]
+    return sorted(articles, key=lambda a: (a["slug"] not in ordre, a["titre"]))
+
+def guides():
+    articles = lire_guides()
+    if not articles: return
+    for a in articles:
+        corps = f"""
+<section class="guide-tete"><div class="etroit">
+  <a class="sur" href="./">Guides · Bail mobilité à Nice</a>
+  <h1>{E(a["titre"])}</h1>
+  <p class="chapo">{E(a["description"])}</p>
+</div></section>
+<div class="etroit"><figure class="guide-image">{img(a["image"], a["titre"])}</figure></div>
+<article class="etroit guide">{md_html(a["corps"])}</article>
+<section class="azur guide-fin"><div class="etroit centre">
+  <span class="sur">Les Piafs des Collines</span>
+  <h2 class="phrase-prix">77 m² face à la Baie des Anges, <em>de 1 à 10 mois.</em></h2>
+  <a class="bouton" href="../bail-mobilite/#demande">Demander une disponibilité</a>
+</div></section>"""
+        page(f"guides/{a['slug']}.html", a["title_seo"], a["description"], "guides", "", corps, image=a["image"], jsonld=[
+            {"@context": "https://schema.org", "@type": "Article", "headline": a["titre"], "description": a["description"], "inLanguage": "fr-FR",
+             "image": f"{BASE}/assets/img/{a['image']}.jpg", "url": url_propre(f"guides/{a['slug']}.html"),
+             "publisher": {"@type": "Organization", "name": "Les Piafs des Collines", "url": BASE + "/"}},
+            {"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [
+             {"@type": "ListItem", "position": 1, "name": "Accueil", "item": BASE + "/"},
+             {"@type": "ListItem", "position": 2, "name": "Guides", "item": BASE + "/guides/"},
+             {"@type": "ListItem", "position": 3, "name": a["titre"], "item": url_propre(f"guides/{a['slug']}.html")}]}])
+    cartes = "".join(f'<a class="guide-carte" href="{a["slug"]}.html">{img(a["image"], a["titre"])}<span class="t">{E(a["titre"])}</span><span class="d">{E(a["description"])}</span><span class="f">Lire le guide →</span></a>' for a in articles)
+    corps = f"""
+<section class="guide-tete"><div class="wrap">
+  <span class="sur">Guides</span>
+  <h1>Se loger à Nice <em>pour 1 à 10 mois.</em></h1>
+  <p class="chapo">Bail mobilité, internat, mission, Monaco : ce qu'il faut savoir avant de signer.</p>
+</div></section>
+<section class="blanc"><div class="wrap"><div class="guides-grille">{cartes}</div></div></section>"""
+    page("guides/index.html", "Guides : se loger à Nice en bail mobilité | Les Piafs des Collines",
+         "Bail mobilité à Nice, logement près du CHU, travailler à Monaco : nos guides pour se loger à Nice pour 1 à 10 mois.", "guides", "", corps)
+
 # ================================================================ divers
 def page_404():
     corps = f"""{bandeau("bandeau-accueil", "Page introuvable")}<section><div class="etroit centre"><p>Cette page n'existe pas ou a changé d'adresse.</p><p><a class="bouton" href="/">Retour à l'accueil</a></p></div></section>"""
@@ -735,9 +826,9 @@ def redirections():
 def sitemap():
     import datetime
     jour = datetime.date.today().isoformat()
-    prio = {"index.html": "1.0", "bail-mobilite/index.html": "0.9", "saisonniere/index.html": "0.8"}
+    prio = {"index.html": "1.0", "bail-mobilite/index.html": "0.9", "saisonniere/index.html": "0.8", "guides/index.html": "0.7"}
     urls = "".join(f"<url><loc>{url_propre(c)}</loc><lastmod>{jour}</lastmod><priority>{prio.get(c, '0.5')}</priority></url>"
-                   for c in PAGES if c != "404.html" and (SAISON_ACTIVE or not c.startswith("saisonniere/")))
+                   for c in PAGES if c != "404.html" and (SAISON_ACTIVE or not c.startswith("saisonniere/")) and (GUIDES_VALIDES or not c.startswith("guides/")))
     (SITE / "sitemap.xml").write_text('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">' + urls + "</urlset>\n", encoding="utf-8")
     (SITE / "robots.txt").write_text(f"User-agent: *\nAllow: /\n\nSitemap: {BASE}/sitemap.xml\n", encoding="utf-8")
     print("   sitemap.xml, robots.txt")
@@ -745,5 +836,5 @@ def sitemap():
 if __name__ == "__main__":
     print("Génération de site/ :")
     accueil(); saison_appartement(); saison_hotes(); saison_ateliers(); saison_livre_or(); saison_faq()
-    saison_tarifs(); saison_contact(); saison_environs(); saison_legal(); bail_mobilite(); page_404(); redirections(); sitemap()
+    saison_tarifs(); saison_contact(); saison_environs(); saison_legal(); bail_mobilite(); guides(); page_404(); redirections(); sitemap()
     print("Terminé.")
