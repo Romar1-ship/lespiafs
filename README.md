@@ -49,7 +49,7 @@ La liaison se fait dans le tableau de bord, car elle demande l'autorisation GitH
 
 - `python3 outils/board.py` écrit `site/board/` depuis `board/contenu.py`, sur le moteur commun `../LCCA-Studio/atelier/tools/board-maison.py`. On ne retouche jamais `site/board/` à la main.
 - Le Worker (`worker/index.js`) ne passe en premier que pour `/board` et `/board/*` ; le site public reste servi tel quel. L'API est dans `worker/board.js`.
-- **Accès** : application Cloudflare Access « Board Les Piafs » (code par e-mail), créée le 28/10/2026 sur `lespiafsdescollines.com/board` et `www`. Une seule adresse autorisée : geraldinepierrot@life-captures.fr.
+- **Accès** : application Cloudflare Access « Board Les Piafs » (code par e-mail), créée le 28/10/2026 sur `lespiafsdescollines.com/board` et `www`. Adresses autorisées : geraldinepierrot@life-captures.fr et gezzy@protonmail.com (ajoutée le 28/10/2026).
 - **ClickUp** : liste Roadmap Les Piafs (`1500780000000918`), tâches mères 🌿 Feuille de route, 📝 Le carnet, 🌐 Plateformes, et la mémoire du board. Les identifiants sont dans `wrangler.jsonc`.
 - **Le secret** `CLICKUP_API_TOKEN` se pose une fois sur le Worker, au tableau de bord : Workers & Pages › `lespiafs` › Settings › Variables and Secrets › Add › Secret, nom `CLICKUP_API_TOKEN`, valeur du `.env` du vault. Sans lui, les pages vivantes répondent « board non branché ».
 - En local : `npx wrangler dev --var MODE:dev --var DEV_EMAIL:{email} --var CLICKUP_API_TOKEN:{jeton}`.
