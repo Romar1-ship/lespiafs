@@ -15,7 +15,7 @@ Ci viene per qualche mese, per una missione, una formazione o un lavoro. Ecco co
 
 Bellet fa parte del comune di Nizza. I suoi pendii dominano la riva sinistra del Var, a nord-ovest del centro città.
 
-L'appartamento di Les Piafs des Collines è sulla collina di Bellet. Non è né in riva al mare né in centro città. La collina è tranquilla senza essere isolata: sulla strada passano alcune auto, lontano dal movimento del centro città. La spiaggia è a 7 minuti in auto, senza traffico.
+L'appartamento di Les Piafs des Collines è sulla collina di Bellet. Non è né in riva al mare né in centro città. Sulla collina si vive e si lavora nella calma, in altura, di fronte al mare. L'appartamento è inondato di luce, c'è la fibra, e la Baia degli Angeli accompagna ogni giornata di smart working. L'animazione del centro città resta a pochi minuti, quando se ne ha voglia. La spiaggia è a 7 minuti in auto, senza traffico.
 
 Dalle sue due terrazze, la vista si apre sulla Baia degli Angeli.
 

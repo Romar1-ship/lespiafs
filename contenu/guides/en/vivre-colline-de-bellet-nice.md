@@ -15,7 +15,7 @@ You are coming for a few months, for an assignment, a training course or a job. 
 
 Bellet is part of the city of Nice. Its slopes overlook the left bank of the Var, north-west of the city centre.
 
-The Les Piafs des Collines apartment is on Bellet hill. It is neither by the sea nor in the city centre. The hill is quiet without being isolated: cars do pass on the road, far from the bustle of the city centre. The beach is 7 minutes away by car, outside traffic.
+The Les Piafs des Collines apartment is on Bellet hill. It is neither by the sea nor in the city centre. On the hill, you live and work in peace, high up, facing the sea. The apartment is bathed in light, fibre broadband is installed, and the Baie des Anges is part of every remote-working day. The buzz of the city centre is only a few minutes away, whenever you want it. The beach is 7 minutes away by car, outside traffic.
 
 From its two terraces, the view opens onto the Baie des Anges (Bay of Angels).
 

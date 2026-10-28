@@ -15,7 +15,7 @@ Vous y venez pour quelques mois, pour une mission, une formation ou un poste. Vo
 
 Bellet fait partie de la commune de Nice. Ses coteaux dominent la rive gauche du Var, au nord-ouest du centre-ville.
 
-L'appartement des Piafs des Collines est sur la colline de Bellet. Il n'est ni en bord de mer ni en centre-ville. La colline est calme, sans être isolée : des voitures passent sur la route, loin de l'animation du centre-ville. La plage est à 7 minutes en voiture, hors trafic.
+L'appartement des Piafs des Collines est sur la colline de Bellet. Il n'est ni en bord de mer ni en centre-ville. Sur la colline, on vit et on travaille au calme, en hauteur, face à la mer. L'appartement est baigné de lumière, la fibre est là, et la Baie des Anges s'invite dans chaque journée de télétravail. L'animation du centre-ville reste à quelques minutes, quand on en a envie. La plage est à 7 minutes en voiture, hors trafic.
 
 Depuis ses deux terrasses, la vue s'ouvre sur la Baie des Anges.
 
