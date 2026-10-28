@@ -1181,7 +1181,9 @@ nav.voisines[aria-label="Les pages de Notre collaboration"]{display:none}
 .rubrique__marque{margin:0;line-height:0}
 .rubrique__marque img{height:clamp(54px,7vw,92px);width:auto;max-width:min(560px,80vw);object-fit:contain;object-position:left center}
 .rubrique--clair .rubrique__marque img{filter:brightness(0) invert(1);opacity:.62}   /* Minerya : en gris clair sur le fond gris foncé, jamais en noir ni en blanc pur */
-.rubrique--client:not(.rubrique--clair) .rubrique__marque img{filter:brightness(0) invert(1) drop-shadow(0 2px 12px rgba(0,0,0,.35))}
+.rubrique--client:not(.rubrique--clair):not(.rubrique--logo-tel) .rubrique__marque img{filter:brightness(0) invert(1) drop-shadow(0 2px 12px rgba(0,0,0,.35))}
 .rubrique__marque span{font-family:var(--ff-display);font-weight:var(--fw-semi);font-size:clamp(2.4rem,5vw,4rem);line-height:1;color:#fff;text-shadow:0 2px 16px rgba(0,0,0,.35)}
 .rubrique--client .parties__liste a[aria-current="page"]{background:var(--carmin);border-color:var(--carmin);color:#fff}
 .mes-pages__rien{margin:0;color:var(--noir-40)}
+/* plus de numéro de rubrique au-dessus du titre : le menu n en porte pas (Géraldine, 28/10/2026) ; la place reste, la mise en page ne bouge pas */
+.bandeau__no{visibility:hidden}
