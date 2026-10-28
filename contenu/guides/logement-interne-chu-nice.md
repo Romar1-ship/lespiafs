@@ -46,7 +46,7 @@ Sans voiture, le bus 60 s'arrête à 50 m. Il rejoint le tram ligne 2 à Magnan.
 
 Une place de parking privée dans l'enceinte est comprise dans le prix. Vous rentrez de garde et vous vous garez chez vous.
 
-L'arrivée est autonome : le code d'accès vous est communiqué avant la date d'entrée. L'état des lieux se fait avec le bailleur à une heure que vous fixez ensemble, le jour de votre prise de poste ou la veille.
+Le jour de l'entrée, nous vous accueillons sur place et vous remettons les clés. L'état des lieux se fait avec le bailleur à une heure que vous fixez ensemble, le jour de votre prise de poste ou la veille.
 
 ## Combien coûte un logement pour un semestre d'internat ?
 

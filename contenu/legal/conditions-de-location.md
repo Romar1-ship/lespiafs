@@ -66,7 +66,7 @@ Rien à payer, rien à justifier. Aucune somme n'est demandée avant la signatur
 
 - **Le paiement** : le loyer se paie d'avance, par virement, le 1er de chaque mois. Le premier mois est calculé au prorata des jours si vous entrez en cours de mois. Pour le bail mobilité, une quittance vous est remise gratuitement sur demande (article 21 de la loi du 6 juillet 1989). Pour le bail société, une facture est adressée au payeur.
 - **L'assurance** : vous assurez le logement contre les risques locatifs, comme le prévoit le bail.
-- **L'arrivée** : elle est autonome. Le code d'accès vous est donné avant la date d'entrée.
+- **L'arrivée** : nous vous accueillons sur place pour la remise des clés et l'état des lieux d'entrée, établi avec vous.
 - **Le départ** : un état des lieux de sortie est établi, que nous comparons à celui d'entrée.
 
 Le reste (durée, loyer, préavis, entretien, état des lieux) est écrit dans le bail.

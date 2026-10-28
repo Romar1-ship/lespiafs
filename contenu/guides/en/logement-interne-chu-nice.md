@@ -46,7 +46,7 @@ Without a car, bus 60 stops 50 m away. It connects with tram line 2 at Magnan.
 
 A private parking space within the grounds is included in the price. You come back from your shift and park at home.
 
-Check-in is self-service: the access code is sent to you before your move-in date. The check-in inventory is done with the landlord at a time you agree together, on the day you start your post or the day before.
+On your move-in day, we welcome you on site and hand over the keys. The check-in inventory is done with the landlord at a time you agree together, on the day you start your post or the day before.
 
 ## How much does housing for a residency semester cost?
 

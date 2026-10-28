@@ -46,7 +46,7 @@ Senza auto, l'autobus 60 ferma a 50 m. Si collega alla linea 2 del tram a Magnan
 
 Un posto auto privato all'interno della proprietà è compreso nel prezzo. Rientra dalla guardia e parcheggia a casa.
 
-L'arrivo è autonomo: il codice d'accesso Le viene comunicato prima della data d'ingresso. Il verbale di consegna si fa con il locatore a un orario concordato insieme, il giorno della Sua presa di servizio o il giorno prima.
+Il giorno dell'ingresso La accogliamo sul posto e Le consegniamo le chiavi. Il verbale di consegna si fa con il locatore a un orario concordato insieme, il giorno della Sua presa di servizio o il giorno prima.
 
 ## Quanto costa un alloggio per un semestre di specializzazione?
 

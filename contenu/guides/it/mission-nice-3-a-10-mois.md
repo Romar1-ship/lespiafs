@@ -52,7 +52,7 @@ Appena firmato il Suo ordine di missione, può chiedere la data.
 
 ## Come si svolge il primo giorno nell'alloggio?
 
-L'arrivo è autonomo: il codice d'accesso Le viene comunicato prima della data d'ingresso. Il verbale di consegna e l'inventario degli arredi sono redatti in contraddittorio con Lei al momento dell'ingresso.
+Il giorno dell'ingresso La accogliamo sul posto e Le consegniamo le chiavi. Il verbale di consegna e l'inventario degli arredi sono redatti in contraddittorio con Lei al momento dell'ingresso.
 
 La sera stessa, ha la fibra per lavorare e la biancheria per dormire.
 

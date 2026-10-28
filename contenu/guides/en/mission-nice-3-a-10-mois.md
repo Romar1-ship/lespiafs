@@ -52,7 +52,7 @@ As soon as your assignment order is signed, you can request the date.
 
 ## How does the first day in the home go?
 
-Check-in is self-service: the access code is sent to you before your move-in date. The check-in inventory and the furniture list are drawn up jointly with you when you move in.
+On your move-in day, we welcome you on site and hand over the keys. The check-in inventory and the furniture list are drawn up jointly with you when you move in.
 
 That same evening, you have fibre internet to work and linen to sleep.
 

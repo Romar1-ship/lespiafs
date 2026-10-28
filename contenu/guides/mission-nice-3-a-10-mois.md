@@ -52,7 +52,7 @@ Dès votre ordre de mission signé, vous pouvez demander la date.
 
 ## Comment se passe le premier jour dans le logement ?
 
-L'arrivée est autonome : le code d'accès vous est communiqué avant la date d'entrée. L'état des lieux d'entrée et l'inventaire du mobilier sont établis contradictoirement avec vous à l'entrée dans les lieux.
+Le jour de l'entrée, nous vous accueillons sur place et vous remettons les clés. L'état des lieux d'entrée et l'inventaire du mobilier sont établis contradictoirement avec vous à l'entrée dans les lieux.
 
 Le soir même, vous avez la fibre pour travailler et le linge pour dormir.
 

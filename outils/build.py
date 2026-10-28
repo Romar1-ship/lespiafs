@@ -325,7 +325,7 @@ def accueil():
     <a class="carte-choix mob" href="bail-mobilite/">
       <span class="k">Mission, formation, mutation</span>
       <span class="t">Bail mobilité, 1 à 10 mois</span>
-      <span class="d">77,51 m² meublés, tout compris, arrivée autonome. Pour les professionnels en mobilité à Nice.</span>
+      <span class="d">77,51 m² meublés, tout compris, accueil sur place à l'arrivée. Pour les professionnels en mobilité à Nice.</span>
       <span class="f">Voir l'offre →</span>
     </a>
   </div>
@@ -336,7 +336,7 @@ def accueil():
     <span class="sur">Location meublée à Nice</span>
     <h2>{"Un appartement vue mer à Nice, pour quelques mois ou pour les vacances" if SAISON_ACTIVE else "Un appartement vue mer à Nice, pour 1 à 10 mois"}</h2>
     <p>Sur la colline de Bellet, à l'ouest de Nice, Les Piafs des Collines est un appartement entier de 77,51 m² au premier étage d'une villa, avec deux terrasses et une vue totalement dégagée sur la Baie des Anges.</p>
-    <p><strong>En <a href="bail-mobilite/">location en bail mobilité à Nice</a></strong>, il loge pour 1 à 10 mois les professionnels en mission, en formation ou en mutation : meublé, tout compris à partir de 2 880 € par mois, avec arrivée autonome. Les centres hospitaliers niçois sont à 12 à 16 minutes en voiture, l'aéroport à 20 minutes, Monaco à 22 minutes et Sophia Antipolis à 28 minutes.</p>
+    <p><strong>En <a href="bail-mobilite/">location en bail mobilité à Nice</a></strong>, il loge pour 1 à 10 mois les professionnels en mission, en formation ou en mutation : meublé, tout compris à partir de 2 880 € par mois, avec accueil sur place à l'arrivée. Les centres hospitaliers niçois sont à 12 à 16 minutes en voiture, l'aéroport à 20 minutes, Monaco à 22 minutes et Sophia Antipolis à 28 minutes.</p>
     {PARA_SAISON if SAISON_ACTIVE else '<p>Deux vraies chambres, deux salles d\'eau, fibre, parking privé, linge fourni et ménage de sortie compris : on arrive avec sa valise. <a class="bouton azur" style="margin-top:10px" href="bail-mobilite/">Voir l\'offre bail mobilité</a></p>'}
   </div>
   {img("terrasse-vue-mer", "Terrasse de l'appartement meublé avec vue sur la Baie des Anges à Nice")}
@@ -351,7 +351,7 @@ def accueil():
          "telephone": "+33611948235", "email": MAIL},
     ]
     contenu = (tete("Location bail mobilité à Nice, appartement vue mer | Les Piafs des Collines" if not SAISON_ACTIVE else "Bail mobilité & location saisonnière à Nice, vue mer | Les Piafs des Collines",
-                    "Appartement meublé de 77 m² vue Baie des Anges à Nice en bail mobilité de 1 à 10 mois : tout compris dès 2 880 €/mois, arrivée autonome." if not SAISON_ACTIVE else
+                    "Appartement meublé de 77 m² vue Baie des Anges à Nice en bail mobilité de 1 à 10 mois : tout compris dès 2 880 €/mois, accueil sur place à l'arrivée." if not SAISON_ACTIVE else
                     "Appartement meublé de 77 m² vue Baie des Anges à Nice : bail mobilité de 1 à 10 mois, tout compris dès 2 880 €/mois, ou location saisonnière.",
                     0, "index.html", jsonld)
                + "<main>" + corps.replace("{R}", "") + "</main>" + pied("mob", 0) + SCRIPT_REVEAL + "</body></html>\n")
@@ -687,7 +687,7 @@ FAQ_MOB = [
  ("Peut-on louer moins d'un mois ?",
   "Non. La durée minimale est d'un mois."),
  ("Comment se passe l'arrivée ?",
-  "L'arrivée est autonome : le code d'accès est communiqué avant la date d'entrée. Il n'y a pas de rendez-vous de remise des clés, ni de contrainte d'horaire."),
+  "Le jour de votre entrée, nous vous accueillons sur place. Nous vous remettons les clés et nous établissons ensemble l'état des lieux d'entrée et l'inventaire du mobilier. L'heure se fixe avec vous, selon votre arrivée."),
  ("Où se trouve le logement et combien de temps pour rejoindre le centre ?",
   "Sur la colline de Bellet, à l'ouest de Nice. En voiture, hors trafic : Clinique Kantys Centre 12 min, campus Valrose 13 min, CHU Pasteur 2 15 min, Centre Antoine Lacassagne 16 min, aéroport 20 min, Monaco 22 min, Sophia Antipolis 28 min. Le bus 60 s'arrête à 50 m et rejoint le tram ligne 2 à Magnan."),
 ]
@@ -753,7 +753,7 @@ def bail_mobilite():
         ("Contrat", [("Payeur personne morale", "Bail au nom de la société, à partir de 3 mois"), ("Payeur particulier", "Bail mobilité, de 1 à 10 mois"),
                      ("Durée minimale", "1 mois"), ("Pièces", "Justificatif du motif de mobilité avant signature, pour le bail mobilité"),
                      ("Garantie", "Caution de l'employeur ou caution personnelle. Visale non mobilisable à ce niveau de loyer"),
-                     ("Facturation", "Exonérée de TVA, au nom du payeur"), ("Arrivée", "Autonome, code d'accès")]),
+                     ("Facturation", "Exonérée de TVA, au nom du payeur"), ("Arrivée", "Accueil sur place, état des lieux ensemble")]),
     ]
     icones = {"Le logement": "plan", "Énergie et confort": "energie", "Équipements": "equipement", "Contrat": "plume"}
     picto_ligne = {"Surface habitable": "plan", "Terrasses": "soleil", "Véranda buanderie": "machine", "Pièces": "porte", "Chambres": "lit",
@@ -791,7 +791,7 @@ def bail_mobilite():
   <h2 class="cache">Un appartement meublé de 77 m² à Nice</h2>
   {panneau("terrasse-vue-mer", "DEUX TERRASSES", "26 m² exposés sud, face à la mer.", "Une table pour six, sous store.", icone="soleil")}
   {panneau("chambre-parentale", "DEUX VRAIES CHAMBRES", "13,91 et 12,88 m², chacune avec son placard.", "Une salle de bain privative, une salle d'eau, un WC indépendant.", "droite", "lit")}
-  {panneau("cuisine-sejour", "ARRIVER AVEC SA VALISE", "Lit fait, linge sorti, code d'accès.", "Fibre, parking et ménage de sortie compris.", icone="valise")}
+  {panneau("cuisine-sejour", "ARRIVER AVEC SA VALISE", "Lit fait, linge sorti, accueil sur place.", "Fibre, parking et ménage de sortie compris.", icone="valise")}
   <div class="galerie" style="margin-top:70px">{gal}</div>
 </div></section>
 
