@@ -2,11 +2,29 @@
 	"$schema": "https://unpkg.com/wrangler/config-schema.json",
 	"name": "lespiafs",
 	"compatibility_date": "2026-10-23",
-	// Site entièrement statique : aucun code serveur, Cloudflare sert le dossier site/.
+	// Le site public est statique : Cloudflare sert le dossier site/ tel quel.
 	// site/_redirects est lu par Cloudflare : les anciennes adresses Wix renvoient vers les nouvelles.
+	// Le Worker (worker/index.js) ne passe en premier que pour le board : /board, /board/* et son API /board/api/.
+	"main": "./worker/index.js",
 	"assets": {
 		"directory": "./site",
-		"not_found_handling": "404-page"
+		"binding": "ASSETS",
+		"not_found_handling": "404-page",
+		"run_worker_first": ["/board", "/board/*"]
+	},
+	// Le board : application Cloudflare Access « Board Les Piafs » sur lespiafsdescollines.com/board et www (code par e-mail),
+	// créée le 28/10/2026. ClickUp : liste Roadmap Les Piafs, tâches « 🌿 Feuille de route », « 📝 Le carnet », « 🌐 Plateformes ».
+	// Secret du Worker : CLICKUP_API_TOKEN (sans lui, le board s'affiche mais ses pages vivantes répondent « board non branché »).
+	"vars": {
+		"ACCESS_TEAM": "lc-creativeagency.cloudflareaccess.com",
+		"ACCESS_AUD": "6a4da0afb8b68bd6a0d460fb0754802fd611f2db120b9ba89a7aacf02d96e777",
+		"CU_LISTE": "1500780000000918",
+		"CU_FEUILLE": "1amye9cjyhv",
+		"CU_CARNET": "1amye9cjyhw",
+		"CU_PLATEFORMES": "1amye9cjyhx",
+		"CLICKUP_MEMOIRE": "1amye9cjyhy",
+		"VALIDEURS": "geraldinepierrot@life-captures.fr",
+		"MEMBRES": "{\"geraldinepierrot@life-captures.fr\":\"Géraldine\"}"
 	},
 	// Les deux domaines sont rattachés au Worker. Cloudflare refuse de les prendre
 	// tant que la zone porte encore les enregistrements de Wix : supprimer d'abord

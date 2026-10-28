@@ -1,0 +1,96 @@
+/* Les Piafs des Collines : l'univers de la maison posé sur le gabarit LCCA. Écrit par atelier/tools/board-maison.py. */
+:root{--carmin:#0B5FA5;--creme:#FBF8F2;--noir:#24324D;--accent:#F2735F;--or-1:color-mix(in srgb,#F2735F 70%,#fff);--or-2:color-mix(in srgb,#F2735F 95%,#000)}
+body{background:var(--creme);color:var(--noir)}
+.menu .menu__barre{background:#1C2B45}
+.menu__sous{background:rgba(28,43,69,.94)}
+.menu--maison .menu__marque{padding-left:0;align-items:center;gap:.8rem}
+.menu--maison .menu__marque img{position:static;transform:none;width:auto;height:34px;max-width:200px;object-fit:contain;object-position:left center;filter:none}
+.menu--maison .menu__marque span{line-height:1;padding-top:.2em}
+.menu--maison .menu__marque:hover img{transform:none}
+.rubrique__tete h2 em,.boussole__q em{color:#0B5FA5}.boussole__q em{color:#F6D9A8}.avis{background:#FCE3DC!important;border-color:color-mix(in srgb,#FCE3DC 70%,#000 8%)!important;box-shadow:none!important}.avis::before{color:#1C2B45}.avis::after{color:color-mix(in srgb,#1C2B45 70%,transparent)}.avis .avis__b{border-color:#0B5FA5!important;color:#0B5FA5!important;background:transparent!important}.avis .avis__b:hover,.avis .avis__b--valider{background:#0B5FA5!important;color:#FBF8F2!important}
+.rubrique__tete h2{color:#1C2B45}.menu,.rubrique__tete{background:#F7F1E7!important}.rubrique__tete .bandeau__no{color:#1C2B45;opacity:.55}
+/* les blocs des pages d'offre */
+.etapes{list-style:none;margin:0;padding:0;display:grid;gap:1px;background:rgba(0,0,0,.08);counter-reset:e}
+.etapes li{background:var(--creme);padding:1.3rem 1.4rem 1.3rem 4.2rem;position:relative;counter-increment:e}
+.etapes li::before{content:counter(e);position:absolute;left:1.4rem;top:1.15rem;font-family:var(--ff-display);font-size:1.6rem;color:var(--carmin)}
+.etapes__k{display:block;font-size:.66rem;letter-spacing:.18em;text-transform:uppercase;opacity:.55}
+.etapes b{display:block;font-family:var(--ff-display);font-size:1.25rem;font-weight:600;margin:.2rem 0 .3rem}
+.etapes p{margin:0;max-width:72ch}
+.ecoute{margin:0;background:var(--noir);color:var(--creme);padding:clamp(1.4rem,3vw,2.4rem);display:grid;gap:1rem}
+.ecoute figcaption b{display:block;font-family:var(--ff-display);font-size:1.5rem;font-weight:600}
+.ecoute figcaption span{opacity:.75}
+.ecoute audio{width:100%}
+.planche{margin:0}
+.planche img{display:block;width:100%;height:auto}
+.planche figcaption{font-size:.85rem;opacity:.7;margin-top:.6rem}
+.fiche__champs{background:none}
+.fiche__c{box-shadow:0 0 0 .5px rgba(0,0,0,.12)}
+.tableau{width:100%;border-collapse:collapse;font-size:.95rem}
+.tableau th{text-align:left;font-size:.66rem;letter-spacing:.18em;text-transform:uppercase;font-weight:500;opacity:.6;padding:.6rem .8rem;border-bottom:1px solid var(--carmin)}
+.tableau td{padding:.75rem .8rem;border-bottom:1px solid rgba(0,0,0,.08);vertical-align:top}
+.tableau td:first-child{font-family:var(--ff-display);font-weight:600}
+@media(max-width:700px){.tableau{display:block;overflow-x:auto}}
+.liens-doc{display:flex;flex-wrap:wrap;gap:.8rem;margin:0}
+.liens-doc a{display:inline-block;padding:.85rem 1.4rem;border:1px solid var(--carmin);color:var(--carmin);text-decoration:none;font-size:.72rem;letter-spacing:.18em;text-transform:uppercase}
+.liens-doc a:hover{background:var(--carmin);color:var(--creme)}
+/* Le board des Piafs : les polices du site (Fraunces, Sora) et les pages vivantes (classes pi-). */
+:root{--ff-display:'Fraunces',Georgia,serif;--ff-body:'Sora',system-ui,sans-serif;--pi-azur:#0B5FA5;--pi-corail:#F2735F;--pi-nuit:#1C2B45;--pi-sable:#F7F1E7;--pi-ligne:#E3D9C8;--pi-orange:#E2A94B}
+body{font-family:var(--ff-body)}
+.pi-k{font-size:.66rem;letter-spacing:.2em;text-transform:uppercase;opacity:.6;margin:0 0 .4rem}
+.pi-h{font-family:var(--ff-display);font-weight:500;font-size:1.5rem;margin:2.4rem 0 1rem;color:var(--pi-nuit)}
+.pi-vide,.pi-aide{opacity:.7;font-size:.92rem}
+.pi-aide{margin-top:1.6rem;max-width:72ch}
+/* l'esthétique */
+.pi-charte{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:1rem;margin-top:1.4rem}
+.pi-charte figure{margin:0;background:#fff;border:1px solid var(--pi-ligne)}
+.pi-charte span{display:block;height:84px}
+.pi-charte figcaption{padding:.7rem .8rem;display:grid;gap:.15rem}
+.pi-charte code{font-size:.78rem;opacity:.7}
+.pi-charte small{font-size:.74rem;opacity:.65}
+.pi-typos{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.4rem;margin-top:1.4rem}
+.pi-typos>div{background:#fff;border:1px solid var(--pi-ligne);padding:1.4rem}
+.pi-fraunces{font-family:'Fraunces',serif;font-size:2.6rem;font-weight:500;margin:.2rem 0 .4rem;color:var(--pi-nuit)}
+.pi-sora{font-family:'Sora',sans-serif;font-size:1.3rem;margin:.6rem 0 .8rem}
+.pi-affiches{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:1.2rem;margin-top:1.4rem}
+.pi-affiches figure{margin:0;background:#fff;padding:10px;border:1px solid var(--pi-ligne)}
+.pi-affiches img{display:block;width:100%;aspect-ratio:3/4;object-fit:cover}
+.pi-affiches figcaption{font-size:.8rem;margin-top:.5rem;opacity:.75}
+/* les listes vivantes */
+.pi-groupe{margin:0 0 2.2rem}
+.pi-groupe>h3{font-family:var(--ff-display);font-weight:500;font-size:1.35rem;margin:0 0 .8rem;color:var(--pi-nuit);display:flex;align-items:baseline;gap:.6rem}
+.pi-groupe>h3 small{font-family:var(--ff-body);font-size:.75rem;opacity:.6;font-weight:400}
+.pi-liste{list-style:none;margin:0;padding:0;display:grid;gap:.6rem}
+.pi-item{background:#fff;border:1px solid var(--pi-ligne);border-left:4px solid var(--pi-ligne);padding:1rem 1.1rem;display:grid;grid-template-columns:1fr auto;gap:.4rem 1rem;align-items:start}
+.pi-item[data-etat="encours"]{border-left-color:var(--pi-orange)}
+.pi-item[data-etat="fait"]{border-left-color:#30a46c}
+.pi-item[data-etat="afaire"]{border-left-color:var(--pi-corail)}
+.pi-item b{font-family:var(--ff-display);font-weight:500;font-size:1.12rem;line-height:1.3}
+.pi-item .pi-badge{justify-self:end;font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;padding:.3rem .6rem;border-radius:999px;background:var(--pi-sable);white-space:nowrap}
+.pi-item[data-etat="fait"] .pi-badge{background:#dff3e8;color:#1d6b45}
+.pi-item[data-etat="encours"] .pi-badge{background:#fbecd2;color:#8a5a10}
+.pi-item[data-etat="afaire"] .pi-badge{background:#fde3dc;color:#a8402f}
+.pi-detail{grid-column:1/-1;font-size:.9rem}
+.pi-detail summary{cursor:pointer;opacity:.7;font-size:.8rem}
+.pi-detail h3{font-family:var(--ff-display);font-weight:500;font-size:1.05rem;margin:1rem 0 .3rem}
+.pi-detail ul,.pi-detail ol{margin:.3rem 0 .6rem;padding-left:1.2rem}
+.pi-actions{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:.5rem;margin-top:.3rem}
+.pi-btn{font:inherit;font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;padding:.6rem 1rem;border:1px solid var(--pi-azur);background:transparent;color:var(--pi-azur);cursor:pointer;text-decoration:none;display:inline-block}
+.pi-btn:hover,.pi-btn--plein{background:var(--pi-azur);color:#fff}
+.pi-btn--plein:hover{background:var(--pi-nuit);border-color:var(--pi-nuit)}
+.pi-btn--corail{border-color:var(--pi-corail);color:var(--pi-corail)}
+.pi-btn--corail:hover{background:var(--pi-corail);color:#fff}
+.pi-btn[disabled]{opacity:.5;cursor:wait}
+.pi-valide{font-size:.78rem;color:#1d6b45}
+.pi-jauge{height:10px;background:var(--pi-sable);border-radius:99px;overflow:hidden;margin:.4rem 0 1.4rem;max-width:520px}
+.pi-jauge span{display:block;height:100%;background:var(--pi-azur)}
+/* les formulaires */
+.pi-form{display:grid;gap:.5rem;max-width:720px}
+.pi-form label{font-size:.78rem;letter-spacing:.06em;margin-top:.6rem}
+.pi-form input[type=text],.pi-form input[type=date],.pi-form textarea{font:inherit;padding:.7rem .8rem;border:1px solid var(--pi-ligne);background:#fff;width:100%;box-sizing:border-box}
+.pi-form .pi-btn{justify-self:start;margin-top:1rem;padding:.9rem 1.4rem}
+.pi-choix{display:flex;flex-wrap:wrap;gap:.6rem 1.4rem}
+.pi-choix label{margin:0;font-size:.92rem;letter-spacing:0}
+.pi-ligne{display:grid;grid-template-columns:2fr 1fr 1fr;gap:1rem}
+@media(max-width:700px){.pi-ligne{grid-template-columns:1fr}.pi-item{grid-template-columns:1fr}.pi-item .pi-badge{justify-self:start}}
+.pi-message{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:var(--pi-nuit);color:#fff;padding:.8rem 1.2rem;z-index:99;font-size:.9rem;max-width:90vw}
+.pi-message.erreur{background:#a8402f}

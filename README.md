@@ -10,6 +10,8 @@ site/                ce qui est publié, et rien d'autre
   _redirects         les anciennes adresses Wix renvoient vers les nouvelles (301)
   assets/            style.css, img/, icons/
 outils/build.py      génère tout site/ ; on modifie ici, puis on relance
+outils/board.py      génère site/board/, le board privé (contenu dans board/)
+worker/              le Worker du board : /board et son API
 _source/             l'aspiration du site Wix du 23/10/2026 (HTML, texte, 119 images d'origine)
 ```
 
@@ -40,6 +42,17 @@ La liaison se fait dans le tableau de bord, car elle demande l'autorisation GitH
 | Root directory | *(racine)* |
 
 **Domaines.** `lespiafsdescollines.com` et `www.` sont rattachés au Worker (custom domains, déclarés dans `wrangler.jsonc`). Les anciens enregistrements Wix ont été supprimés le 23/10/2026. Les adresses sont courtes : Cloudflare sert `hotes.html` sous `/saisonniere/hotes`, et le générateur écrit directement ces adresses. **Ne jamais toucher aux MX, SPF et SRV : c'est la messagerie OVH.**
+
+## Le board des Piafs
+
+`lespiafsdescollines.com/board`, réservé à Géraldine : vue d'ensemble, empreinte de marque, l'offre, À faire, le carnet (guides et propositions d'articles), les plateformes, les résultats.
+
+- `python3 outils/board.py` écrit `site/board/` depuis `board/contenu.py`, sur le moteur commun `../LCCA-Studio/atelier/tools/board-maison.py`. On ne retouche jamais `site/board/` à la main.
+- Le Worker (`worker/index.js`) ne passe en premier que pour `/board` et `/board/*` ; le site public reste servi tel quel. L'API est dans `worker/board.js`.
+- **Accès** : application Cloudflare Access « Board Les Piafs » (code par e-mail), créée le 28/10/2026 sur `lespiafsdescollines.com/board` et `www`. Une seule adresse autorisée : geraldinepierrot@life-captures.fr.
+- **ClickUp** : liste Roadmap Les Piafs (`1500780000000918`), tâches mères 🌿 Feuille de route, 📝 Le carnet, 🌐 Plateformes, et la mémoire du board. Les identifiants sont dans `wrangler.jsonc`.
+- **Le secret** `CLICKUP_API_TOKEN` se pose une fois sur le Worker, au tableau de bord : Workers & Pages › `lespiafs` › Settings › Variables and Secrets › Add › Secret, nom `CLICKUP_API_TOKEN`, valeur du `.env` du vault. Sans lui, les pages vivantes répondent « board non branché ».
+- En local : `npx wrangler dev --var MODE:dev --var DEV_EMAIL:{email} --var CLICKUP_API_TOKEN:{jeton}`.
 
 ## La location saisonnière est éteinte
 

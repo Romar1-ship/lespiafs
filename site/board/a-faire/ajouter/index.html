@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Ajouter une étape · Le board des Piafs</title>
+<meta name="robots" content="noindex,nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="/assets/fonts/fonts.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,800;1,400;1,600;1,700&family=Montserrat:wght@300;400;500;600&family=Fraunces:ital,wght@0,400;0,600;1,400&family=Jost:wght@300;400;500&display=swap">
+<link rel="stylesheet" href="../../base-tokens.css">
+<link rel="stylesheet" href="../../_moteur/board.css">
+<link rel="stylesheet" href="../../atelier.css">
+<link rel="stylesheet" href="../../theme.css">
+<link rel="manifest" href="../../manifest.webmanifest" crossorigin="use-credentials">
+<meta name="theme-color" content="#24324D">
+<link rel="apple-touch-icon" href="../../assets/icones/icone-180.png">
+<meta name="apple-mobile-web-app-title" content="Les Piafs">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+</head>
+<body>
+<main>
+  <nav class="menu menu--maison" aria-label="L'Atelier"><div class="container menu__barre"><a class="menu__marque" href="../../index.html"><img src="../../assets/nom.svg" alt="Les Piafs des Collines"><span>L'Atelier</span></a><button class="menu__bouton" type="button" aria-expanded="false" aria-controls="menu-liste">Menu</button><ul class="menu__liste" id="menu-liste"><li class="menu__item"><a class="menu__lien" href="../../index.html">Vue d'ensemble<i class="menu__fleche" aria-hidden="true"></i></a><div class="menu__sous"><div class="menu__volet"><div class="menu__g" style="--lignes:2"><p class="menu__gt">Vue d'ensemble</p><ul><li><a href="../../index.html#feuille-de-route">La feuille de route</a></li><li><a href="../../index.html#etats">Les trois états</a></li></ul></div></div></div></li><li class="menu__item"><a class="menu__lien" href="../../empreinte/index.html">Empreinte de Marque<i class="menu__fleche" aria-hidden="true"></i></a><div class="menu__sous"><div class="menu__volet"><div class="menu__g" style="--lignes:3"><p class="menu__gt">La Marque</p><ul><li><a href="../../empreinte/fondations/index.html">Les fondations</a></li><li><a href="../../empreinte/esthetique/index.html">L'esthétique</a></li><li><a href="../../empreinte/outils/index.html">Les outils</a></li></ul></div></div></div></li><li class="menu__item"><a class="menu__lien" href="../../offres/index.html">L'offre<i class="menu__fleche" aria-hidden="true"></i></a><div class="menu__sous"><div class="menu__volet"><div class="menu__g" style="--lignes:2"><p class="menu__gt">Les offres</p><ul><li><a href="../../offres/bail-mobilite/index.html">Le bail mobilité</a></li><li><a href="../../offres/bail-societe/index.html">Le bail société</a></li></ul></div></div></div></li><li class="menu__item est-ici"><a class="menu__lien" href="../../a-faire/index.html">À faire<i class="menu__fleche" aria-hidden="true"></i></a><div class="menu__sous"><div class="menu__volet"><div class="menu__g" style="--lignes:2"><p class="menu__gt">À faire</p><ul><li><a href="../../a-faire/index.html">Les étapes</a></li><li><a href="../../a-faire/ajouter/index.html">Ajouter une étape</a></li></ul></div></div></div></li><li class="menu__item"><a class="menu__lien" href="../../carnet/index.html">Le carnet<i class="menu__fleche" aria-hidden="true"></i></a><div class="menu__sous"><div class="menu__volet"><div class="menu__g" style="--lignes:1"><p class="menu__gt">Le carnet</p><ul><li><a href="../../carnet/index.html">Les articles</a></li></ul></div></div></div></li><li class="menu__item"><a class="menu__lien" href="../../plateformes/index.html">Plateformes<i class="menu__fleche" aria-hidden="true"></i></a><div class="menu__sous"><div class="menu__volet"><div class="menu__g" style="--lignes:1"><p class="menu__gt">Plateformes</p><ul><li><a href="../../plateformes/index.html">Où en est chacune</a></li></ul></div></div></div></li><li class="menu__item"><a class="menu__lien" href="../../resultats/index.html">Résultats<i class="menu__fleche" aria-hidden="true"></i></a><div class="menu__sous"><div class="menu__volet"><div class="menu__g" style="--lignes:1"><p class="menu__gt">Résultats</p><ul><li><a href="../../resultats/index.html">Le score</a></li></ul></div></div></div></li></ul></div></nav>
+  <section class="rubrique" id="a-faire">
+    <div class="rubrique__tete"><div class="container">
+      <p class="bandeau__no">IV</p>
+      <h2>À <em>faire</em></h2>
+    </div></div>
+    <nav class="voisines" aria-label="Les pages"><div class="container"><a href="../../a-faire/">Les étapes</a><a class="est-ici" href="../../a-faire/ajouter/">Ajouter une étape</a></div></nav>
+    <div class="section paper pt pt--texte" id="ajouter" data-etat="foi"><div class="container"><div class="pt__tete"><p class="pt__k"><span>01</span>Ajouter une étape</p></div>
+<p class="pt__ess">Une étape, un article ou une plateforme : <em>elle arrive dans ClickUp.</em></p>
+<div class="pt__html"><form class="pi-form" id="pi-ajout"><div class="pi-choix"><label><input type="radio" name="type" value="etape" checked> Une étape</label><label><input type="radio" name="type" value="article"> Un article à proposer</label><label><input type="radio" name="type" value="plateforme"> Une plateforme</label></div><label for="a-nom">Titre</label><input type="text" id="a-nom" name="nom" required maxlength="160"><label for="a-note">Consigne ou détail <small>(facultatif)</small></label><textarea id="a-note" name="consigne" rows="6"></textarea><button class="pi-btn pi-btn--plein" type="submit">Ajouter</button></form></div></div></div>
+<script src="../../outil.js" defer></script>
+  </section>
+</main>
+<footer class="footer">
+  <p>Le board des Piafs<span class="footer__sep">·</span>Espace privé</p>
+</footer>
+<script>
+(function () {
+  var nav = document.querySelector(".menu"), liste = nav.querySelector(".menu__liste");
+  function caler() { nav.style.setProperty("--debut", Math.max(16, liste.getBoundingClientRect().left - 120) + "px"); }
+  caler(); window.addEventListener("resize", caler); document.fonts && document.fonts.ready.then(caler);
+})();
+document.querySelector(".menu__bouton").addEventListener("click", function () {
+  var nav = this.closest(".menu"), ouvert = nav.classList.toggle("ouvert");
+  this.setAttribute("aria-expanded", ouvert);
+});
+if ("serviceWorker" in navigator) navigator.serviceWorker.register("../../sw.js", { scope: "../../" });
+</script>
+<script src="../../avis.js" defer></script>
+<script src="../../cloche.js" data-base="../../" defer></script>
+<a class="haut" href="#" aria-label="Remonter en haut de la page" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg></a>
+</body>
+</html>

@@ -1,0 +1,61 @@
+/* Le board des Piafs : les polices du site (Fraunces, Sora) et les pages vivantes (classes pi-). */
+:root{--ff-display:'Fraunces',Georgia,serif;--ff-body:'Sora',system-ui,sans-serif;--pi-azur:#0B5FA5;--pi-corail:#F2735F;--pi-nuit:#1C2B45;--pi-sable:#F7F1E7;--pi-ligne:#E3D9C8;--pi-orange:#E2A94B}
+body{font-family:var(--ff-body)}
+.pi-k{font-size:.66rem;letter-spacing:.2em;text-transform:uppercase;opacity:.6;margin:0 0 .4rem}
+.pi-h{font-family:var(--ff-display);font-weight:500;font-size:1.5rem;margin:2.4rem 0 1rem;color:var(--pi-nuit)}
+.pi-vide,.pi-aide{opacity:.7;font-size:.92rem}
+.pi-aide{margin-top:1.6rem;max-width:72ch}
+/* l'esthétique */
+.pi-charte{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:1rem;margin-top:1.4rem}
+.pi-charte figure{margin:0;background:#fff;border:1px solid var(--pi-ligne)}
+.pi-charte span{display:block;height:84px}
+.pi-charte figcaption{padding:.7rem .8rem;display:grid;gap:.15rem}
+.pi-charte code{font-size:.78rem;opacity:.7}
+.pi-charte small{font-size:.74rem;opacity:.65}
+.pi-typos{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.4rem;margin-top:1.4rem}
+.pi-typos>div{background:#fff;border:1px solid var(--pi-ligne);padding:1.4rem}
+.pi-fraunces{font-family:'Fraunces',serif;font-size:2.6rem;font-weight:500;margin:.2rem 0 .4rem;color:var(--pi-nuit)}
+.pi-sora{font-family:'Sora',sans-serif;font-size:1.3rem;margin:.6rem 0 .8rem}
+.pi-affiches{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:1.2rem;margin-top:1.4rem}
+.pi-affiches figure{margin:0;background:#fff;padding:10px;border:1px solid var(--pi-ligne)}
+.pi-affiches img{display:block;width:100%;aspect-ratio:3/4;object-fit:cover}
+.pi-affiches figcaption{font-size:.8rem;margin-top:.5rem;opacity:.75}
+/* les listes vivantes */
+.pi-groupe{margin:0 0 2.2rem}
+.pi-groupe>h3{font-family:var(--ff-display);font-weight:500;font-size:1.35rem;margin:0 0 .8rem;color:var(--pi-nuit);display:flex;align-items:baseline;gap:.6rem}
+.pi-groupe>h3 small{font-family:var(--ff-body);font-size:.75rem;opacity:.6;font-weight:400}
+.pi-liste{list-style:none;margin:0;padding:0;display:grid;gap:.6rem}
+.pi-item{background:#fff;border:1px solid var(--pi-ligne);border-left:4px solid var(--pi-ligne);padding:1rem 1.1rem;display:grid;grid-template-columns:1fr auto;gap:.4rem 1rem;align-items:start}
+.pi-item[data-etat="encours"]{border-left-color:var(--pi-orange)}
+.pi-item[data-etat="fait"]{border-left-color:#30a46c}
+.pi-item[data-etat="afaire"]{border-left-color:var(--pi-corail)}
+.pi-item b{font-family:var(--ff-display);font-weight:500;font-size:1.12rem;line-height:1.3}
+.pi-item .pi-badge{justify-self:end;font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;padding:.3rem .6rem;border-radius:999px;background:var(--pi-sable);white-space:nowrap}
+.pi-item[data-etat="fait"] .pi-badge{background:#dff3e8;color:#1d6b45}
+.pi-item[data-etat="encours"] .pi-badge{background:#fbecd2;color:#8a5a10}
+.pi-item[data-etat="afaire"] .pi-badge{background:#fde3dc;color:#a8402f}
+.pi-detail{grid-column:1/-1;font-size:.9rem}
+.pi-detail summary{cursor:pointer;opacity:.7;font-size:.8rem}
+.pi-detail h3{font-family:var(--ff-display);font-weight:500;font-size:1.05rem;margin:1rem 0 .3rem}
+.pi-detail ul,.pi-detail ol{margin:.3rem 0 .6rem;padding-left:1.2rem}
+.pi-actions{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:.5rem;margin-top:.3rem}
+.pi-btn{font:inherit;font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;padding:.6rem 1rem;border:1px solid var(--pi-azur);background:transparent;color:var(--pi-azur);cursor:pointer;text-decoration:none;display:inline-block}
+.pi-btn:hover,.pi-btn--plein{background:var(--pi-azur);color:#fff}
+.pi-btn--plein:hover{background:var(--pi-nuit);border-color:var(--pi-nuit)}
+.pi-btn--corail{border-color:var(--pi-corail);color:var(--pi-corail)}
+.pi-btn--corail:hover{background:var(--pi-corail);color:#fff}
+.pi-btn[disabled]{opacity:.5;cursor:wait}
+.pi-valide{font-size:.78rem;color:#1d6b45}
+.pi-jauge{height:10px;background:var(--pi-sable);border-radius:99px;overflow:hidden;margin:.4rem 0 1.4rem;max-width:520px}
+.pi-jauge span{display:block;height:100%;background:var(--pi-azur)}
+/* les formulaires */
+.pi-form{display:grid;gap:.5rem;max-width:720px}
+.pi-form label{font-size:.78rem;letter-spacing:.06em;margin-top:.6rem}
+.pi-form input[type=text],.pi-form input[type=date],.pi-form textarea{font:inherit;padding:.7rem .8rem;border:1px solid var(--pi-ligne);background:#fff;width:100%;box-sizing:border-box}
+.pi-form .pi-btn{justify-self:start;margin-top:1rem;padding:.9rem 1.4rem}
+.pi-choix{display:flex;flex-wrap:wrap;gap:.6rem 1.4rem}
+.pi-choix label{margin:0;font-size:.92rem;letter-spacing:0}
+.pi-ligne{display:grid;grid-template-columns:2fr 1fr 1fr;gap:1rem}
+@media(max-width:700px){.pi-ligne{grid-template-columns:1fr}.pi-item{grid-template-columns:1fr}.pi-item .pi-badge{justify-self:start}}
+.pi-message{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:var(--pi-nuit);color:#fff;padding:.8rem 1.2rem;z-index:99;font-size:.9rem;max-width:90vw}
+.pi-message.erreur{background:#a8402f}

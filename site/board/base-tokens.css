@@ -1,0 +1,204 @@
+/* =====================================================================
+   LE STUDIO™ — LCCA  ·  base-tokens.css
+   Socle de design partagé par toutes les pages du funnel.
+   Source : Brand Guideline « Charte Digitale » (référence web officielle).
+   Fonts (à charger dans le <head> de chaque page) :
+   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600;1,700;1,800&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+   ===================================================================== */
+
+:root {
+  /* ── Couleurs (hex exacts Charte Digitale) ───────────────────────── */
+  --carmin:      #a70018;  /* signature, CTA, liens */
+  --cerise:      #77160f;  /* hover CTA & liens */
+  --noir:        #110703;  /* autorité : hero, preuves, footer, texte */
+  --creme:       #fefff9;  /* fond principal */
+  --gris-souris: #eae7e4;  /* fond secondaire, cards, séparateurs */
+  --gris-fonce:  #5a5450;  /* texte secondaire / muted */
+
+  /* Opacités dérivées (usage courant) */
+  --noir-80: rgba(17, 7, 3, 0.80);
+  --noir-70: rgba(17, 7, 3, 0.70);
+  --noir-55: rgba(17, 7, 3, 0.55);
+  --noir-40: rgba(17, 7, 3, 0.40);
+  --noir-12: rgba(17, 7, 3, 0.12);
+  --noir-06: rgba(17, 7, 3, 0.06);
+  --creme-80: rgba(254, 255, 249, 0.80);
+  --creme-70: rgba(254, 255, 249, 0.70);
+  --creme-55: rgba(254, 255, 249, 0.55);
+  --creme-40: rgba(254, 255, 249, 0.40);
+  --creme-15: rgba(254, 255, 249, 0.15);
+  --creme-08: rgba(254, 255, 249, 0.08);
+  --carmin-12: rgba(167, 0, 24, 0.12);
+
+  /* ── Typographie ─────────────────────────────────────────────────── */
+  --ff-display: 'Playfair Display', Georgia, 'Times New Roman', serif;
+  --ff-body:    'Montserrat', system-ui, -apple-system, 'Segoe UI', sans-serif;
+
+  /* Échelle fluide (mobile → desktop, calée sur la charte px) */
+  --fs-hero:    clamp(2.5rem, 6vw + 0.5rem, 3.75rem); /* grand titre hero */
+  --fs-h1:      clamp(2.25rem, 5vw, 3.5rem);          /* 36 → 56 */
+  --fs-h2:      clamp(1.75rem, 3.5vw, 2.5rem);        /* 28 → 40 */
+  --fs-h3:      clamp(1.375rem, 2.4vw, 1.75rem);      /* 22 → 28 */
+  --fs-lg:      clamp(1.125rem, 1.8vw, 1.375rem);
+  --fs-body:    clamp(1rem, 0.6vw + 0.9rem, 1.0625rem); /* 16 → 17 */
+  --fs-cta:     clamp(0.875rem, 0.4vw + 0.8rem, 0.9375rem); /* 14 → 15 */
+  --fs-caption: clamp(0.75rem, 0.4vw + 0.68rem, 0.8125rem); /* 12 → 13 */
+  --fs-eyebrow: 0.8125rem;
+
+  --fw-hero: 800;
+  --fw-h1:   800;
+  --fw-h2:   700;
+  --fw-h3:   600;
+  --fw-light: 300;
+  --fw-med:  500;
+  --fw-semi: 600;
+
+  --lh-tight: 1.1;
+  --lh-title: 1.15;
+  --lh-body:  1.7;
+
+  --ls-caps: 0.08em;  /* boutons / eyebrows */
+  --ls-wide: 0.15em;
+  --ls-tight: -0.02em;
+
+  /* ── Espacements fluides ─────────────────────────────────────────── */
+  --space-3xs: clamp(0.25rem, 0.5vw, 0.375rem);
+  --space-2xs: clamp(0.5rem, 1vw, 0.75rem);
+  --space-xs:  clamp(0.75rem, 1.5vw, 1rem);
+  --space-sm:  clamp(1rem, 2vw, 1.5rem);
+  --space-md:  clamp(1.75rem, 3.5vw, 2.75rem);
+  --space-lg:  clamp(2.75rem, 5vw, 4.5rem);
+  --space-xl:  clamp(4rem, 8vw, 7rem);
+
+  /* ── Formes & structure (Charte Digitale — Composants UI) ────────── */
+  --radius-btn:  2px;                          /* « presque sharp — cohérent luxe » */
+  --radius-card: 4px;
+  --shadow-card: 0 2px 8px rgba(17, 7, 3, 0.06);
+  --border-hair: 1px solid var(--gris-souris); /* séparateurs / bordures */
+
+  --container: 1100px;
+  --container-narrow: 760px;
+  --measure: 62ch;
+}
+
+/* ── RESET ─────────────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+body {
+  font-family: var(--ff-body);
+  font-weight: var(--fw-light);
+  font-size: var(--fs-body);
+  line-height: var(--lh-body);
+  color: var(--noir);
+  background: var(--creme);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+img, svg { display: block; max-width: 100%; }
+a { color: inherit; text-decoration: none; }
+button { font: inherit; cursor: pointer; }
+
+/* ── TYPO DE BASE ──────────────────────────────────────────────────── */
+h1, h2, h3 { font-family: var(--ff-display); letter-spacing: var(--ls-tight); text-wrap: balance; }
+h1 { font-size: var(--fs-h1); font-weight: var(--fw-h1); line-height: var(--lh-title); }
+h2 { font-size: var(--fs-h2); font-weight: var(--fw-h2); line-height: var(--lh-title); }
+h3 { font-size: var(--fs-h3); font-weight: var(--fw-h3); line-height: 1.2; }
+strong, b { font-weight: var(--fw-med); }
+em { font-style: italic; }
+
+/* ── UTILITAIRES LAYOUT ────────────────────────────────────────────── */
+.container { width: min(90%, var(--container)); margin-inline: auto; }
+.container--narrow { width: min(90%, var(--container-narrow)); margin-inline: auto; }
+section { padding: var(--space-xl) 0; }
+.measure { max-width: var(--measure); }
+.sr-only {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+}
+
+/* Fonds de section (rôles Charte Digitale) */
+.bg-creme { background: var(--creme); color: var(--noir); }
+.bg-gris  { background: var(--gris-souris); color: var(--noir); }
+.bg-noir  { background: var(--noir); color: var(--creme); }
+.bg-carmin{ background: var(--carmin); color: var(--creme); }
+
+/* ── EYEBROW / LABEL ───────────────────────────────────────────────── */
+.eyebrow {
+  display: block;
+  font-family: var(--ff-body);
+  font-weight: var(--fw-med);
+  font-size: var(--fs-eyebrow);
+  letter-spacing: var(--ls-wide);
+  text-transform: uppercase;
+  color: var(--carmin);
+  margin-bottom: var(--space-sm);
+}
+.bg-noir .eyebrow, .bg-carmin .eyebrow { color: var(--carmin); }
+.bg-carmin .eyebrow { color: var(--creme-70); }
+
+/* Filet signature (48px carmin) */
+.divider { width: 48px; height: 2px; background: var(--carmin); border: none; }
+.rule { width: 100%; height: 1px; background: var(--gris-souris); border: none; }
+
+/* ── BOUTONS (Charte Digitale — Boutons CTA) ───────────────────────── */
+.btn {
+  display: inline-block;
+  font-family: var(--ff-body);
+  font-weight: var(--fw-med);
+  font-size: var(--fs-cta);
+  letter-spacing: var(--ls-caps);
+  text-transform: uppercase;
+  padding: 16px 32px;
+  border: 1px solid transparent;
+  border-radius: var(--radius-btn);
+  transition: background-color 0.22s ease, color 0.22s ease, border-color 0.22s ease;
+}
+.btn--primary { background: var(--carmin); color: var(--creme); }
+.btn--primary:hover { background: var(--cerise); color: var(--creme); }
+.btn--dark { background: var(--noir); color: var(--creme); }
+.btn--dark:hover { background: #24120b; color: var(--creme); }
+.btn--outline { background: transparent; color: currentColor; border-color: currentColor; }
+.btn--outline:hover { background: var(--carmin); border-color: var(--carmin); color: var(--creme); }
+.btn[disabled], .btn--disabled { background: var(--gris-souris); color: var(--gris-fonce); pointer-events: none; }
+@media (max-width: 600px) { .btn { padding: 14px 24px; width: 100%; text-align: center; } }
+
+/* Lien texte discret */
+.link {
+  color: var(--carmin);
+  font-weight: var(--fw-med);
+  transition: color 0.2s ease;
+}
+.link:hover { color: var(--cerise); text-decoration: underline; text-underline-offset: 3px; }
+
+/* ── CARD (Charte Digitale — Cards) ────────────────────────────────── */
+.card {
+  background: var(--creme);
+  border: var(--border-hair);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-card);
+  padding: var(--space-md);
+}
+
+/* ── GARDE-FOUS MOBILE (petits écrans) ─────────────────────────────── */
+body { overflow-x: hidden; }
+@media (max-width: 560px) {
+  .container, .container--narrow { width: 90%; }
+  .nav__inner { gap: var(--space-2xs); }
+  .nav__cta { padding: 0.45em 0.7em !important; font-size: 0.56rem !important; letter-spacing: 0.04em !important; }
+  .nav__logo img { height: 20px !important; }
+  /* Titres qui tiennent dans la largeur mobile */
+  .hero__title { font-size: clamp(1.9rem, 8.6vw, 2.55rem) !important; letter-spacing: -0.02em !important; }
+  .hero__kicker { flex-wrap: wrap; }
+  .hero__kicker span { font-size: 0.56rem !important; letter-spacing: 0.1em !important; }
+  .section-title, .cta__title, .proof__title { font-size: clamp(1.6rem, 7vw, 2.1rem) !important; }
+  .pull__q { font-size: clamp(1.5rem, 6.5vw, 2rem) !important; }
+  .stat__num { font-size: clamp(4.5rem, 32vw, 8rem) !important; }
+  .hero__title, .hero__sub, .pull__q, .cta__title, .stat__text, .proof__title { overflow-wrap: break-word; }
+}
+
+/* ── RÉVÉLATION AU SCROLL (accessible) ─────────────────────────────── */
+.reveal { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: no-preference) {
+  .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease-out, transform 0.6s ease-out; }
+  .reveal.is-visible { opacity: 1; transform: none; }
+}
