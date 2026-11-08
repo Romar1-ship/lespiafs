@@ -47,7 +47,7 @@ Trovare un alloggio stabile richiede tempo: visite, pratica, garanzie. Un contra
 
 Scopre i quartieri, prova i tragitti verso Monaco, poi sceglie dove stabilirsi in seguito.
 
-Se è assunto da un nuovo datore di lavoro, verifichi il Suo motivo prima di firmare: la legge prevede il trasferimento professionale e la missione temporanea, non l'assunzione in quanto tale, e il contratto a nome del Suo datore di lavoro resta possibile a partire da 3 mesi ([le due strade sono spiegate qui](/it/guides/bail-mobilite-nizza-guida-completa)).
+Se è assunto da un nuovo datore di lavoro, verifichi il Suo motivo prima di firmare: la legge prevede il trasferimento professionale e la missione temporanea, non l'assunzione in quanto tale ([il motivo e il pagamento da parte del datore di lavoro sono spiegati qui](/it/guides/bail-mobilite-nizza-guida-completa)).
 
 ## Com'è l'appartamento?
 

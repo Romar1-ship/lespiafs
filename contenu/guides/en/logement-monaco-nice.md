@@ -47,7 +47,7 @@ Finding a long-term home takes time: viewings, application, guarantees. A lease 
 
 You discover the neighbourhoods, you test your commute to Monaco, then you choose where to settle next.
 
-If you are hired by a new employer, check your reason before signing: the law covers professional transfer and temporary assignment, not hiring as such, and the lease in your employer's name remains possible from 3 months ([both routes are explained here](/en/guides/bail-mobilite-nice-complete-guide)).
+If you are hired by a new employer, check your reason before signing: the law covers professional transfer and temporary assignment, not hiring as such ([the reason and payment by your employer are explained here](/en/guides/bail-mobilite-nice-complete-guide)).
 
 ## What is the apartment like?
 

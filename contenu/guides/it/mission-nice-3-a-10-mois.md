@@ -11,7 +11,7 @@ La Sua azienda La invia a Nizza per qualche mese. Oppure è trasferito, e la Sua
 
 Ha un obiettivo: essere operativo dal primo giorno. Questa guida segue l'ordine della Sua partenza: cosa sistemare prima, il giorno dell'arrivo, poi le prime settimane.
 
-Se paga Lei, firma un *bail mobilité*, un contratto di locazione arredata francese da 1 a 10 mesi; se paga il Suo datore di lavoro, il contratto è intestato alla società: entrambi sono spiegati nella [guida completa al bail mobilité](/it/guides/bail-mobilite-nizza-guida-completa).
+Lei firma un *bail mobilité*, un contratto di locazione arredata francese da 1 a 10 mesi, sia che paghi Lei sia che il Suo datore di lavoro paghi il canone per Lei: è spiegato nella [guida completa al bail mobilité](/it/guides/bail-mobilite-nizza-guida-completa).
 
 ## Quanto costa un alloggio arredato a Nizza per una missione?
 
@@ -19,9 +19,9 @@ Per l'appartamento di Les Piafs des Collines, al mese, spese comprese:
 
 | Durata | Prezzo al mese |
 |---|---|
-| 1-2 mesi | 3.600 € |
-| 3-6 mesi | 3.200 € |
-| 7-10 mesi | 2.880 € |
+| 1-10 mesi | 3.650 € |
+
+Il prezzo è lo stesso per tutte le durate: canone di 3.475 € e forfait spese di 175 €, biancheria e pulizie comprese. Per un contratto di 10 mesi, l'ultimo mese di canone è offerto. Lo sconto è concesso una sola volta per contratto e non modifica il canone del contratto.
 
 Per un ufficio acquisti, significa una sola voce di spesa al mese. Nessun abbonamento da attivare, nessuna bolletta energetica da rifatturare.
 
@@ -36,7 +36,7 @@ Per un bail mobilité, il documento che attesta il Suo motivo, a seconda del cas
 
 Si aggiungono il Suo **documento d'identità** e la **garanzia** scelta.
 
-Per un contratto a nome della società: i recapiti della struttura che paga e il nome dell'occupante.
+Se paga il Suo datore di lavoro: la sua lettera di presa in carico, con i recapiti della struttura che paga.
 
 Appena firmato il Suo ordine di missione, può chiedere la data.
 
@@ -52,7 +52,7 @@ Appena firmato il Suo ordine di missione, può chiedere la data.
 
 ## Come si svolge il primo giorno nell'alloggio?
 
-Il giorno dell'ingresso La accogliamo sul posto e Le consegniamo le chiavi. Il verbale di consegna e l'inventario degli arredi sono redatti in contraddittorio con Lei al momento dell'ingresso.
+Il giorno dell'ingresso il locatore Le consegna le chiavi. Il verbale di consegna e l'inventario degli arredi sono redatti in contraddittorio con Lei al momento dell'ingresso.
 
 La sera stessa, ha la fibra per lavorare e la biancheria per dormire.
 
@@ -91,7 +91,7 @@ Le due terrazze, da 10,58 e 15,75 m², sono di fronte alla Baia degli Angeli. Un
 - Una seconda camera che accoglie la Sua famiglia se La raggiunge.
 - Una cucina con isola, piano a induzione, forno, microonde, lavastoviglie e frigorifero-congelatore.
 - Una veranda lavanderia con lavatrice e asciugatrice.
-- Pulizia finale compresa nel prezzo mensile.
+- Pulizie due volte al mese, comprese nel prezzo mensile.
 
 ## Come preparare la richiesta di alloggio?
 

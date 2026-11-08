@@ -325,7 +325,7 @@ def accueil():
     <a class="carte-choix mob" href="bail-mobilite/">
       <span class="k">Mission, formation, mutation</span>
       <span class="t">Bail mobilité, 1 à 10 mois</span>
-      <span class="d">77,51 m² meublés, tout compris, accueil sur place à l'arrivée. Pour les professionnels en mobilité à Nice.</span>
+      <span class="d">77,51 m² meublés, charges comprises, linge et ménage inclus. Pour les professionnels en mobilité à Nice.</span>
       <span class="f">Voir l'offre →</span>
     </a>
   </div>
@@ -336,8 +336,8 @@ def accueil():
     <span class="sur">Location meublée à Nice</span>
     <h2>{"Un appartement vue mer à Nice, pour quelques mois ou pour les vacances" if SAISON_ACTIVE else "Un appartement vue mer à Nice, pour 1 à 10 mois"}</h2>
     <p>Sur la colline de Bellet, à l'ouest de Nice, Les Piafs des Collines est un appartement entier de 77,51 m² au premier étage d'une villa, avec deux terrasses et une vue totalement dégagée sur la Baie des Anges.</p>
-    <p><strong>En <a href="bail-mobilite/">location en bail mobilité à Nice</a></strong>, il loge pour 1 à 10 mois les professionnels en mission, en formation ou en mutation : meublé, tout compris à partir de 2 880 € par mois, avec accueil sur place à l'arrivée. Les centres hospitaliers niçois sont à 12 à 16 minutes en voiture, l'aéroport à 20 minutes, Monaco à 22 minutes et Sophia Antipolis à 28 minutes.</p>
-    {PARA_SAISON if SAISON_ACTIVE else '<p>Deux vraies chambres, deux salles d\'eau, fibre, parking privé, linge fourni et ménage de sortie compris : on arrive avec sa valise. <a class="bouton azur" style="margin-top:10px" href="bail-mobilite/">Voir l\'offre bail mobilité</a></p>'}
+    <p><strong>En <a href="bail-mobilite/">location en bail mobilité à Nice</a></strong>, il loge pour 1 à 10 mois les professionnels en mission, en formation ou en mutation : meublé, 3 650 € par mois charges comprises, linge et ménage inclus. Les centres hospitaliers niçois sont à 12 à 16 minutes en voiture, l'aéroport à 20 minutes, Monaco à 22 minutes et Sophia Antipolis à 28 minutes.</p>
+    {PARA_SAISON if SAISON_ACTIVE else '<p>Deux vraies chambres, deux salles d\'eau, fibre, parking privé, linge fourni et ménage inclus : on arrive avec sa valise. <a class="bouton azur" style="margin-top:10px" href="bail-mobilite/">Voir l\'offre bail mobilité</a></p>'}
   </div>
   {img("terrasse-vue-mer", "Terrasse de l'appartement meublé avec vue sur la Baie des Anges à Nice")}
 </div></div></section>"""
@@ -351,8 +351,8 @@ def accueil():
          "telephone": "+33611948235", "email": MAIL},
     ]
     contenu = (tete("Location bail mobilité à Nice, appartement vue mer | Les Piafs des Collines" if not SAISON_ACTIVE else "Bail mobilité & location saisonnière à Nice, vue mer | Les Piafs des Collines",
-                    "Appartement meublé de 77 m² vue Baie des Anges à Nice en bail mobilité de 1 à 10 mois : tout compris dès 2 880 €/mois, accueil sur place à l'arrivée." if not SAISON_ACTIVE else
-                    "Appartement meublé de 77 m² vue Baie des Anges à Nice : bail mobilité de 1 à 10 mois, tout compris dès 2 880 €/mois, ou location saisonnière.",
+                    "Appartement meublé de 77 m² vue Baie des Anges à Nice en bail mobilité de 1 à 10 mois : 3 650 € par mois charges comprises, linge et ménage inclus." if not SAISON_ACTIVE else
+                    "Appartement meublé de 77 m² vue Baie des Anges à Nice : bail mobilité de 1 à 10 mois, 3 650 € par mois charges comprises, ou location saisonnière.",
                     0, "index.html", jsonld)
                + "<main>" + corps.replace("{R}", "") + "</main>" + pied("mob", 0) + SCRIPT_REVEAL + "</body></html>\n")
     ecrire("index.html", propre(contenu))
@@ -677,17 +677,17 @@ FAQ_MOB = [
  ("Qui peut louer en bail mobilité à Nice ?",
   "Une personne en formation professionnelle, en études supérieures, en apprentissage, en stage, en service civique, en mutation professionnelle ou en mission temporaire. Le justificatif du motif est demandé avant la signature du bail."),
  ("Mon employeur peut-il payer le loyer ?",
-  "Oui. Quand une société, une agence de relocation, un assureur ou une production paie, le logement se loue par un bail au nom de la structure, à partir de 3 mois, avec une facture à son nom. Aucun justificatif de motif n'est alors demandé."),
+  "Oui. Quand l'employeur, une agence de relocation ou une production règle le loyer, le bail est signé par la personne logée, avec la lettre de prise en charge du payeur. Le payeur vire le loyer avec la référence du bail, et la quittance au nom du locataire mentionne le payeur."),
  ("Que comprend le loyer ?",
-  "Tout : charges, électricité, eau, climatisation, fibre, place de parking privée, accès à la piscine, linge de lit et de toilette, kit d'arrivée et ménage de sortie. Le locataire ne reçoit aucune facture d'énergie."),
+  "Le loyer et le forfait de charges (eau, électricité, climatisation, fibre, parking, piscine partagée), le linge de lit et de toilette fourni avec rechange, et le ménage deux fois par mois. Une bouteille de vin de Bellet vous attend à votre arrivée. Le locataire ne reçoit aucune facture d'énergie."),
  ("Combien coûte le bail mobilité ?",
-  "2 880 € par mois pour 7 à 10 mois, 3 200 € par mois pour 3 à 6 mois et 3 600 € par mois pour 1 à 2 mois, tout compris."),
+  "3 650 € par mois, charges comprises, pour toutes les durées : loyer de 3 475 € et forfait de charges de 175 €. Pour un bail de 10 mois, le dernier mois de loyer est offert. Cette remise est accordée une seule fois, par bail, et ne modifie pas le loyer du bail."),
  ("La garantie Visale est-elle acceptée ?",
   "Visale n'est pas mobilisable à ce niveau de loyer. La garantie prend la forme d'une caution de l'employeur ou d'une caution personnelle."),
  ("Peut-on louer moins d'un mois ?",
   "Non. La durée minimale est d'un mois."),
  ("Comment se passe l'arrivée ?",
-  "Le jour de votre entrée, nous vous accueillons sur place. Nous vous remettons les clés et nous établissons ensemble l'état des lieux d'entrée et l'inventaire du mobilier. L'heure se fixe avec vous, selon votre arrivée."),
+  "À votre entrée, le bailleur remet les clés et établit avec vous l'état des lieux d'entrée et l'inventaire du mobilier. L'heure se fixe avec vous."),
  ("Où se trouve le logement et combien de temps pour rejoindre le centre ?",
   "Sur la colline de Bellet, à l'ouest de Nice. En voiture, hors trafic : Clinique Kantys Centre 12 min, campus Valrose 13 min, CHU Pasteur 2 15 min, Centre Antoine Lacassagne 16 min, aéroport 20 min, Monaco 22 min, Sophia Antipolis 28 min. Le bus 60 s'arrête à 50 m et rejoint le tram ligne 2 à Magnan."),
 ]
@@ -744,23 +744,23 @@ def bail_mobilite():
                          ("Véranda buanderie", "4,95 m²"), ("Pièces", "3, dont 2 chambres"), ("Chambres", "13,91 m² et 12,88 m²"),
                          ("Salles d'eau", "2, dont 1 privative avec douche à l'italienne"), ("WC", "1 indépendant"),
                          ("Situation", "1er étage d'une villa, logement traversant"), ("Vue", "Baie des Anges, dégagée")]),
-        ("Énergie et confort", [("DPE", "C en énergie, A en climat, valable jusqu'au 26/09/2036"), ("Coût énergie estimé", "850 à 1 210 € par an, inclus dans le loyer"),
+        ("Énergie et confort", [("DPE", "C en énergie, A en climat, valable jusqu'au 26/09/2036"), ("Coût énergie estimé", "850 à 1 210 € par an, inclus dans le forfait de charges"),
                                 ("Chauffage et climatisation", "Pompe à chaleur, climatisation réversible"), ("Internet", "Fibre")]),
         ("Équipements", [("Cuisine", "Îlot à induction, four, micro-ondes, lave-vaisselle, réfrigérateur-congélateur"),
                          ("Linge", "Lave-linge, sèche-linge, fer à repasser"), ("Literie", "Draps, oreillers, couettes d'été et d'hiver, linge de toilette fournis"),
                          ("Extérieur", "Table à rallonge 6 personnes sous store électrique, plancha"), ("Stationnement", "1 place privée dans l'enceinte"),
                          ("Piscine", "Partagée, selon horaires"), ("Famille", "Chaise haute, lit parapluie, cache-prises sur demande")]),
-        ("Contrat", [("Payeur personne morale", "Bail au nom de la société, à partir de 3 mois"), ("Payeur particulier", "Bail mobilité, de 1 à 10 mois"),
-                     ("Durée minimale", "1 mois"), ("Pièces", "Justificatif du motif de mobilité avant signature, pour le bail mobilité"),
+        ("Contrat", [("Bail", "Bail mobilité, de 1 à 10 mois, signé par la personne logée"), ("Payeur", "Le locataire, ou son employeur avec une lettre de prise en charge"),
+                     ("Durée minimale", "1 mois"), ("Pièces", "Justificatif du motif de mobilité avant signature"),
                      ("Garantie", "Caution de l'employeur ou caution personnelle. Visale non mobilisable à ce niveau de loyer"),
-                     ("Facturation", "Exonérée de TVA, au nom du payeur"), ("Arrivée", "Accueil sur place, état des lieux ensemble")]),
+                     ("Loyer", "Exonéré de TVA (art. 261 D 4° du CGI). Quittance au nom du locataire, qui mentionne le payeur"), ("Arrivée", "Remise des clés avec le bailleur, état des lieux ensemble")]),
     ]
     icones = {"Le logement": "plan", "Énergie et confort": "energie", "Équipements": "equipement", "Contrat": "plume"}
     picto_ligne = {"Surface habitable": "plan", "Terrasses": "soleil", "Véranda buanderie": "machine", "Pièces": "porte", "Chambres": "lit",
                    "Salles d'eau": "douche", "WC": "douche", "Situation": "maison", "Vue": "soleil", "DPE": "energie",
                    "Coût énergie estimé": "facture", "Chauffage et climatisation": "clim", "Internet": "wifi", "Cuisine": "cuisine",
                    "Linge": "machine", "Literie": "lit", "Extérieur": "table", "Stationnement": "parking", "Piscine": "piscine",
-                   "Famille": "personne", "Payeur personne morale": "societe", "Payeur particulier": "personne", "Durée minimale": "calendrier",
+                   "Famille": "personne", "Bail": "plume", "Payeur": "societe", "Loyer": "facture", "Durée minimale": "calendrier",
                    "Garantie": "cle", "Facturation": "facture", "Arrivée": "valise"}
     fiche_html = "".join(f'<div class="fiche-bloc"><h3>{pic(icones[t])}{E(t)}</h3><dl>' + "".join(
         f'<dt>{pic(picto_ligne.get(k, "plume" if t == "Contrat" else "plan"), "pic-s")}{E(k)}</dt><dd>{E(v)}</dd>' for k, v in lignes) + "</dl></div>" for t, lignes in fiche)
@@ -783,7 +783,7 @@ def bail_mobilite():
   <div class="geants">
     <div>{pic("hopital")}<b>15<small>min</small></b><span>du CHU Pasteur</span></div>
     <div>{pic("soleil")}<b>26<small>m<sup>2</sup></small></b><span>de terrasses vue mer</span></div>
-    <div>{pic("facture")}<b>1</b><span>facture, tout compris</span></div>
+    <div>{pic("facture")}<b>1</b><span>paiement par mois</span></div>
   </div>
 </div></section>
 
@@ -791,19 +791,18 @@ def bail_mobilite():
   <h2 class="cache">Un appartement meublé de 77 m² à Nice</h2>
   {panneau("terrasse-vue-mer", "DEUX TERRASSES", "26 m² exposés sud, face à la mer.", "Une table pour six, sous store.", icone="soleil")}
   {panneau("chambre-parentale", "DEUX VRAIES CHAMBRES", "13,91 et 12,88 m², chacune avec son placard.", "Une salle de bain privative, une salle d'eau, un WC indépendant.", "droite", "lit")}
-  {panneau("cuisine-sejour", "ARRIVER AVEC SA VALISE", "Lit fait, linge sorti, accueil sur place.", "Fibre, parking et ménage de sortie compris.", icone="valise")}
+  {panneau("cuisine-sejour", "ARRIVER AVEC SA VALISE", "Linge de lit et de toilette fourni, ménage inclus.", "Remise des clés avec le bailleur.", icone="valise")}
   <div class="galerie" style="margin-top:70px">{gal}</div>
 </div></section>
 
 <section class="azur" id="prix"><div class="wrap prix-grille">
-  <div><span class="sur">Prix du bail mobilité à Nice, tout compris</span>
-  <h2 class="phrase-prix">Plus vous restez, moins vous payez : <em>720&nbsp;€ de moins par mois</em> sur 7&nbsp;à&nbsp;10&nbsp;mois.</h2></div>
+  <div><span class="sur">Prix du bail mobilité à Nice, charges comprises</span>
+  <h2 class="phrase-prix">Un seul prix, de 1 à 10&nbsp;mois. <em>Bail de 10&nbsp;mois : le dernier mois de loyer est offert.</em></h2></div>
   <div><div class="montants">
-    <div><span>{pic("calendrier", "pic-s")}1 à 2 mois</span><b>3 600 €<i>/ mois</i></b></div>
-    <div><span>{pic("calendrier", "pic-s")}3 à 6 mois</span><b>3 200 €<i>/ mois</i></b></div>
-    <div><span>{pic("calendrier", "pic-s")}7 à 10 mois</span><b>2 880 €<i>/ mois</i></b></div>
+    <div><span>{pic("calendrier", "pic-s")}1 à 10 mois</span><b>3 650 €<i>/ mois</i></b></div>
+    <div><span>{pic("calendrier", "pic-s")}Bail de 10 mois</span><b>Offert<i>/ dernier mois</i></b></div>
   </div>
-  <p class="note">Par mois. Charges, énergie, fibre, parking, linge et ménage de sortie compris. Facture exonérée de TVA.</p></div>
+  <p class="note">Loyer de 3 475 € et forfait de charges de 175 € (eau, électricité, climatisation, fibre, parking, piscine partagée). Linge de lit et de toilette fourni, ménage deux fois par mois. La remise de 10 mois est accordée une seule fois, par bail, et ne modifie pas le loyer du bail. Loyer exonéré de TVA (art. 261 D 4° du CGI).</p></div>
 </div></section>
 
 <section class="sable" id="acces"><div class="wrap">
@@ -820,10 +819,10 @@ def bail_mobilite():
 </div></section>
 
 <section class="blanc" id="contrat"><div class="wrap">
-  <span class="sur">Contrat</span><h2>Bail mobilité ou bail société</h2>
+  <span class="sur">Contrat</span><h2>Un bail mobilité, signé par la personne logée</h2>
   <div class="deux-formules">
-    <div>{pic("societe")}<h3>L'employeur paie</h3><p>Bail au nom de la société, dès 3 mois.<br>Aucun justificatif de motif.</p></div>
-    <div>{pic("personne")}<h3>Le locataire paie</h3><p>Bail mobilité, de 1 à 10 mois.<br>Justificatif de mobilité, caution employeur ou personnelle.</p></div>
+    <div>{pic("personne")}<h3>Vous payez</h3><p>Bail mobilité, de 1 à 10 mois.<br>Justificatif du motif avant signature, caution personnelle.</p></div>
+    <div>{pic("societe")}<h3>Votre employeur paie</h3><p>Vous signez le bail, il vire le loyer avec la référence du bail.<br>Lettre de prise en charge, quittance à votre nom qui mentionne le payeur.</p></div>
   </div>
   <p class="note droit">Le contrat est régi par le droit français et rédigé en français. Les traductions sont fournies à titre d'information.</p>
 </div></section>
@@ -857,18 +856,18 @@ if(!matchMedia('(prefers-reduced-motion: reduce)').matches)setInterval(()=>{{if(
   <p>Les dates, et qui paie le loyer. Réponse avec une date d'entrée ferme.</p>
   {formulaire("Demande bail mobilité",
     '<div><label for="ent">Date d\'entrée souhaitée</label><input id="ent" name="Entrée" type="date"></div>'
-    '<div><label for="duree">Durée</label><select id="duree" name="Durée"><option>1 à 2 mois</option><option>3 à 6 mois</option><option>7 à 10 mois</option></select></div>'
-    '<div><label for="payeur">Qui paie le loyer ?</label><select id="payeur" name="Payeur"><option>Mon employeur</option><option>Une agence de relocation</option><option>Un assureur</option><option>Une production</option><option>Moi-même</option></select></div>'
-    '<div><label for="motif">Motif du séjour</label><select id="motif" name="Motif"><option>Mission temporaire</option><option>Formation</option><option>Mutation</option><option>Stage</option><option>Études supérieures</option><option>Relogement après sinistre</option><option>Autre</option></select></div>'
+    '<div><label for="duree">Durée</label><select id="duree" name="Durée"><option>1 à 3 mois</option><option>4 à 9 mois</option><option>10 mois</option></select></div>'
+    '<div><label for="payeur">Qui paie le loyer ?</label><select id="payeur" name="Payeur"><option>Moi-même</option><option>Mon employeur</option><option>Une agence de relocation</option><option>Une production</option></select></div>'
+    '<div><label for="motif">Motif du séjour</label><select id="motif" name="Motif"><option>Mission temporaire</option><option>Formation</option><option>Mutation</option><option>Stage</option><option>Études supérieures</option><option>Autre</option></select></div>'
     '<div class="plein"><label for="org">Société ou établissement</label><input id="org" name="Société / établissement"></div>')}
   <p class="note" style="margin-top:18px">Ou directement : <a href="mailto:{MAIL}">{MAIL}</a> · <a href="tel:{TEL_LIEN}">{TEL}</a></p>
 </div></section>"""
     page("bail-mobilite/index.html", "Location bail mobilité Nice · Meublé 77 m² vue mer | Les Piafs des Collines",
-         "Location meublée en bail mobilité à Nice : 77 m² vue Baie des Anges, 2 chambres, parking, fibre. De 1 à 10 mois, tout compris dès 2 880 €/mois.",
+         "Location meublée en bail mobilité à Nice : 77 m² vue Baie des Anges, 2 chambres, parking, fibre. De 1 à 10 mois, 3 650 € par mois charges comprises.",
          "mob", "", corps, SCRIPT_GALERIE, image="hero-baie", jsonld=[
             {"@context": "https://schema.org", "@type": "Apartment",
              "name": "Location en bail mobilité à Nice, Les Piafs des Collines",
-             "description": "Appartement meublé de 77,51 m² avec vue sur la Baie des Anges, loué en bail mobilité de 1 à 10 mois, tout compris à partir de 2 880 € par mois.",
+             "description": "Appartement meublé de 77,51 m² avec vue sur la Baie des Anges, loué en bail mobilité de 1 à 10 mois, 3 650 € par mois charges comprises, linge et ménage inclus.",
              "url": BASE + "/bail-mobilite/", "address": ADRESSE_LD,
              "floorSize": {"@type": "QuantitativeValue", "value": 77.51, "unitCode": "MTK"}, "numberOfRooms": 3, "numberOfBedrooms": 2, "numberOfBathroomsTotal": 2,
              "amenityFeature": [{"@type": "LocationFeatureSpecification", "name": n, "value": True} for n in
@@ -997,7 +996,7 @@ VISUELS = {
     "logement-monaco-nice": ("affiche-monaco-broders", "nuit", ("baie-des-anges", 4),
         [("22", "min de Monaco en voiture", "couronne"), ("1 sur 4", "salarié du privé de Monaco vit à Nice", "personne"), ("20", "min de l'aéroport", "avion")]),
     "mission-nice-3-a-10-mois": ("affiche-chanteau-nice-digne", "ocre", ("tram-ligne-2", 6),
-        [("3 à 10", "mois de mission", "calendrier"), ("28", "min de Sophia Antipolis", "puce"), ("1", "facture, tout compris", "facture")]),
+        [("3 à 10", "mois de mission", "calendrier"), ("28", "min de Sophia Antipolis", "puce"), ("1", "paiement par mois", "facture")]),
     "vivre-colline-de-bellet-nice": ("affiche-broders-montagnes", "mer", ("vignoble-saint-jean-bellet", 3),
         [("1941", "AOC Bellet, par décret", "verre"), ("26 m²", "de terrasses vue mer", "soleil"), ("13", "min du campus Valrose", "campus")]),
 }
@@ -1037,16 +1036,14 @@ def dg_trajets(focus=()):
     return f'<figure class="dg dg-trajets"><figcaption class="dg-titre">{pic("repere", "pic-s")}Depuis l\'appartement, en voiture</figcaption><ul>{lignes}</ul><p class="dg-note">Minutes hors trafic. Bus 60 vers le tram ligne 2 à Magnan.</p></figure>'
 
 def dg_prix():
-    rangs = [("1 à 2 mois", 3600), ("3 à 6 mois", 3200), ("7 à 10 mois", 2880)]
-    lignes = "".join(f'<li><span class="l">{pic("calendrier", "pic-s")}{l}</span><span class="barre"><i style="width:{p / 3600 * 100:.0f}%"></i></span><b>{p:,} €</b></li>'.replace(",", " ") for l, p in rangs)
-    return f'<figure class="dg dg-prix"><figcaption class="dg-titre">{pic("facture", "pic-s")}Prix par mois, tout compris</figcaption><ul>{lignes}</ul><p class="dg-gain"><b>− 720 €</b> par mois sur 7 à 10 mois, par rapport à 1 à 2 mois.</p></figure>'
+    lignes = f'<li><span class="l">{pic("calendrier", "pic-s")}1 à 10 mois</span><span class="barre"><i style="width:100%"></i></span><b>3 650 €</b></li>'
+    return f'<figure class="dg dg-prix"><figcaption class="dg-titre">{pic("facture", "pic-s")}Prix par mois, charges comprises</figcaption><ul>{lignes}</ul><p class="dg-gain"><b>Dernier mois</b> de loyer offert pour un bail de 10 mois.</p></figure>'
 
 def dg_duree():
-    case = "".join(f'<span class="c {"a" if m <= 2 else "b" if m <= 6 else "d"}">{m}</span>' for m in range(1, 11))
+    case = "".join(f'<span class="c {"d" if m == 10 else "a"}">{m}</span>' for m in range(1, 11))
     return f'''<figure class="dg dg-duree"><figcaption class="dg-titre">{pic("calendrier", "pic-s")}Durée du bail, en mois</figcaption>
 <div class="mois">{case}</div>
-<div class="legende-dg"><span><i class="a"></i>1 à 2 mois · 3 600 €</span><span><i class="b"></i>3 à 6 mois · 3 200 €</span><span><i class="d"></i>7 à 10 mois · 2 880 €</span></div>
-<div class="societe-dg"><span style="margin-left:20%">{pic("societe", "pic-s")}Bail au nom de l\'employeur : à partir de 3 mois</span></div></figure>'''
+<div class="legende-dg"><span><i class="a"></i>1 à 10 mois · 3 650 € par mois</span><span><i class="d"></i>Bail de 10 mois · dernier mois de loyer offert</span></div></figure>'''
 
 def dg_semestres():
     mois = ["nov.", "déc.", "janv.", "févr.", "mars", "avr.", "mai", "juin", "juil.", "août", "sept.", "oct."]
@@ -1062,7 +1059,7 @@ def dg_un_sur_quatre():
 
 def dg_compris():
     items = [("energie", "Eau, électricité, chauffage"), ("wifi", "Fibre"), ("parking", "Place de parking privée"),
-             ("linge", "Linge de lit et de toilette, fourni à l'arrivée"), ("menage", "Ménage de sortie"), ("facture", "Une seule facture")]
+             ("linge", "Linge de lit et de toilette, avec rechange"), ("menage", "Ménage deux fois par mois"), ("facture", "Un seul paiement par mois")]
     tuiles = "".join(f'<div>{pic(i)}<span>{E(l)}</span></div>' for i, l in items)
     return f'<figure class="dg dg-compris"><figcaption class="dg-titre">{pic("facture", "pic-s")}Compris dans le prix mensuel</figcaption><div class="tuiles6">{tuiles}</div></figure>'
 
@@ -1075,13 +1072,13 @@ DATAGRAPHIE = {
         (1, encadre("À retenir", ["De 1 à 10 mois, ni renouvelable ni reconductible.", "Aucun dépôt de garantie.", "Le justificatif du motif est demandé avant la signature."])),
         (3, dg_duree()), (9, dg_compris()), (10, dg_prix())],
     "logement-interne-chu-nice": [
-        (1, encadre("À retenir", ["Un semestre de 6 mois tient dans un bail mobilité.", "Le bail peut être au nom de l'établissement à partir de 3 mois.", "Aucun dépôt de garantie en bail mobilité."])),
+        (1, encadre("À retenir", ["Un semestre de 6 mois tient dans un bail mobilité.", "L'établissement peut régler le loyer, avec une lettre de prise en charge.", "Aucun dépôt de garantie en bail mobilité."])),
         (2, dg_semestres()), (5, dg_trajets(("CHU Pasteur 2", "Centre Antoine Lacassagne", "Clinique Kantys Centre"))), (7, dg_prix())],
     "logement-monaco-nice": [
         (2, dg_un_sur_quatre()), (3, dg_trajets(("Monaco", "Aéroport"))),
-        (6, encadre("À retenir", ["Monaco à 22 minutes en voiture, hors trafic.", "Bail au nom de l'employeur à partir de 3 mois.", "Un prix mensuel tout compris, une facture."]))],
+        (6, encadre("À retenir", ["Monaco à 22 minutes en voiture, hors trafic.", "L'employeur peut régler le loyer, vous signez le bail.", "3 650 € par mois, charges comprises."]))],
     "mission-nice-3-a-10-mois": [
-        (1, encadre("À retenir", ["Bail mobilité de 1 à 10 mois, ou bail au nom de la société à partir de 3 mois.", "Une seule facture, tout compris.", "Facture exonérée de TVA, au nom du payeur."])),
+        (1, encadre("À retenir", ["Bail mobilité de 1 à 10 mois, signé par la personne en mission.", "Un seul paiement par mois : loyer, forfait de charges, linge et ménage.", "Loyer exonéré de TVA (art. 261 D 4° du CGI)."])),
         (2, dg_prix()), (2, dg_compris())],
     "vivre-colline-de-bellet-nice": [
         (2, encadre("À retenir", ["Sur la colline de Bellet, à l'ouest de Nice.", "Vue sur la Baie des Anges depuis deux terrasses.", "AOC Bellet, reconnue par décret en 1941."], "verre")),
@@ -1107,7 +1104,7 @@ def guides_langue(langue):
         for k, t in enumerate(titres):
             corps_html = corps_html.replace(f"<h2>{t}</h2>", f'<h2 id="s{k + 1}"><span class="num">{pic(picto_titre(t), "pic-s")}{k + 1:02d}</span>{t}</h2>', 1)
         for n, bloc in DATAGRAPHIE.get(a["fichier"], []):
-            tableau = re.search(r'<div class="table">(?:(?!</div>).)*3 600 €.*?</div>', corps_html, re.S) if "dg-prix" in bloc else None
+            tableau = re.search(r'<div class="table">(?:(?!</div>).)*3 650 €.*?</div>', corps_html, re.S) if "dg-prix" in bloc else None
             if tableau:  # le graphique des prix remplace le tableau des prix de l'article
                 corps_html = corps_html.replace(tableau.group(0), bloc, 1); continue
             cible = f'<h2 id="s{n}"'

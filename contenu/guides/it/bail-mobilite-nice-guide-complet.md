@@ -1,10 +1,10 @@
 ---
 titre: Bail mobilité a Nizza: la guida completa
 title_seo: Bail mobilité Nizza: la guida | Les Piafs des Collines
-description: Bail mobilité a Nizza: da 1 a 10 mesi, chi può affittare, documenti, garanzia, contratto a nome del datore di lavoro. La guida per firmare senza sorprese.
+description: Bail mobilité a Nizza: da 1 a 10 mesi, chi può affittare, documenti, garanzia, datore di lavoro pagatore. La guida per firmare senza sorprese.
 slug: bail-mobilite-nizza-guida-completa
 image: sejour-salle-a-manger
-chapo: Il bail mobilité a Nizza, da 1 a 10 mesi | Durata, motivi, documenti, garanzia, contratto a nome del datore di lavoro, recesso. | Cosa comprende il canone e quanto costa.
+chapo: Il bail mobilité a Nizza, da 1 a 10 mesi | Durata, motivi, documenti, garanzia, datore di lavoro pagatore, recesso. | Cosa comprende il canone e quanto costa.
 ---
 
 Lei arriva a Nizza per qualche mese. Uno stage, una formazione, un trasferimento, una missione. Il *bail mobilité*, un contratto di locazione arredata francese da 1 a 10 mesi, è stato creato per questo caso.
@@ -66,17 +66,11 @@ Visale è una garanzia gratuita di Action Logement. Viene concessa solo se il ca
 
 Al livello di canone di questo appartamento, Visale non è utilizzabile. La garanzia assume la forma di una fideiussione del datore di lavoro o di una fideiussione personale.
 
-## Il datore di lavoro può affittare l'alloggio a proprio nome?
+## Il Suo datore di lavoro può pagare il canone?
 
-Sì. Quando una società, un'agenzia di relocation, un assicuratore o una produzione paga l'alloggio, il contratto è intestato alla struttura.
+Sì. Il bail mobilité è firmato dalla persona in missione o in trasferimento. Quando il datore di lavoro, un'agenzia di relocation o una produzione paga il canone, il contratto è firmato dalla persona alloggiata, con la lettera di presa in carico del pagatore.
 
-Si tratta allora di un contratto disciplinato dal code civil, distinto dal bail mobilité. La loi du 6 juillet 1989 tutela la residenza principale di una persona, e una società non ne ha. Da Les Piafs des Collines, questo contratto funziona così:
-
-- a partire da 3 mesi;
-- fattura intestata alla struttura;
-- nessun documento sul motivo richiesto.
-
-È la soluzione prevista per un'azienda che alloggia un collaboratore. L'ufficio acquisti riceve un'unica fattura, a suo nome.
+Il pagatore versa il canone con il riferimento del contratto. La quietanza è intestata all'inquilino e indica il pagatore. Il documento che attesta il motivo è richiesto prima della firma.
 
 ## Cosa comprende il canone di un bail mobilité?
 
@@ -85,22 +79,21 @@ Il canone è fissato nel contratto nell'ambito degli articles 17 et 18 de la loi
 - spese ed energia: elettricità, acqua, riscaldamento e aria condizionata;
 - fibra;
 - un posto auto privato all'interno della proprietà;
-- biancheria da letto e da bagno fornita all'arrivo;
-- pulizia finale.
+- biancheria da letto e da bagno fornita, con cambio;
+- pulizie due volte al mese;
+- una bottiglia di vino di Bellet che La aspetta al Suo arrivo.
 
 L'inquilino non riceve alcuna bolletta energetica. Questa locazione arredata ad uso abitativo, senza servizi para-alberghieri, è esente da IVA (article 261 D, 4° du code général des impôts). L'importo indicato è l'importo pagato, senza IVA aggiunta né recuperabile. L'assicurazione dell'abitazione resta a carico dell'inquilino.
 
 ## Quanto costa un bail mobilité a Nizza?
 
-I prezzi variano in base alla durata. Per l'appartamento di Les Piafs des Collines, al mese, spese comprese:
+Per l'appartamento di Les Piafs des Collines, al mese, spese comprese:
 
 | Durata | Prezzo al mese |
 |---|---|
-| 1-2 mesi | 3.600 € |
-| 3-6 mesi | 3.200 € |
-| 7-10 mesi | 2.880 € |
+| 1-10 mesi | 3.650 € |
 
-Su 7-10 mesi, ogni mese costa 720 € in meno rispetto a 1-2 mesi.
+Il prezzo è lo stesso per tutte le durate: canone di 3.475 € e forfait spese di 175 €, biancheria e pulizie comprese. Per un contratto di 10 mesi, l'ultimo mese di canone è offerto. Lo sconto è concesso una sola volta per contratto e non modifica il canone del contratto.
 
 ## Come recedere da un bail mobilité?
 
@@ -131,7 +124,7 @@ Il verbale di consegna e l'inventario degli arredi sono redatti in contraddittor
 
 ## Come richiedere la disponibilità?
 
-Annoti la data d'ingresso e la durata. Indichi chi paga il canone: Lei, il Suo datore di lavoro, un'agenzia, un assicuratore o una produzione. Prepari il documento che attesta il Suo motivo.
+Annoti la data d'ingresso e la durata. Indichi chi paga il canone: Lei, il Suo datore di lavoro, un'agenzia di relocation o una produzione. Prepari il documento che attesta il Suo motivo.
 
 Con questi tre elementi, riceve una risposta sulla disponibilità alla data d'ingresso richiesta.
 

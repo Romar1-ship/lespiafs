@@ -1,10 +1,10 @@
 ---
 titre: Bail mobilité à Nice, le guide complet
 title_seo: Bail mobilité Nice : le guide | Les Piafs des Collines
-description: Bail mobilité à Nice : durée de 1 à 10 mois, qui peut louer, pièces à fournir, garantie, bail au nom de l'employeur. Le guide pour signer sans surprise.
+description: Bail mobilité à Nice : durée de 1 à 10 mois, qui peut louer, pièces à fournir, garantie, employeur payeur. Le guide pour signer sans surprise.
 slug: bail-mobilite-nice-guide-complet
 image: sejour-salle-a-manger
-chapo: Le bail mobilité à Nice, de 1 à 10 mois | Durée, motifs, pièces, garantie, bail au nom de l'employeur, résiliation. | Ce que comprend le loyer et ce qu'il coûte.
+chapo: Le bail mobilité à Nice, de 1 à 10 mois | Durée, motifs, pièces, garantie, employeur payeur, résiliation. | Ce que comprend le loyer et ce qu'il coûte.
 ---
 
 Vous arrivez à Nice pour quelques mois. Un stage, une formation, une mutation, une mission. Le bail mobilité a été créé pour ce cas.
@@ -66,17 +66,11 @@ Visale est une garantie gratuite d'Action Logement. Elle n'est accordée que si 
 
 Au niveau de loyer de cet appartement, Visale n'est pas mobilisable. La garantie prend la forme d'une caution de l'employeur ou d'une caution personnelle.
 
-## L'employeur peut-il louer le logement à son nom ?
+## Votre employeur peut-il payer le loyer ?
 
-Oui. Quand une société, une agence de relocation, un assureur ou une production paie le logement, le bail se fait au nom de la structure.
+Oui. Le bail mobilité est signé par la personne qui part en mission ou en mutation. Quand l'employeur, une agence de relocation ou une production règle le loyer, le bail est signé par la personne logée, avec la lettre de prise en charge du payeur.
 
-C'est alors un bail régi par le code civil, distinct du bail mobilité. La loi du 6 juillet 1989 protège la résidence principale d'une personne, et une société n'en a pas. Aux Piafs des Collines, ce bail fonctionne ainsi :
-
-- à partir de 3 mois ;
-- facture au nom de la structure ;
-- aucun justificatif de motif demandé.
-
-C'est la voie prévue pour une entreprise qui loge un collaborateur. Le service achats reçoit une facture unique, à son nom.
+Le payeur vire le loyer avec la référence du bail. La quittance est établie au nom du locataire et mentionne le payeur. Le justificatif du motif est demandé avant la signature.
 
 ## Que comprend le loyer d'un bail mobilité ?
 
@@ -85,22 +79,21 @@ Le loyer est fixé au contrat dans le cadre des articles 17 et 18 de la loi du 6
 - charges et énergie : électricité, eau, chauffage et climatisation ;
 - fibre ;
 - une place de parking privée dans l'enceinte ;
-- linge de lit et de toilette fourni à l'arrivée ;
-- ménage de sortie.
+- linge de lit et de toilette fourni, avec rechange ;
+- ménage deux fois par mois ;
+- une bouteille de vin de Bellet qui vous attend à votre arrivée.
 
 Le locataire ne reçoit aucune facture d'énergie. Cette location meublée d'habitation, sans prestation para-hôtelière, est exonérée de TVA (article 261 D, 4° du code général des impôts). Le montant affiché est le montant payé, sans TVA ajoutée ni récupérable. L'assurance habitation reste à la charge du locataire.
 
 ## Combien coûte un bail mobilité à Nice ?
 
-Le prix varie selon la durée. Pour l'appartement des Piafs des Collines, par mois, charges comprises :
+Pour l'appartement des Piafs des Collines, par mois, charges comprises :
 
 | Durée | Prix par mois |
 |---|---|
-| 1 à 2 mois | 3 600 € |
-| 3 à 6 mois | 3 200 € |
-| 7 à 10 mois | 2 880 € |
+| 1 à 10 mois | 3 650 € |
 
-Sur 7 à 10 mois, le mois revient 720 € moins cher que sur 1 à 2 mois.
+Le prix est le même pour toutes les durées : loyer de 3 475 € et forfait de charges de 175 €, linge et ménage inclus. Pour un bail de 10 mois, le dernier mois de loyer est offert. Cette remise est accordée une seule fois, par bail, et ne modifie pas le loyer du bail.
 
 ## Comment résilier un bail mobilité ?
 
@@ -131,7 +124,7 @@ L'état des lieux d'entrée et l'inventaire du mobilier sont établis contradict
 
 ## Comment demander une disponibilité ?
 
-Notez votre date d'entrée et la durée. Indiquez qui paie le loyer : vous, votre employeur, une agence, un assureur ou une production. Préparez le justificatif de votre motif.
+Notez votre date d'entrée et la durée. Indiquez qui paie le loyer : vous, votre employeur, une agence de relocation ou une production. Préparez le justificatif de votre motif.
 
 Avec ces trois éléments, vous recevez une réponse sur la disponibilité à la date d'entrée demandée.
 

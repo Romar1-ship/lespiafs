@@ -66,17 +66,11 @@ Visale is a free guarantee from Action Logement. It is only granted if the rent,
 
 At this apartment's rent level, Visale is not available. The guarantee takes the form of a guarantee from your employer or a personal guarantee.
 
-## Can the employer rent the home in its own name?
+## Can your employer pay the rent?
 
-Yes. When a company, a relocation agency, an insurer or a production pays for the home, the lease is in the name of that organisation.
+Yes. The bail mobilité is signed by the person on assignment or being transferred. When the employer, a relocation agency or a production pays the rent, the lease is signed by the person living in the home, with the payer's letter of financial responsibility.
 
-It is then a lease governed by the code civil, separate from the bail mobilité. The loi du 6 juillet 1989 protects a person's main residence, and a company has none. At Les Piafs des Collines, this lease works as follows:
-
-- from 3 months;
-- invoice in the organisation's name;
-- no proof of reason required.
-
-This is the route provided for a company housing an employee. The purchasing department receives a single invoice, in its name.
+The payer transfers the rent with the lease reference. The rent receipt is made out to the tenant and names the payer. Proof of the reason is requested before signing.
 
 ## What does the rent of a bail mobilité include?
 
@@ -85,22 +79,21 @@ The rent is set in the contract under articles 17 et 18 de la loi du 6 juillet 1
 - charges and energy: electricity, water, heating and air conditioning;
 - fibre internet;
 - a private parking space within the grounds;
-- bed linen and towels provided on arrival;
-- end-of-stay cleaning.
+- bed linen and towels provided, with changes;
+- housekeeping twice a month;
+- a bottle of Bellet wine waiting for you on arrival.
 
 The tenant receives no energy bill. This furnished residential rental, with no hotel-type services, is exempt from VAT (article 261 D, 4° du code général des impôts). The amount shown is the amount paid, with no VAT added and none recoverable. Home insurance remains the tenant's responsibility.
 
 ## How much does a bail mobilité in Nice cost?
 
-Prices vary with the length. For the Les Piafs des Collines apartment, per month, charges included:
+For the Les Piafs des Collines apartment, per month, charges included:
 
 | Length | Price per month |
 |---|---|
-| 1 to 2 months | €3,600 |
-| 3 to 6 months | €3,200 |
-| 7 to 10 months | €2,880 |
+| 1 to 10 months | €3,650 |
 
-Over 7 to 10 months, each month costs €720 less than over 1 to 2 months.
+The price is the same for every length: rent of €3,475 plus a flat service-charge fee of €175, linens and housekeeping included. On a 10-month lease, the last month's rent is free. This concession applies once per lease and does not change the lease rent.
 
 ## How do you end a bail mobilité?
 
@@ -131,7 +124,7 @@ The check-in inventory and the furniture list are drawn up jointly with you when
 
 ## How do you request availability?
 
-Note your move-in date and the length. Say who pays the rent: you, your employer, an agency, an insurer or a production. Prepare proof of your reason.
+Note your move-in date and the length. Say who pays the rent: you, your employer, a relocation agency or a production. Prepare proof of your reason.
 
 With these three items, you receive an answer on availability for the move-in date you asked for.
 

@@ -46,7 +46,7 @@ Without a car, bus 60 stops 50 m away. It connects with tram line 2 at Magnan.
 
 A private parking space within the grounds is included in the price. You come back from your shift and park at home.
 
-On your move-in day, we welcome you on site and hand over the keys. The check-in inventory is done with the landlord at a time you agree together, on the day you start your post or the day before.
+On your move-in day, the landlord hands over the keys. The check-in inventory is done with the landlord at a time you agree together, on the day you start your post or the day before.
 
 ## How much does housing for a residency semester cost?
 
@@ -54,11 +54,11 @@ The price, per month, charges included:
 
 | Length | Price per month |
 |---|---|
-| 1 to 2 months | €3,600 |
-| 3 to 6 months | €3,200 |
-| 7 to 10 months | €2,880 |
+| 1 to 10 months | €3,650 |
 
-For a 6-month semester, the month is €3,200. What this price includes is detailed in [the complete guide](/en/guides/bail-mobilite-nice-complete-guide).
+The price is the same for every length: rent of €3,475 plus a flat service-charge fee of €175, linens and housekeeping included. On a 10-month lease, the last month's rent is free. This concession applies once per lease and does not change the lease rent.
+
+For a 6-month semester, the month is €3,650. What this price includes is detailed in [the complete guide](/en/guides/bail-mobilite-nice-complete-guide).
 
 ## What is the apartment like?
 

@@ -11,7 +11,7 @@ Your company is sending you to Nice for a few months. Or you are being transferr
 
 You have one goal: to be ready from your first day. This guide follows the order of your departure: what to settle before, the day you arrive, then the first weeks.
 
-If you pay, you sign a *bail mobilité*, a French furnished lease of 1 to 10 months; if your employer pays, the lease is in the company's name: both are explained in [the complete guide to the bail mobilité](/en/guides/bail-mobilite-nice-complete-guide).
+You sign a *bail mobilité*, a French furnished lease of 1 to 10 months, whether you pay yourself or your employer pays the rent for you: this is explained in [the complete guide to the bail mobilité](/en/guides/bail-mobilite-nice-complete-guide).
 
 ## How much does a furnished home in Nice cost for an assignment?
 
@@ -19,9 +19,9 @@ For the Les Piafs des Collines apartment, per month, charges included:
 
 | Length | Price per month |
 |---|---|
-| 1 to 2 months | €3,600 |
-| 3 to 6 months | €3,200 |
-| 7 to 10 months | €2,880 |
+| 1 to 10 months | €3,650 |
+
+The price is the same for every length: rent of €3,475 plus a flat service-charge fee of €175, linens and housekeeping included. On a 10-month lease, the last month's rent is free. This concession applies once per lease and does not change the lease rent.
 
 For a purchasing department, this means a single expense line per month. No subscription to open, no energy bill to re-invoice.
 
@@ -36,7 +36,7 @@ For a bail mobilité, proof of your reason, depending on your case:
 
 Add your **ID** and the **guarantee** you choose.
 
-For a lease in the company's name: the contact details of the organisation that pays and the name of the occupant.
+If your employer pays: its letter of financial responsibility, with the contact details of the organisation that pays.
 
 As soon as your assignment order is signed, you can request the date.
 
@@ -52,7 +52,7 @@ As soon as your assignment order is signed, you can request the date.
 
 ## How does the first day in the home go?
 
-On your move-in day, we welcome you on site and hand over the keys. The check-in inventory and the furniture list are drawn up jointly with you when you move in.
+On your move-in day, the landlord hands over the keys. The check-in inventory and the furniture list are drawn up jointly with you when you move in.
 
 That same evening, you have fibre internet to work and linen to sleep.
 
@@ -91,7 +91,7 @@ The two terraces, of 10.58 and 15.75 m², face the Baie des Anges (Bay of Angels
 - A second bedroom for your family if they join you.
 - An island kitchen with induction hob, oven, microwave, dishwasher and fridge-freezer.
 - A laundry veranda with washing machine and tumble dryer.
-- End-of-stay cleaning included in the monthly price.
+- Housekeeping twice a month, included in the monthly price.
 
 ## How do you prepare your housing request?
 

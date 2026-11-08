@@ -47,7 +47,7 @@ Trouver un logement durable demande du temps : visites, dossier, garanties. Un b
 
 Vous découvrez les quartiers, vous testez vos trajets vers Monaco, puis vous choisissez où vous installer pour la suite.
 
-Si vous êtes recruté par un nouvel employeur, vérifiez votre motif avant de signer : la loi vise la mutation professionnelle et la mission temporaire, pas l'embauche en tant que telle, et le bail au nom de votre employeur reste possible à partir de 3 mois ([les deux voies sont expliquées ici](/guides/bail-mobilite-nice-guide-complet)).
+Si vous êtes recruté par un nouvel employeur, vérifiez votre motif avant de signer : la loi vise la mutation professionnelle et la mission temporaire, pas l'embauche en tant que telle ([le motif et le paiement par l'employeur sont expliqués ici](/guides/bail-mobilite-nice-guide-complet)).
 
 ## À quoi ressemble l'appartement ?
 

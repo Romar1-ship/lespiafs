@@ -46,7 +46,7 @@ Senza auto, l'autobus 60 ferma a 50 m. Si collega alla linea 2 del tram a Magnan
 
 Un posto auto privato all'interno della proprietà è compreso nel prezzo. Rientra dalla guardia e parcheggia a casa.
 
-Il giorno dell'ingresso La accogliamo sul posto e Le consegniamo le chiavi. Il verbale di consegna si fa con il locatore a un orario concordato insieme, il giorno della Sua presa di servizio o il giorno prima.
+Il giorno dell'ingresso il locatore Le consegna le chiavi. Il verbale di consegna si fa con il locatore a un orario concordato insieme, il giorno della Sua presa di servizio o il giorno prima.
 
 ## Quanto costa un alloggio per un semestre di specializzazione?
 
@@ -54,11 +54,11 @@ Il prezzo, al mese, spese comprese:
 
 | Durata | Prezzo al mese |
 |---|---|
-| 1-2 mesi | 3.600 € |
-| 3-6 mesi | 3.200 € |
-| 7-10 mesi | 2.880 € |
+| 1-10 mesi | 3.650 € |
 
-Per un semestre di 6 mesi, il mese costa 3.200 €. Cosa comprende questo prezzo è spiegato nella [guida completa](/it/guides/bail-mobilite-nizza-guida-completa).
+Il prezzo è lo stesso per tutte le durate: canone di 3.475 € e forfait spese di 175 €, biancheria e pulizie comprese. Per un contratto di 10 mesi, l'ultimo mese di canone è offerto. Lo sconto è concesso una sola volta per contratto e non modifica il canone del contratto.
+
+Per un semestre di 6 mesi, il mese costa 3.650 €. Cosa comprende questo prezzo è spiegato nella [guida completa](/it/guides/bail-mobilite-nizza-guida-completa).
 
 ## Com'è l'appartamento?
 

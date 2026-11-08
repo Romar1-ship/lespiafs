@@ -11,7 +11,7 @@ Votre entreprise vous envoie à Nice pour quelques mois. Ou vous êtes muté, et
 
 Vous avez un objectif : être opérationnel dès votre premier jour. Ce guide suit l'ordre de votre départ : ce qu'il faut régler avant, le jour de l'arrivée, puis les premières semaines.
 
-Si vous payez, vous signez un bail mobilité ; si votre employeur paie, le bail se fait au nom de la société : les deux sont expliqués dans [le guide complet du bail mobilité](/guides/bail-mobilite-nice-guide-complet).
+Vous signez un bail mobilité, que vous payiez vous-même ou que votre employeur règle le loyer pour vous : c'est expliqué dans [le guide complet du bail mobilité](/guides/bail-mobilite-nice-guide-complet).
 
 ## Combien coûte un logement meublé à Nice pour une mission ?
 
@@ -19,9 +19,9 @@ Pour l'appartement des Piafs des Collines, par mois, charges comprises :
 
 | Durée | Prix par mois |
 |---|---|
-| 1 à 2 mois | 3 600 € |
-| 3 à 6 mois | 3 200 € |
-| 7 à 10 mois | 2 880 € |
+| 1 à 10 mois | 3 650 € |
+
+Le prix est le même pour toutes les durées : loyer de 3 475 € et forfait de charges de 175 €, linge et ménage inclus. Pour un bail de 10 mois, le dernier mois de loyer est offert. Cette remise est accordée une seule fois, par bail, et ne modifie pas le loyer du bail.
 
 Pour un service achats, cela veut dire une seule ligne de dépense par mois. Aucun abonnement à ouvrir, aucune facture d'énergie à refacturer.
 
@@ -36,7 +36,7 @@ Pour un bail mobilité, le justificatif de votre motif, selon votre cas :
 
 S'y ajoutent votre **pièce d'identité** et la **garantie** choisie.
 
-Pour un bail au nom de la société : les coordonnées de la structure qui paie et le nom de l'occupant.
+Si votre employeur paie : sa lettre de prise en charge, avec les coordonnées de la structure qui paie.
 
 Dès votre ordre de mission signé, vous pouvez demander la date.
 
@@ -52,7 +52,7 @@ Dès votre ordre de mission signé, vous pouvez demander la date.
 
 ## Comment se passe le premier jour dans le logement ?
 
-Le jour de l'entrée, nous vous accueillons sur place et vous remettons les clés. L'état des lieux d'entrée et l'inventaire du mobilier sont établis contradictoirement avec vous à l'entrée dans les lieux.
+Le jour de l'entrée, le bailleur vous remet les clés. L'état des lieux d'entrée et l'inventaire du mobilier sont établis contradictoirement avec vous à l'entrée dans les lieux.
 
 Le soir même, vous avez la fibre pour travailler et le linge pour dormir.
 
@@ -91,7 +91,7 @@ Les deux terrasses, de 10,58 et 15,75 m², font face à la Baie des Anges. Une t
 - Une seconde chambre qui accueille votre famille si elle vous rejoint.
 - Une cuisine à îlot avec induction, four, micro-ondes, lave-vaisselle et réfrigérateur-congélateur.
 - Une véranda buanderie avec lave-linge et sèche-linge.
-- Ménage de sortie compris dans le prix mensuel.
+- Ménage deux fois par mois, compris dans le prix mensuel.
 
 ## Comment préparer sa demande de logement ?
 
