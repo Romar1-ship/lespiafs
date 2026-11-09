@@ -155,8 +155,7 @@ def entete(espace, courant, profondeur):
     else:
         ancre = "" if espace == "mob" else f"{r}bail-mobilite/"
         liens = "".join(f'<a href="{ancre}{a}">{E(l)}</a>' for a, l in NAV_MOB) if espace == "mob" else f'<a href="{r}bail-mobilite/">Bail mobilité</a>'
-        liens += f'<a class="lien-guides" href="{r}guides/"{" aria-current=\"page\"" if espace == "guides" else ""}>Guides</a>'
-        liens += f'<a class="lien-carnet" href="{r}carnet/"{" aria-current=\"page\"" if espace == "carnet" else ""}>Le carnet</a>'
+        liens += f'<a class="lien-carnet" href="{r}carnet/"{" aria-current=\"page\"" if espace in ("carnet", "guides") else ""}>Le carnet</a>'
         cta = f'<a class="cta" href="{ancre}#demande">Demander une disponibilité</a>'
     return f"""<header class="entete"><div class="wrap">
 <a class="marque" href="{r}{"index.html" if ACCUEIL_ACTIF else "bail-mobilite/"}"><img class="m-oiseau" src="{r}assets/img/logo-oiseau-blanc.svg" alt=""><span class="m-texte"><img class="m-nom" src="{r}assets/img/logo-nom-blanc.svg" alt="Les Piafs des Collines"><span class="m-sous">Location bail mobilité</span></span></a>
@@ -189,7 +188,7 @@ def pied(espace, profondeur):
 {f'<li><a href="{r}index.html">Accueil</a></li>' if ACCUEIL_ACTIF else ""}
 {f'<li><a href="{r}saisonniere/">Location saisonnière</a></li>' if SAISON_ACTIVE else ""}
 <li><a href="{r}bail-mobilite/">Bail mobilité, 1 à 10 mois</a></li>
-<li><a href="{r}guides/">Guides</a></li></ul></div>
+<li><a href="{r}carnet/">Le carnet</a></li></ul></div>
 <div>{legal}</div>
 </div>
 <p class="note droit-pied mention-pied">En nous écrivant, vous reconnaissez avoir lu nos conditions de location et notre politique de confidentialité. Vos coordonnées servent uniquement à répondre à votre demande.</p>
@@ -697,6 +696,12 @@ FAQ_MOB = [
   "Visale n'est pas mobilisable à ce niveau de loyer. La garantie prend la forme d'une caution de l'employeur ou d'une caution personnelle."),
  ("Le logement se loue-t-il pour des vacances ?",
   "Non. Logement loué uniquement en bail mobilité de 1 à 10 mois, à un locataire qui justifie d'un motif professionnel ou de formation (mission temporaire, mutation, formation, études, stage). Il ne se loue ni pour des vacances, ni à la nuit, ni en location touristique."),
+ ("Peut-on louer un appartement à Nice pour 3 mois ?",
+  "Oui. Le bail mobilité se signe pour une durée de 1 à 10 mois, donc pour 3 mois. L'appartement se loue meublé et équipé, 3 650 € par mois charges comprises (dont 175 € de forfait de charges, sans régularisation), à un locataire en mission temporaire, en mutation professionnelle ou en formation."),
+ ("Le bail mobilité s'applique-t-il dans les Alpes-Maritimes ?",
+  "Oui. Le bail mobilité est prévu par la loi du 6 juillet 1989 (articles 25-12 à 25-18) et se signe à Nice comme dans le reste des Alpes-Maritimes. L'appartement se trouve à Nice, sur la colline de Bellet."),
+ ("Peut-on habiter à Nice pour une mission à Monaco ou à Sophia Antipolis ?",
+  "Oui, si vous êtes en mission temporaire ou en mutation professionnelle, ou en formation, et que vous pouvez le justifier (ordre de mission, avenant ou attestation de votre employeur indiquant le motif et la durée). Depuis l'appartement, Monaco est à 22 minutes en voiture, Sophia Antipolis à 28 minutes et l'aéroport Nice Côte d'Azur à 20 minutes, hors trafic."),
  ("Peut-on louer moins d'un mois ?",
   "Non. La durée minimale est d'un mois."),
  ("Puis-je louer pour un mois si je suis dirigeant ou indépendant ?",
@@ -775,8 +780,8 @@ def bail_mobilite():
 <section class="mob-hero">
   <picture><source media="(max-width:700px)" srcset="{{R}}assets/img/hero-baie-mobile.jpg"><img class="fond" src="{{R}}assets/img/hero-baie.jpg" alt="La Baie des Anges vue depuis l'appartement, sur la colline de Bellet à Nice" fetchpriority="high"></picture>
   <div class="wrap">
-    <h1 class="legende">Au-dessus de la Baie des Anges, un lieu pour penser.</h1>
-    <p class="lead">Nice, colline de Bellet. Un appartement en hauteur, face à la mer, pour ceux qui viennent travailler sur la Riviera un mois ou plus.</p>
+    <h1 class="legende"><span class="h1-sur">Location en bail mobilité à Nice</span>Au-dessus de la Baie des Anges, un lieu pour penser.</h1>
+    <p class="lead">Nice, colline de Bellet. Un appartement meublé en hauteur, face à la mer, loué en bail mobilité de 1 à 10 mois à ceux qui viennent travailler sur la Riviera en mission temporaire ou en mutation, ou qui s'y forment.</p>
     <a class="bouton" href="#demande">Demander une disponibilité</a>
   </div>
   <div class="timbre" aria-hidden="true"><span class="t-haut">Nice</span><span class="t-nom">Bellet</span><span class="t-bas">Côte d'Azur</span></div>
@@ -844,7 +849,7 @@ def bail_mobilite():
 
 <section class="azur" id="prix"><div class="wrap">
   <div class="prix-grille">
-    <div><h2>Tarifs et conditions</h2>
+    <div><h2>Tarifs de la location en bail mobilité</h2>
     <p class="phrase-prix">3 650 € par mois, charges comprises. <em>Même prix pour toutes les durées, de 1 à 10 mois.</em></p>
     <p class="note">Détail : loyer 3 475 € + forfait de charges 175 € (eau, électricité, climatisation, fibre, parking, piscine partagée).</p></div>
     {photo("cuisine-sejour")}
@@ -1149,7 +1154,7 @@ def guides_langue(langue):
         corps = f"""
 <section class="g-hero {couleur}">
   <div class="g-hero-texte">
-    <a class="sur" href="./"><span>Guide n°</span>&nbsp;{i + 1} · <span>Se loger à Nice</span></a>
+    <a class="sur" href="../carnet/"><span>Le carnet</span> · <span>Pratique</span></a>
     <h1>{E(a["titre"])}</h1>
     <p class="chapo">{"<br>".join(E(x.strip()) for x in a.get("chapo", a["description"]).split("|"))}</p>
     <span class="g-meta">{max(1, round(mots(a["corps"]) / 220))}&nbsp;<span>min de lecture</span></span>
@@ -1176,7 +1181,7 @@ def guides_langue(langue):
              "publisher": {"@type": "Organization", "name": "Les Piafs des Collines", "url": BASE + "/"}},
             {"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [
              {"@type": "ListItem", "position": 1, "name": "Accueil", "item": BASE + "/"},
-             {"@type": "ListItem", "position": 2, "name": "Guides", "item": BASE + "/guides/"},
+             {"@type": "ListItem", "position": 2, "name": "Le carnet", "item": BASE + "/carnet/"},
              {"@type": "ListItem", "position": 3, "name": a["titre"], "item": url_propre(f"guides/{a['slug']}.html")}]}])
     une, reste = articles[0], articles[1:]
     tuiles = "".join(f'<a class="g-tuile {VISUELS[b["fichier"]][1]}" href="{b["slug"]}.html">{gimg(VISUELS[b["fichier"]][0], b["titre"])}<span class="n"><span>Guide n°</span> {k + 2}</span><span class="t">{E(b["titre"])}</span><span class="d">{E(b["description"])}</span></a>' for k, b in enumerate(reste))
@@ -1250,8 +1255,15 @@ def carnet_langue(langue):
             {"@context": "https://schema.org", "@type": "Article", "headline": a["titre"], "description": a["description"], "inLanguage": {"fr": "fr-FR", "en": "en", "it": "it-IT"}[langue],
              "image": f"{BASE}/assets/img/hero-baie.jpg", "url": url_propre(f"carnet/{a['slug']}.html"),
              "publisher": {"@type": "Organization", "name": "Les Piafs des Collines", "url": BASE + "/"}}])
-    tuiles = "".join(f'<a class="c-tuile" href="{a["slug"]}.html">{img(a.get("image", "vue-baie-de-nice"), a["titre"])}<span class="t">{E(a["titre"])}</span>'
+    tuiles = "".join(f'<a class="c-tuile" href="{a["slug"]}.html">{img(a.get("image", "vue-baie-de-nice"), a["titre"])}<span class="k">Récit</span><span class="t">{E(a["titre"])}</span>'
                      f'<span class="d">{"<br>".join(E(x) for x in chapo_carnet(a))}</span></a>' for a in articles)
+    # Un seul blog : les guides pratiques prennent place dans le carnet, après les récits (Géraldine, 09/11/2026).
+    pratiques = lire_guides(GUIDES if langue == "fr" else GUIDES / langue)
+    if langue != "fr":
+        for b in pratiques:
+            ignorer |= {i18n.norme(b["titre"]), i18n.norme(b["description"])}
+    tuiles += "".join(f'<a class="c-tuile" href="../guides/{b["slug"]}.html">{gimg(VISUELS[b["fichier"]][0], b["titre"])}<span class="k">Pratique</span><span class="t">{E(b["titre"])}</span>'
+                      f'<span class="d">{E(b["description"])}</span></a>' for b in pratiques)
     corps = f"""
 <section class="c-hero"><div class="c-col">
   <h1>Le carnet</h1>
@@ -1342,6 +1354,8 @@ def redirections():
         lignes.append(f"{quote(a)} {n} 301")
         if quote(a) != a: lignes.append(f"{a} {n} 301")
     lignes.append("/guides/vivre-collines-de-bellet-nice /guides/vivre-colline-de-bellet-nice 301")
+    # Un seul blog, le carnet : l'index des guides y mène (Géraldine, 09/11/2026).
+    lignes += ["/guides/ /carnet/ 301", "/en/guides/ /en/carnet/ 301", "/it/guides/ /it/carnet/ 301"]
     if not ACCUEIL_ACTIF:
         lignes += ["/ /bail-mobilite/ 302", "/en/ /en/bail-mobilite/ 302", "/it/ /it/bail-mobilite/ 302"]
     lignes.append("/blog/* " + ("/saisonniere/environs" if SAISON_ACTIVE else "/bail-mobilite/") + " 301")
