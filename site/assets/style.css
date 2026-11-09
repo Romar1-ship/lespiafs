@@ -779,3 +779,56 @@ section.nuit .sur{color:var(--dore)}
 .g-index .g-hero-image.cadre{background:var(--fond) center 30%/cover no-repeat}
 .g-index .g-hero-image.cadre{background-size:auto 175%;background-position:42% 38%}
 .g-index .g-hero-image.cadre figcaption{background:rgba(20,32,55,.72);color:#fff;padding:4px 10px;border-radius:3px}
+
+/* ===================== Bail mobilité, page du 09/11/2026 ===================== */
+.mob-hero h1.legende{margin:0 0 22px;max-width:860px;font-size:clamp(2.2rem,5.2vw,4.4rem);line-height:1.02}
+.mob-hero p.lead{margin:0 0 34px}
+.contexte{margin:56px 0 0;padding-top:26px;border-top:1px solid var(--ligne);font-family:var(--serif);font-size:clamp(1.15rem,2vw,1.45rem);color:var(--nuit);font-variant-numeric:lining-nums}
+.split h3{margin-top:1.2em}
+.split .note{margin-top:4px}
+.pieces{display:grid;grid-template-columns:repeat(3,1fr);gap:44px 28px;margin-top:40px}
+.piece{margin:0}
+.piece img{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:4px;margin-bottom:16px}
+.piece h3{font-size:1.2rem;margin-bottom:.35em;font-variant-numeric:lining-nums}
+.piece p{font-size:1rem;color:var(--gris);margin:0}
+@media(max-width:900px){.pieces{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:620px){.pieces{grid-template-columns:1fr;gap:36px}}
+.encadre p{margin:.4em 0 .9em;font-size:1rem;color:#fff}
+section.azur h2{color:#fff}
+section.azur .prix-grille{align-items:center}
+section.azur .prix-grille img{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:4px}
+section.azur p.phrase-prix{font-family:var(--serif);font-size:clamp(1.7rem,3.2vw,2.5rem);line-height:1.15;color:#fff;margin:0 0 18px;font-variant-numeric:lining-nums}
+section.azur p.phrase-prix em{color:var(--dore)}
+.conditions{display:grid;grid-template-columns:240px 1fr;gap:18px 32px;margin:56px 0 0;padding-top:30px;border-top:1px solid rgba(255,255,255,.35)}
+.conditions dt{font-family:var(--titre);font-weight:700;font-size:.72rem;letter-spacing:.24em;text-transform:uppercase;color:var(--dore);padding-top:5px}
+.conditions dd{margin:0;color:#fff}
+@media(max-width:700px){.conditions{grid-template-columns:1fr;gap:4px}.conditions dd{margin-bottom:16px}}
+.mention{margin:36px 0 0;padding:20px 24px;border:1px solid rgba(255,255,255,.55);border-radius:4px;color:#fff;font-size:1rem}
+section.nuit h2{color:#fff}
+.avis-intro{color:rgba(255,255,255,.8)}
+
+/* ===================== Le carnet : récits ===================== */
+.c-col{max-width:720px;margin:0 auto;padding:0 24px}
+.c-hero{padding:110px 0 56px;text-align:center}
+.c-hero .sur{text-decoration:none}
+.c-hero h1{font-family:"Fraunces",Georgia,serif;font-weight:300;font-size:clamp(2.6rem,6vw,4.6rem);line-height:1.04;letter-spacing:-.015em;margin:.2em 0 .45em;color:var(--nuit)}
+.c-hero .chapo{font-family:"Fraunces",Georgia,serif;font-weight:300;font-style:italic;font-size:clamp(1.2rem,2.2vw,1.5rem);line-height:1.5;color:var(--encre);margin:0 0 26px}
+.c-meta{font-family:"Sora",system-ui,sans-serif;font-size:.68rem;font-weight:600;letter-spacing:.28em;text-transform:uppercase;color:var(--gris)}
+.c-photo{margin:0 auto;max-width:1180px;padding:0 24px}
+.c-photo img{width:100%;aspect-ratio:16/8;object-fit:cover;object-position:50% 70%;border-radius:2px}
+.c-texte{padding:80px 0 110px}
+.recit{font-family:"Sora",system-ui,sans-serif;font-size:1.12rem;line-height:1.95;color:var(--encre)}
+.recit p{margin:0 0 1.5em}
+.recit>p:first-child::first-letter{font-family:"Fraunces",Georgia,serif;float:left;font-size:4.2em;line-height:.9;padding:.06em .1em 0 0;color:var(--azur)}
+.recit a{color:var(--azur);text-underline-offset:4px}
+.recit>p:last-child{margin-bottom:0}
+.c-note{margin:10px 0 0;font-size:.8rem;color:var(--gris)}
+.c-mention{margin:56px 0 0;padding-top:22px;border-top:1px solid var(--ligne);font-size:.8rem;line-height:1.6;color:var(--gris)}
+.c-liste{padding:10px 0 110px}
+.c-tuiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,360px));justify-content:center;gap:44px 32px}
+.c-tuile{display:block;text-decoration:none;color:var(--nuit)}
+.c-tuile img{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:2px;margin-bottom:18px}
+.c-tuile .t{display:block;font-family:"Fraunces",Georgia,serif;font-size:1.6rem;line-height:1.2;margin-bottom:8px}
+.c-tuile .d{display:block;font-size:.98rem;color:var(--gris);line-height:1.6}
+.c-tuile:hover .t{color:var(--azur)}
+@media(max-width:700px){.c-hero{padding:96px 0 40px}.c-tuiles{grid-template-columns:1fr}.c-photo{padding:0}.c-photo img{aspect-ratio:4/3;border-radius:0}.c-texte{padding:56px 0 80px}.recit{font-size:1.04rem;line-height:1.85}}

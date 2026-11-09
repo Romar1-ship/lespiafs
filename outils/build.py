@@ -26,6 +26,10 @@ ACCUEIL_ACTIF = False
 # Passer à True une fois les articles validés par Géraldine.
 GUIDES_VALIDES = False
 
+# Le carnet (récits) : en ligne et accessible, mais ni indexé ni dans le sitemap.
+# Passer à True quand Géraldine dit de l'ouvrir.
+CARNET_OUVERT = False
+
 # Pages anglaises et italiennes : relues par Themis et ouvertes à l'index le 24/10/2026.
 LANGUES_VALIDEES = True
 
@@ -108,8 +112,8 @@ def ligne(s):
 NAV_SAISON = [("", "Appartement"), ("hotes", "Hôtes"), ("environs", "Explorez les environs"),
               ("ateliers", "Ateliers"), ("livre-or", "Livre d'or"), ("faq", "F.A.Q."),
               ("tarifs", "Tarifs"), ("contact", "Contact")]
-NAV_MOB = [("#logement", "Le logement"), ("#prix", "Prix"), ("#acces", "Accès"),
-           ("#contrat", "Contrat"), ("#fiche", "Fiche technique")]
+NAV_MOB = [("#logement", "Le logement"), ("#acces", "Accès"), ("#prix", "Prix"),
+           ("#fiche", "Fiche technique")]
 
 BASE = "https://www.lespiafsdescollines.com"
 
@@ -127,7 +131,7 @@ def tete(titre, description, profondeur, chemin="index.html", jsonld=None, image
 <meta name="description" content="{E(description)}">
 <link rel="icon" type="image/png" href="{r}assets/img/favicon.png">
 <!--HREFLANG-->
-{'<meta name="robots" content="noindex">' if chemin == "404.html" or (chemin.startswith("saisonniere/") and not SAISON_ACTIVE) or (chemin.startswith("guides/") and not GUIDES_VALIDES) or (chemin[:-5] in {s for s, _ in PAGES_LEGALES} and not LEGALES_VALIDEES) else f'<link rel="canonical" href="{url_propre(chemin)}">'}
+{'<meta name="robots" content="noindex">' if chemin == "404.html" or (chemin.startswith("saisonniere/") and not SAISON_ACTIVE) or (chemin.startswith("guides/") and not GUIDES_VALIDES) or (chemin.startswith("carnet/") and not CARNET_OUVERT) or (chemin[:-5] in {s for s, _ in PAGES_LEGALES} and not LEGALES_VALIDEES) else f'<link rel="canonical" href="{url_propre(chemin)}">'}
 <meta property="og:type" content="website"><meta property="og:locale" content="fr_FR"><meta property="og:site_name" content="Les Piafs des Collines">
 <meta property="og:url" content="{url_propre(chemin)}">
 <meta property="og:title" content="{E(titre)}"><meta property="og:description" content="{E(description)}">
@@ -152,6 +156,7 @@ def entete(espace, courant, profondeur):
         ancre = "" if espace == "mob" else f"{r}bail-mobilite/"
         liens = "".join(f'<a href="{ancre}{a}">{E(l)}</a>' for a, l in NAV_MOB) if espace == "mob" else f'<a href="{r}bail-mobilite/">Bail mobilité</a>'
         liens += f'<a class="lien-guides" href="{r}guides/"{" aria-current=\"page\"" if espace == "guides" else ""}>Guides</a>'
+        liens += f'<a class="lien-carnet" href="{r}carnet/"{" aria-current=\"page\"" if espace == "carnet" else ""}>Le carnet</a>'
         cta = f'<a class="cta" href="{ancre}#demande">Demander une disponibilité</a>'
     return f"""<header class="entete"><div class="wrap">
 <a class="marque" href="{r}{"index.html" if ACCUEIL_ACTIF else "bail-mobilite/"}"><img class="m-oiseau" src="{r}assets/img/logo-oiseau-blanc.svg" alt=""><span class="m-texte"><img class="m-nom" src="{r}assets/img/logo-nom-blanc.svg" alt="Les Piafs des Collines"><span class="m-sous">Location bail mobilité</span></span></a>
@@ -226,7 +231,7 @@ PAGES = []
 # Les pages de l'offre existent en français, anglais et italien. Le français est la source :
 # l'anglais et l'italien sont produits par outils/i18n.py à partir de contenu/i18n/{langue}.json.
 # La location saisonnière reste en français seul.
-TRADUITES = {"index.html": "accueil", "bail-mobilite/index.html": "bail", "guides/index.html": "guides"}
+TRADUITES = {"index.html": "accueil", "bail-mobilite/index.html": "bail", "guides/index.html": "guides", "carnet/index.html": "carnet"}
 ALTS = {}     # clé de page -> {langue: adresse}
 ROUTES = {}   # langue -> {adresse française ou locale : adresse dans la langue}
 
@@ -244,6 +249,12 @@ def routes():
             g = GUIDES / l / f.name
             if g.exists():
                 ALTS["guide:" + f.stem][l] = f"/{l}/guides/{lire_md(g)['slug']}"
+    for f in sorted(CARNET.glob("*.md")) if CARNET.exists() else []:
+        ALTS["carnet:" + f.stem] = {"fr": f"/carnet/{lire_md(f)['slug']}"}
+        for l in i18n.LANGUES:
+            g = CARNET / l / f.name
+            if g.exists():
+                ALTS["carnet:" + f.stem][l] = f"/{l}/carnet/{lire_md(g)['slug']}"
     for l in i18n.LANGUES:
         ROUTES[l] = {}
         for alt in ALTS.values():
@@ -273,7 +284,7 @@ def ecrire(chemin, contenu, cle=None, langue="fr", ignorer=()):
     """Écrit la page française et, si elle est traduite, ses versions anglaise et italienne."""
     cle = cle or TRADUITES.get(chemin)
     sorties = [] if langue != "fr" else [("fr", chemin, contenu)]
-    auto = langue == "fr" and cle in ALTS and not cle.startswith("guide:") and cle != "guides"
+    auto = langue == "fr" and cle in ALTS and not cle.startswith(("guide:", "carnet:")) and cle not in ("guides", "carnet")
     langues = i18n.LANGUES if auto else ((langue,) if langue != "fr" else ())
     for l in langues:
         cible = ALTS[cle][l].lstrip("/")
@@ -688,56 +699,44 @@ FAQ_MOB = [
   "Non. Logement loué uniquement en bail mobilité de 1 à 10 mois, à un locataire qui justifie d'un motif professionnel ou de formation (mission temporaire, mutation, formation, études, stage). Il ne se loue ni pour des vacances, ni à la nuit, ni en location touristique."),
  ("Peut-on louer moins d'un mois ?",
   "Non. La durée minimale est d'un mois."),
- ("Comment se passe l'arrivée ?",
-  "À votre entrée, le bailleur remet les clés et établit avec vous l'état des lieux d'entrée et l'inventaire du mobilier. L'heure se fixe avec vous."),
- ("Où se trouve le logement et combien de temps pour rejoindre le centre ?",
-  "Sur la colline de Bellet, à l'ouest de Nice. En voiture, hors trafic : Clinique Kantys Centre 12 min, campus Valrose 13 min, CHU Pasteur 2 15 min, Centre Antoine Lacassagne 16 min, aéroport 20 min, Monaco 22 min, Sophia Antipolis 28 min. Le bus 60 s'arrête à 50 m et rejoint le tram ligne 2 à Magnan."),
+ ("Puis-je louer pour un mois si je suis dirigeant ou indépendant ?",
+  "Oui, si votre venue répond à un motif professionnel que vous pouvez justifier : mission, projet, formation. Le bail mobilité exige ce justificatif. Le logement ne se loue pas sans motif."),
+ ("Puis-je travailler dans le logement ?",
+  "Oui. La seconde chambre porte un poste de travail, et la fibre est installée. La pièce de vie et la terrasse offrent d'autres endroits où s'installer."),
+ ("Que se passe-t-il à la fin du bail ?",
+  "Le bail mobilité ne se renouvelle pas. Sa durée peut être modifiée une seule fois par avenant, dans la limite de 10 mois au total. Le locataire peut partir à tout moment avec un préavis d'un mois. Les clés se rendent avec le bailleur, lors de l'état des lieux de sortie."),
+]
+
+# L'appartement pièce par pièce : (photo, titre, texte), texte de la page du 09/11/2026.
+PIECES = [
+ ("sejour-salle-a-manger", "La pièce de vie", "Le salon et la salle à manger s'ouvrent sur la cuisine, avec un îlot entre les deux. Plaque à induction, four, lave-vaisselle : le dîner se prépare au milieu de la pièce de vie, pas derrière une porte."),
+ ("cuisine-ilot", "La cuisine", "L'îlot est un plan de travail, et la table du petit-déjeuner. Tout ce qu'il faut pour cuisiner est dans la pièce : rien à aller chercher."),
+ ("chambre-parentale", "La première chambre, 13,91 m²", "En fin de journée, la première chambre : 13,91 m², avec sa propre salle d'eau et une douche à l'italienne."),
+ ("chambre-2", "La seconde chambre, 12,88 m², et le poste de travail", "La seconde chambre, 12,88 m², porte le poste de travail. La fibre est installée. C'est là que s'ouvre le document que vous repoussiez."),
+ ("chambre-parentale", "Les salles d'eau", "Deux salles d'eau, dont une privative avec douche à l'italienne. Le WC est indépendant. Le matin, il y a de la place pour deux."),
+ ("cuisine-equipee", "La véranda buanderie, 4,95 m²", "Une véranda de 4,95 m² abrite le lave-linge et le sèche-linge. Le linge de lit et de toilette est fourni, avec rechange : vous n'y pensez pas."),
+ ("terrasse-vue-mer", "Les deux terrasses vue mer", "Le matin, le lever de soleil arrive sur la terrasse Sud-Est (10,58 m²). Le soir, le soleil se couche sur les collines, vu de la terrasse Sud-Ouest (15,75 m²). Une table pour six personnes, un store électrique, une plancha. La mer est en face."),
+ ("piscine-vue-aerienne", "Le jardin, la piscine, le parking", "Après une journée d'écran, le jardin et la piscine partagée sont dans l'enceinte, avec votre place de parking privée."),
+ ("salon-canape-lit", "Le confort", "Climatisation réversible, fibre, DPE C/A : le confort est là pour que vous ne pensiez qu'à votre travail."),
+]
+
+# Tarifs et conditions : (intitulé, texte).
+CONDITIONS = [
+ ("Dernier mois offert", "Pour un bail de 10 mois, le dernier mois de loyer est offert. Une fois par bail. Le loyer ne change pas. Le forfait de charges de 175 € reste dû ce mois-là."),
+ ("Ce qui est compris", "Linge de lit et de toilette, avec rechange. Charges du forfait (voir plus haut). Une bouteille de vin de Bellet à votre arrivée."),
+ ("Ce qui n'est pas compris", "Le ménage. L'assurance habitation, à souscrire par le locataire."),
+ ("Conditions", "Durée de 1 à 10 mois. Aucun dépôt de garantie. Préavis d'un mois à la demande du locataire. Remise des clés et état des lieux avec le bailleur."),
+ ("Pièces à fournir", "Une pièce d'identité. Un justificatif du motif professionnel ou de formation : ordre de mission, contrat, lettre de l'employeur ou de l'établissement, convention de stage."),
 ]
 
 # Livre d'or : seuls les passages sur le logement, sans ce qui touche à l'accueil des hôtes.
 AVIS = [("Une vue à couper le souffle, un appartement des plus agréables et d'une propreté irréprochable.", "Mélody, Nancy"),
         ("Un appartement au top, moderne, bien équipé, au goût du jour. Qu'il est agréable de s'asseoir sur la terrasse et de contempler la mer et ses bateaux.", "Chantal, Serge, Sabrina et Anthony, Doubs"),
         ("L'appartement est très bien situé et d'une propreté irréprochable. La vue est magnifique.", "Anaïs, Nord"),
-        ("We had a lovely stay at this cute and well equipped apartment. The view is magnificent.", "Salma et Omar"),
-        ("You have the most beautiful view from the flat and everything you need here!", "Famille Traude"),
-        ("Super séjour ! Rien à redire, tout était parfait !", "Hugo, Nancy")]
+        ("You have the most beautiful view from the flat and everything you need here!", "Famille Traude")]
 
 def faq_html(qr):
     return "".join(f"<details><summary>{fine(E(q))}</summary><p>{fine(E(r))}</p></details>" for q, r in qr)
-
-# ---------------------------------------------------------------- plan stylisé de Nice
-# Plan schématique, façon affiche : pas une carte. Positions composées à la main, ouest à gauche, mer en bas.
-def plan_nice():
-    cote = "M0 560 C 120 566, 230 572, 318 584 C 350 590, 372 604, 398 606 C 430 604, 470 568, 540 532 C 620 492, 700 462, 780 448 C 820 441, 850 446, 880 440 C 930 428, 1010 408, 1100 398 L 1100 660 L 0 660 Z"
-    vagues = "".join(f'<path class="p-vague" d="M{x} {y}q12 -8 24 0t24 0t24 0"/>' for x, y in ((120, 618), (300, 640), (520, 600), (700, 560), (900, 520), (980, 610), (640, 640)))
-    collines = ('<path class="p-colline c1" d="M190 430 C 270 330, 370 278, 455 282 C 560 288, 640 360, 705 430 Z"/>'
-                '<path class="p-colline c2" d="M300 440 C 370 392, 450 368, 530 378 C 590 388, 630 412, 665 440 Z"/>'
-                '<path class="p-colline c3" d="M660 410 C 740 330, 850 300, 960 322 C 1020 336, 1060 358, 1100 372 L 1100 420 Z"/>')
-    var = '<path class="p-var" d="M285 0 C 300 160, 270 330, 300 450 C 312 500, 316 545, 324 586"/>'
-    ax, ay = 450, 376
-    lieux = [("CHU Pasteur 2", "hopital", 905, 300, "15", 1), ("Campus Valrose", "campus", 790, 320, "13", 1),
-             ("Centre Lacassagne", "hopital", 590, 392, "16", 1), ("Clinique Kantys", "hopital", 735, 380, "12", 1),
-             ("Aéroport", "avion", 400, 590, "20", -1), ("La plage", "parasol", 545, 528, "7", -1)]
-    traits, points = "", ""
-    for nom, ico, x, y, mn, sens in lieux:
-        traits += f'<path class="p-trajet" d="M{ax} {ay} Q {(ax + x) / 2:.0f} {min(ay, y) - 12} {x} {y}"/>'
-        ty = 38 if sens > 0 else -50
-        points += (f'<g class="p-lieu" transform="translate({x} {y})"><circle r="17"/><use href="#i-{ico}" x="-11" y="-11" width="22" height="22"/>'
-                   f'<text class="p-nom" y="{ty}" text-anchor="middle">{E(nom)}</text><text class="p-min" y="{ty + 21}" text-anchor="middle">{mn} min</text></g>')
-    bords = ('<g class="p-bord" transform="translate(1030 170)"><use href="#i-couronne" x="-12" y="-38" width="24" height="24"/>'
-             '<text text-anchor="middle" class="p-nom">Monaco</text><text y="21" text-anchor="middle" class="p-min">22 min →</text></g>'
-             '<g class="p-bord" transform="translate(110 440)"><use href="#i-puce" x="-12" y="-38" width="24" height="24"/>'
-             '<text text-anchor="middle" class="p-nom">Sophia Antipolis</text><text y="21" text-anchor="middle" class="p-min">← 28 min</text></g>')
-    reperes = ('<g class="p-ville" transform="translate(880 432)"><circle r="7"/><text x="14" y="-12">Centre-ville</text></g>'
-               '<text class="p-promenade" x="560" y="560" transform="rotate(-17 560 560)">Promenade des Anglais</text>'
-               '<text class="p-baie" x="680" y="625">Baie des Anges</text>'
-               '<text class="p-varnom" x="262" y="220" transform="rotate(86 262 220)">le Var</text>')
-    maison = (f'<g class="p-piafs" transform="translate({ax} {ay})"><circle r="36"/><image href="{{R}}assets/img/logo-oiseau-blanc.svg" x="-20" y="-24" width="40" height="44"/>'
-              '<text class="p-piafs-nom" y="-56" text-anchor="middle">Les Piafs des Collines</text>'
-              '<text class="p-piafs-sous" y="-36" text-anchor="middle">sur la colline de Bellet</text></g>')
-    return (f'<figure class="plan-nice"><svg viewBox="0 0 1100 660" role="img" aria-label="Plan schématique de Nice : le logement sur la colline de Bellet, à 7 à 28 minutes en voiture des hôpitaux, du campus, de l\'aéroport, de la plage, de Monaco et de Sophia Antipolis">'
-            f'<rect class="p-terre" width="1100" height="660"/>{collines}{var}<path class="p-mer" d="{cote}"/>{vagues}{reperes}{traits}{points}{bords}{maison}</svg>'
-            '<figcaption>Plan schématique, pas à l\'échelle. Temps en voiture, hors trafic.</figcaption></figure>')
 
 def bail_mobilite():
     gal = "".join(f'<a href="{{R}}assets/img/{n}.jpg"{" class=\"g\"" if g else ""}>{img(n, a)}</a>' for n, a, g in GALERIE[:9])
@@ -755,7 +754,7 @@ def bail_mobilite():
         ("Contrat", [("Bail", "Bail mobilité, de 1 à 10 mois, signé par la personne logée"), ("Payeur", "Le locataire, ou son employeur avec une lettre de prise en charge"),
                      ("Durée minimale", "1 mois"), ("Pièces", "Justificatif du motif de mobilité avant signature"),
                      ("Garantie", "Caution de l'employeur ou caution personnelle. Visale non mobilisable à ce niveau de loyer"),
-                     ("Loyer", "Exonéré de TVA (art. 261 D 4° du CGI). Quittance au nom du locataire, qui mentionne le payeur"), ("Arrivée", "Remise des clés avec le bailleur, état des lieux ensemble")]),
+                     ("Loyer", "Exonéré de TVA (art. 261 D 4° du CGI). Quittance au nom du locataire, qui mentionne le payeur"), ("Arrivée", "Remise des clés et état des lieux avec le bailleur")]),
     ]
     icones = {"Le logement": "plan", "Énergie et confort": "energie", "Équipements": "equipement", "Contrat": "plume"}
     picto_ligne = {"Surface habitable": "plan", "Terrasses": "soleil", "Véranda buanderie": "machine", "Pièces": "porte", "Chambres": "lit",
@@ -766,14 +765,18 @@ def bail_mobilite():
                    "Garantie": "cle", "Facturation": "facture", "Arrivée": "valise"}
     fiche_html = "".join(f'<div class="fiche-bloc"><h3>{pic(icones[t])}{E(t)}</h3><dl>' + "".join(
         f'<dt>{pic(picto_ligne.get(k, "plume" if t == "Contrat" else "plan"), "pic-s")}{E(k)}</dt><dd>{E(v)}</dd>' for k, v in lignes) + "</dl></div>" for t, lignes in fiche)
-    def panneau(image, titre, l1, l2, cote="", icone="soleil"):
-        return f'''<figure class="panneau {cote}">{img(image, titre.capitalize())}<figcaption><h3>{pic(icone, "pic-s")}{E(titre)}</h3><p>{E(l1)}<br>{E(l2)}</p></figcaption></figure>'''
+    alt = {n: a for n, a, _ in GALERIE}
+    def photo(n):
+        return img(n, alt[n])
+    def paras(*ps):
+        return "".join(f"<p>{E(x)}</p>" for x in ps)
+    pieces_html = "".join(f'<figure class="piece">{photo(n)}<figcaption><h3>{E(t)}</h3><p>{E(x)}</p></figcaption></figure>' for n, t, x in PIECES)
     corps = f"""
 <section class="mob-hero">
   <picture><source media="(max-width:700px)" srcset="{{R}}assets/img/hero-baie-mobile.jpg"><img class="fond" src="{{R}}assets/img/hero-baie.jpg" alt="La Baie des Anges vue depuis l'appartement, sur la colline de Bellet à Nice" fetchpriority="high"></picture>
   <div class="wrap">
-    <h1 class="sur">Location en bail mobilité à Nice</h1>
-    <p class="legende"><span class="ligne">Sur la colline de Bellet,</span><br><span class="ligne">face à la Baie&nbsp;des&nbsp;Anges,</span><br><em>de 1&nbsp;à 10&nbsp;mois</em></p>
+    <h1 class="legende">Le soleil se lève sur la terrasse. Votre dossier vous attend.</h1>
+    <p class="lead">Nice, colline de Bellet. Un appartement face à la Baie des Anges, pour un mois de travail ou plus.</p>
     <a class="bouton" href="#demande">Demander une disponibilité</a>
   </div>
   <div class="timbre" aria-hidden="true"><span class="t-haut">Nice</span><span class="t-nom">Bellet</span><span class="t-bas">Côte d'Azur</span></div>
@@ -783,56 +786,78 @@ def bail_mobilite():
 
 <section class="blanc" id="chiffres"><div class="wrap">
   <div class="geants">
-    <div>{pic("hopital")}<b>15<small>min</small></b><span>du CHU Pasteur</span></div>
+    <div>{pic("couronne")}<b>22<small>min</small></b><span>de Monaco</span></div>
     <div>{pic("soleil")}<b>26<small>m<sup>2</sup></small></b><span>de terrasses vue mer</span></div>
-    <div>{pic("facture")}<b>1</b><span>paiement par mois</span></div>
+    <div>{pic("avion")}<b>20<small>min</small></b><span>de l'aéroport international</span></div>
   </div>
+  <p class="contexte">T3 meublé de 77,51 m², premier étage d'une villa. Bail mobilité de 1 à 10 mois.</p>
 </div></section>
 
-<section id="logement" class="panneaux"><div class="wrap">
-  <h2 class="cache">Un appartement meublé de 77 m² à Nice</h2>
-  {panneau("terrasse-vue-mer", "DEUX TERRASSES", "26 m² exposés sud, face à la mer.", "Une table pour six, sous store.", icone="soleil")}
-  {panneau("chambre-parentale", "DEUX VRAIES CHAMBRES", "13,91 et 12,88 m², chacune avec son placard.", "Une salle de bain privative, une salle d'eau, un WC indépendant.", "droite", "lit")}
-  {panneau("cuisine-sejour", "ARRIVER AVEC SA VALISE", "Linge de lit et de toilette fourni, avec rechange.", "Remise des clés avec le bailleur.", icone="valise")}
+<section id="lieu"><div class="wrap split">
+  <div><h2>Une force tranquille</h2>
+  {paras("Le logement est au calme, au premier étage d'une villa de la colline de Bellet, face à la Baie des Anges.",
+         "Le matin, le lever de soleil arrive sur la terrasse. La vue est incroyable : elle dégage la paix et l'apaisement, une force tranquille, stable.",
+         "Le logement est traversant, la lumière entre par les deux côtés. Le soir, le soleil se couche sur les collines. Des deux terrasses, on voit tout.",
+         "Et quand la tempête arrive, on voit la mer moutonner. Vous êtes en sécurité, avec un point de vue unique sur la puissance des éléments.")}</div>
+  {photo("vue-baie-de-nice")}
+</div></section>
+
+<section class="sable" id="acces"><div class="wrap split inverse">
+  <div><h2>La Riviera, terre de travail</h2>
+  {paras("Henri Matisse arrive à Nice en décembre 1917. Il y découvre une lumière argentée, qui doit le retenir si longtemps.",
+         "Sept ans plus tard, de juin à octobre 1924, F. Scott Fitzgerald s'enferme à la Villa Marie, à Saint-Raphaël, pour écrire The Great Gatsby.",
+         "Deux hommes venus ici pour travailler, sur la même côte.",
+         "Depuis la colline de Bellet, Monaco est à 22 minutes, Sophia Antipolis à 28, l'aéroport de Nice à 20. Cannes se rejoint par la côte. Vos rendez-vous restent à portée, et le soir, vous remontez sur la colline.")}</div>
+  {photo("terrasse-vue-mer")}
+</div></section>
+
+<section class="blanc" id="logement"><div class="wrap">
+  <h2>L'appartement, pièce par pièce</h2>
+  <p class="intro-plan">Poussez la porte. 77,51 m² au premier étage d'une villa : deux chambres, deux salles d'eau, une pièce de vie ouverte sur la cuisine, deux terrasses.</p>
+  <div class="pieces">{pieces_html}</div>
   <div class="galerie" style="margin-top:70px">{gal}</div>
 </div></section>
 
-<section class="azur" id="prix"><div class="wrap prix-grille">
-  <div><span class="sur">Prix du bail mobilité à Nice, charges comprises</span>
-  <h2 class="phrase-prix">Un seul prix, de 1 à 10&nbsp;mois. <em>Bail de 10&nbsp;mois : le dernier mois de loyer est offert.</em></h2></div>
-  <div><div class="montants">
-    <div><span>{pic("calendrier", "pic-s")}1 à 10 mois</span><b>3 650 €<i>/ mois</i></b></div>
-    <div><span>{pic("calendrier", "pic-s")}Bail de 10 mois</span><b>Offert<i>/ dernier mois</i></b></div>
+<section class="sable" id="vivre"><div class="wrap">
+  <h2>Le deuxième lundi, vous avez vos habitudes</h2>
+  <div class="split">
+  <div><h3>La semaine</h3>
+  {paras("La semaine prend son rythme. Du mardi au dimanche, le marché du Cours Saleya, dans le vieux Nice, aligne fleurs, fruits, légumes et poisson. Le lundi, la brocante prend la place.",
+         "À midi et le soir, vous mangez aux tables de la région : socca, poisson, cuisine niçoise.",
+         "Quand la journée de travail se termine, la mer est à 7 minutes. Et si vous préférez ne pas conduire, le bus 60 passe à 50 mètres et rejoint le tram, ligne 2.")}
+  <h3>Autour de Nice</h3>
+  {paras("Quand le dossier est refermé, la côte est à portée : Villefranche-sur-Mer est à environ 15 minutes de Nice, Saint-Jean-Cap-Ferrat à environ 20, Èze à environ 20.")}
+  <p class="note">Temps indiqués depuis le centre de Nice, hors trafic. Le logement est sur la colline de Bellet, à l'ouest.</p></div>
+  {photo("jardin")}
   </div>
-  <p class="note">Loyer de 3 475 € et forfait de charges de 175 € (eau, électricité, climatisation, fibre, parking, piscine partagée). Linge de lit et de toilette fourni avec rechange. La remise de 10 mois est accordée une seule fois, par bail, et ne modifie pas le loyer du bail. Loyer exonéré de TVA (art. 261 D 4° du CGI).</p></div>
 </div></section>
 
-<section class="sable" id="acces"><div class="wrap">
-  <span class="sur">Accès</span><h2>Sur la colline, à un quart d'heure de tout</h2>
-  <p class="intro-plan">Ni en bord de mer, ni en centre-ville : sur la colline de Bellet, à l'ouest de Nice, au calme et face à la mer.</p>
-  {plan_nice()}
-  <div class="carte-trajets">
-    <div>{pic("hopital", "pic-s")}<b>12</b><span>Clinique Kantys Centre</span></div><div>{pic("campus", "pic-s")}<b>13</b><span>Campus Valrose</span></div>
-    <div>{pic("hopital", "pic-s")}<b>15</b><span>CHU Pasteur 2</span></div><div>{pic("hopital", "pic-s")}<b>16</b><span>Centre Lacassagne</span></div>
-    <div>{pic("avion", "pic-s")}<b>20</b><span>Aéroport</span></div><div>{pic("couronne", "pic-s")}<b>22</b><span>Monaco</span></div>
-    <div>{pic("puce", "pic-s")}<b>28</b><span>Sophia Antipolis</span></div><div>{pic("parasol", "pic-s")}<b>7</b><span>La plage</span></div>
-  </div>
-  <p class="note">Minutes en voiture, hors trafic. Bus 60 à 50 m, vers le tram ligne 2.</p>
+<section class="blanc" id="pour-qui"><div class="wrap split">
+  <div><h2>Pour ceux dont le dossier attend</h2>
+  {paras("Votre agenda ne laisse aucune place à la réflexion entre deux réunions. Vous dirigez une équipe, vous menez une recherche, vous préparez un cours ou une mission, et le dossier de fond attend toujours.",
+         "Ce logement est fait pour ceux qui viennent travailler un mois ou plus, et qui paient eux-mêmes leur logement : dirigeants, fondateurs, chercheurs, professeurs invités, consultants en mission, médecins invités. Il leur offre un lieu calme, une table de travail, de la lumière, et la Riviera à portée.")}
+  <aside class="encadre"><span class="sur">{pic("plume", "pic-s")}Pour nos visiteurs américains</span>
+  {paras("Les ressortissants américains peuvent entrer dans l'espace Schengen sans visa pour 90 jours au plus sur une période de 180 jours. Au-delà, il faut un visa de type D, à demander avant le départ. Selon la nature de l'activité, une autorisation de travail peut s'y ajouter : renseignez-vous auprès du consulat de France.",
+         "Le bail mobilité, en clair : un bail meublé de 1 à 10 mois, pour une personne en mission, en formation ou en études. Il ne se renouvelle pas, il peut être modifié une seule fois par avenant, dans la limite de 10 mois au total, et la loi interdit tout dépôt de garantie. Le locataire peut partir à tout moment avec un préavis d'un mois.")}</aside></div>
+  {photo("chambre-2")}
 </div></section>
 
-<section class="blanc" id="contrat"><div class="wrap">
-  <span class="sur">Contrat</span><h2>Un bail mobilité, signé par la personne logée</h2>
-  <p class="intro-plan">Logement loué uniquement en bail mobilité de 1 à 10 mois, à un locataire qui justifie d'un motif professionnel ou de formation (mission temporaire, mutation, formation, études, stage). Il ne se loue ni pour des vacances, ni à la nuit, ni en location touristique.</p>
-  <div class="deux-formules">
-    <div>{pic("personne")}<h3>Vous payez</h3><p>Bail mobilité, de 1 à 10 mois.<br>Justificatif du motif avant signature, caution personnelle.</p></div>
-    <div>{pic("societe")}<h3>Votre employeur paie</h3><p>Vous signez le bail, il vire le loyer avec la référence du bail.<br>Lettre de prise en charge, quittance à votre nom qui mentionne le payeur.</p></div>
+<section class="azur" id="prix"><div class="wrap">
+  <div class="prix-grille">
+    <div><h2>Tarifs et conditions</h2>
+    <p class="phrase-prix">3 650 € par mois, charges comprises. <em>Même prix pour toutes les durées, de 1 à 10 mois.</em></p>
+    <p class="note">Détail : loyer 3 475 € + forfait de charges 175 € (eau, électricité, climatisation, fibre, parking, piscine partagée).</p></div>
+    {photo("cuisine-sejour")}
   </div>
+  <dl class="conditions">{"".join(f"<dt>{E(t)}</dt><dd>{E(x)}</dd>" for t, x in CONDITIONS)}</dl>
+  <p class="mention">Logement loué uniquement en bail mobilité de 1 à 10 mois, à un locataire qui justifie d'un motif professionnel ou de formation (mission temporaire, mutation, formation, études, stage). Il ne se loue ni pour des vacances, ni à la nuit, ni en location touristique.</p>
   <p class="note droit">Le contrat est régi par le droit français et rédigé en français. Les traductions sont fournies à titre d'information.</p>
 </div></section>
 
 <div class="store" aria-hidden="true"></div>
 <section class="nuit" id="avis"><div class="etroit centre">
-  <span class="sur">Le livre d'or</span>
+  <span class="sur">Le livre d'or</span><h2>Ce qu'en disent ceux qui y ont travaillé</h2>
+  <p class="avis-intro">Ils sont venus pour leur mission. Voici ce qu'ils ont écrit en partant.</p>
   <div class="avis-defile" aria-roledescription="carrousel">
     {"".join(f'<blockquote class="citation"><p>« {E(q)} »</p><cite>{E(c)}</cite></blockquote>' for q, c in AVIS)}
   </div>
@@ -845,23 +870,25 @@ p.forEach((x,k)=>x.addEventListener('click',()=>va(k)));va(0);
 if(!matchMedia('(prefers-reduced-motion: reduce)').matches)setInterval(()=>{{if(!d.matches(':hover'))va(i+1)}},6500)}})();</script>
 
 <section class="blanc" id="fiche"><div class="wrap">
-  <span class="sur">Fiche technique</span><h2>Pour valider le dossier</h2>
+  <h2>Fiche technique</h2>
+  <p class="intro-plan">Pour décider avec les chiffres : surfaces, équipements, performance énergétique.</p>
   <div class="fiche">{fiche_html}</div>
 </div></section>
 
 <section id="questions"><div class="etroit">
-  <span class="sur">Questions fréquentes</span><h2>Le bail mobilité à Nice, en questions</h2>
+  <h2>Questions fréquentes</h2>
+  <p class="intro-plan">L'essentiel sur le bail, les pièces à fournir et la vie dans le logement.</p>
   <div style="margin-top:24px">{faq_html(FAQ_MOB)}</div>
 </div></section>
 
 <section class="blanc" id="demande"><div class="etroit">
-  <span class="sur">Demande</span><h2>Demander une disponibilité</h2>
-  <p>Les dates, et qui paie le loyer. Réponse avec une date d'entrée ferme.</p>
+  <h2>Parlez-nous de votre mission</h2>
+  <p>Dites-nous sur quelle mission vous venez et à quelles dates. Une réponse vous parvient avec les disponibilités.</p>
   {formulaire("Demande bail mobilité",
     '<div><label for="ent">Date d\'entrée souhaitée</label><input id="ent" name="Entrée" type="date"></div>'
     '<div><label for="duree">Durée</label><select id="duree" name="Durée"><option>1 à 3 mois</option><option>4 à 9 mois</option><option>10 mois</option></select></div>'
     '<div><label for="payeur">Qui paie le loyer ?</label><select id="payeur" name="Payeur"><option>Moi-même</option><option>Mon employeur</option><option>Une agence de relocation</option><option>Une production</option></select></div>'
-    '<div><label for="motif">Motif du séjour</label><select id="motif" name="Motif"><option>Mission temporaire</option><option>Formation</option><option>Mutation</option><option>Stage</option><option>Études supérieures</option><option>Autre</option></select></div>'
+    '<div><label for="motif">Motif de la location</label><select id="motif" name="Motif"><option>Mission temporaire</option><option>Formation</option><option>Mutation</option><option>Stage</option><option>Études supérieures</option><option>Autre</option></select></div>'
     '<div class="plein"><label for="org">Société ou établissement</label><input id="org" name="Société / établissement"></div>')}
   <p class="note" style="margin-top:18px">Ou directement : <a href="mailto:{MAIL}">{MAIL}</a> · <a href="tel:{TEL_LIEN}">{TEL}</a></p>
 </div></section>"""
@@ -870,7 +897,7 @@ if(!matchMedia('(prefers-reduced-motion: reduce)').matches)setInterval(()=>{{if(
          "mob", "", corps, SCRIPT_GALERIE, image="hero-baie", jsonld=[
             {"@context": "https://schema.org", "@type": "Apartment",
              "name": "Location en bail mobilité à Nice, Les Piafs des Collines",
-             "description": "Appartement meublé de 77,51 m² avec vue sur la Baie des Anges, loué en bail mobilité de 1 à 10 mois, 3 650 € par mois charges comprises, linge inclus.",
+             "description": "Un appartement au-dessus de la Baie des Anges, pour ceux qui viennent travailler sur la Riviera. T3 meublé de 77,51 m², premier étage d'une villa. Bail mobilité de 1 à 10 mois. 3 650 € par mois, charges comprises.",
              "url": BASE + "/bail-mobilite/", "address": ADRESSE_LD,
              "floorSize": {"@type": "QuantitativeValue", "value": 77.51, "unitCode": "MTK"}, "numberOfRooms": 3, "numberOfBedrooms": 2, "numberOfBathroomsTotal": 2,
              "amenityFeature": [{"@type": "LocationFeatureSpecification", "name": n, "value": True} for n in
@@ -880,7 +907,7 @@ if(!matchMedia('(prefers-reduced-motion: reduce)').matches)setInterval(()=>{{if(
             {"@context": "https://schema.org", "@type": "FAQPage",
              "mainEntity": [{"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": r}} for q, r in FAQ_MOB]},
             {"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [
-             {"@type": "ListItem", "position": 1, "name": "Accueil", "item": BASE + "/"},
+             {"@type": "ListItem", "position": 1, "name": "Les Piafs des Collines", "item": BASE + "/"},
              {"@type": "ListItem", "position": 2, "name": "Bail mobilité à Nice", "item": BASE + "/bail-mobilite/"}]}])
 
 # ================================================================ GUIDES
@@ -1173,6 +1200,67 @@ def guides_langue(langue):
          "Bail mobilité à Nice, logement près du CHU, travailler à Monaco : nos guides pour se loger à Nice pour 1 à 10 mois.", "guides", "", corps,
          image="guides/affiche-hiver-a-nice", cle="guides", langue=langue, ignorer=ignorer)
 
+# ================================================================ LE CARNET
+# Récits, en FR, EN et IT (contenu/carnet/, contenu/carnet/en/, contenu/carnet/it/, même nom de fichier).
+# Gabarit de lecture : pas de sommaire, pas de repères, pas de bandeau de prix.
+CARNET = RACINE / "contenu/carnet"
+ELIGIBILITE = "Logement loué uniquement en bail mobilité de 1 à 10 mois, à un locataire qui justifie d'un motif professionnel ou de formation (mission temporaire, mutation, formation, études, stage). Il ne se loue ni pour des vacances, ni à la nuit, ni en location touristique."
+
+def lire_carnet(dossier):
+    articles = [lire_md(f) for f in sorted(dossier.glob("*.md"))] if dossier.exists() else []
+    for a in articles:
+        # Les lignes « \\* … » de fin d'article sont des notes (traduction des citations), pas une liste.
+        lignes = a["corps"].splitlines()
+        a["notes"] = [l[1:].strip() for l in lignes if l.startswith("\\* ")]
+        a["corps"] = "\n".join(l for l in lignes if not l.startswith("\\* ")).replace("\\*", "*").replace("« ", "«\u00a0").strip()
+        a["lignes"] = [x.strip() for x in a.get("chapo", a["description"]).split("|")]
+    return articles
+
+def chapo_carnet(a):
+    """Le chapô en lignes ; sa première partie, quand elle reprend le titre, est le titre lui-même."""
+    return [x for x in a["lignes"] if x != a["titre"]]
+
+def carnet():
+    for langue in ("fr",) + i18n.LANGUES:
+        carnet_langue(langue)
+
+def carnet_langue(langue):
+    articles = lire_carnet(CARNET if langue == "fr" else CARNET / langue)
+    if not articles: return
+    ignorer = set()
+    if langue != "fr":  # le texte des récits est déjà dans la langue : il ne passe pas par le dictionnaire
+        for a in articles:
+            ignorer |= i18n.textes(md_html(a["corps"], pictos=False)) | {i18n.norme(x) for x in (a["titre"], a["description"], a["title_seo"], *a["lignes"], *a["notes"])}
+    for a in articles:
+        corps = f"""
+<section class="c-hero"><div class="c-col">
+  <a class="sur" href="./">Le carnet</a>
+  <h1>{E(a["titre"])}</h1>
+  <p class="chapo">{"<br>".join(E(x) for x in chapo_carnet(a))}</p>
+  <span class="c-meta">{max(1, round(mots(a["corps"]) / 220))}&nbsp;<span>min de lecture</span></span>
+</div></section>
+<figure class="c-photo"><picture><source media="(max-width:700px)" srcset="{{R}}assets/img/hero-baie-mobile.jpg"><img src="{{R}}assets/img/hero-baie.jpg" alt="La Baie des Anges vue depuis l'appartement, sur la colline de Bellet à Nice" fetchpriority="high"></picture></figure>
+<section class="c-texte"><div class="c-col">
+  <article class="recit">{md_html(a["corps"], pictos=False)}</article>
+  <p class="c-mention">{E(ELIGIBILITE)}</p>
+  {"".join(f'<p class="c-note">{E(n)}</p>' for n in a["notes"])}
+</div></section>"""
+        page(f"carnet/{a['slug']}.html", a["title_seo"], a["description"], "carnet", "", corps, image="hero-baie",
+             cle="carnet:" + a["fichier"], langue=langue, ignorer=ignorer, jsonld=[
+            {"@context": "https://schema.org", "@type": "Article", "headline": a["titre"], "description": a["description"], "inLanguage": {"fr": "fr-FR", "en": "en", "it": "it-IT"}[langue],
+             "image": f"{BASE}/assets/img/hero-baie.jpg", "url": url_propre(f"carnet/{a['slug']}.html"),
+             "publisher": {"@type": "Organization", "name": "Les Piafs des Collines", "url": BASE + "/"}}])
+    tuiles = "".join(f'<a class="c-tuile" href="{a["slug"]}.html">{img(a.get("image", "vue-baie-de-nice"), a["titre"])}<span class="t">{E(a["titre"])}</span>'
+                     f'<span class="d">{"<br>".join(E(x) for x in chapo_carnet(a))}</span></a>' for a in articles)
+    corps = f"""
+<section class="c-hero"><div class="c-col">
+  <h1>Le carnet</h1>
+  <p class="chapo">Des récits sur le travail, les lieux et le temps pour penser.</p>
+</div></section>
+<section class="c-liste"><div class="wrap"><div class="c-tuiles">{tuiles}</div></div></section>"""
+    page("carnet/index.html", "Le carnet | Les Piafs des Collines", "Des récits sur le travail, les lieux et le temps pour penser.",
+         "carnet", "", corps, image="hero-baie", cle="carnet", langue=langue, ignorer=ignorer)
+
 # ================================================================ divers
 # ---------------------------------------------------------------- pages légales (bail mobilité)
 # Textes rédigés par Themis dans contenu/legal/*.md. Elles remplacent les sept pages de l'ancienne location saisonnière.
@@ -1265,7 +1353,7 @@ def sitemap():
     jour = datetime.date.today().isoformat()
     prio = {"index.html": "1.0", "bail-mobilite/index.html": "0.9", "saisonniere/index.html": "0.8", "guides/index.html": "0.7"}
     urls = "".join(f"<url><loc>{url_propre(c)}</loc><lastmod>{jour}</lastmod><priority>{prio.get(c, '0.5')}</priority></url>"
-                   for c in PAGES if c != "404.html" and (SAISON_ACTIVE or not c.startswith("saisonniere/")) and (GUIDES_VALIDES or "guides/" not in c) and (LANGUES_VALIDEES or not c.startswith(("en/", "it/"))) and (ACCUEIL_ACTIF or c not in ("index.html", "en/index.html", "it/index.html")))
+                   for c in PAGES if c != "404.html" and (SAISON_ACTIVE or not c.startswith("saisonniere/")) and (GUIDES_VALIDES or "guides/" not in c) and (CARNET_OUVERT or "carnet/" not in c) and (LANGUES_VALIDEES or not c.startswith(("en/", "it/"))) and (ACCUEIL_ACTIF or c not in ("index.html", "en/index.html", "it/index.html")))
     (SITE / "sitemap.xml").write_text('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">' + urls + "</urlset>\n", encoding="utf-8")
     (SITE / "robots.txt").write_text(f"User-agent: *\nAllow: /\n\nSitemap: {BASE}/sitemap.xml\n", encoding="utf-8")
     print("   sitemap.xml, robots.txt")
@@ -1274,7 +1362,7 @@ if __name__ == "__main__":
     print("Génération de site/ :")
     routes()
     accueil(); saison_appartement(); saison_hotes(); saison_ateliers(); saison_livre_or(); saison_faq()
-    saison_tarifs(); saison_contact(); saison_environs(); saison_legal(); bail_mobilite(); guides(); pages_legales(); page_cookies(); page_404(); redirections(); sitemap()
+    saison_tarifs(); saison_contact(); saison_environs(); saison_legal(); bail_mobilite(); guides(); carnet(); pages_legales(); page_cookies(); page_404(); redirections(); sitemap()
     n = i18n.rapport()
     print(f"Textes à traduire : {n} (contenu/i18n/manquants-*.json)" if n else "Traductions complètes.")
     print("Terminé.")
