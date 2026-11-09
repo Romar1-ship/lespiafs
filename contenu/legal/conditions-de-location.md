@@ -6,7 +6,7 @@ slug: conditions-de-location
 
 # Conditions de location
 
-L'appartement se loue meublé, pour 1 à 10 mois. Cette page explique le chemin, de votre demande à la signature. Le bail que vous signez reste le seul contrat : en cas d'écart entre cette page et le bail, le bail s'applique.
+L'appartement se loue meublé, uniquement en bail mobilité de 1 à 10 mois, à un locataire qui justifie d'un motif professionnel ou de formation (mission temporaire, mutation, formation, études, stage). Il ne se loue ni pour des vacances, ni à la nuit, ni en location touristique. Cette page explique le chemin, de votre demande à la signature. Le bail que vous signez reste le seul contrat : en cas d'écart entre cette page et le bail, le bail s'applique.
 
 ## Le bail mobilité
 

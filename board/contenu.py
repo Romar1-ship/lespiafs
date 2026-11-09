@@ -20,7 +20,8 @@ ROUTE = [
     ("fait", "globe", "23 oct. 2026", "Le site sur Cloudflare", "Sans Wix, sur la page bail mobilité."),
     ("fait", "plume", "Octobre 2026", "Trois langues, les guides", "Français, anglais, italien ; 5 guides en ligne."),
     ("fait", "cle", "Octobre 2026", "Le cadre légal", "Les pages légales du bail mobilité, relues par Themis."),
-    ("ici", "plan", "28 oct. 2026", "Les fondations", "Les guides validés, le médiateur, les plateformes."),
+    ("fait", "plan", "9 nov. 2026", "Le prix et la cible", "3 650 € CC, bail mobilité seul, le professionnel qui vient travailler."),
+    ("ici", "plume", "Novembre 2026", "La page et le carnet", "La page réécrite pour la cible, les articles, les affiches."),
     ("cible", "maison", "15 nov. 2026", "Le premier bail signé", "L'entrée dans les lieux au plus tard le 15 novembre."),
     ("cible", "calendrier", "À dater", "Loué 12 mois sur 12", "Sans vacance entre deux baux."),
 ]
@@ -28,25 +29,27 @@ ROUTE = [
 # ---------------------------------------------------------------- LES TROIS ÉTATS
 ETATS = dict(
     retour=[
-        "<b>Publier les corrections du 28 octobre</b> : l'arrivée accompagnée, la colline. Il suffit de dire « push ».",
-        "<b>Valider les 5 guides</b> dans Le carnet : ils s'ouvrent alors à Google.",
-        "<b>Choisir les articles à écrire</b> parmi les 8 propositions du carnet.",
-        "<b>Le médiateur de la consommation</b> : adhérer, puis envoyer son nom, son adresse et son site.",
-        "<b>La photo du hero</b> : la choisir avant de l'agrandir.",
+        "<b>Lire l'article sur Carnegie</b> dans Le carnet, relu par Themis.",
+        "<b>Valider la nouvelle page bail mobilité</b> : réécriture en cours, captures déposées dans À faire.",
+        "<b>Acheter les affiches d'Eric Garence</b>, puis envoyer le message préparé dans À faire.",
+        "<b>Le comptable</b> : la TVA avec la remise des clés et la présentation du logement par Marcelle.",
+        "<b>Un avocat</b> : le dirigeant qui se met lui-même en mission, avant d'ouvrir les réservations.",
     ],
     atelier=[
-        "<b>Les plateformes</b> : 15 relais à ouvrir, un par un, dans Plateformes.",
-        "<b>Le board</b> : l'accès par code e-mail et le lien avec ClickUp.",
+        "<b>La page bail mobilité</b> : réécrite pour la cible, entre Sabbatical Homes et onefinestay, en trois langues.",
+        "<b>Le carnet</b> : 6 articles retenus sur le séjour de travail sur la Riviera, 9 propositions à choisir.",
     ],
     foi=[
-        ("23 oct.", "<b>Le bail mobilité</b>, de 1 à 10 mois, et <b>le bail société</b>, à partir de 3 mois. Plus aucune nuit touristique."),
+        ("08 nov.", "<b>La cible</b> : le professionnel qui vient travailler au calme un mois ou plus et paie lui-même. Clientèle américaine visée."),
+        ("09 nov.", "<b>Un seul loyer</b> : 3 650 € par mois charges comprises, linge fourni. Bail de 10 mois : le dernier mois de loyer est offert."),
+        ("09 nov.", "<b>Bail mobilité seulement</b>, signé par la personne logée. Ni vacances, ni nuitées, ni location touristique. Le ménage sort de l'offre."),
+        ("09 nov.", "<b>À l'arrivée</b> : remise des clés et état des lieux avec le bailleur."),
         ("24 oct.", "<b>On publie par le dépôt</b> : un push sur GitHub, Cloudflare déploie."),
-        ("25 oct.", "<b>Le domaine</b> arrive sur la page bail mobilité."),
-        ("28 oct.", "<b>L'arrivée est accompagnée</b> : accueil sur place, remise des clés et état des lieux d'entrée ensemble."),
     ],
 )
 
 # ---------------------------------------------------------------- L'EMPREINTE, EN LÉGER
+S_DEC = "Source : décisions de Géraldine des 8 et 9 novembre 2026, avis Themis."
 S_SITE = "Source : lespiafsdescollines.com, validé par Géraldine du 23 au 28 octobre 2026."
 _COUL = [("Azur", "#0B5FA5", "Titres, liens, boutons", True), ("Mer", "#0A4F8A", "Survol", True), ("Corail", "#F2735F", "Guides, langues, filets", True),
          ("Orange", "#E2A94B", "Rayures, accents", False), ("Doré", "#F6D9A8", "Fonds clairs", False), ("Nuit", "#1C2B45", "Titres, pied de page", True),
@@ -63,20 +66,20 @@ EMPREINTE = [
     ("fondations", "Les fondations", "Les <em>fondations</em>", "Volume II · La Marque", "Qu'est-ce que <em>l'on offre, et à qui ?</em>", [
         ("promesse", "La promesse", dict(forme="frappe", etat="foi", source=S_SITE,
             essentiel="Sur la colline de Bellet, face à la Baie des Anges, <em>de 1 à 10 mois.</em>",
-            sous="Un appartement entier de 77,51 m², meublé, tout compris : on arrive avec sa valise.")),
-        ("public", "Le public", dict(forme="cartes", etat="foi", source=S_SITE,
-            essentiel="Les professionnels <em>en mobilité à Nice.</em>",
-            tuiles=[("", "En mission", "Salariés, consultants, chercheurs. Le bail mobilité, de 1 à 10 mois."),
-                    ("", "En formation ou en internat", "Internes, fellows, adultes en formation. Les hôpitaux à 12 à 16 minutes."),
-                    ("", "Logés par leur employeur", "Le bail au nom de la société, à partir de 3 mois, facturé au payeur.")])),
+            sous="Un appartement de 77,51 m² au-dessus de la Baie des Anges, pour ceux qui viennent travailler sur la Riviera un mois ou plus.")),
+        ("public", "Le public", dict(forme="cartes", etat="foi", source=S_DEC,
+            essentiel="Ceux qui viennent <em>travailler au calme sur la Riviera.</em>",
+            tuiles=[("", "Dirigeants et fondateurs", "Un projet, un plan, des rendez-vous dans la région : un mois ou plus, ils paient eux-mêmes."),
+                    ("", "Chercheurs et professeurs invités", "Une mission de recherche ou d'enseignement, une lettre d'accueil."),
+                    ("", "La clientèle américaine", "Jusqu'à 90 jours sans visa, la Côte d'Azur et son prestige.")])),
         ("difference", "La différence", dict(etat="foi", source=S_SITE,
             essentiel="Ni en bord de mer, ni en centre-ville : <em>au calme, face à la mer.</em>",
             tuiles=[("", "Une vraie maison", "Deux chambres, deux salles d'eau, deux terrasses, le jardin, la piscine partagée."),
-                    ("", "Tout compris", "Fibre, parking privé, linge fourni, ménage de sortie : un seul montant par mois."),
-                    ("", "Un accueil", "Le jour de l'entrée, on vous accueille sur place : les clés, l'état des lieux, ensemble.")])),
+                    ("", "Un seul loyer", "3 650 € par mois, charges comprises, linge fourni. Bail de 10 mois : le dernier mois offert."),
+                    ("", "Le prestige de la Riviera", "Monaco à 22 minutes, l'aéroport à 20, la mer à 7. Entre Sabbatical Homes et onefinestay.")])),
         ("territoire", "Le territoire", dict(etat="foi", source=S_SITE,
             essentiel="La colline de Bellet, <em>à l'ouest de Nice.</em>",
-            sous="En voiture, hors trafic : Clinique Kantys Centre 12 min, campus Valrose 13 min, CHU Pasteur 2 15 min, aéroport 20 min, Monaco 22 min, Sophia Antipolis 28 min. Le bus 60 à 50 m, vers le tram ligne 2. L'adresse n'apparaît que dans les mentions légales.")),
+            sous="En voiture, hors trafic : la plage 7 min, aéroport 20 min, Monaco 22 min, Sophia Antipolis 28 min, campus Valrose 13 min. Le vignoble de Bellet est plus haut sur la colline. Le bus 60 à 50 m, vers le tram ligne 2. L'adresse n'apparaît que dans les mentions légales.")),
     ]),
     ("esthetique", "L'esthétique", "L'<em>esthétique</em>", "Volume II · La Marque", "Comment la Riviera <em>se voit-elle ?</em>", [
         ("couleurs", "Les couleurs", dict(etat="foi", source=S_SITE,
@@ -105,20 +108,16 @@ EMPREINTE = [
 
 # ---------------------------------------------------------------- L'OFFRE
 OFFRES = [
-    ("bail-mobilite", "Payeur particulier · 1 à 10 mois", "Le bail mobilité", "Le bail <em>mobilité</em>",
-     "Pour une mission, une formation, une mutation ou des études : de 1 à 10 mois, meublé et tout compris.", "foi",
-     [("Durée", "1 à 10 mois, sans renouvellement"), ("Prix", "Tout compris, à partir de 2 880 € par mois"), ("Pièces", "Le justificatif du motif de mobilité, avant la signature"),
-      ("Garantie", "Caution de l'employeur ou caution personnelle ; Visale non mobilisable à ce niveau de loyer")],
-     dict(etat="foi", source="Source : lespiafsdescollines.com/bail-mobilite/, 28 octobre 2026.",
-          essentiel="De 1 à 10 mois, <em>on arrive avec sa valise.</em>",
-          fiche=[("Le logement", "77,51 m², 2 chambres, 2 salles d'eau, 2 terrasses vue mer"), ("Compris", "Charges, fibre, parking privé, linge, ménage de sortie"),
-                 ("L'arrivée", "Accueil sur place, remise des clés et état des lieux d'entrée ensemble"), ("Facturation", "Exonérée de TVA")],
-          liens=[("https://www.lespiafsdescollines.com/bail-mobilite/", "Voir la page du site")])),
-    ("bail-societe", "Payeur personne morale · dès 3 mois", "Le bail société", "Le bail <em>société</em>",
-     "L'entreprise loge son collaborateur : le bail et la facture à son nom, à partir de 3 mois.", "foi",
-     [("Durée", "À partir de 3 mois"), ("Payeur", "La société, au nom de laquelle le bail est signé"), ("Facturation", "Au nom du payeur, exonérée de TVA")],
-     dict(etat="foi", source="Source : lespiafsdescollines.com/bail-mobilite/, 28 octobre 2026.",
-          essentiel="Un seul montant à budgéter, <em>une facture au payeur.</em>",
+    ("bail-mobilite", "1 à 10 mois · 3 650 € CC", "Le bail mobilité", "Le bail <em>mobilité</em>",
+     "Pour une mission, une mutation, une formation ou des études : un logement où installer son travail, de 1 à 10 mois.", "foi",
+     [("Durée", "1 à 10 mois, sans renouvellement"), ("Prix", "3 650 € par mois charges comprises (loyer 3 475 € + forfait 175 €)"),
+      ("Bail de 10 mois", "Le dernier mois de loyer est offert"), ("Pièces", "Le justificatif du motif, avant la signature"),
+      ("Garantie", "Caution de l'employeur ou caution personnelle ; aucun dépôt de garantie")],
+     dict(etat="foi", source=S_DEC,
+          essentiel="Un seul loyer, <em>pour un déplacement de travail.</em>",
+          fiche=[("Le logement", "77,51 m², 2 chambres, 2 salles d'eau, 2 terrasses vue mer"), ("Compris", "Charges, fibre, parking privé, piscine partagée, linge fourni avec rechange"),
+                 ("Non compris", "Le ménage, l'assurance habitation"), ("L'arrivée", "Remise des clés et état des lieux avec le bailleur"),
+                 ("Usage", "Ni vacances, ni nuitées, ni location touristique")],
           liens=[("https://www.lespiafsdescollines.com/bail-mobilite/", "Voir la page du site")])),
 ]
 EXPERIENCES = []

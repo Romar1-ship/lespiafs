@@ -684,6 +684,8 @@ FAQ_MOB = [
   "3 650 € par mois, charges comprises, pour toutes les durées : loyer de 3 475 € et forfait de charges de 175 €. Pour un bail de 10 mois, le dernier mois de loyer est offert. Cette remise est accordée une seule fois, par bail, et ne modifie pas le loyer du bail."),
  ("La garantie Visale est-elle acceptée ?",
   "Visale n'est pas mobilisable à ce niveau de loyer. La garantie prend la forme d'une caution de l'employeur ou d'une caution personnelle."),
+ ("Le logement se loue-t-il pour des vacances ?",
+  "Non. Logement loué uniquement en bail mobilité de 1 à 10 mois, à un locataire qui justifie d'un motif professionnel ou de formation (mission temporaire, mutation, formation, études, stage). Il ne se loue ni pour des vacances, ni à la nuit, ni en location touristique."),
  ("Peut-on louer moins d'un mois ?",
   "Non. La durée minimale est d'un mois."),
  ("Comment se passe l'arrivée ?",
@@ -820,6 +822,7 @@ def bail_mobilite():
 
 <section class="blanc" id="contrat"><div class="wrap">
   <span class="sur">Contrat</span><h2>Un bail mobilité, signé par la personne logée</h2>
+  <p class="intro-plan">Logement loué uniquement en bail mobilité de 1 à 10 mois, à un locataire qui justifie d'un motif professionnel ou de formation (mission temporaire, mutation, formation, études, stage). Il ne se loue ni pour des vacances, ni à la nuit, ni en location touristique.</p>
   <div class="deux-formules">
     <div>{pic("personne")}<h3>Vous payez</h3><p>Bail mobilité, de 1 à 10 mois.<br>Justificatif du motif avant signature, caution personnelle.</p></div>
     <div>{pic("societe")}<h3>Votre employeur paie</h3><p>Vous signez le bail, il vire le loyer avec la référence du bail.<br>Lettre de prise en charge, quittance à votre nom qui mentionne le payeur.</p></div>
