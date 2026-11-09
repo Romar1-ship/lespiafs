@@ -709,15 +709,15 @@ FAQ_MOB = [
 
 # L'appartement pièce par pièce : (photo, titre, texte), texte de la page du 09/11/2026.
 PIECES = [
- ("sejour-salle-a-manger", "La pièce de vie", "Le salon et la salle à manger s'ouvrent sur la cuisine, avec un îlot entre les deux. Plaque à induction, four, lave-vaisselle : le dîner se prépare au milieu de la pièce de vie, pas derrière une porte."),
- ("cuisine-ilot", "La cuisine", "L'îlot est un plan de travail, et la table du petit-déjeuner. Tout ce qu'il faut pour cuisiner est dans la pièce : rien à aller chercher."),
- ("chambre-parentale", "La première chambre, 13,91 m²", "En fin de journée, la première chambre : 13,91 m², avec sa propre salle d'eau et une douche à l'italienne."),
- ("chambre-2", "La seconde chambre, 12,88 m², et le poste de travail", "La seconde chambre, 12,88 m², porte le poste de travail. La fibre est installée. C'est là que s'ouvre le document que vous repoussiez."),
- ("chambre-parentale", "Les salles d'eau", "Deux salles d'eau, dont une privative avec douche à l'italienne. Le WC est indépendant. Le matin, il y a de la place pour deux."),
- ("cuisine-equipee", "La véranda buanderie, 4,95 m²", "Une véranda de 4,95 m² abrite le lave-linge et le sèche-linge. Le linge de lit et de toilette est fourni, avec rechange : vous n'y pensez pas."),
- ("terrasse-vue-mer", "Les deux terrasses vue mer", "Le matin, le lever de soleil arrive sur la terrasse Sud-Est (10,58 m²). Le soir, le soleil se couche sur les collines, vu de la terrasse Sud-Ouest (15,75 m²). Une table pour six personnes, un store électrique, une plancha. La mer est en face."),
- ("piscine-vue-aerienne", "Le jardin, la piscine, le parking", "Après une journée d'écran, le jardin et la piscine partagée sont dans l'enceinte, avec votre place de parking privée."),
- ("salon-canape-lit", "Le confort", "Climatisation réversible, fibre, DPE C/A : le confort est là pour que vous ne pensiez qu'à votre travail."),
+ ("sejour-salle-a-manger", "La pièce de vie", "Le salon et la salle à manger s'ouvrent sur la cuisine. C'est là que l'on revient entre deux heures de travail, un café à la main, la mer en face."),
+ ("cuisine-ilot", "La cuisine", "Plaque à induction, four, lave-vaisselle, réfrigérateur-congélateur. L'îlot sert de plan de travail le soir, et de table le matin."),
+ ("chambre-parentale", "La première chambre, 13,91 m²", "Avec sa propre salle d'eau et une douche à l'italienne. Une chambre pour dormir vraiment."),
+ ("chambre-2", "La seconde chambre, 12,88 m²", "Et votre table de travail, avec la fibre. C'est ici que s'ouvre, enfin, le dossier qui attendait."),
+ ("chambre-parentale", "Les salles d'eau", "Deux salles d'eau, dont une privative avec douche à l'italienne, et un WC indépendant."),
+ ("cuisine-equipee", "La véranda, 4,95 m²", "Lave-linge et sèche-linge. Le linge de lit et de toilette est fourni, avec rechange."),
+ ("terrasse-vue-mer", "Les deux terrasses", "À l'est, 10,58 m² pour le lever du soleil. À l'ouest, 15,75 m² pour le soir, avec une table pour six sous le store et une plancha. Entre les deux, toute la baie."),
+ ("piscine-vue-aerienne", "Le jardin, la piscine, le parking", "Un jardin, une piscine partagée et une place de parking privée, dans l'enceinte de la villa."),
+ ("salon-canape-lit", "Le confort", "Climatisation réversible, pompe à chaleur, fibre. DPE C en énergie, A en climat."),
 ]
 
 # Tarifs et conditions : (intitulé, texte).
@@ -775,8 +775,8 @@ def bail_mobilite():
 <section class="mob-hero">
   <picture><source media="(max-width:700px)" srcset="{{R}}assets/img/hero-baie-mobile.jpg"><img class="fond" src="{{R}}assets/img/hero-baie.jpg" alt="La Baie des Anges vue depuis l'appartement, sur la colline de Bellet à Nice" fetchpriority="high"></picture>
   <div class="wrap">
-    <h1 class="legende">Le soleil se lève sur la terrasse. Votre dossier vous attend.</h1>
-    <p class="lead">Nice, colline de Bellet. Un appartement face à la Baie des Anges, pour un mois de travail ou plus.</p>
+    <h1 class="legende">Au-dessus de la Baie des Anges, un lieu pour penser.</h1>
+    <p class="lead">Nice, colline de Bellet. Un appartement en hauteur, face à la mer, pour ceux qui viennent travailler sur la Riviera un mois ou plus.</p>
     <a class="bouton" href="#demande">Demander une disponibilité</a>
   </div>
   <div class="timbre" aria-hidden="true"><span class="t-haut">Nice</span><span class="t-nom">Bellet</span><span class="t-bas">Côte d'Azur</span></div>
@@ -795,47 +795,47 @@ def bail_mobilite():
 
 <section id="lieu"><div class="wrap split">
   <div><h2>Une force tranquille</h2>
-  {paras("Le logement est au calme, au premier étage d'une villa de la colline de Bellet, face à la Baie des Anges.",
-         "Le matin, le lever de soleil arrive sur la terrasse. La vue est incroyable : elle dégage la paix et l'apaisement, une force tranquille, stable.",
-         "Le logement est traversant, la lumière entre par les deux côtés. Le soir, le soleil se couche sur les collines. Des deux terrasses, on voit tout.",
-         "Et quand la tempête arrive, on voit la mer moutonner. Vous êtes en sécurité, avec un point de vue unique sur la puissance des éléments.")}</div>
+  {paras("Il y a des lieux que l'on choisit pour leur adresse. Celui-ci, on le choisit pour ce que l'on voit en sortant sur la terrasse.",
+         "Au premier étage d'une villa, sur la colline de Bellet, l'appartement regarde toute la Baie des Anges. Le matin, le soleil se lève sur la terrasse. La vue ne bouge pas, et c'est elle qui vous pose : une force tranquille, stable.",
+         "Le logement est traversant. La lumière entre des deux côtés, et le soir, le soleil se couche sur les collines. D'une terrasse à l'autre, on voit tout, de la mer jusqu'aux crêtes.",
+         "Et les jours de tempête, la mer se couvre de moutons jusqu'à l'horizon. Vous êtes à l'abri, en hauteur, et vous regardez la puissance des éléments comme peu de gens la voient.")}</div>
   {photo("vue-baie-de-nice")}
 </div></section>
 
 <section class="sable" id="acces"><div class="wrap split inverse">
   <div><h2>La Riviera, terre de travail</h2>
-  {paras("Henri Matisse arrive à Nice en décembre 1917. Il y découvre une lumière argentée, qui doit le retenir si longtemps.",
-         "Sept ans plus tard, de juin à octobre 1924, F. Scott Fitzgerald s'enferme à la Villa Marie, à Saint-Raphaël, pour écrire The Great Gatsby.",
-         "Deux hommes venus ici pour travailler, sur la même côte.",
-         "Depuis la colline de Bellet, Monaco est à 22 minutes, Sophia Antipolis à 28, l'aéroport de Nice à 20. Cannes se rejoint par la côte. Vos rendez-vous restent à portée, et le soir, vous remontez sur la colline.")}</div>
+  {paras("Henri Matisse arrive à Nice en décembre 1917. La lumière le retient, pour des années.",
+         "En 1924, F. Scott Fitzgerald s'installe à la Villa Marie, à Saint-Raphaël, pour écrire The Great Gatsby.",
+         "Cette côte attire depuis longtemps ceux qui ont un travail à mener loin du bruit.",
+         "Aujourd'hui, Monaco est à 22 minutes de la colline, Sophia Antipolis à 28, l'aéroport international à 20. Les rendez-vous restent à portée. Le soir, vous remontez sur la colline.")}</div>
   {photo("terrasse-vue-mer")}
 </div></section>
 
 <section class="blanc" id="logement"><div class="wrap">
   <h2>L'appartement, pièce par pièce</h2>
-  <p class="intro-plan">Poussez la porte. 77,51 m² au premier étage d'une villa : deux chambres, deux salles d'eau, une pièce de vie ouverte sur la cuisine, deux terrasses.</p>
+  <p class="intro-plan">Poussez la porte. 77,51 m² au premier étage d'une villa, deux chambres, deux salles d'eau, une pièce de vie ouverte sur la cuisine, et deux terrasses face à la mer.</p>
   <div class="pieces">{pieces_html}</div>
   <div class="galerie" style="margin-top:70px">{gal}</div>
 </div></section>
 
 <section class="sable" id="vivre"><div class="wrap">
-  <h2>Le deuxième lundi, vous avez vos habitudes</h2>
+  <h2>Un mois sur la Riviera</h2>
   <div class="split">
   <div><h3>La semaine</h3>
-  {paras("La semaine prend son rythme. Du mardi au dimanche, le marché du Cours Saleya, dans le vieux Nice, aligne fleurs, fruits, légumes et poisson. Le lundi, la brocante prend la place.",
-         "À midi et le soir, vous mangez aux tables de la région : socca, poisson, cuisine niçoise.",
-         "Quand la journée de travail se termine, la mer est à 7 minutes. Et si vous préférez ne pas conduire, le bus 60 passe à 50 mètres et rejoint le tram, ligne 2.")}
+  {paras("Les journées prennent leur rythme. Le matin appartient au travail. À midi, le marché du Cours Saleya, dans le vieux Nice, déborde de fleurs, de fruits et de poisson, du mardi au dimanche.",
+         "Le soir, la mer est à 7 minutes. Une socca dans le vieux Nice, ou un dîner sur la terrasse, face à la baie.",
+         "Sans voiture, le bus 60 passe à 50 mètres et rejoint le tram.")}
   <h3>Autour de Nice</h3>
-  {paras("Quand le dossier est refermé, la côte est à portée : Villefranche-sur-Mer est à environ 15 minutes de Nice, Saint-Jean-Cap-Ferrat à environ 20, Èze à environ 20.")}
+  {paras("Et quand le dossier est refermé, la côte est à portée : Villefranche-sur-Mer, Saint-Jean-Cap-Ferrat, Èze, à 15 ou 20 minutes de Nice.")}
   <p class="note">Temps indiqués depuis le centre de Nice, hors trafic. Le logement est sur la colline de Bellet, à l'ouest.</p></div>
   {photo("jardin")}
   </div>
 </div></section>
 
 <section class="blanc" id="pour-qui"><div class="wrap split">
-  <div><h2>Pour ceux dont le dossier attend</h2>
-  {paras("Votre agenda ne laisse aucune place à la réflexion entre deux réunions. Vous dirigez une équipe, vous menez une recherche, vous préparez un cours ou une mission, et le dossier de fond attend toujours.",
-         "Ce logement est fait pour ceux qui viennent travailler un mois ou plus, et qui paient eux-mêmes leur logement : dirigeants, fondateurs, chercheurs, professeurs invités, consultants en mission, médecins invités. Il leur offre un lieu calme, une table de travail, de la lumière, et la Riviera à portée.")}
+  <div><h2>Pour ceux dont le travail demande du temps</h2>
+  {paras("Dirigeants, fondateurs, chercheurs, professeurs invités, consultants en mission, médecins invités : l'appartement est fait pour ceux qui viennent à Nice pour un travail précis, un mois ou plus, et qui ont besoin d'un lieu à eux pour le mener.",
+         "Une table de travail, le calme, la lumière, et la Riviera à portée de rendez-vous.")}
   <aside class="encadre"><span class="sur">{pic("plume", "pic-s")}Pour nos visiteurs américains</span>
   {paras("Les ressortissants américains peuvent entrer dans l'espace Schengen sans visa pour 90 jours au plus sur une période de 180 jours. Au-delà, il faut un visa de type D, à demander avant le départ. Selon la nature de l'activité, une autorisation de travail peut s'y ajouter : renseignez-vous auprès du consulat de France.",
          "Le bail mobilité, en clair : un bail meublé de 1 à 10 mois, pour une personne en mission, en formation ou en études. Il ne se renouvelle pas, il peut être modifié une seule fois par avenant, dans la limite de 10 mois au total, et la loi interdit tout dépôt de garantie. Le locataire peut partir à tout moment avec un préavis d'un mois.")}</aside></div>
@@ -856,8 +856,8 @@ def bail_mobilite():
 
 <div class="store" aria-hidden="true"></div>
 <section class="nuit" id="avis"><div class="etroit centre">
-  <span class="sur">Le livre d'or</span><h2>Ce qu'en disent ceux qui y ont travaillé</h2>
-  <p class="avis-intro">Ils sont venus pour leur mission. Voici ce qu'ils ont écrit en partant.</p>
+  <span class="sur">Le livre d'or</span><h2>Ce qu'ils ont écrit de l'appartement</h2>
+  <p class="avis-intro">Quelques mots laissés dans le livre d'or par ceux qui y ont vécu avant vous.</p>
   <div class="avis-defile" aria-roledescription="carrousel">
     {"".join(f'<blockquote class="citation"><p>« {E(q)} »</p><cite>{E(c)}</cite></blockquote>' for q, c in AVIS)}
   </div>
@@ -883,7 +883,7 @@ if(!matchMedia('(prefers-reduced-motion: reduce)').matches)setInterval(()=>{{if(
 
 <section class="blanc" id="demande"><div class="etroit">
   <h2>Parlez-nous de votre mission</h2>
-  <p>Dites-nous sur quelle mission vous venez et à quelles dates. Une réponse vous parvient avec les disponibilités.</p>
+  <p>Dites-nous ce qui vous amène à Nice, et à quelles dates. Nous vous répondons avec les disponibilités.</p>
   {formulaire("Demande bail mobilité",
     '<div><label for="ent">Date d\'entrée souhaitée</label><input id="ent" name="Entrée" type="date"></div>'
     '<div><label for="duree">Durée</label><select id="duree" name="Durée"><option>1 à 3 mois</option><option>4 à 9 mois</option><option>10 mois</option></select></div>'
