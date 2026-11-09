@@ -21,7 +21,7 @@ For the Les Piafs des Collines apartment, per month, charges included:
 |---|---|
 | 1 to 10 months | €3,650 |
 
-The price is the same for every length: rent of €3,475 plus a flat service-charge fee of €175, linens and housekeeping included. On a 10-month lease, the last month's rent is free. This concession applies once per lease and does not change the lease rent.
+The price is the same for every length: rent of €3,475 plus a flat service-charge fee of €175, linens included. On a 10-month lease, the last month's rent is free. This concession applies once per lease and does not change the lease rent.
 
 For a purchasing department, this means a single expense line per month. No subscription to open, no energy bill to re-invoice.
 
@@ -91,7 +91,6 @@ The two terraces, of 10.58 and 15.75 m², face the Baie des Anges (Bay of Angels
 - A second bedroom for your family if they join you.
 - An island kitchen with induction hob, oven, microwave, dishwasher and fridge-freezer.
 - A laundry veranda with washing machine and tumble dryer.
-- Housekeeping twice a month, included in the monthly price.
 
 ## How do you prepare your housing request?
 

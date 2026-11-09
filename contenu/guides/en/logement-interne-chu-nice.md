@@ -56,7 +56,7 @@ The price, per month, charges included:
 |---|---|
 | 1 to 10 months | €3,650 |
 
-The price is the same for every length: rent of €3,475 plus a flat service-charge fee of €175, linens and housekeeping included. On a 10-month lease, the last month's rent is free. This concession applies once per lease and does not change the lease rent.
+The price is the same for every length: rent of €3,475 plus a flat service-charge fee of €175, linens included. On a 10-month lease, the last month's rent is free. This concession applies once per lease and does not change the lease rent.
 
 For a 6-month semester, the month is €3,650. What this price includes is detailed in [the complete guide](/en/guides/bail-mobilite-nice-complete-guide).
 

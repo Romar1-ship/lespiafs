@@ -21,7 +21,7 @@ Per l'appartamento di Les Piafs des Collines, al mese, spese comprese:
 |---|---|
 | 1-10 mesi | 3.650 € |
 
-Il prezzo è lo stesso per tutte le durate: canone di 3.475 € e forfait spese di 175 €, biancheria e pulizie comprese. Per un contratto di 10 mesi, l'ultimo mese di canone è offerto. Lo sconto è concesso una sola volta per contratto e non modifica il canone del contratto.
+Il prezzo è lo stesso per tutte le durate: canone di 3.475 € e forfait spese di 175 €, biancheria compresa. Per un contratto di 10 mesi, l'ultimo mese di canone è offerto. Lo sconto è concesso una sola volta per contratto e non modifica il canone del contratto.
 
 Per un ufficio acquisti, significa una sola voce di spesa al mese. Nessun abbonamento da attivare, nessuna bolletta energetica da rifatturare.
 
@@ -91,7 +91,6 @@ Le due terrazze, da 10,58 e 15,75 m², sono di fronte alla Baia degli Angeli. Un
 - Una seconda camera che accoglie la Sua famiglia se La raggiunge.
 - Una cucina con isola, piano a induzione, forno, microonde, lavastoviglie e frigorifero-congelatore.
 - Una veranda lavanderia con lavatrice e asciugatrice.
-- Pulizie due volte al mese, comprese nel prezzo mensile.
 
 ## Come preparare la richiesta di alloggio?
 

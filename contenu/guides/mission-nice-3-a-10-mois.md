@@ -21,7 +21,7 @@ Pour l'appartement des Piafs des Collines, par mois, charges comprises :
 |---|---|
 | 1 à 10 mois | 3 650 € |
 
-Le prix est le même pour toutes les durées : loyer de 3 475 € et forfait de charges de 175 €, linge et ménage inclus. Pour un bail de 10 mois, le dernier mois de loyer est offert. Cette remise est accordée une seule fois, par bail, et ne modifie pas le loyer du bail.
+Le prix est le même pour toutes les durées : loyer de 3 475 € et forfait de charges de 175 €, linge inclus. Pour un bail de 10 mois, le dernier mois de loyer est offert. Cette remise est accordée une seule fois, par bail, et ne modifie pas le loyer du bail.
 
 Pour un service achats, cela veut dire une seule ligne de dépense par mois. Aucun abonnement à ouvrir, aucune facture d'énergie à refacturer.
 
@@ -91,7 +91,6 @@ Les deux terrasses, de 10,58 et 15,75 m², font face à la Baie des Anges. Une t
 - Une seconde chambre qui accueille votre famille si elle vous rejoint.
 - Une cuisine à îlot avec induction, four, micro-ondes, lave-vaisselle et réfrigérateur-congélateur.
 - Une véranda buanderie avec lave-linge et sèche-linge.
-- Ménage deux fois par mois, compris dans le prix mensuel.
 
 ## Comment préparer sa demande de logement ?
 

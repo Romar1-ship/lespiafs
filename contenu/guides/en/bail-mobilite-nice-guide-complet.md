@@ -80,7 +80,6 @@ The rent is set in the contract under articles 17 et 18 de la loi du 6 juillet 1
 - fibre internet;
 - a private parking space within the grounds;
 - bed linen and towels provided, with changes;
-- housekeeping twice a month;
 - a bottle of Bellet wine waiting for you on arrival.
 
 The tenant receives no energy bill. This furnished residential rental, with no hotel-type services, is exempt from VAT (article 261 D, 4° du code général des impôts). The amount shown is the amount paid, with no VAT added and none recoverable. Home insurance remains the tenant's responsibility.
@@ -93,7 +92,7 @@ For the Les Piafs des Collines apartment, per month, charges included:
 |---|---|
 | 1 to 10 months | €3,650 |
 
-The price is the same for every length: rent of €3,475 plus a flat service-charge fee of €175, linens and housekeeping included. On a 10-month lease, the last month's rent is free. This concession applies once per lease and does not change the lease rent.
+The price is the same for every length: rent of €3,475 plus a flat service-charge fee of €175, linens included. On a 10-month lease, the last month's rent is free. This concession applies once per lease and does not change the lease rent.
 
 ## How do you end a bail mobilité?
 

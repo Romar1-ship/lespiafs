@@ -17,7 +17,7 @@ Contact : contact@lespiafsdescollines.com · +33 (0)6 11 94 82 35.
 
 Le bouton « Envoyer » ouvre votre propre messagerie, avec un message prérempli. Le site ne stocke rien : rien n'est transmis tant que vous n'envoyez pas l'e-mail vous-même.
 
-Quand vous nous écrivez, nous recevons ce que vous avez choisi d'indiquer : nom, prénom, e-mail, téléphone, date d'entrée, durée, payeur, motif du séjour, société et message.
+Quand vous nous écrivez, nous recevons ce que vous avez choisi d'indiquer : nom, prénom, e-mail, téléphone, date d'entrée, durée, payeur, motif du séjour, société ou établissement et message. Quand un tiers paie le loyer, nous recevons aussi ses coordonnées et sa lettre de prise en charge, pour recevoir le loyer et le mentionner sur la quittance (exécution du contrat, article 6.1.b du RGPD).
 
 Sous le formulaire, cette phrase s'affiche :
 
@@ -84,4 +84,4 @@ Si notre réponse ne vous convient pas, vous pouvez saisir la CNIL : [www.cnil.f
 - Les textes et les photos sont protégés : voir les [mentions légales](/mentions-legales).
 - Nous pouvons faire évoluer le site et cette page. La date de mise à jour figure ci-dessous.
 
-Mise à jour : 24 octobre 2026.
+Mise à jour : 9 novembre 2026.

@@ -6,7 +6,7 @@ slug: mentions-legales
 
 # Mentions légales
 
-Le site lespiafsdescollines présente un appartement meublé de 77,51 m² sur la colline de Bellet, à Nice. Son propriétaire le loue en direct, en bail mobilité ou en bail au nom d'une société. Le site ne prend ni réservation ni paiement.
+Le site lespiafsdescollines présente un appartement meublé de 77,51 m² sur la colline de Bellet, à Nice. Son propriétaire le loue en direct, en bail mobilité de 1 à 10 mois. Le site ne prend ni réservation ni paiement.
 
 ## Éditeur
 

@@ -56,7 +56,7 @@ Il prezzo, al mese, spese comprese:
 |---|---|
 | 1-10 mesi | 3.650 € |
 
-Il prezzo è lo stesso per tutte le durate: canone di 3.475 € e forfait spese di 175 €, biancheria e pulizie comprese. Per un contratto di 10 mesi, l'ultimo mese di canone è offerto. Lo sconto è concesso una sola volta per contratto e non modifica il canone del contratto.
+Il prezzo è lo stesso per tutte le durate: canone di 3.475 € e forfait spese di 175 €, biancheria compresa. Per un contratto di 10 mesi, l'ultimo mese di canone è offerto. Lo sconto è concesso una sola volta per contratto e non modifica il canone del contratto.
 
 Per un semestre di 6 mesi, il mese costa 3.650 €. Cosa comprende questo prezzo è spiegato nella [guida completa](/it/guides/bail-mobilite-nizza-guida-completa).
 

@@ -80,7 +80,6 @@ Le loyer est fixé au contrat dans le cadre des articles 17 et 18 de la loi du 6
 - fibre ;
 - une place de parking privée dans l'enceinte ;
 - linge de lit et de toilette fourni, avec rechange ;
-- ménage deux fois par mois ;
 - une bouteille de vin de Bellet qui vous attend à votre arrivée.
 
 Le locataire ne reçoit aucune facture d'énergie. Cette location meublée d'habitation, sans prestation para-hôtelière, est exonérée de TVA (article 261 D, 4° du code général des impôts). Le montant affiché est le montant payé, sans TVA ajoutée ni récupérable. L'assurance habitation reste à la charge du locataire.
@@ -93,7 +92,7 @@ Pour l'appartement des Piafs des Collines, par mois, charges comprises :
 |---|---|
 | 1 à 10 mois | 3 650 € |
 
-Le prix est le même pour toutes les durées : loyer de 3 475 € et forfait de charges de 175 €, linge et ménage inclus. Pour un bail de 10 mois, le dernier mois de loyer est offert. Cette remise est accordée une seule fois, par bail, et ne modifie pas le loyer du bail.
+Le prix est le même pour toutes les durées : loyer de 3 475 € et forfait de charges de 175 €, linge inclus. Pour un bail de 10 mois, le dernier mois de loyer est offert. Cette remise est accordée une seule fois, par bail, et ne modifie pas le loyer du bail.
 
 ## Comment résilier un bail mobilité ?
 

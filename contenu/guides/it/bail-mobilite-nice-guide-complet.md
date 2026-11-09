@@ -80,7 +80,6 @@ Il canone è fissato nel contratto nell'ambito degli articles 17 et 18 de la loi
 - fibra;
 - un posto auto privato all'interno della proprietà;
 - biancheria da letto e da bagno fornita, con cambio;
-- pulizie due volte al mese;
 - una bottiglia di vino di Bellet che La aspetta al Suo arrivo.
 
 L'inquilino non riceve alcuna bolletta energetica. Questa locazione arredata ad uso abitativo, senza servizi para-alberghieri, è esente da IVA (article 261 D, 4° du code général des impôts). L'importo indicato è l'importo pagato, senza IVA aggiunta né recuperabile. L'assicurazione dell'abitazione resta a carico dell'inquilino.
@@ -93,7 +92,7 @@ Per l'appartamento di Les Piafs des Collines, al mese, spese comprese:
 |---|---|
 | 1-10 mesi | 3.650 € |
 
-Il prezzo è lo stesso per tutte le durate: canone di 3.475 € e forfait spese di 175 €, biancheria e pulizie comprese. Per un contratto di 10 mesi, l'ultimo mese di canone è offerto. Lo sconto è concesso una sola volta per contratto e non modifica il canone del contratto.
+Il prezzo è lo stesso per tutte le durate: canone di 3.475 € e forfait spese di 175 €, biancheria compresa. Per un contratto di 10 mesi, l'ultimo mese di canone è offerto. Lo sconto è concesso una sola volta per contratto e non modifica il canone del contratto.
 
 ## Come recedere da un bail mobilité?
 

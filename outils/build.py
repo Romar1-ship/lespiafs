@@ -325,7 +325,7 @@ def accueil():
     <a class="carte-choix mob" href="bail-mobilite/">
       <span class="k">Mission, formation, mutation</span>
       <span class="t">Bail mobilité, 1 à 10 mois</span>
-      <span class="d">77,51 m² meublés, charges comprises, linge et ménage inclus. Pour les professionnels en mobilité à Nice.</span>
+      <span class="d">77,51 m² meublés, charges comprises, linge inclus. Pour les professionnels en mobilité à Nice.</span>
       <span class="f">Voir l'offre →</span>
     </a>
   </div>
@@ -336,8 +336,8 @@ def accueil():
     <span class="sur">Location meublée à Nice</span>
     <h2>{"Un appartement vue mer à Nice, pour quelques mois ou pour les vacances" if SAISON_ACTIVE else "Un appartement vue mer à Nice, pour 1 à 10 mois"}</h2>
     <p>Sur la colline de Bellet, à l'ouest de Nice, Les Piafs des Collines est un appartement entier de 77,51 m² au premier étage d'une villa, avec deux terrasses et une vue totalement dégagée sur la Baie des Anges.</p>
-    <p><strong>En <a href="bail-mobilite/">location en bail mobilité à Nice</a></strong>, il loge pour 1 à 10 mois les professionnels en mission, en formation ou en mutation : meublé, 3 650 € par mois charges comprises, linge et ménage inclus. Les centres hospitaliers niçois sont à 12 à 16 minutes en voiture, l'aéroport à 20 minutes, Monaco à 22 minutes et Sophia Antipolis à 28 minutes.</p>
-    {PARA_SAISON if SAISON_ACTIVE else '<p>Deux vraies chambres, deux salles d\'eau, fibre, parking privé, linge fourni et ménage inclus : on arrive avec sa valise. <a class="bouton azur" style="margin-top:10px" href="bail-mobilite/">Voir l\'offre bail mobilité</a></p>'}
+    <p><strong>En <a href="bail-mobilite/">location en bail mobilité à Nice</a></strong>, il loge pour 1 à 10 mois les professionnels en mission, en formation ou en mutation : meublé, 3 650 € par mois charges comprises, linge inclus. Les centres hospitaliers niçois sont à 12 à 16 minutes en voiture, l'aéroport à 20 minutes, Monaco à 22 minutes et Sophia Antipolis à 28 minutes.</p>
+    {PARA_SAISON if SAISON_ACTIVE else '<p>Deux vraies chambres, deux salles d\'eau, fibre, parking privé, linge fourni avec rechange : on arrive avec sa valise. <a class="bouton azur" style="margin-top:10px" href="bail-mobilite/">Voir l\'offre bail mobilité</a></p>'}
   </div>
   {img("terrasse-vue-mer", "Terrasse de l'appartement meublé avec vue sur la Baie des Anges à Nice")}
 </div></div></section>"""
@@ -351,7 +351,7 @@ def accueil():
          "telephone": "+33611948235", "email": MAIL},
     ]
     contenu = (tete("Location bail mobilité à Nice, appartement vue mer | Les Piafs des Collines" if not SAISON_ACTIVE else "Bail mobilité & location saisonnière à Nice, vue mer | Les Piafs des Collines",
-                    "Appartement meublé de 77 m² vue Baie des Anges à Nice en bail mobilité de 1 à 10 mois : 3 650 € par mois charges comprises, linge et ménage inclus." if not SAISON_ACTIVE else
+                    "Appartement meublé de 77 m² vue Baie des Anges à Nice en bail mobilité de 1 à 10 mois : 3 650 € par mois charges comprises, linge inclus." if not SAISON_ACTIVE else
                     "Appartement meublé de 77 m² vue Baie des Anges à Nice : bail mobilité de 1 à 10 mois, 3 650 € par mois charges comprises, ou location saisonnière.",
                     0, "index.html", jsonld)
                + "<main>" + corps.replace("{R}", "") + "</main>" + pied("mob", 0) + SCRIPT_REVEAL + "</body></html>\n")
@@ -679,7 +679,7 @@ FAQ_MOB = [
  ("Mon employeur peut-il payer le loyer ?",
   "Oui. Quand l'employeur, une agence de relocation ou une production règle le loyer, le bail est signé par la personne logée, avec la lettre de prise en charge du payeur. Le payeur vire le loyer avec la référence du bail, et la quittance au nom du locataire mentionne le payeur."),
  ("Que comprend le loyer ?",
-  "Le loyer et le forfait de charges (eau, électricité, climatisation, fibre, parking, piscine partagée), le linge de lit et de toilette fourni avec rechange, et le ménage deux fois par mois. Une bouteille de vin de Bellet vous attend à votre arrivée. Le locataire ne reçoit aucune facture d'énergie."),
+  "Le loyer et le forfait de charges (eau, électricité, climatisation, fibre, parking, piscine partagée), et le linge de lit et de toilette fourni avec rechange. Une bouteille de vin de Bellet vous attend à votre arrivée. Le locataire ne reçoit aucune facture d'énergie."),
  ("Combien coûte le bail mobilité ?",
   "3 650 € par mois, charges comprises, pour toutes les durées : loyer de 3 475 € et forfait de charges de 175 €. Pour un bail de 10 mois, le dernier mois de loyer est offert. Cette remise est accordée une seule fois, par bail, et ne modifie pas le loyer du bail."),
  ("La garantie Visale est-elle acceptée ?",
@@ -791,7 +791,7 @@ def bail_mobilite():
   <h2 class="cache">Un appartement meublé de 77 m² à Nice</h2>
   {panneau("terrasse-vue-mer", "DEUX TERRASSES", "26 m² exposés sud, face à la mer.", "Une table pour six, sous store.", icone="soleil")}
   {panneau("chambre-parentale", "DEUX VRAIES CHAMBRES", "13,91 et 12,88 m², chacune avec son placard.", "Une salle de bain privative, une salle d'eau, un WC indépendant.", "droite", "lit")}
-  {panneau("cuisine-sejour", "ARRIVER AVEC SA VALISE", "Linge de lit et de toilette fourni, ménage inclus.", "Remise des clés avec le bailleur.", icone="valise")}
+  {panneau("cuisine-sejour", "ARRIVER AVEC SA VALISE", "Linge de lit et de toilette fourni, avec rechange.", "Remise des clés avec le bailleur.", icone="valise")}
   <div class="galerie" style="margin-top:70px">{gal}</div>
 </div></section>
 
@@ -802,7 +802,7 @@ def bail_mobilite():
     <div><span>{pic("calendrier", "pic-s")}1 à 10 mois</span><b>3 650 €<i>/ mois</i></b></div>
     <div><span>{pic("calendrier", "pic-s")}Bail de 10 mois</span><b>Offert<i>/ dernier mois</i></b></div>
   </div>
-  <p class="note">Loyer de 3 475 € et forfait de charges de 175 € (eau, électricité, climatisation, fibre, parking, piscine partagée). Linge de lit et de toilette fourni, ménage deux fois par mois. La remise de 10 mois est accordée une seule fois, par bail, et ne modifie pas le loyer du bail. Loyer exonéré de TVA (art. 261 D 4° du CGI).</p></div>
+  <p class="note">Loyer de 3 475 € et forfait de charges de 175 € (eau, électricité, climatisation, fibre, parking, piscine partagée). Linge de lit et de toilette fourni avec rechange. La remise de 10 mois est accordée une seule fois, par bail, et ne modifie pas le loyer du bail. Loyer exonéré de TVA (art. 261 D 4° du CGI).</p></div>
 </div></section>
 
 <section class="sable" id="acces"><div class="wrap">
@@ -867,7 +867,7 @@ if(!matchMedia('(prefers-reduced-motion: reduce)').matches)setInterval(()=>{{if(
          "mob", "", corps, SCRIPT_GALERIE, image="hero-baie", jsonld=[
             {"@context": "https://schema.org", "@type": "Apartment",
              "name": "Location en bail mobilité à Nice, Les Piafs des Collines",
-             "description": "Appartement meublé de 77,51 m² avec vue sur la Baie des Anges, loué en bail mobilité de 1 à 10 mois, 3 650 € par mois charges comprises, linge et ménage inclus.",
+             "description": "Appartement meublé de 77,51 m² avec vue sur la Baie des Anges, loué en bail mobilité de 1 à 10 mois, 3 650 € par mois charges comprises, linge inclus.",
              "url": BASE + "/bail-mobilite/", "address": ADRESSE_LD,
              "floorSize": {"@type": "QuantitativeValue", "value": 77.51, "unitCode": "MTK"}, "numberOfRooms": 3, "numberOfBedrooms": 2, "numberOfBathroomsTotal": 2,
              "amenityFeature": [{"@type": "LocationFeatureSpecification", "name": n, "value": True} for n in
@@ -1059,7 +1059,7 @@ def dg_un_sur_quatre():
 
 def dg_compris():
     items = [("energie", "Eau, électricité, chauffage"), ("wifi", "Fibre"), ("parking", "Place de parking privée"),
-             ("linge", "Linge de lit et de toilette, avec rechange"), ("menage", "Ménage deux fois par mois"), ("facture", "Un seul paiement par mois")]
+             ("linge", "Linge de lit et de toilette, avec rechange"), ("piscine", "Piscine partagée"), ("facture", "Un seul paiement par mois")]
     tuiles = "".join(f'<div>{pic(i)}<span>{E(l)}</span></div>' for i, l in items)
     return f'<figure class="dg dg-compris"><figcaption class="dg-titre">{pic("facture", "pic-s")}Compris dans le prix mensuel</figcaption><div class="tuiles6">{tuiles}</div></figure>'
 
@@ -1078,7 +1078,7 @@ DATAGRAPHIE = {
         (2, dg_un_sur_quatre()), (3, dg_trajets(("Monaco", "Aéroport"))),
         (6, encadre("À retenir", ["Monaco à 22 minutes en voiture, hors trafic.", "L'employeur peut régler le loyer, vous signez le bail.", "3 650 € par mois, charges comprises."]))],
     "mission-nice-3-a-10-mois": [
-        (1, encadre("À retenir", ["Bail mobilité de 1 à 10 mois, signé par la personne en mission.", "Un seul paiement par mois : loyer, forfait de charges, linge et ménage.", "Loyer exonéré de TVA (art. 261 D 4° du CGI)."])),
+        (1, encadre("À retenir", ["Bail mobilité de 1 à 10 mois, signé par la personne en mission.", "Un seul paiement par mois : loyer, forfait de charges et linge.", "Loyer exonéré de TVA (art. 261 D 4° du CGI)."])),
         (2, dg_prix()), (2, dg_compris())],
     "vivre-colline-de-bellet-nice": [
         (2, encadre("À retenir", ["Sur la colline de Bellet, à l'ouest de Nice.", "Vue sur la Baie des Anges depuis deux terrasses.", "AOC Bellet, reconnue par décret en 1941."], "verre")),
