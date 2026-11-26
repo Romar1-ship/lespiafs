@@ -292,3 +292,18 @@ main section[id],.v2-bloc[id]{scroll-margin-top:70px}
 .v2 .v2-blanc .v2-liste .pic-s{color:var(--v2-bleu)}
 .v2 .v2-acces-2 .v2-acces-q{line-height:1.25;margin-bottom:10px}
 #prescripteurs .v2-bloc .v2-t{font-size:clamp(1.9rem,3vw,2.7rem)}
+/* Photo du haut plus haute, l'essentiel reste dans le premier écran (Géraldine, 26/11/2026) */
+.v2-cadre img{height:min(64vh,620px)}
+@media(max-width:700px){.v2-cadre img{height:50vh}}
+/* Ligne sous « Entrez. Vous avez de la place. » plus grande, sur une ligne ; jamais de coupure de mot (Géraldine, 26/11/2026) */
+.v2{hyphens:none;-webkit-hyphens:none;overflow-wrap:normal}
+.v2 h1,.v2 h2,.v2 h3,.v2 p,.v2 li{text-wrap:pretty}
+.v2 .v2-titre-section .v2-une-ligne{font-size:clamp(1.15rem,1.55vw,1.32rem);line-height:1.45;max-width:none;font-weight:400}
+@media(min-width:1180px){.v2 .v2-titre-section .v2-une-ligne{white-space:nowrap}}
+.v2 .v2-encadre-contact{overflow-wrap:anywhere}
+/* « Les détails qui comptent » : pictos en grand à la place de la photo (Géraldine, 26/11/2026) */
+.v2-carte-pictos{aspect-ratio:4/3;background:var(--v2-bleu);display:grid;grid-template-columns:repeat(3,1fr);place-items:center;padding:8% 10%;margin-bottom:18px}
+.v2 .v2-carte-pictos .pic{width:clamp(44px,5vw,64px);height:clamp(44px,5vw,64px);margin:0;stroke:#fff;stroke-width:1.2}
+.v2 .v2-carte-pictos .pic:nth-child(odd){stroke:var(--v2-dore)}
+.v2 .v2-carte-details .v2-liste .pic-s{color:var(--v2-bleu)}
+.v2 .v2-carte-details .v2-liste li{color:var(--v2-marine)}

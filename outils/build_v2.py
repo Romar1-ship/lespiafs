@@ -140,17 +140,17 @@ def bloc(photo_html, titre_html, contenu, inverse=False, ton="bleu", ident="", p
 # Visite resserrée (retour de Brain validé par Géraldine, 26/11/2026) : chambres, salles d'eau, salon, piscine, équipement.
 # Le séjour, la cuisine et les terrasses sont déjà dans le trio : ils ne reviennent pas ici.
 CARTES = [
-    ("chambre-1-lit", "lit", "La première chambre", "13,91 m², un lit double et une salle d'eau privative avec douche à l'italienne."),
+    ("chambre-1-fenetre", "lit", "La première chambre", "13,91 m², un lit double et une salle d'eau privative avec douche à l'italienne."),
     ("chambre-2-lits", "ordi", "La seconde chambre", "12,88 m², deux lits simples de 80 × 200 cm ou un lit double de 160 cm, et un poste de travail. La fibre est installée dans le logement."),
-    ("salle-eau-vasque", "douche", "Les salles d'eau", "Deux salles d'eau, dont une privative, et un WC indépendant."),
-    ("salon-canape-lit", "canape", "Le salon", "Un canapé-lit dans la pièce de vie."),
+    ("salle-eau-douche", "douche", "Les salles d'eau", "Deux salles d'eau, dont une privative, et un WC indépendant."),
+    ("salon-vue", "canape", "Le salon", "Un canapé-lit dans la pièce de vie."),
     ("piscine-jardin", "piscine", "La piscine", "Une piscine partagée dans le jardin de la villa, accessible selon les horaires prévus."),
 ]
-GALERIE_TOUT = b.GALERIE[:9] + [("salle-eau-douche", "La salle d'eau avec douche à l'italienne", False), ("wc", "Le WC indépendant", False),
+GALERIE_TOUT = b.GALERIE[:9] + [("salle-eau-vasque", "La salle d'eau privative de la première chambre", False), ("wc", "Le WC indépendant", False),
                                  ("piscine-jardin", "La piscine partagée et le jardin", False), ("terrasse-salon", "La terrasse et ses fauteuils", False)]
 ALT.update({n: a for n, a, _ in GALERIE_TOUT})
-ALT.update({"chambre-1-lit": "La première chambre et son lit double", "chambre-2-lits": "La seconde chambre et ses deux lits simples",
-            "salle-eau-vasque": "Une des deux salles d'eau"})
+ALT.update({"chambre-1-fenetre": "La première chambre, son lit double et sa fenêtre", "salon-vue": "Le salon et son canapé-lit, ouvert sur la terrasse", "chambre-1-lit": "La première chambre et son lit double", "chambre-2-lits": "La seconde chambre et ses deux lits simples",
+            "salle-eau-douche": "La grande salle d'eau"})
 
 # Repères de localisation gardés (Géraldine : trajets vérifiés depuis le logement, hors trafic, 26/11/2026).
 REPERES_ACCES = [("bus", "Le bus 60 passe à 50 mètres de la villa"), ("pieton", "Le tram en bas de la colline, moins de 10 minutes de la porte au quai"),
@@ -203,7 +203,9 @@ def corps():
     fond = AQUARELLE or "hero-baie"
     mention_aqua = '<p class="v2-aqua">Interprétation aquarelle de la vue réelle.</p>' if AQUARELLE else ""
     cartes = "".join(carte(*c) for c in CARTES)
-    details = f'<div class="v2-carte v2-carte-bleue">{pic("details", "pic v2-pic")}<h3>Les détails qui comptent</h3>{liste_pictos(DETAILS)}</div>'
+    # En attendant les photos du lave-linge et du sèche-linge (Géraldine, 26/11/2026) : les pictos en grand, au format des photos.
+    visuel = '<div class="v2-carte-pictos" aria-hidden="true">' + "".join(pic(ic, "pic") for ic, _ in DETAILS) + "</div>"
+    details = f'<div class="v2-carte v2-carte-details">{visuel}{pic("details", "pic v2-pic")}<h3>Les détails qui comptent</h3>{liste_pictos(DETAILS)}</div>'
     gal = "".join(f'<a href="{{R}}assets/img/{n}.jpg"{" class=\"g\"" if g else ""}>{img(n, a)}</a>' for n, a, g in GALERIE_TOUT)
     fiche = "".join(f'<div class="fiche-bloc"><h3>{pic(ic)}{E(t)}</h3><dl>'
                     + "".join(f'<dt>{pic(PICTO_LIGNE.get(k, ic), "pic-s")}{E(k)}</dt><dd>{insecable(E(v))}</dd>' for k, v in lignes) + "</dl></div>" for t, ic, lignes in FICHE)
@@ -255,14 +257,14 @@ def corps():
   <div class="v2-trio">
     <figure>{img("terrasse-vue-mer", "Terrasse de l'appartement avec table et vue sur la mer.")}<figcaption>Le soir, changez d'horizon.</figcaption></figure>
     <figure>{img("sejour-salle-a-manger", "Séjour de l'appartement meublé des Piafs des Collines.")}<figcaption>De la place pour vivre, pas seulement pour dormir.</figcaption></figure>
-    <figure>{img("cuisine-ilot", "La cuisine équipée et son îlot.")}<figcaption>Vos habitudes voyagent aussi.</figcaption></figure>
+    <figure>{img("cuisine-ensemble", "La cuisine équipée : plan de travail, four, micro-ondes, réfrigérateur et îlot.")}<figcaption>Vos habitudes voyagent aussi.</figcaption></figure>
   </div>
   <p class="v2-centre"><a class="bouton" href="#demande">Vérifier mes dates</a></p>
 </div></section>
 
 <section class="v2-bleu v2-titre-section" id="logement"><div class="v2-l">
   <h2 class="v2-t v2-titre-xl">{lignes("Entrez. Vous avez de la place.")}</h2>
-  <p class="v2-lead">Au premier étage d'une villa, un appartement traversant de 77,51 m² avec deux chambres, deux salles d'eau et deux terrasses.</p>
+  <p class="v2-lead v2-une-ligne">Au premier étage d'une villa, un appartement traversant de 77,51 m² avec deux chambres, deux salles d'eau et deux terrasses.</p>
 </div></section>
 <section class="v2-blanc v2-visite"><div class="v2-l">
   <div class="v2-cartes">{cartes}{details}</div>
