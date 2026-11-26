@@ -1,12 +1,12 @@
 ---
 titre: Confidentialité, cookies et utilisation du site
-description: Ce que lespiafsdescollines fait de vos données : aucun cookie, aucune mesure d'audience, et vos e-mails servent seulement à répondre à votre demande.
+description: Ce que lespiafsdescollines fait de vos données : aucun cookie, aucune mesure d'audience.
 slug: confidentialite
 ---
 
 # Confidentialité, cookies et utilisation du site
 
-En bref : le site ne dépose aucun cookie, ne mesure pas votre visite et n'enregistre rien de ce que vous tapez dans le formulaire. Nous recevons seulement l'e-mail que vous choisissez de nous envoyer.
+En bref : le site ne dépose aucun cookie, ne mesure pas votre visite et n'enregistre rien de ce que vous tapez dans le formulaire. Nous recevons seulement l'e-mail que vous choisissez de nous envoyer. Nous écrivons aussi à des professionnels (RH, mobilité, santé, enseignement) pour leur présenter le logement : un « STOP » suffit pour que cela s'arrête.
 
 ## Qui est responsable de vos données
 
@@ -31,8 +31,22 @@ Sous le formulaire, cette phrase s'affiche :
 | Exécuter le bail : loyers, quittances, état des lieux | Exécution du contrat (art. 6.1.b) |
 | Tenir la comptabilité et répondre à l'administration | Obligation légale (art. 6.1.c) |
 | Défendre nos droits en cas de litige | Intérêt légitime (art. 6.1.f) |
+| Présenter le logement à des professionnels | Intérêt légitime (art. 6.1.f) |
 
-Nous n'envoyons ni lettre d'information ni offre commerciale, et nous ne collectons aucune adresse pour en envoyer. Vos données ne sont ni vendues, ni louées, ni cédées.
+Nous n'envoyons ni lettre d'information ni offre commerciale aux particuliers. Nous écrivons seulement à des professionnels, comme décrit plus bas dans « Prospection auprès des professionnels ». Vos données ne sont ni vendues, ni louées, ni cédées.
+
+## Prospection auprès des professionnels
+
+Serge Pierrot, entrepreneur individuel, écrit par e-mail à des professionnels pour leur présenter le logement : services RH, mobilité et relocation d'entreprises, établissements de santé et d'enseignement. Nous écrivons à une adresse professionnelle, au sujet de la fonction de son titulaire.
+
+- **Origine des coordonnées** : le site de l'organisme ou un annuaire public. Nous n'achetons ni ne louons aucun fichier.
+- **Pourquoi** : proposer le logement pour une mobilité professionnelle, sans autre usage.
+- **Base légale** : notre intérêt légitime à faire connaître le logement à des professionnels que le sujet concerne (article 6.1.f du RGPD).
+- **Durée** : 12 mois après notre dernier message sans réponse, puis suppression. Si vous répondez, l'échange suit les durées de la section « Combien de temps nous les gardons ».
+- **Où** : dans la messagerie de Serge Pierrot (OVH, France). Aucun fichier de prospection n'est partagé avec un tiers.
+- **Vous opposer** : répondez « STOP » à un de nos messages ou écrivez à contact@lespiafsdescollines.com. Nous cessons de vous écrire. Pour ne pas vous réécrire, nous gardons alors votre seule adresse, dans une liste d'opposition, pendant 3 ans.
+
+Vos autres droits (accès, rectification, effacement) sont ceux de la section « Vos droits ».
 
 ## Combien de temps nous les gardons
 
@@ -84,4 +98,4 @@ Si notre réponse ne vous convient pas, vous pouvez saisir la CNIL : [www.cnil.f
 - Les textes et les photos sont protégés : voir les [mentions légales](/mentions-legales).
 - Nous pouvons faire évoluer le site et cette page. La date de mise à jour figure ci-dessous.
 
-Mise à jour : 9 novembre 2026.
+Mise à jour : 26 novembre 2026.
