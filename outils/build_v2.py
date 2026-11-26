@@ -281,10 +281,10 @@ def corps():
   <h2 class="v2-t bleu v2-titre-xl">{lignes("Une mission temporaire. Un vrai chez‑vous.")}</h2>
   <div class="v2-habiter-texte">{paras("Une cuisine pour garder vos habitudes. Deux chambres pour ne pas tout faire dans la même pièce. Une terrasse pour prendre le dîner dehors.",
         "Ici, vous louez un appartement entier, meublé et équipé. La vue est un plaisir en plus. Le confort du quotidien est déjà là.")}</div>
-  <div class="v2-trio">
-    <figure>{img("terrasse-vue-mer", "Terrasse de l'appartement avec table et vue sur la mer.")}<figcaption>Le soir, changez d'horizon.</figcaption></figure>
-    <figure>{img("sejour-salle-a-manger", "Séjour de l'appartement meublé des Piafs des Collines.")}<figcaption>De la place pour vivre, pas seulement pour dormir.</figcaption></figure>
-    <figure>{img("cuisine-ensemble", "La cuisine équipée : plan de travail, four, micro-ondes, réfrigérateur et îlot.")}<figcaption>Vos habitudes voyagent aussi.</figcaption></figure>
+  <div class="v2-trio v2-bandeau">
+    <figure>{img("terrasse-vue-mer", "Terrasse de l'appartement avec table et vue sur la mer.")}<figcaption>Le soir, changez d'horizon</figcaption></figure>
+    <figure>{img("sejour-salle-a-manger", "Séjour de l'appartement meublé des Piafs des Collines.")}<figcaption>De la place pour vivre, pas seulement pour dormir</figcaption></figure>
+    <figure>{img("cuisine-ensemble", "La cuisine équipée : plan de travail, four, micro-ondes, réfrigérateur et îlot.")}<figcaption>Vos habitudes voyagent aussi</figcaption></figure>
   </div>
   <p class="v2-centre"><a class="bouton" href="#demande">Vérifier mes dates</a></p>
 </div></section>

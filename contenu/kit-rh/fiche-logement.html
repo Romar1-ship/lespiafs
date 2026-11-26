@@ -1,0 +1,140 @@
+<!doctype html>
+<!-- Fiche logement A4 pour les RH, affaires médicales et services de mobilité.
+     Source éditable. Textes : sous-tâche ClickUp 1amye9cq1q8 (26/11/2026), couchages donnés par Géraldine le 26/11/2026.
+     PDF : python3 outils/fiche_pdf.py  →  site/assets/docs/fiche-logement-les-piafs-des-collines.pdf -->
+<html lang="fr"><head>
+<meta charset="utf-8">
+<title>Les Piafs des Collines · Fiche logement · Bail mobilité à Nice</title>
+<style>
+@font-face{font-family:"Outfit";font-weight:100 900;src:url(../../site/assets/fonts/outfit-latin-wght.woff2) format("woff2")}
+@font-face{font-family:"Outfit";font-weight:100 900;src:url(../../site/assets/fonts/outfit-latin-ext-wght.woff2) format("woff2");unicode-range:U+0100-02BA,U+1E00-1EFF,U+20A0-20C0}
+@page{size:A4;margin:0}
+:root{--bleu:#0041B9;--marine:#1C2B45;--corail:#F2735F;--dore:#F6D9A8;--pale:#F1F5FC;--gris:#56627c}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{font-family:"Outfit",system-ui,sans-serif;color:var(--marine);font-size:9.6pt;line-height:1.42;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+.page{width:210mm;height:297mm;position:relative;overflow:hidden;background:#fff}
+a{color:var(--bleu);text-decoration:none}
+/* En-tête */
+.tete{background:var(--bleu);color:#fff;padding:6mm 12mm 5mm;position:relative}
+.marque{display:flex;align-items:center;gap:3mm}
+.marque .oiseau{height:10mm}
+.marque .nom{height:3.2mm}
+.marque small{display:block;font-size:6.6pt;letter-spacing:.2em;text-transform:uppercase;color:var(--dore);font-weight:700;margin-top:1.2mm}
+.tete h1{font-size:21pt;font-weight:600;line-height:1.05;letter-spacing:-.015em;margin:5mm 0 2mm}
+.tete .sous{font-size:9.6pt;font-weight:500;color:var(--dore);margin:0}
+.liseret{height:2.6mm;background:repeating-linear-gradient(90deg,var(--bleu) 0 6mm,#fff 6mm 12mm)}
+/* Photo et introduction */
+.vue{display:block;width:100%;height:38mm;object-fit:cover}
+.corps{padding:4.5mm 12mm 0}
+.intro{font-size:11.4pt;line-height:1.4;font-weight:400;margin:0 0 4mm}
+.intro strong{font-weight:600;color:var(--bleu)}
+.reperes{display:grid;grid-template-columns:repeat(4,1fr);border-top:.4mm solid var(--bleu);border-bottom:.4mm solid var(--bleu);margin:0 0 4mm}
+.reperes div{padding:2.6mm 0;text-align:center}
+.reperes div+div{border-left:.3mm solid #cfd9ee}
+.reperes b{display:block;font-size:17pt;font-weight:700;color:var(--bleu);line-height:1}
+.reperes span{font-size:7.6pt;text-transform:uppercase;letter-spacing:.12em;font-weight:600;color:var(--gris)}
+/* Grille principale */
+.grille{display:grid;grid-template-columns:1fr 1fr;gap:4mm 7mm}
+h2{font-size:10.6pt;font-weight:600;color:var(--bleu);margin:0 0 1.6mm;letter-spacing:-.005em}
+ul{margin:0;padding:0;list-style:none}
+li{position:relative;padding-left:4mm;margin:0 0 .6mm}
+li::before{content:"";position:absolute;left:0;top:1.9mm;width:1.6mm;height:1.6mm;background:var(--corail)}
+p{margin:0 0 1.4mm}
+.photos{display:grid;grid-template-columns:1fr 1fr;gap:2.5mm;margin:0}
+.photos figure{margin:0}
+.photos img{width:100%;height:30mm;object-fit:cover;display:block}
+.photos figcaption{font-size:7.2pt;color:var(--gris);margin-top:.8mm}
+.contrat{margin-top:3.4mm}
+.budget{background:var(--bleu);color:#fff;padding:4mm 5mm}
+.budget h2{color:var(--dore)}
+.budget .prix{font-size:22pt;font-weight:600;line-height:1;margin:0 0 1mm;letter-spacing:-.01em}
+.budget .prix small{font-size:10pt;font-weight:500;color:var(--dore)}
+.budget .cc{font-size:7.8pt;text-transform:uppercase;letter-spacing:.14em;font-weight:700;color:var(--dore);margin:0 0 2.4mm}
+.budget .detail{margin:0 0 2.4mm;font-size:9.6pt}
+.budget .detail span{display:block}
+.budget p{color:#fff;font-size:8.8pt}
+.budget p b{font-weight:600}
+/* Action */
+.action{position:absolute;left:12mm;right:12mm;bottom:15mm;margin:0;border:.5mm solid var(--bleu);padding:3.6mm 5mm;display:grid;grid-template-columns:1.25fr 1fr;gap:5mm;align-items:center}
+.action p.q{font-size:11pt;font-weight:600;color:var(--bleu);line-height:1.25;margin:0}
+.action .liens{font-size:10pt;font-weight:600}
+.action .liens a{display:block;margin:.6mm 0}
+/* Pied */
+.pied{position:absolute;left:12mm;right:12mm;bottom:6mm;font-size:7.4pt;color:var(--gris);font-style:italic;border-top:.3mm solid #dfe6f3;padding-top:2.4mm}
+</style>
+</head><body>
+<div class="page">
+  <header class="tete">
+    <div class="marque"><img class="oiseau" src="img/logo-oiseau-blanc.svg" alt=""><div><img class="nom" src="img/logo-nom-blanc.svg" alt="Les Piafs des Collines"><small>Location bail mobilité</small></div></div>
+    <h1>Un vrai chez-soi pour une mission à Nice.</h1>
+    <p class="sous">Les Piafs des Collines · Nice Bellet · Appartement meublé · De 1 à 10 mois</p>
+  </header>
+  <div class="liseret"></div>
+  <img class="vue" src="img/vue.jpg" alt="Vue sur la Baie des Anges depuis l'appartement, à Nice Bellet">
+
+  <main class="corps">
+    <p class="intro">Votre collaborateur vient pour plusieurs mois. <strong>Proposez-lui un endroit où vivre</strong> : un appartement entier au premier étage d'une villa, face à la Baie des Anges.</p>
+
+    <div class="reperes">
+      <div><b>77 m²</b><span>Appartement entier</span></div>
+      <div><b>2</b><span>Chambres</span></div>
+      <div><b>2</b><span>Salles d'eau</span></div>
+      <div><b>2</b><span>Terrasses vue mer</span></div>
+    </div>
+
+    <div class="grille">
+      <section>
+        <h2>Pour vivre, pas seulement pour dormir</h2>
+        <ul>
+          <li>De la place pour s'installer, éventuellement accompagné</li>
+          <li>Une cuisine équipée pour garder ses habitudes</li>
+          <li>Lave-linge et sèche-linge pour le quotidien</li>
+          <li>Fibre, poste de travail et climatisation réversible</li>
+          <li>Une place de parking privée et une piscine partagée selon horaires</li>
+          <li>Linge de maison fourni avec rechange</li>
+        </ul>
+      </section>
+      <div class="photos">
+        <figure><img src="img/piece-de-vie.jpg" alt="La pièce de vie : cuisine ouverte, îlot et séjour"><figcaption>La pièce de vie et la cuisine</figcaption></figure>
+        <figure><img src="img/chambre.jpg" alt="La première chambre et son lit double"><figcaption>La première chambre</figcaption></figure>
+      </div>
+
+      <section>
+        <h2>Configuration</h2>
+        <ul>
+          <li>Chambre 1 : lit double et salle d'eau privative</li>
+          <li>Chambre 2 : deux lits simples de 80 × 200 cm ou un lit double de 160 cm</li>
+          <li>Salon : canapé-lit</li>
+          <li>Une seconde salle d'eau et un WC indépendant</li>
+        </ul>
+        <h2 style="margin-top:3.4mm">Localisation</h2>
+        <p>Nice, colline de Bellet. Trajet quotidien à vérifier selon le lieu d'affectation et les horaires.</p>
+        <h2 style="margin-top:3.4mm">Contrat</h2>
+        <p>Bail mobilité de 1 à 10 mois, signé par l'occupant après vérification de son éligibilité. Prise en charge du loyer par l'employeur possible, avec lettre de prise en charge. Aucun dépôt de garantie. Garanties examinées avec le dossier. Remise des clés et état des lieux avec le bailleur.</p>
+      </section>
+      <div>
+      <section class="budget">
+        <h2>Budget</h2>
+        <p class="prix">3 650 €<small> / mois</small></p>
+        <p class="cc">Charges comprises</p>
+        <p class="detail"><span>Loyer 3 475 €</span><span>+ forfait de charges 175 €</span></p>
+        <p><b>Compris dans le forfait annoncé :</b> eau, électricité, climatisation, fibre, parking et accès à la piscine partagée.</p>
+        <p><b>Non compris :</b> ménage et assurance habitation.</p>
+      </section>
+      </div>
+
+    </div>
+  </main>
+
+  <div class="action">
+    <p class="q">Une arrivée à préparer ? Envoyez-nous les dates, le nombre d'occupants et le lieu d'affectation.</p>
+    <div class="liens">
+      <a href="mailto:contact@lespiafsdescollines.com">contact@lespiafsdescollines.com</a>
+      <a href="https://lespiafsdescollines.com/bail-mobilite/">lespiafsdescollines.com/bail-mobilite</a>
+    </div>
+  </div>
+
+  <footer class="pied">Sous réserve de disponibilités et de dossier accepté. Surface exacte : 77,51 m². DPE C · Climat A. Location en bail mobilité, non touristique.</footer>
+</div>
+</body></html>

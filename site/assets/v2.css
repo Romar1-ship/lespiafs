@@ -348,3 +348,8 @@ main section[id],.v2-bloc[id]{scroll-margin-top:70px}
 .v2-trio img,.v2 .v2-trio img{aspect-ratio:4/3}
 .v2 .v2-blanc .v2-carte-bleue .v2-liste .pic-s{color:var(--v2-dore)}
 .v2 .v2-blanc .v2-carte-bleue .v2-liste li{color:#fff}
+/* Trio en bandeau : photos agrandies, qui débordent de la colonne (Géraldine, 26/11/2026) */
+.v2 .v2-bandeau{width:min(calc(100vw - 32px),1600px);margin-left:50%;transform:translateX(-50%);gap:14px}
+.v2 .v2-bandeau img{aspect-ratio:4/3}
+.v2 .v2-bandeau figcaption{font-size:clamp(1.25rem,1.8vw,1.6rem);font-weight:500;margin-top:14px;padding:0 2px}
+@media(max-width:700px){.v2 .v2-bandeau{width:100%;margin-left:0;transform:none}}
