@@ -1377,6 +1377,7 @@ if __name__ == "__main__":
     routes()
     accueil(); saison_appartement(); saison_hotes(); saison_ateliers(); saison_livre_or(); saison_faq()
     saison_tarifs(); saison_contact(); saison_environs(); saison_legal(); bail_mobilite(); guides(); carnet(); pages_legales(); page_cookies(); page_404(); redirections(); sitemap()
+    __import__("build_v2").lancement()  # la v2 est la page d'accueil (Géraldine, 26/11/2026)
     n = i18n.rapport()
     print(f"Textes à traduire : {n} (contenu/i18n/manquants-*.json)" if n else "Traductions complètes.")
     print("Terminé.")

@@ -5,7 +5,8 @@ Lancer :  python3 outils/build_v2.py
 Écrit site/bail-mobilite-v2/index.html. La page /bail-mobilite/ n'est pas touchée.
 
 Textes : brief ClickUp 1amye9cq1n9 du 26/11/2026, repris mot pour mot.
-La page reste en noindex, hors sitemap et sans lien depuis le site tant que Géraldine ne l'a pas validée.
+Depuis le 26/11/2026 (Géraldine) : la page est l'adresse principale du site, https://www.lespiafsdescollines.com/.
+L'ancienne page bail mobilité est gardée telle quelle sous /bail-mobilite-v1/ (copie statique, noindex).
 Les styles propres à cette page sont dans site/assets/v2.css.
 """
 import re, sys
@@ -14,7 +15,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 import build as b
 
 E, pic, img = b.E, b.pic, b.img
-CHEMIN = "bail-mobilite-v2/index.html"
+CHEMIN = "index.html"   # la racine du site
 
 # Bandeau photo/aquarelle : nom du fichier dans assets/img une fois le visuel maître validé (brief, §4).
 # Tant qu'il vaut None, le premier écran garde la vraie photo de la baie, sans mention d'aquarelle.
@@ -399,7 +400,6 @@ def generer():
                   "À Nice Bellet, appartement meublé de 77 m², 2 chambres, terrasses vue mer et parking. Bail mobilité de 1 à 10 mois. 3 650 €/mois charges comprises.",
                   prof, CHEMIN, image="hero-baie")
     # Page en relecture : ni canonique ni index, et la feuille v2 après la feuille commune.
-    tete = tete.replace(f'<link rel="canonical" href="{b.url_propre(CHEMIN)}">', '<meta name="robots" content="noindex">')
     tete = tete.replace('href="{R}assets/style.css">', 'href="{R}assets/style.css">\n<link rel="stylesheet" href="{R}assets/v2.css">')
     tete = tete.replace(f'href="{"../" * prof}assets/style.css">', f'href="{"../" * prof}assets/style.css">\n<link rel="stylesheet" href="{"../" * prof}assets/v2.css">')
     tete = tete.replace("<body>", '<body class="v2-page">', 1)
@@ -413,5 +413,21 @@ def generer():
     f.write_text(contenu, encoding="utf-8")
     print("  ", CHEMIN)
 
-if __name__ == "__main__":
+def lancement():
+    """La v2 devient la page d'accueil (Géraldine, 26/11/2026). Idempotent : se relance après outils/build.py."""
     generer()
+    # Redirections : la racine ne renvoie plus vers /bail-mobilite/ ; l'ancienne adresse et celle de la v2 mènent à la racine.
+    f = b.SITE / "_redirects"
+    lignes = [l for l in f.read_text(encoding="utf-8").splitlines() if l.strip()]
+    garde = ("/bail-mobilite/ / 301", "/bail-mobilite / 301", "/bail-mobilite-v2/ / 301", "/bail-mobilite-v2 / 301")
+    lignes = [l for l in lignes if l != "/ /bail-mobilite/ 302" and l not in garde]
+    lignes = [l.replace(" /bail-mobilite/ ", " / ") for l in lignes]
+    f.write_text("\n".join(list(garde) + lignes) + "\n", encoding="utf-8")
+    # Plan du site : la racine remplace /bail-mobilite/.
+    m = b.SITE / "sitemap.xml"
+    t = m.read_text(encoding="utf-8").replace(f"<loc>{b.BASE}/bail-mobilite/</loc>", f"<loc>{b.BASE}/</loc>")
+    m.write_text(t, encoding="utf-8")
+    print("   _redirects, sitemap.xml : racine = page v2")
+
+if __name__ == "__main__":
+    lancement()
