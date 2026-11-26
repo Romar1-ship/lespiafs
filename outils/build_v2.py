@@ -51,7 +51,10 @@ PIECES = [
 
 # Bloc 8 · avis, citations fidèles au livre d'or
 AVIS = [("Une vue à couper le souffle, un appartement des plus agréables et d'une propreté irréprochable.", "Mélody, Nancy"),
-        ("L'appartement est très bien situé et d'une propreté irréprochable. La vue est magnifique.", "Anaïs, Nord")]
+        ("L'appartement est très bien situé et d'une propreté irréprochable. La vue est magnifique.", "Anaïs, Nord"),
+        # Deux avis de plus, déjà publiés sur la page actuelle (Géraldine, 26/11/2026)
+        ("Un appartement au top, moderne, bien équipé, au goût du jour. Qu'il est agréable de s'asseoir sur la terrasse et de contempler la mer et ses bateaux.", "Chantal, Serge, Sabrina et Anthony, Doubs"),
+        ("You have the most beautiful view from the flat and everything you need here!", "Famille Traude")]
 
 # Bloc 9 · questions utiles
 FAQ = [
@@ -142,8 +145,11 @@ def corps():
     offre = f"""<aside class="v2-offre"><p class="v2-offre-titre">Vous restez 10 mois ? Le dernier mois de loyer est offert.</p>
     {paras("Une remise de 3 475 €, accordée une fois pour un bail de 10 mois. Le forfait de charges de 175 € reste dû le dernier mois. Les conditions d'application figurent au bail.")}</aside>""" if OFFRE_10E_MOIS else ""
     motifs = "".join(f"<option>{E(m)}</option>" for m in MOTIFS)
-    PRESCRIPTEUR_FIN = ('<p><a class="bouton" href="#demande" data-pour="tiers">Nous parler d' + "'" + 'une arrivée</a></p>'
-                        + '<p class="v2-note">Hôpitaux, entreprises, universités et services de mobilité. Sous réserve de disponibilités et d' + "'" + 'un dossier éligible.</p>')
+    publics = "".join(f'<li>{pic(ic, "pic-s")}<span>{t}</span></li>' for ic, t in
+                      (("hopital", "Hôpitaux"), ("societe", "Entreprises"), ("campus", "Universités"), ("valise", "Services de mobilité")))
+    PRESCRIPTEUR_FIN = (f'<ul class="v2-publics">{publics}</ul>'
+                        + '<p class="v2-reserve">Sous réserve de disponibilités et d' + "'" + 'un dossier éligible</p>'
+                        + '<p><a class="bouton" href="#demande" data-pour="tiers">Nous parler d' + "'" + 'une arrivée</a></p>')
     return SPRITE_V2 + f"""<div class="v2">
 <section class="v2-hero">
   <div class="v2-cadre">
