@@ -60,7 +60,7 @@ PLACE = [("lit", "Deux chambres, dont une avec salle d'eau privative"),
          ("cuisine", "Cuisine équipée, buanderie et espace de travail")]
 CONTRAT_COURT = [("calendrier", "De 1 à 10 mois en bail mobilité"), ("plume", "Contrat signé par l'occupant éligible"),
                  ("societe", "Prise en charge employeur possible"), ("cle", "Aucun dépôt de garantie")]
-INCLUS2 = [("goutte", "Eau"), ("eclair", "Électricité"), ("clim", "Climatisation, chauffage"), ("wifi", "Fibre<small>Wi-Fi · 540 Mb/s mesurés</small>"),
+INCLUS2 = [("goutte", "Eau"), ("eclair", "Électricité"), ("clim", "Climatisation, chauffage"), ("wifi", "Fibre · Wi-Fi<br>540 Mb/s mesurés*"),
            ("parking", "Parking"), ("piscine", "Piscine partagée"), ("linge", "Linge de maison avec rechange")]
 
 CSS = """
@@ -179,7 +179,7 @@ h2{font-size:11pt;font-weight:700;text-transform:uppercase;letter-spacing:.12em;
 .r .tuiles{grid-template-columns:repeat(2,1fr)}
 .r .tuiles li{flex-direction:row;align-items:center;gap:2mm;padding:1.6mm 2mm;font-size:9.6pt}
 .r .tuiles li:last-child{grid-column:1/-1}
-.r .sortie{position:absolute;left:12mm;right:12mm;bottom:13mm;background:var(--pale);border-top:1.4mm solid var(--bleu);padding:4mm 5mm;display:grid;grid-template-columns:1fr auto;gap:5mm;align-items:center}
+.r .sortie{position:absolute;left:12mm;right:12mm;bottom:16mm;background:var(--pale);border-top:1.4mm solid var(--bleu);padding:4mm 5mm;display:grid;grid-template-columns:1fr auto;gap:5mm;align-items:center}
 .r .sortie p.q{font-size:12.6pt;font-weight:600;color:var(--bleu);line-height:1.22;margin:0 0 2.4mm}
 .r .sortie p.q span{display:block;font-weight:400;color:var(--marine);font-size:11pt}
 .r .sortie .cta{display:inline-block;background:var(--corail);color:#fff;font-weight:700;font-size:10pt;letter-spacing:.04em;padding:2.4mm 4mm;margin:0 0 2.4mm}
@@ -204,7 +204,6 @@ h2{font-size:11pt;font-weight:700;text-transform:uppercase;letter-spacing:.12em;
 .r .sortie .cta{margin:0 3mm 0 0}
 .r .sortie .liens{display:flex;align-items:center;flex-wrap:wrap;gap:2mm}
 .r .qr img{width:21mm;height:21mm}
-.r .tuiles li small{display:inline;font-size:7.4pt;opacity:.85;margin-left:1.6mm;font-weight:400;white-space:nowrap}
 .r .tuiles li:nth-child(4){grid-column:span 2}
 .r .tuiles li:last-child{grid-column:span 2}
 """
@@ -332,7 +331,7 @@ def page_resserree():
     </div>
     <div class="qr"><img src="img/qr-site.svg" alt="QR code vers lespiafsdescollines.com">lespiafsdescollines.com</div>
   </div>
-  <footer class="pied">Sous réserve de disponibilités et de dossier accepté. Nombre d'occupants confirmé pour chaque demande, avant le bail. Surface exacte : 77,51 m². DPE C · Climat A. Location meublée en bail mobilité (loi n° 89-462 du 6 juillet 1989, titre I<sup>er</sup> ter).</footer>
+  <footer class="pied">Sous réserve de disponibilités et de dossier accepté. Nombre d'occupants confirmé pour chaque demande, avant le bail. Surface exacte : 77,51 m². DPE C · Climat A. Location meublée en bail mobilité (loi n° 89-462 du 6 juillet 1989, titre I<sup>er</sup> ter).<br>*Débit mesuré ponctuellement en Wi-Fi, variable selon les conditions d'utilisation.</footer>
 </div>"""
 
 if __name__ == "__main__":

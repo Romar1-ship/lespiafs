@@ -117,7 +117,7 @@ h2{font-size:11pt;font-weight:700;text-transform:uppercase;letter-spacing:.12em;
 .r .tuiles{grid-template-columns:repeat(2,1fr)}
 .r .tuiles li{flex-direction:row;align-items:center;gap:2mm;padding:1.6mm 2mm;font-size:9.6pt}
 .r .tuiles li:last-child{grid-column:1/-1}
-.r .sortie{position:absolute;left:12mm;right:12mm;bottom:13mm;background:var(--pale);border-top:1.4mm solid var(--bleu);padding:4mm 5mm;display:grid;grid-template-columns:1fr auto;gap:5mm;align-items:center}
+.r .sortie{position:absolute;left:12mm;right:12mm;bottom:16mm;background:var(--pale);border-top:1.4mm solid var(--bleu);padding:4mm 5mm;display:grid;grid-template-columns:1fr auto;gap:5mm;align-items:center}
 .r .sortie p.q{font-size:12.6pt;font-weight:600;color:var(--bleu);line-height:1.22;margin:0 0 2.4mm}
 .r .sortie p.q span{display:block;font-weight:400;color:var(--marine);font-size:11pt}
 .r .sortie .cta{display:inline-block;background:var(--corail);color:#fff;font-weight:700;font-size:10pt;letter-spacing:.04em;padding:2.4mm 4mm;margin:0 0 2.4mm}
@@ -142,7 +142,6 @@ h2{font-size:11pt;font-weight:700;text-transform:uppercase;letter-spacing:.12em;
 .r .sortie .cta{margin:0 3mm 0 0}
 .r .sortie .liens{display:flex;align-items:center;flex-wrap:wrap;gap:2mm}
 .r .qr img{width:21mm;height:21mm}
-.r .tuiles li small{display:inline;font-size:7.4pt;opacity:.85;margin-left:1.6mm;font-weight:400;white-space:nowrap}
 .r .tuiles li:nth-child(4){grid-column:span 2}
 .r .tuiles li:last-child{grid-column:span 2}
 </style></head><body>
@@ -160,7 +159,7 @@ h2{font-size:11pt;font-weight:700;text-transform:uppercase;letter-spacing:.12em;
       <figure><img src="img/sejour-terrasse.jpg" alt="Le séjour, le canapé et la table, ouverts sur la terrasse"><figcaption>Le séjour, ouvert sur la terrasse et la mer</figcaption></figure>
       <section class="budget"><h2>Budget</h2><p class="prix">3 650 €<small> / mois</small></p><p class="cc">Charges comprises</p>
         <p class="detail"><span>Loyer 3 475 € + forfait de charges 175 €</span></p>
-        <ul class="tuiles"><li><svg class="ic" viewBox="0 0 32 32" aria-hidden="true"><path d="M16 4c-5 7-8 11-8 15a8 8 0 0016 0c0-4-3-8-8-15z"/></svg><span>Eau</span></li><li><svg class="ic" viewBox="0 0 32 32" aria-hidden="true"><path d="M18 3L7 18h8l-2 11 12-16h-8z"/></svg><span>Électricité</span></li><li><svg class="ic" viewBox="0 0 32 32" aria-hidden="true"><path d="M16 3v26M5 9.5l22 13M5 22.5l22-13M13 5l3 3 3-3M13 27l3-3 3 3"/></svg><span>Climatisation, chauffage</span></li><li><svg class="ic" viewBox="0 0 32 32" aria-hidden="true"><path d="M4 12a17 17 0 0124 0M8 17a11 11 0 0116 0M12 21.5a5 5 0 018 0"/><circle cx="16" cy="25.5" r="1"/></svg><span>Fibre<small>Wi-Fi · 540 Mb/s mesurés</small></span></li><li><svg class="ic" viewBox="0 0 32 32" aria-hidden="true"><rect x="5" y="5" width="22" height="22" rx="3"/><path d="M13 23V10h5a4 4 0 010 8h-5"/></svg><span>Parking</span></li><li><svg class="ic" viewBox="0 0 32 32" aria-hidden="true"><path d="M10 22V8a3 3 0 016 0M20 22V8a3 3 0 016 0M10 12h10M10 17h10M3 25c3-2 5-2 8 0s5 2 8 0 5-2 8 0"/></svg><span>Piscine partagée</span></li><li><svg class="ic" viewBox="0 0 32 32" aria-hidden="true"><path d="M5 12h22v5H5zM7 17h18v5H7zM5 22h22v5H5z"/><path d="M9 8c2-3 4-3 7 0s5 3 7 0"/></svg><span>Linge de maison avec rechange</span></li></ul>
+        <ul class="tuiles"><li><svg class="ic" viewBox="0 0 32 32" aria-hidden="true"><path d="M16 4c-5 7-8 11-8 15a8 8 0 0016 0c0-4-3-8-8-15z"/></svg><span>Eau</span></li><li><svg class="ic" viewBox="0 0 32 32" aria-hidden="true"><path d="M18 3L7 18h8l-2 11 12-16h-8z"/></svg><span>Électricité</span></li><li><svg class="ic" viewBox="0 0 32 32" aria-hidden="true"><path d="M16 3v26M5 9.5l22 13M5 22.5l22-13M13 5l3 3 3-3M13 27l3-3 3 3"/></svg><span>Climatisation, chauffage</span></li><li><svg class="ic" viewBox="0 0 32 32" aria-hidden="true"><path d="M4 12a17 17 0 0124 0M8 17a11 11 0 0116 0M12 21.5a5 5 0 018 0"/><circle cx="16" cy="25.5" r="1"/></svg><span>Fibre · Wi-Fi<br>540 Mb/s mesurés*</span></li><li><svg class="ic" viewBox="0 0 32 32" aria-hidden="true"><rect x="5" y="5" width="22" height="22" rx="3"/><path d="M13 23V10h5a4 4 0 010 8h-5"/></svg><span>Parking</span></li><li><svg class="ic" viewBox="0 0 32 32" aria-hidden="true"><path d="M10 22V8a3 3 0 016 0M20 22V8a3 3 0 016 0M10 12h10M10 17h10M3 25c3-2 5-2 8 0s5 2 8 0 5-2 8 0"/></svg><span>Piscine partagée</span></li><li><svg class="ic" viewBox="0 0 32 32" aria-hidden="true"><path d="M5 12h22v5H5zM7 17h18v5H7zM5 22h22v5H5z"/><path d="M9 8c2-3 4-3 7 0s5 3 7 0"/></svg><span>Linge de maison avec rechange</span></li></ul>
         <p class="plus"><b>Non compris :</b> ménage et assurance habitation</p></section>
     </div>
     <div class="cols">
@@ -176,5 +175,5 @@ h2{font-size:11pt;font-weight:700;text-transform:uppercase;letter-spacing:.12em;
     </div>
     <div class="qr"><img src="img/qr-site.svg" alt="QR code vers lespiafsdescollines.com">lespiafsdescollines.com</div>
   </div>
-  <footer class="pied">Sous réserve de disponibilités et de dossier accepté. Nombre d'occupants confirmé pour chaque demande, avant le bail. Surface exacte : 77,51 m². DPE C · Climat A. Location meublée en bail mobilité (loi n° 89-462 du 6 juillet 1989, titre I<sup>er</sup> ter).</footer>
+  <footer class="pied">Sous réserve de disponibilités et de dossier accepté. Nombre d'occupants confirmé pour chaque demande, avant le bail. Surface exacte : 77,51 m². DPE C · Climat A. Location meublée en bail mobilité (loi n° 89-462 du 6 juillet 1989, titre I<sup>er</sup> ter).<br>*Débit mesuré ponctuellement en Wi-Fi, variable selon les conditions d'utilisation.</footer>
 </div></body></html>
