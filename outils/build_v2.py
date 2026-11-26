@@ -89,10 +89,15 @@ MOTIFS = ["Mission professionnelle temporaire", "Mutation", "Formation professio
 def photo(n, cls=""):
     return img(n, ALT.get(n, ""), cls)
 
-def bloc(photo_html, titre_html, contenu, inverse=False, ton="bleu", ident=""):
+# Un picto par descriptif du logement (Géraldine, 26/11/2026), pris dans le jeu de pictos du site.
+PICTOS = {"La pièce de vie": "table", "La cuisine": "cuisine", "La première chambre": "lit", "La seconde chambre": "ordi",
+          "Les salles d'eau": "douche", "Les terrasses": "soleil", "Les détails qui comptent": "machine", "La piscine": "piscine"}
+
+def bloc(photo_html, titre_html, contenu, inverse=False, ton="bleu", ident="", picto=""):
     """Bloc image et texte, à la façon de la page « Cannes en hiver » : grand titre en capitales, texte court, photo large."""
     i = f' id="{ident}"' if ident else ""
-    return (f'<div class="v2-bloc{" inverse" if inverse else ""}"{i}><div class="v2-bloc-texte"><h2 class="v2-t {ton}">{titre_html}</h2>{contenu}</div>'
+    pi = pic(picto, f"pic v2-pic {ton}") if picto else ""
+    return (f'<div class="v2-bloc{" inverse" if inverse else ""}"{i}><div class="v2-bloc-texte">{pi}<h2 class="v2-t {ton}">{titre_html}</h2>{contenu}</div>'
             f'<div class="v2-bloc-photo">{photo_html}</div></div>')
 
 def corps():
@@ -100,9 +105,9 @@ def corps():
     mention_aqua = '<p class="v2-aqua">Interprétation aquarelle de la vue réelle.</p>' if AQUARELLE else ""
     avec_photo = [(n, t, x) for n, t, x in PIECES if n]
     sans_photo = [(t, x) for n, t, x in PIECES if not n]
-    pieces = "".join(bloc(photo(n), E(t), paras(x), inverse=k % 2 == 1, ton="corail" if k % 2 else "bleu").replace('<h2 class="v2-t', '<h3 class="v2-t').replace("</h2>", "</h3>")
+    pieces = "".join(bloc(photo(n), E(t), paras(x), inverse=k % 2 == 1, ton="corail" if k % 2 else "bleu", picto=PICTOS[t]).replace('<h2 class="v2-t', '<h3 class="v2-t').replace("</h2>", "</h3>")
                      for k, (n, t, x) in enumerate(avec_photo))
-    reperes = "".join(f'<div><h3>{E(t)}</h3>{paras(x)}</div>' for t, x in sans_photo)
+    reperes = "".join(f'<div>{pic(PICTOS[t], "pic v2-pic")}<h3>{E(t)}</h3>{paras(x)}</div>' for t, x in sans_photo)
     gal = "".join(f'<a href="{{R}}assets/img/{n}.jpg"{" class=\"g\"" if g else ""}>{img(n, a)}</a>' for n, a, g in b.GALERIE[:9])
     fiche = "".join(f'<div class="fiche-bloc"><h3>{pic(ic)}{E(t)}</h3><dl>'
                     + "".join(f"<dt>{E(k)}</dt><dd>{E(v)}</dd>" for k, v in lignes) + "</dl></div>" for t, ic, lignes in FICHE)
@@ -117,9 +122,9 @@ def corps():
 <section class="v2-hero">
   <div class="v2-cadre">
     <picture><source media="(max-width:700px)" srcset="{{R}}assets/img/hero-baie-mobile.jpg"><img src="{{R}}assets/img/{fond}.jpg" alt="Vue sur la Baie des Anges depuis Les Piafs des Collines, à Nice Bellet." fetchpriority="high"></picture>
+    <h1><span class="h1-sur">Location meublée à Nice · Bail mobilité</span>À Nice pour travailler. <span class="v2-h1-2">Bien chez vous pour en profiter.</span></h1>
   </div>
   <div class="v2-l">
-    <h1><span class="h1-sur">Location meublée à Nice · Bail mobilité</span>À Nice pour travailler. <span class="v2-h1-2">Bien chez vous pour en profiter.</span></h1>
     <p class="v2-lead">Votre mission vous amène à Nice. Installez-vous dans un appartement meublé de 77 m², avec deux chambres et deux terrasses face à la Baie des Anges. Pour 1 à 10 mois, sur la colline de Bellet.</p>
     <p class="v2-prix">3 650 € / mois <span>charges comprises</span></p>
     <p class="v2-actions"><a class="bouton blanc" href="#demande">Vérifier mes dates</a><a class="bouton contour" href="#logement">Voir l'appartement</a></p>
