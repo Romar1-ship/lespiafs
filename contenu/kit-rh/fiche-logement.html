@@ -1,6 +1,6 @@
 <!doctype html>
 <!-- Fiche logement A4 pour les RH, affaires médicales et services de mobilité.
-     Source éditable. Textes : sous-tâche ClickUp 1amye9cq1q8 (26/11/2026), couchages donnés par Géraldine le 26/11/2026.
+     Source éditable. Textes : sous-tâche ClickUp 1amye9cq1q8 (26/11/2026), corrigés selon la relecture de Themis du 26/11/2026, couchages donnés par Géraldine le 26/11/2026.
      PDF : python3 outils/fiche_pdf.py  →  site/assets/docs/fiche-logement-les-piafs-des-collines.pdf -->
 <html lang="fr"><head>
 <meta charset="utf-8">
@@ -56,7 +56,7 @@ p{margin:0 0 1.4mm}
 .budget p{color:#fff;font-size:8.8pt}
 .budget p b{font-weight:600}
 /* Action */
-.action{position:absolute;left:12mm;right:12mm;bottom:15mm;margin:0;border:.5mm solid var(--bleu);padding:3.6mm 5mm;display:grid;grid-template-columns:1.25fr 1fr;gap:5mm;align-items:center}
+.action{position:absolute;left:12mm;right:12mm;bottom:18mm;margin:0;border:.5mm solid var(--bleu);padding:3.6mm 5mm;display:grid;grid-template-columns:1.25fr 1fr;gap:5mm;align-items:center}
 .action p.q{font-size:11pt;font-weight:600;color:var(--bleu);line-height:1.25;margin:0}
 .action .liens{font-size:10pt;font-weight:600}
 .action .liens a{display:block;margin:.6mm 0}
@@ -87,7 +87,7 @@ p{margin:0 0 1.4mm}
       <section>
         <h2>Pour vivre, pas seulement pour dormir</h2>
         <ul>
-          <li>De la place pour s'installer, éventuellement accompagné</li>
+          <li>De la place pour s'installer au quotidien</li>
           <li>Une cuisine équipée pour garder ses habitudes</li>
           <li>Lave-linge et sèche-linge pour le quotidien</li>
           <li>Fibre, poste de travail et climatisation réversible</li>
@@ -107,9 +107,8 @@ p{margin:0 0 1.4mm}
           <li>Chambre 2 : deux lits simples de 80 × 200 cm ou un lit double de 160 cm</li>
           <li>Salon : canapé-lit</li>
           <li>Une seconde salle d'eau et un WC indépendant</li>
+          <li>Nombre d'occupants confirmé pour chaque demande, avant le bail</li>
         </ul>
-        <h2 style="margin-top:3.4mm">Localisation</h2>
-        <p>Nice, colline de Bellet. Trajet quotidien à vérifier selon le lieu d'affectation et les horaires.</p>
         <h2 style="margin-top:3.4mm">Contrat</h2>
         <p>Bail mobilité de 1 à 10 mois, signé par l'occupant après vérification de son éligibilité. Prise en charge du loyer par l'employeur possible, avec lettre de prise en charge. Aucun dépôt de garantie. Garanties examinées avec le dossier. Remise des clés et état des lieux avec le bailleur.</p>
       </section>
@@ -119,8 +118,12 @@ p{margin:0 0 1.4mm}
         <p class="prix">3 650 €<small> / mois</small></p>
         <p class="cc">Charges comprises</p>
         <p class="detail"><span>Loyer 3 475 €</span><span>+ forfait de charges 175 €</span></p>
-        <p><b>Compris dans le forfait annoncé :</b> eau, électricité, climatisation, fibre, parking et accès à la piscine partagée.</p>
+        <p><b>Compris dans le prix mensuel de 3 650 € :</b> eau, électricité, climatisation, fibre, parking et accès à la piscine partagée.</p>
         <p><b>Non compris :</b> ménage et assurance habitation.</p>
+      </section>
+      <section class="contrat">
+        <h2>Localisation</h2>
+        <p>Nice, colline de Bellet. Trajet quotidien à vérifier selon le lieu d'affectation et les horaires.</p>
       </section>
       </div>
 
@@ -135,6 +138,6 @@ p{margin:0 0 1.4mm}
     </div>
   </div>
 
-  <footer class="pied">Sous réserve de disponibilités et de dossier accepté. Surface exacte : 77,51 m². DPE C · Climat A. Location en bail mobilité, non touristique.</footer>
+  <footer class="pied">Sous réserve de disponibilités et de dossier accepté. Surface exacte : 77,51 m². DPE C · Climat A. Location meublée en bail mobilité (loi n° 89-462 du 6 juillet 1989, titre I<sup>er</sup> ter).</footer>
 </div>
 </body></html>
