@@ -159,7 +159,7 @@ def corps():
     <h1><span class="h1-sur">Location meublée à Nice · Bail mobilité</span>À Nice pour travailler. <span class="v2-h1-2">Bien chez vous pour en profiter.</span></h1>
   </div>
   <div class="v2-l">
-    <div class="v2-intro"><p class="v2-intro-1">Votre mission vous amène à Nice.</p><p>Installez-vous dans un appartement meublé de <strong>77 m²</strong>, avec <strong>deux chambres</strong> et <strong>deux terrasses</strong> face à la <strong>Baie des Anges</strong>. Pour <strong>1 à 10 mois</strong>, sur la colline de Bellet.</p></div>
+    <div class="v2-intro"><p class="v2-intro-1">Votre mission vous amène à Nice.</p><p class="v2-intro-lignes"><span>Installez-vous dans un appartement meublé de <strong>77 m²</strong>,</span><span>avec <strong>deux chambres</strong> et <strong>deux terrasses</strong> face à la <strong>Baie des Anges</strong>.</span><span>Pour <strong>1 à 10 mois</strong>, sur la colline de Bellet.</span></p></div>
     <p class="v2-prix">3 650 € / mois <span>charges comprises</span></p>
     <p class="v2-actions"><a class="bouton blanc" href="#demande">Vérifier mes dates</a><a class="bouton contour" href="#logement">Voir l'appartement</a></p>
     <p class="v2-micro">Location réservée aux personnes éligibles au bail mobilité</p>
@@ -191,7 +191,7 @@ def corps():
 </div></section>
 
 <section class="v2-bleu v2-titre-section" id="logement"><div class="v2-l">
-  <h2 class="v2-t">{lignes("Entrez. Vous avez de la place.")}</h2>
+  <h2 class="v2-t v2-titre-xl">{lignes("Entrez. Vous avez de la place.")}</h2>
   <p class="v2-lead">Au premier étage d'une villa, un appartement traversant de 77,51 m² avec deux chambres, deux salles d'eau et deux terrasses.</p>
 </div></section>
 <section class="v2-blanc v2-pieces"><div class="v2-l">

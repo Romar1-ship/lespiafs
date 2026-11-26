@@ -167,7 +167,7 @@ main section[id],.v2-bloc[id]{scroll-margin-top:70px}
 .v2 .v2-atouts,.v2 .v2-sous-prix{font-weight:700}
 .v2 .v2-prix,.v2 .v2-montant,.v2 .v2-offre-titre{font-weight:500}
 /* Introduction du premier écran, mise en valeur (Géraldine, 26/11/2026) */
-.v2-intro{border-left:4px solid var(--v2-dore);padding:4px 0 4px clamp(20px,3vw,32px);max-width:920px;margin:0 0 8px}
+.v2-intro{border-left:4px solid var(--v2-dore);padding:4px 0 4px clamp(20px,3vw,32px);max-width:1000px;margin:0 0 8px}
 .v2 .v2-intro p{font-size:clamp(1.25rem,2.1vw,1.7rem);line-height:1.45;margin:0}
 .v2 .v2-intro .v2-intro-1{font-size:clamp(1.5rem,2.8vw,2.3rem);font-weight:500;color:var(--v2-dore);margin-bottom:10px;line-height:1.2}
 .v2 .v2-intro strong{font-weight:600;color:#fff}
@@ -212,3 +212,4 @@ main section[id],.v2-bloc[id]{scroll-margin-top:70px}
 .v2 .v2-encadre-contact .pic-s{width:28px;height:28px;margin:0;color:var(--v2-dore);stroke-width:1.5;flex:none}
 @media(max-width:700px){.v2 .v2-contact{grid-template-columns:1fr}}
 @media(max-width:700px){.v2 .v2-encadre-contact{font-size:.92rem;padding:16px 16px;gap:12px;word-break:normal;overflow-wrap:anywhere}}
+.v2-intro-lignes span{display:block}
