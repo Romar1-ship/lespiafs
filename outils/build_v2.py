@@ -105,6 +105,7 @@ PICTOS_V2 = {"goutte": '<path d="M16 4c-5 7-8 11-8 15a8 8 0 0016 0c0-4-3-8-8-15z
              "bouclier": '<path d="M16 3l11 4v8c0 7-5 12-11 14C10 27 5 22 5 15V7z"/>',
              "enveloppe": '<rect x="4" y="7" width="24" height="18" rx="2"/><path d="M4 9l12 9 12-9"/>',
              "telephone": '<path d="M8 4h5l2 6-3 2c1.5 3.5 4.5 6.5 8 8l2-3 6 2v5c0 1-1 2-2 2C14 26 6 18 6 6c0-1 1-2 2-2z"/>',
+             "bus": '<rect x="6" y="4" width="20" height="21" rx="3"/><path d="M6 15h20M6 10h20M10 25v3M22 25v3"/><circle cx="11" cy="20" r="1.2"/><circle cx="21" cy="20" r="1.2"/>',
              "details": '<rect x="6" y="4" width="20" height="24" rx="2"/><path d="M10 11l2 2 3.5-3.5M10 19l2 2 3.5-3.5M19 11.5h3M19 19.5h3"/>'}
 SPRITE_V2 = '<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>' + "".join(
     f'<symbol id="i-{n}" viewBox="0 0 32 32">{d}</symbol>' for n, d in PICTOS_V2.items()) + '</defs></svg>'
@@ -207,6 +208,22 @@ def corps():
         + '<div class="v2-acces-2">' + pic("repere", "pic v2-pic") + '<p class="v2-acces-q">Vous venez pour une mission précise ?</p>'
         + '<p>Indiquez-nous votre lieu de travail : vérifiez votre trajet quotidien avant de choisir vos dates.</p>'
         + '<p><a class="bouton corail" href="#demande">Vérifier mes dates</a></p></div>', inverse=True, ton="")}
+</div></section>
+
+<section class="v2-blanc" id="ville"><div class="v2-l">
+  <span class="v2-sur">La ville</span><h2 class="v2-t bleu v2-titre-xl">Nice à portée</h2>
+  <div class="v2-ville">
+  <div>{pic("bus", "pic v2-pic")}<h3 class="v2-t bleu">Descendre en ville</h3>
+  {paras("Le bus 60 passe à 50 mètres de la villa. En 5 minutes, il descend la colline jusqu'au tram : moins de 10 minutes de la porte au quai, hors attente du bus.",
+         "À pied, il faut compter 15 minutes pour descendre, et le tram est en bas. En voiture, 5 minutes suffisent pour descendre la colline, et la plage est à 300 mètres du bas de la colline.",
+         "Le soir, inutile de chercher à se garer dans Nice. On descend en voiture ou non, et l'on remonte à pied ou, selon les horaires, en bus.",
+         "Les rendez-vous restent à portée : Monaco à 22 minutes, Sophia Antipolis à 28, l'aéroport à 20.")}
+  <p class="v2-note">Temps en voiture hors trafic. Temps à pied et en bus estimés, hors attente du bus.</p></div>
+  <div>{pic("plume", "pic v2-pic corail")}<h3 class="v2-t corail">Une ville qui nourrit le travail</h3>
+  {paras("Henri Matisse arrive à Nice en décembre 1917. La lumière le retient, pour des années. En 1924, F. Scott Fitzgerald s'installe à Saint-Raphaël pour écrire The Great Gatsby.",
+         "Cette côte attire depuis longtemps ceux qui ont un travail à mener loin du bruit. Le musée Matisse et le musée Marc Chagall sont à Nice. L'Opéra de Nice, les théâtres, et de Cannes à Monaco, une programmation qui court toute l'année.",
+         "À midi, le marché du Cours Saleya, dans le vieux Nice, déborde de fleurs, de fruits et de poisson, du mardi au dimanche. Le soir, une socca, ou un dîner sur la terrasse, face à la baie.")}</div>
+  </div>
 </div></section>
 
 <div class="store" aria-hidden="true"></div>

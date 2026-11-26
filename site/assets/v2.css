@@ -213,3 +213,10 @@ main section[id],.v2-bloc[id]{scroll-margin-top:70px}
 @media(max-width:700px){.v2 .v2-contact{grid-template-columns:1fr}}
 @media(max-width:700px){.v2 .v2-encadre-contact{font-size:.92rem;padding:16px 16px;gap:12px;word-break:normal;overflow-wrap:anywhere}}
 .v2-intro-lignes span{display:block}
+/* Bloc « La ville · Nice à portée », repris de la version du 09/11 (Géraldine, 26/11/2026) */
+.v2-sur{display:block;font-weight:700;text-transform:uppercase;letter-spacing:.2em;font-size:.85rem;color:var(--v2-corail);margin-bottom:14px}
+.v2-ville{display:grid;grid-template-columns:1fr 1fr;gap:clamp(32px,5vw,72px);margin-top:12px}
+.v2-ville h3.v2-t{font-size:clamp(1.7rem,2.6vw,2.3rem)}
+.v2-ville p{font-size:1.08rem;line-height:1.65}
+@media(max-width:860px){.v2-ville{grid-template-columns:1fr}}
+#habiter .v2-titre-xl{font-weight:700}
