@@ -229,3 +229,8 @@ main section[id],.v2-bloc[id]{scroll-margin-top:70px}
 .v2 strong{font-weight:600}
 .v2 .v2-reperes .v2-liste .pic-s{color:var(--v2-dore)}
 .v2 .v2-reperes .v2-liste li{color:#fff}
+/* Paragraphes à picto, bloc « Descendre en ville » (Géraldine, 26/11/2026) */
+.v2-pparas{display:grid;gap:18px;margin-bottom:18px}
+.v2-pparas>div{display:flex;align-items:flex-start;gap:16px}
+.v2 .v2-pparas p{margin:0}
+.v2-pparas .pic-s{width:30px;height:30px;margin:2px 0 0;color:var(--v2-bleu);stroke-width:1.5;flex:none}

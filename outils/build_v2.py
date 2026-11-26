@@ -108,6 +108,8 @@ PICTOS_V2 = {"goutte": '<path d="M16 4c-5 7-8 11-8 15a8 8 0 0016 0c0-4-3-8-8-15z
              "bus": '<rect x="6" y="4" width="20" height="21" rx="3"/><path d="M6 15h20M6 10h20M10 25v3M22 25v3"/><circle cx="11" cy="20" r="1.2"/><circle cx="21" cy="20" r="1.2"/>',
              "seche": '<rect x="6" y="4" width="20" height="24" rx="2"/><path d="M6 9h20"/><circle cx="16" cy="18" r="6"/><path d="M13 16.5c1 1 2-1 3 0s2 1 3 0M13 19.5c1 1 2-1 3 0s2 1 3 0"/>',
              "linge": '<path d="M5 12h22v5H5zM7 17h18v5H7zM5 22h22v5H5z"/><path d="M9 8c2-3 4-3 7 0s5 3 7 0"/>',
+             "pieton": '<circle cx="17" cy="5" r="2.5"/><path d="M16 10l-5 5 1 5M16 10l3 5 5 2M16 10l-2 9 5 4 1 6M14 19l-4 5-3 4"/>',
+             "lune": '<path d="M20 4a12 12 0 1 0 8 18A10 10 0 0 1 20 4z"/>',
              "details": '<rect x="6" y="4" width="20" height="24" rx="2"/><path d="M10 11l2 2 3.5-3.5M10 19l2 2 3.5-3.5M19 11.5h3M19 19.5h3"/>'}
 SPRITE_V2 = '<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>' + "".join(
     f'<symbol id="i-{n}" viewBox="0 0 32 32">{d}</symbol>' for n, d in PICTOS_V2.items()) + '</defs></svg>'
@@ -118,6 +120,10 @@ ATOUTS_HTML = "".join(f'<li>{pic(ic, "pic-s")}<span>{t}</span></li>' for ic, t i
 # « Les détails qui comptent » : un élément par ligne avec son picto (Géraldine, 26/11/2026).
 DETAILS = [("machine", "Lave-linge"), ("seche", "Sèche-linge"), ("linge", "Linge de maison fourni avec rechange"),
            ("clim", "Climatisation réversible"), ("parking", "Une place de parking privée")]
+
+def paras_pictos(*elements):
+    """Paragraphes précédés chacun de leur picto (Géraldine, 26/11/2026)."""
+    return '<div class="v2-pparas">' + "".join(f'<div>{pic(ic, "pic-s")}<p>{insecable(b.fine(E(t)))}</p></div>' for ic, t in elements) + "</div>"
 
 def liste_pictos(elements):
     return '<ul class="v2-liste">' + "".join(f'<li>{pic(ic, "pic-s")}<span>{E(t)}</span></li>' for ic, t in elements) + "</ul>"
@@ -220,10 +226,10 @@ def corps():
   <span class="v2-sur">La ville</span><h2 class="v2-t bleu v2-titre-xl">Nice à portée</h2>
   <div class="v2-ville">
   <div>{pic("bus", "pic v2-pic")}<h3 class="v2-t bleu">Descendre en ville</h3>
-  {paras("Le bus 60 passe à 50 mètres de la villa. En 5 minutes, il descend la colline jusqu'au tram : moins de 10 minutes de la porte au quai, hors attente du bus.",
-         "À pied, il faut compter 15 minutes pour descendre, et le tram est en bas. En voiture, 5 minutes suffisent pour descendre la colline, et la plage est à 300 mètres du bas de la colline.",
-         "Le soir, inutile de chercher à se garer dans Nice. On descend en voiture ou non, et l'on remonte à pied ou, selon les horaires, en bus.",
-         "Les rendez-vous restent à portée : Monaco à 22 minutes, Sophia Antipolis à 28, l'aéroport à 20.")}
+  {paras_pictos(("bus", "Le bus 60 passe à 50 mètres de la villa. En 5 minutes, il descend la colline jusqu'au tram : moins de 10 minutes de la porte au quai, hors attente du bus."),
+         ("pieton", "À pied, il faut compter 15 minutes pour descendre, et le tram est en bas. En voiture, 5 minutes suffisent pour descendre la colline, et la plage est à 300 mètres du bas de la colline."),
+         ("lune", "Le soir, inutile de chercher à se garer dans Nice. On descend en voiture ou non, et l'on remonte à pied ou, selon les horaires, en bus."),
+         ("repere", "Les rendez-vous restent à portée : Monaco à 22 minutes, Sophia Antipolis à 28, l'aéroport à 20."))}
   <p class="v2-note">Temps en voiture hors trafic. Temps à pied et en bus estimés, hors attente du bus.</p></div>
   <div>{pic("plume", "pic v2-pic corail")}<h3 class="v2-t corail">Une ville qui nourrit le travail</h3>
   {paras("Henri Matisse arrive à Nice en décembre 1917. La lumière le retient, pour des années. En 1924, F. Scott Fitzgerald s'installe à Saint-Raphaël pour écrire The Great Gatsby.",
