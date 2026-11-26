@@ -416,12 +416,57 @@ def pied_v2(prof):
 </div></footer>
 """
 
+# Le logement décrit pour les moteurs et les IA (Géraldine, 26/11/2026) : les chiffres de la page, rien de plus.
+EQUIPEMENTS = ["Cuisine équipée", "Fibre et Wi-Fi", "Climatisation", "Lave-linge", "Sèche-linge", "Lave-vaisselle",
+               "Linge de maison fourni", "Parking privé", "Deux terrasses vue mer", "Piscine partagée"]
+def logement_ld():
+    logement = {"@type": "Apartment", "name": "Les Piafs des Collines",
+                "description": "Appartement meublé de 77 m² au premier étage d'une villa, sur la colline de Bellet à Nice, face à la Baie des Anges.",
+                "url": b.BASE + "/", "image": f"{b.BASE}/assets/img/hero-baie.jpg",
+                "floorSize": {"@type": "QuantitativeValue", "value": 77.51, "unitCode": "MTK"},
+                "numberOfRooms": 3, "numberOfBedrooms": 2, "numberOfBathroomsTotal": 2,
+                "occupancy": {"@type": "QuantitativeValue", "maxValue": 4},
+                "address": {"@type": "PostalAddress", "addressLocality": "Nice", "addressRegion": "Provence-Alpes-Côte d'Azur", "addressCountry": "FR"},
+                "amenityFeature": [{"@type": "LocationFeatureSpecification", "name": e, "value": True} for e in EQUIPEMENTS]}
+    offre = {"@context": "https://schema.org", "@type": "Offer", "name": "Bail mobilité de 1 à 10 mois",
+             "description": "3 650 € par mois charges comprises : loyer de 3 475 € et forfait de charges de 175 €. Ménage et assurance habitation non compris.",
+             "price": 3650, "priceCurrency": "EUR", "url": b.BASE + "/",
+             "priceSpecification": {"@type": "UnitPriceSpecification", "price": 3650, "priceCurrency": "EUR", "unitCode": "MON"},
+             "seller": {"@type": "Organization", "name": "Les Piafs des Collines", "url": b.BASE + "/", "email": "contact@lespiafsdescollines.com"},
+             "itemOffered": logement}
+    return [offre]
+
+def llms_txt():
+    """Le résumé de l'offre et des articles pour les agents IA, servi à /llms.txt."""
+    guides = b.lire_guides(b.GUIDES)
+    recits = b.lire_carnet(b.CARNET)
+    lignes = ["# Les Piafs des Collines", "",
+              "> Appartement meublé de 77 m² à Nice, sur la colline de Bellet, face à la Baie des Anges, loué en bail mobilité de 1 à 10 mois à 3 650 € par mois charges comprises.", "",
+              "- Surface : 77,51 m² au premier étage d'une villa, 2 chambres, 2 salles d'eau, 2 terrasses vue mer, jusqu'à 4 personnes.",
+              "- Équipements : " + ", ".join(e if i == 0 else e[0].lower() + e[1:] for i, e in enumerate(EQUIPEMENTS)) + " (selon horaires).",
+              "- Prix : 3 650 € par mois charges comprises (loyer 3 475 €, forfait de charges 175 €). Ménage et assurance habitation non compris.",
+              "- Contrat : bail mobilité de 1 à 10 mois, signé par l'occupant éligible (mission temporaire, mutation, formation, études). Prise en charge du loyer par l'employeur possible.",
+              "- Sous réserve de disponibilités et de dossier accepté.",
+              "- Contact : contact@lespiafsdescollines.com", "",
+              "## Le logement", "",
+              f"- [Page du logement]({b.BASE}/) : photos, équipements, prix, accès et formulaire de demande",
+              f"- [English version]({b.BASE}/en/)", f"- [Versione italiana]({b.BASE}/it/)", "",
+              "## Guides pratiques", ""]
+    lignes += [f"- [{a['titre']}]({b.url_propre('guides/' + a['slug'] + '.html')}) : {a['description']}" for a in guides]
+    lignes += ["", "## Récits", ""]
+    lignes += [f"- [{a['titre']}]({b.url_propre('carnet/' + a['slug'] + '.html')}) : {a['description']}" for a in recits]
+    lignes += ["", "## Optional", "",
+               f"- [Conditions de location]({b.BASE}/conditions-de-location)", f"- [Mentions légales]({b.BASE}/mentions-legales)",
+               f"- [Plan du site]({b.BASE}/sitemap.xml)", ""]
+    (b.SITE / "llms.txt").write_text("\n".join(lignes), encoding="utf-8")
+    print("   llms.txt")
+
 def generer():
     prof = CHEMIN.count("/")
     tete = b.tete("Bail mobilité à Nice : 77 m² vue mer | Les Piafs des Collines",
                   "À Nice Bellet, appartement meublé de 77 m², 2 chambres, terrasses vue mer et parking. Bail mobilité de 1 à 10 mois. 3 650 €/mois charges comprises.",
-                  prof, CHEMIN, image="hero-baie")
-    # Page en relecture : ni canonique ni index, et la feuille v2 après la feuille commune.
+                  prof, CHEMIN, logement_ld(), image="hero-baie")
+    # La feuille v2 après la feuille commune.
     tete = tete.replace('href="{R}assets/style.css">', 'href="{R}assets/style.css">\n<link rel="stylesheet" href="{R}assets/v2.css">')
     tete = tete.replace(f'href="{"../" * prof}assets/style.css">', f'href="{"../" * prof}assets/style.css">\n<link rel="stylesheet" href="{"../" * prof}assets/v2.css">')
     tete = tete.replace("<body>", '<body class="v2-page">', 1)
@@ -492,6 +537,7 @@ def lancement():
     m.write_text(t, encoding="utf-8")
     print("   _redirects, sitemap.xml : racine = page v2")
     habiller_pages()
+    llms_txt()
 
 if __name__ == "__main__":
     lancement()

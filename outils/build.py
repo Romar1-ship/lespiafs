@@ -22,13 +22,11 @@ SAISON_ACTIVE = False
 # (redirection temporaire, dans chaque langue). Passer à True pour rallumer l'accueil.
 ACCUEIL_ACTIF = False
 
-# Guides en relecture : en ligne et accessibles depuis le menu, mais ni indexés ni dans le sitemap.
-# Passer à True une fois les articles validés par Géraldine.
-GUIDES_VALIDES = False
+# Guides validés par Géraldine et ouverts à l'index le 26/11/2026.
+GUIDES_VALIDES = True
 
-# Le carnet (récits) : en ligne et accessible, mais ni indexé ni dans le sitemap.
-# Passer à True quand Géraldine dit de l'ouvrir.
-CARNET_OUVERT = False
+# Le carnet (récits), ouvert à l'index par Géraldine le 26/11/2026.
+CARNET_OUVERT = True
 
 # Pages anglaises et italiennes : relues par Themis et ouvertes à l'index le 24/10/2026.
 LANGUES_VALIDEES = True
@@ -1120,6 +1118,25 @@ DATAGRAPHIE = {
         (6, dg_trajets(("La plage", "Campus Valrose", "Aéroport")))],
 }
 
+MOIS = {"fr": "janvier février mars avril mai juin juillet août septembre octobre novembre décembre",
+        "en": "January February March April May June July August September October November December",
+        "it": "gennaio febbraio marzo aprile maggio giugno luglio agosto settembre ottobre novembre dicembre"}
+MAJ = {"fr": "Mis à jour le", "en": "Updated", "it": "Aggiornato il"}
+
+def dates_article(f):
+    """Première et dernière date de commit du fichier source : la date de publication et la date de mise à jour réelles."""
+    import subprocess, datetime
+    j = subprocess.run(["git", "log", "--format=%cs", "--", str(f)], capture_output=True, text=True, cwd=RACINE).stdout.split()
+    aujourdhui = datetime.date.today().isoformat()
+    return (j[-1], j[0]) if j else (aujourdhui, aujourdhui)
+
+def meta_maj(iso, langue):
+    a, m, j = iso.split("-")
+    jour = f"{int(j)} {MOIS[langue].split()[int(m) - 1]} {a}"
+    return f'<span class="maj">{MAJ[langue]} <time datetime="{iso}">{jour}</time></span>', {i18n.norme(MAJ[langue]), i18n.norme(jour)}
+
+AUTEUR = {"@type": "Organization", "name": "Les Piafs des Collines", "url": BASE + "/"}
+
 def guides():
     for langue in ("fr",) + i18n.LANGUES:
         guides_langue(langue)
@@ -1134,6 +1151,8 @@ def guides_langue(langue):
             ignorer |= {i18n.norme(x) for x in a.get("chapo", "").split("|")}
     for i, a in enumerate(articles):
         couv, couleur, (photo, avant), reperes = VISUELS[a["fichier"]]
+        publie, maj = dates_article((GUIDES if langue == "fr" else GUIDES / langue) / f'{a["fichier"]}.md')
+        meta, vus = meta_maj(maj, langue); ignorer |= vus
         corps_html = md_html(a["corps"])
         titres = re.findall(r"<h2>(.+?)</h2>", corps_html)
         for k, t in enumerate(titres):
@@ -1157,7 +1176,7 @@ def guides_langue(langue):
     <a class="sur" href="../carnet/"><span>Le carnet</span> · <span>Pratique</span></a>
     <h1>{E(a["titre"])}</h1>
     <p class="chapo">{"<br>".join(E(x.strip()) for x in a.get("chapo", a["description"]).split("|"))}</p>
-    <span class="g-meta">{max(1, round(mots(a["corps"]) / 220))}&nbsp;<span>min de lecture</span></span>
+    <span class="g-meta">{max(1, round(mots(a["corps"]) / 220))}&nbsp;<span>min de lecture</span> · {meta}</span>
   </div>
   <figure class="g-hero-image{" cadre" if couv.startswith("affiche") else ""}" style="--fond:url({{R}}assets/img/guides/{couv}.jpg)"><span class="passe">{gimg(couv, CREDITS[couv][0], charge="eager")}</span><figcaption>{credit(couv)}</figcaption></figure>
 </section>
@@ -1178,6 +1197,7 @@ def guides_langue(langue):
              cle="guide:" + a["fichier"], langue=langue, ignorer=ignorer, jsonld=[
             {"@context": "https://schema.org", "@type": "Article", "headline": a["titre"], "description": a["description"], "inLanguage": {"fr": "fr-FR", "en": "en", "it": "it-IT"}[langue],
              "image": f"{BASE}/assets/img/guides/{couv}.jpg", "url": url_propre(f"guides/{a['slug']}.html"),
+             "datePublished": publie, "dateModified": maj, "author": AUTEUR,
              "publisher": {"@type": "Organization", "name": "Les Piafs des Collines", "url": BASE + "/"}},
             {"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [
              {"@type": "ListItem", "position": 1, "name": "Accueil", "item": BASE + "/"},
@@ -1237,12 +1257,14 @@ def carnet_langue(langue):
         for a in articles:
             ignorer |= i18n.textes(md_html(a["corps"], pictos=False)) | {i18n.norme(x) for x in (a["titre"], a["description"], a["title_seo"], *a["lignes"], *a["notes"])}
     for a in articles:
+        publie, maj = dates_article((CARNET if langue == "fr" else CARNET / langue) / f'{a["fichier"]}.md')
+        meta, vus = meta_maj(maj, langue); ignorer |= vus
         corps = f"""
 <section class="c-hero"><div class="c-col">
   <a class="sur" href="./">Le carnet</a>
   <h1>{E(a["titre"])}</h1>
   <p class="chapo">{"<br>".join(E(x) for x in chapo_carnet(a))}</p>
-  <span class="c-meta">{max(1, round(mots(a["corps"]) / 220))}&nbsp;<span>min de lecture</span></span>
+  <span class="c-meta">{max(1, round(mots(a["corps"]) / 220))}&nbsp;<span>min de lecture</span> · {meta}</span>
 </div></section>
 <figure class="c-photo"><picture><source media="(max-width:700px)" srcset="{{R}}assets/img/hero-baie-mobile.jpg"><img src="{{R}}assets/img/hero-baie.jpg" alt="La Baie des Anges vue depuis l'appartement, sur la colline de Bellet à Nice" fetchpriority="high"></picture></figure>
 <section class="c-texte"><div class="c-col">
@@ -1254,6 +1276,7 @@ def carnet_langue(langue):
              cle="carnet:" + a["fichier"], langue=langue, ignorer=ignorer, jsonld=[
             {"@context": "https://schema.org", "@type": "Article", "headline": a["titre"], "description": a["description"], "inLanguage": {"fr": "fr-FR", "en": "en", "it": "it-IT"}[langue],
              "image": f"{BASE}/assets/img/hero-baie.jpg", "url": url_propre(f"carnet/{a['slug']}.html"),
+             "datePublished": publie, "dateModified": maj, "author": AUTEUR,
              "publisher": {"@type": "Organization", "name": "Les Piafs des Collines", "url": BASE + "/"}}])
     tuiles = "".join(f'<a class="c-tuile" href="{a["slug"]}.html">{img(a.get("image", "vue-baie-de-nice"), a["titre"])}<span class="k">Récit</span><span class="t">{E(a["titre"])}</span>'
                      f'<span class="d">{"<br>".join(E(x) for x in chapo_carnet(a))}</span></a>' for a in articles)
