@@ -143,3 +143,7 @@ main section[id],.v2-bloc[id]{scroll-margin-top:70px}
   .v2-actions .bouton{width:100%;text-align:center}
 }
 .v2-ligne{display:block}
+/* Titres en minuscules et plus légers, comme le titre principal (Géraldine, 26/11/2026) */
+.v2-t,.v2-reperes h3,.v2-offre-titre,.v2 .v2-fiche>summary,.v2-trio figcaption{text-transform:none;font-weight:500;letter-spacing:-.015em}
+.v2-t{line-height:1.08}
+.v2-trio figcaption{font-size:1.25rem;letter-spacing:-.005em}
