@@ -91,6 +91,21 @@ PICTO_LIGNE = {"Surface habitable": "plan", "Terrasses": "soleil", "Véranda bua
                "Extérieur": "table", "Stationnement": "parking", "Piscine": "piscine", "Bail": "plume", "Payeur": "societe",
                "Pièces à fournir": "facture", "Garantie": "cle", "Quittance": "facture", "Arrivée": "valise"}
 
+# Budget : un élément par ligne, avec son picto (Géraldine, 26/11/2026). Texte du brief, bloc 6, découpé en liste.
+INCLUS = [("goutte", "Eau"), ("eclair", "Électricité"), ("clim", "Climatisation"), ("wifi", "Fibre"), ("parking", "Parking"),
+          ("piscine", "Accès à la piscine partagée selon horaires"), ("lit", "Linge de lit et de toilette fourni avec rechange")]
+NON_INCLUS = [("menage", "Le ménage"), ("bouclier", "L'assurance habitation")]
+
+# Pictos propres à cette page, dans le trait des pictos du site (viewBox 32).
+PICTOS_V2 = {"goutte": '<path d="M16 4c-5 7-8 11-8 15a8 8 0 0016 0c0-4-3-8-8-15z"/>',
+             "eclair": '<path d="M18 3L7 18h8l-2 11 12-16h-8z"/>',
+             "bouclier": '<path d="M16 3l11 4v8c0 7-5 12-11 14C10 27 5 22 5 15V7z"/>'}
+SPRITE_V2 = '<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>' + "".join(
+    f'<symbol id="i-{n}" viewBox="0 0 32 32">{d}</symbol>' for n, d in PICTOS_V2.items()) + '</defs></svg>'
+
+def liste_pictos(elements):
+    return '<ul class="v2-liste">' + "".join(f'<li>{pic(ic, "pic-s")}<span>{E(t)}</span></li>' for ic, t in elements) + "</ul>"
+
 MOTIFS = ["Mission professionnelle temporaire", "Mutation", "Formation professionnelle", "Études supérieures", "Apprentissage", "Stage", "Service civique"]
 
 def photo(n, cls=""):
@@ -125,7 +140,7 @@ def corps():
     motifs = "".join(f"<option>{E(m)}</option>" for m in MOTIFS)
     PRESCRIPTEUR_FIN = ('<p><a class="bouton" href="#demande" data-pour="tiers">Nous parler d' + "'" + 'une arrivée</a></p>'
                         + '<p class="v2-note">Hôpitaux, entreprises, universités et services de mobilité. Sous réserve de disponibilités et d' + "'" + 'un dossier éligible.</p>')
-    return f"""<div class="v2">
+    return SPRITE_V2 + f"""<div class="v2">
 <section class="v2-hero">
   <div class="v2-cadre">
     <picture><source media="(max-width:700px)" srcset="{{R}}assets/img/hero-baie-mobile.jpg"><img src="{{R}}assets/img/{fond}.jpg" alt="Vue sur la Baie des Anges depuis Les Piafs des Collines, à Nice Bellet." fetchpriority="high"></picture>
@@ -186,8 +201,8 @@ def corps():
   <p class="v2-sous-prix">Charges comprises · De 1 à 10 mois</p>
   <p>Loyer : 3 475 € + forfait de charges : 175 €.</p>
   <div class="v2-inclus">
-    <div><h3>Inclus</h3><p>Eau, électricité, climatisation, fibre, parking et accès à la piscine partagée selon horaires. Linge de lit et de toilette fourni avec rechange.</p></div>
-    <div><h3>Non inclus</h3><p>Le ménage et l'assurance habitation restent à votre charge.</p></div>
+    <div><h3>Inclus</h3>{liste_pictos(INCLUS)}</div>
+    <div><h3>Non inclus</h3>{liste_pictos(NON_INCLUS)}<p class="v2-note">À votre charge.</p></div>
   </div>
   {offre}
   <p class="v2-centre"><a class="bouton corail" href="#demande">Demander les disponibilités</a></p>

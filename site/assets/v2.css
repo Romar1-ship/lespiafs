@@ -156,3 +156,8 @@ main section[id],.v2-bloc[id]{scroll-margin-top:70px}
 .v2 .fiche dt{display:flex;align-items:flex-start}
 .v2 .fiche dt .pic-s{width:22px;height:22px;color:var(--v2-bleu);stroke-width:1.5;margin:1px 12px 0 0}
 .v2 .fiche-bloc h3 .pic{stroke:var(--v2-bleu)}
+/* Inclus et non inclus : un picto par élément */
+.v2-liste{list-style:none;margin:0;padding:0;display:grid;gap:12px}
+.v2-liste li{display:flex;align-items:flex-start;gap:14px;font-size:1.08rem;line-height:1.4}
+.v2-liste .pic-s{width:26px;height:26px;margin:0;color:var(--v2-dore);stroke-width:1.5}
+.v2-inclus .v2-note{margin:14px 0 0 40px}
