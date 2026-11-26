@@ -69,7 +69,7 @@ FICHE = [
                              ("Capacité", "Jusqu'à 4 personnes : couple, colocation ou famille avec deux enfants"),
                              ("Salles d'eau", "2, dont 1 privative avec douche à l'italienne"), ("WC", "2, dont 1 indépendant"),
                              ("Situation", "1er étage d'une villa, logement traversant"), ("Vue", "Baie des Anges")]),
-    ("Énergie et confort", "energie", [("DPE", "C en énergie, A en climat"), ("Chauffage et climatisation", "Climatisation réversible"), ("Internet", "Fibre")]),
+    ("Énergie et confort", "energie", [("DPE", "C en énergie, A en climat"), ("Chauffage et climatisation", "Climatisation réversible"), ("Internet", "Fibre · Wi-Fi 540 Mb/s mesurés*")]),
     ("Équipements", "equipement", [("Cuisine", "Plaque à induction, four, micro-ondes, lave-vaisselle, réfrigérateur-congélateur"),
                                     ("Linge", "Lave-linge, sèche-linge, linge de lit et de toilette fourni avec rechange"),
                                     ("Travail", "Poste de travail dans la seconde chambre"),
@@ -150,7 +150,7 @@ CARTES = [
     ("visite/salon-ferme", "canape", "Le salon", "Un canapé-lit dans la pièce de vie."),
     ("visite/carte-cuisine", "cuisine", "La cuisine", "Plaque à induction, four, micro-ondes, lave-vaisselle et réfrigérateur-congélateur : de quoi cuisiner au quotidien."),
     ("chambre-1-fenetre", "lit", "La première chambre", "13,91 m², un lit double et une salle d'eau privative avec douche à l'italienne."),
-    ("chambre-2-lits", "ordi", "La seconde chambre", "12,88 m², deux lits simples de 80 × 200 cm ou un lit double de 160 cm, et un poste de travail. La fibre est installée dans le logement."),
+    ("chambre-2-lits", "ordi", "La seconde chambre", "12,88 m², deux lits simples de 80 × 200 cm ou un lit double de 160 cm, et un poste de travail. Fibre · Wi-Fi 540 Mb/s mesurés*."),
     ("salle-eau-douche", "douche", "Les salles d'eau", "Deux salles d'eau, dont une privative, la grande avec WC, et un WC indépendant."),
     ("visite/piscine-3", "piscine", "La piscine", "Une piscine partagée dans le jardin de la villa, accessible selon les horaires prévus."),
 ]
@@ -298,6 +298,7 @@ def corps():
 </div></section>
 <section class="v2-blanc v2-visite"><div class="v2-l">
   <div class="v2-cartes">{cartes}{details}</div>
+  <p class="v2-note v2-debit">*Débit mesuré ponctuellement en Wi-Fi, variable selon les conditions d'utilisation.</p>
   <details class="v2-galerie-tout"><summary>Voir toutes les photos ({NB_PHOTOS})</summary><div class="v2-galerie-visite">{gal}</div></details>
 </div></section>
 
@@ -394,6 +395,29 @@ const l=[...new FormData(f)].filter(([k,v])=>v&&!(tiers[0].hidden&&(k==='Organis
 location.href='mailto:'+f.dataset.to+'?subject='+encodeURIComponent(f.dataset.sujet)+'&body='+encodeURIComponent(l)});maj()})();</script>
 """
 
+def pied_v2(prof):
+    """Pied de page de la page d'accueil : liens vers les sections, le carnet et ses articles, les pages légales."""
+    r = "../" * prof
+    articles = [(f"carnet/{b.lire_md(f)['slug']}", b.lire_md(f)["titre"]) for f in sorted(b.CARNET.glob("*.md"))]
+    articles += [(f"guides/{b.lire_md(f)['slug']}", b.lire_md(f)["titre"]) for f in sorted(b.GUIDES.glob("*.md"))]
+    page = [("#logement", "Le logement"), ("#acces", "Accès"), ("#prix", "Prix"), ("#prescripteurs", "Pour les entreprises"),
+            ("#fiche", "Fiche technique"), ("#demande", "Demander une disponibilité")]
+    li = lambda liens: "".join(f'<li><a href="{(u if not prof else r + u) if u.startswith("#") else r + u}">{E(t)}</a></li>' for u, t in liens)
+    legal = "".join(f'<li><a href="{r}{slug}.html">{E(nom)}</a></li>' for slug, nom in b.PAGES_LEGALES)
+    return f"""<div class="store" aria-hidden="true"></div><footer class="pied v2-pied"><div class="wrap"><div class="cols">
+<div><h5>Les Piafs des Collines</h5><p>{b.ADRESSE}</p>
+<p><a href="mailto:{b.MAIL}">{b.MAIL}</a></p>
+<p><a class="reseau" href="{b.FACEBOOK}" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13.5 21v-7.5h2.6l.4-3h-3V8.6c0-.9.3-1.5 1.5-1.5h1.6V4.4c-.3 0-1.2-.1-2.3-.1-2.3 0-3.9 1.4-3.9 4v2.2H7.8v3h2.6V21z"/></svg></a></p></div>
+<div><h5>L'appartement</h5><ul>{li(page)}</ul></div>
+<div><h5><a href="{r}carnet/">Le carnet</a></h5><ul>{li(articles)}</ul></div>
+<div><h5>Informations</h5><ul>{legal}</ul></div>
+</div>
+<p class="note droit-pied mention-pied">En nous écrivant, vous reconnaissez avoir lu nos conditions de location et notre politique de confidentialité. Vos coordonnées servent uniquement à répondre à votre demande.</p>
+<p class="note droit-pied">Le contrat est régi par le droit français et rédigé en français. Les traductions sont fournies à titre d'information.</p>
+<div class="bas"><span>© 2026 Les Piafs des Collines</span><span>Site <a href="https://creativeagency-lc.com" rel="noopener">LCCA</a></span></div>
+</div></footer>
+"""
+
 def generer():
     prof = CHEMIN.count("/")
     tete = b.tete("Bail mobilité à Nice : 77 m² vue mer | Les Piafs des Collines",
@@ -403,15 +427,52 @@ def generer():
     tete = tete.replace('href="{R}assets/style.css">', 'href="{R}assets/style.css">\n<link rel="stylesheet" href="{R}assets/v2.css">')
     tete = tete.replace(f'href="{"../" * prof}assets/style.css">', f'href="{"../" * prof}assets/style.css">\n<link rel="stylesheet" href="{"../" * prof}assets/v2.css">')
     tete = tete.replace("<body>", '<body class="v2-page">', 1)
-    contenu = tete + b.entete("mob", "", prof) + "<main>" + corps() + "</main>" + b.pied("mob", prof) + b.SCRIPT_GALERIE + SCRIPT_FORM + b.SCRIPT_REVEAL + "</body></html>\n"
+    contenu = tete + b.entete("mob", "", prof) + "<main>" + corps() + "</main>" + pied_v2(prof) + b.SCRIPT_GALERIE + SCRIPT_FORM + b.SCRIPT_REVEAL + "</body></html>\n"
     # Contact par email uniquement sur cette page (Géraldine, 26/11/2026) : le téléphone du pied de page commun est retiré ici.
     contenu = contenu.replace(f'<br><a href="tel:{b.TEL_LIEN}">{b.TEL}</a>', "")
     contenu = b.propre(contenu.replace("{R}", "../" * prof))
-    contenu = b.poser_langues(contenu, None, "fr")
-    f = b.SITE / CHEMIN
-    f.parent.mkdir(parents=True, exist_ok=True)
-    f.write_text(contenu, encoding="utf-8")
-    print("  ", CHEMIN)
+    if not b.ALTS:
+        b.routes()
+    b.ALTS["accueil"] = {"fr": "/", "en": "/en/", "it": "/it/"}
+    for l in b.i18n.LANGUES:
+        b.ROUTES[l]["/"] = f"/{l}/"
+        b.ROUTES[l]["/index.html"] = f"/{l}/"
+    sorties = [("fr", CHEMIN, contenu)]
+    for l in b.i18n.LANGUES:
+        t = contenu.replace(f'href="{b.BASE}/"', f'href="{b.BASE}/{l}/"').replace(f'content="{b.BASE}/"', f'content="{b.BASE}/{l}/"')
+        sorties.append((l, f"{l}/index.html", b.i18n.traduire(t, l, CHEMIN, b.lien_langue(l))))
+    for l, chemin, txt in sorties:
+        f = b.SITE / chemin
+        f.parent.mkdir(parents=True, exist_ok=True)
+        f.write_text(b.poser_langues(txt, "accueil", l), encoding="utf-8")
+        print("  ", chemin)
+
+def habiller_pages():
+    """Le carnet, les guides et les pages légales prennent l'habillage de la page d'accueil (Géraldine, 26/11/2026) :
+    feuille v2, en-tête bleu, typographie, pied de page avec ses liens ; les liens vers l'ancienne page mènent à l'accueil.
+    Retouche les pages déjà générées par outils/build.py ; se relance sans effet de bord."""
+    import re
+    cibles = []
+    for base in ("", "en/", "it/"):
+        for d in ("carnet", "guides"):
+            cibles += sorted((b.SITE / base / d).glob("*.html")) if (b.SITE / base / d).exists() else []
+        cibles += [b.SITE / base / f"{slug}.html" for slug, _ in b.PAGES_LEGALES if (b.SITE / base / f"{slug}.html").exists()]
+    for f in cibles:
+        chemin = f.relative_to(b.SITE).as_posix()
+        l = chemin.split("/")[0] if chemin.split("/")[0] in b.i18n.LANGUES else "fr"
+        prof = chemin.count("/")
+        r = "../" * prof
+        t = f.read_text(encoding="utf-8")
+        if "assets/v2.css" not in t:
+            t = re.sub(r'(<link rel="stylesheet" href="[^"]*assets/style\.css">)', lambda m: m.group(1) + "\n" + m.group(1).replace("style.css", "v2.css"), t, count=1)
+        t = re.sub(r"<body(?: class=\"[^\"]*\")?>", '<body class="v2-page">', t, count=1)
+        pied = b.propre(pied_v2(prof))
+        if l != "fr":
+            pied = b.i18n.traduire(pied, l, chemin, b.lien_langue(l))
+        t = re.sub(r'<div class="store" aria-hidden="true"></div><footer class="pied[^"]*">.*?</footer>', lambda m: pied.strip(), t, count=1, flags=re.S)
+        t = re.sub(r'href="([^"]*?)bail-mobilite/', lambda m: f'href="{m.group(1) or "./"}', t)
+        f.write_text(t, encoding="utf-8")
+    print("   habillage v2 :", len(cibles), "pages (carnet, guides, pages légales, FR EN IT)")
 
 def lancement():
     """La v2 devient la page d'accueil (Géraldine, 26/11/2026). Idempotent : se relance après outils/build.py."""
@@ -419,15 +480,24 @@ def lancement():
     # Redirections : la racine ne renvoie plus vers /bail-mobilite/ ; l'ancienne adresse et celle de la v2 mènent à la racine.
     f = b.SITE / "_redirects"
     lignes = [l for l in f.read_text(encoding="utf-8").splitlines() if l.strip()]
-    garde = ("/bail-mobilite/ / 301", "/bail-mobilite / 301", "/bail-mobilite-v2/ / 301", "/bail-mobilite-v2 / 301")
-    lignes = [l for l in lignes if l != "/ /bail-mobilite/ 302" and l not in garde]
+    garde = ("/bail-mobilite/ / 301", "/bail-mobilite / 301", "/bail-mobilite-v2/ / 301", "/bail-mobilite-v2 / 301",
+             "/en/bail-mobilite/ /en/ 301", "/en/bail-mobilite /en/ 301", "/it/bail-mobilite/ /it/ 301", "/it/bail-mobilite /it/ 301")
+    vieux = ("/ /bail-mobilite/ 302", "/en/ /en/bail-mobilite/ 302", "/it/ /it/bail-mobilite/ 302")
+    lignes = [l for l in lignes if l not in vieux and l not in garde]
     lignes = [l.replace(" /bail-mobilite/ ", " / ") for l in lignes]
     f.write_text("\n".join(list(garde) + lignes) + "\n", encoding="utf-8")
     # Plan du site : la racine remplace /bail-mobilite/.
     m = b.SITE / "sitemap.xml"
     t = m.read_text(encoding="utf-8").replace(f"<loc>{b.BASE}/bail-mobilite/</loc>", f"<loc>{b.BASE}/</loc>")
+    for l in b.i18n.LANGUES:
+        t = t.replace(f"<loc>{b.BASE}/{l}/bail-mobilite/</loc>", f"<loc>{b.BASE}/{l}/</loc>")
     m.write_text(t, encoding="utf-8")
     print("   _redirects, sitemap.xml : racine = page v2")
+    habiller_pages()
 
 if __name__ == "__main__":
     lancement()
+    import json
+    m = {l: b.i18n.MANQUANTS[l] for l in b.i18n.LANGUES}
+    print("Textes à traduire :", {l: len(v) for l, v in m.items()})
+    (b.RACINE / "contenu/i18n/manquants-v2.json").write_text(json.dumps(m, ensure_ascii=False, indent=1), encoding="utf-8")

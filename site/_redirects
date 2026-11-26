@@ -2,6 +2,10 @@
 /bail-mobilite / 301
 /bail-mobilite-v2/ / 301
 /bail-mobilite-v2 / 301
+/en/bail-mobilite/ /en/ 301
+/en/bail-mobilite /en/ 301
+/it/bail-mobilite/ /it/ 301
+/it/bail-mobilite /it/ 301
 /accueil / 301
 /h%C3%B4tes / 301
 /hôtes / 301
@@ -32,6 +36,4 @@
 /guides/ /carnet/ 301
 /en/guides/ /en/carnet/ 301
 /it/guides/ /it/carnet/ 301
-/en/ /en/bail-mobilite/ 302
-/it/ /it/bail-mobilite/ 302
 /blog/* / 301
