@@ -34,4 +34,5 @@ if __name__ == "__main__":
     PARTAGE.mkdir(parents=True, exist_ok=True)
     shutil.copy2(SORTIE, PARTAGE / SORTIE.name)
     shutil.copy2(RACINE / "contenu/kit-rh/emails.md", PARTAGE / "emails-kit-rh.md")
+    shutil.copy2(RACINE / "contenu/kit-rh/premiers-envois.md", PARTAGE / "premiers-envois.md")
     print("   partage :", PARTAGE)

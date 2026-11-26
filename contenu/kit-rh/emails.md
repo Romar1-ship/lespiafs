@@ -22,13 +22,13 @@ Les disponibilités sont vérifiées pour chaque période demandée.
 
 Les Piafs des Collines
 contact@lespiafsdescollines.com
-https://lespiafsdescollines.com/bail-mobilite/
+https://lespiafsdescollines.com/
 
 *Mention de prospection (Themis, 26/11/2026). Adresse générique (contact@, rh@) :*
 Message commercial de Serge Pierrot, entrepreneur individuel (SIRET 315 951 087 00040), Les Piafs des Collines. Pour ne plus recevoir de message, répondez « STOP ».
 
 *Adresse nominative, à la place :*
-Vous recevez ce message à votre adresse professionnelle, en raison de vos fonctions. Vos coordonnées proviennent de [source à nommer : site de l'organisme ou annuaire public]. Elles servent uniquement à cette prise de contact (intérêt légitime, art. 6.1.f du RGPD) et sont supprimées 12 mois après ce message sans réponse. Pour ne plus être contacté, répondez « STOP ». Responsable : Serge Pierrot, entrepreneur individuel (SIRET 315 951 087 00040). Vos droits : https://lespiafsdescollines.com/confidentialite.html
+Vous recevez ce message à votre adresse professionnelle, en raison de vos fonctions. Vos coordonnées proviennent de [source à nommer : site de l'organisme ou annuaire public]. Elles servent uniquement à cette prise de contact (intérêt légitime, art. 6.1.f du RGPD) et sont supprimées 12 mois après ce message sans réponse. Pour ne plus être contacté, répondez « STOP ». Responsable : Serge Pierrot, entrepreneur individuel (SIRET 315 951 087 00040). Vos droits : https://lespiafsdescollines.com/confidentialite
 
 ## 2. Entreprises
 
@@ -48,13 +48,13 @@ Le bail mobilité est signé par la personne logée après vérification de son 
 
 Les Piafs des Collines
 contact@lespiafsdescollines.com
-https://lespiafsdescollines.com/bail-mobilite/
+https://lespiafsdescollines.com/
 
 *Mention de prospection (Themis, 26/11/2026). Adresse générique (contact@, rh@) :*
 Message commercial de Serge Pierrot, entrepreneur individuel (SIRET 315 951 087 00040), Les Piafs des Collines. Pour ne plus recevoir de message, répondez « STOP ».
 
 *Adresse nominative, à la place :*
-Vous recevez ce message à votre adresse professionnelle, en raison de vos fonctions. Vos coordonnées proviennent de [source à nommer : site de l'organisme ou annuaire public]. Elles servent uniquement à cette prise de contact (intérêt légitime, art. 6.1.f du RGPD) et sont supprimées 12 mois après ce message sans réponse. Pour ne plus être contacté, répondez « STOP ». Responsable : Serge Pierrot, entrepreneur individuel (SIRET 315 951 087 00040). Vos droits : https://lespiafsdescollines.com/confidentialite.html
+Vous recevez ce message à votre adresse professionnelle, en raison de vos fonctions. Vos coordonnées proviennent de [source à nommer : site de l'organisme ou annuaire public]. Elles servent uniquement à cette prise de contact (intérêt légitime, art. 6.1.f du RGPD) et sont supprimées 12 mois après ce message sans réponse. Pour ne plus être contacté, répondez « STOP ». Responsable : Serge Pierrot, entrepreneur individuel (SIRET 315 951 087 00040). Vos droits : https://lespiafsdescollines.com/confidentialite
 
 ## 3. Hôpitaux et affaires médicales
 
@@ -76,13 +76,13 @@ Pouvez-vous nous indiquer le service qui centralise ces demandes de logement ?
 
 Les Piafs des Collines
 contact@lespiafsdescollines.com
-https://lespiafsdescollines.com/bail-mobilite/
+https://lespiafsdescollines.com/
 
 *Mention de prospection (Themis, 26/11/2026). Adresse générique (contact@, rh@) :*
 Message commercial de Serge Pierrot, entrepreneur individuel (SIRET 315 951 087 00040), Les Piafs des Collines. Pour ne plus recevoir de message, répondez « STOP ».
 
 *Adresse nominative, à la place :*
-Vous recevez ce message à votre adresse professionnelle, en raison de vos fonctions. Vos coordonnées proviennent de [source à nommer : site de l'organisme ou annuaire public]. Elles servent uniquement à cette prise de contact (intérêt légitime, art. 6.1.f du RGPD) et sont supprimées 12 mois après ce message sans réponse. Pour ne plus être contacté, répondez « STOP ». Responsable : Serge Pierrot, entrepreneur individuel (SIRET 315 951 087 00040). Vos droits : https://lespiafsdescollines.com/confidentialite.html
+Vous recevez ce message à votre adresse professionnelle, en raison de vos fonctions. Vos coordonnées proviennent de [source à nommer : site de l'organisme ou annuaire public]. Elles servent uniquement à cette prise de contact (intérêt légitime, art. 6.1.f du RGPD) et sont supprimées 12 mois après ce message sans réponse. Pour ne plus être contacté, répondez « STOP ». Responsable : Serge Pierrot, entrepreneur individuel (SIRET 315 951 087 00040). Vos droits : https://lespiafsdescollines.com/confidentialite
 
 ## 4. Relance unique, commune aux trois cibles
 
@@ -104,11 +104,11 @@ contact@lespiafsdescollines.com
 Message commercial de Serge Pierrot, entrepreneur individuel (SIRET 315 951 087 00040), Les Piafs des Collines. Pour ne plus recevoir de message, répondez « STOP ».
 
 *Adresse nominative, à la place :*
-Vous recevez ce message à votre adresse professionnelle, en raison de vos fonctions. Vos coordonnées proviennent de [source à nommer : site de l'organisme ou annuaire public]. Elles servent uniquement à cette prise de contact (intérêt légitime, art. 6.1.f du RGPD) et sont supprimées 12 mois après ce message sans réponse. Pour ne plus être contacté, répondez « STOP ». Responsable : Serge Pierrot, entrepreneur individuel (SIRET 315 951 087 00040). Vos droits : https://lespiafsdescollines.com/confidentialite.html
+Vous recevez ce message à votre adresse professionnelle, en raison de vos fonctions. Vos coordonnées proviennent de [source à nommer : site de l'organisme ou annuaire public]. Elles servent uniquement à cette prise de contact (intérêt légitime, art. 6.1.f du RGPD) et sont supprimées 12 mois après ce message sans réponse. Pour ne plus être contacté, répondez « STOP ». Responsable : Serge Pierrot, entrepreneur individuel (SIRET 315 951 087 00040). Vos droits : https://lespiafsdescollines.com/confidentialite
 
 ## 5. Message de transfert interne
 
-Pour une mobilité professionnelle à Nice : Les Piafs des Collines, appartement entier meublé de 77 m² à Bellet, deux chambres, deux salles d'eau et deux terrasses vue mer. 3 650 €/mois charges comprises, de 1 à 10 mois. Prise en charge employeur possible, bail mobilité au nom de l'occupant éligible. Ménage et assurance habitation non compris. Fiche et disponibilités : contact@lespiafsdescollines.com · https://lespiafsdescollines.com/bail-mobilite/
+Pour une mobilité professionnelle à Nice : Les Piafs des Collines, appartement entier meublé de 77 m² à Bellet, deux chambres, deux salles d'eau et deux terrasses vue mer. 3 650 €/mois charges comprises, de 1 à 10 mois. Prise en charge employeur possible, bail mobilité au nom de l'occupant éligible. Ménage et assurance habitation non compris. Fiche et disponibilités : contact@lespiafsdescollines.com · https://lespiafsdescollines.com/
 
 ## 6. Réponse à un prospect intéressé (première réponse)
 
@@ -130,4 +130,4 @@ Dès réception, nous revenons vers vous avec la disponibilité sur la période,
 Les Piafs des Collines
 contact@lespiafsdescollines.com
 
-Ces informations servent uniquement à répondre à votre demande. Vos droits : https://lespiafsdescollines.com/confidentialite.html
+Ces informations servent uniquement à répondre à votre demande. Vos droits : https://lespiafsdescollines.com/confidentialite
