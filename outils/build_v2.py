@@ -103,6 +103,7 @@ PICTOS_V2 = {"goutte": '<path d="M16 4c-5 7-8 11-8 15a8 8 0 0016 0c0-4-3-8-8-15z
              "pieton": '<circle cx="17" cy="5" r="2.5"/><path d="M16 10l-5 5 1 5M16 10l3 5 5 2M16 10l-2 9 5 4 1 6M14 19l-4 5-3 4"/>',
              "lune": '<path d="M20 4a12 12 0 1 0 8 18A10 10 0 0 1 20 4z"/>',
              "canape": '<path d="M4 14v10h24V14M4 14a2 2 0 0 1 4 0v4h16v-4a2 2 0 0 1 4 0M8 18v-8h16v8M7 24v3M25 24v3"/>',
+             "tram": '<rect x="8" y="6" width="16" height="18" rx="3"/><path d="M8 16h16M12 3h8M16 3v3M11 24l-3 5M21 24l3 5M7 29h18"/><circle cx="12" cy="20" r="1.1"/><circle cx="20" cy="20" r="1.1"/>',
              "details": '<rect x="6" y="4" width="20" height="24" rx="2"/><path d="M10 11l2 2 3.5-3.5M10 19l2 2 3.5-3.5M19 11.5h3M19 19.5h3"/>'}
 SPRITE_V2 = '<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>' + "".join(
     f'<symbol id="i-{n}" viewBox="0 0 32 32">{d}</symbol>' for n, d in PICTOS_V2.items()) + '</defs></svg>'
@@ -117,6 +118,10 @@ DETAILS = [("machine", "Lave-linge"), ("seche", "Sèche-linge"), ("linge", "Ling
 def paras_pictos(*elements):
     """Paragraphes précédés chacun de leur picto (Géraldine, 26/11/2026)."""
     return '<div class="v2-pparas">' + "".join(f'<div>{pic(ic, "pic-s")}<p>{insecable(b.fine(E(t)))}</p></div>' for ic, t in elements) + "</div>"
+
+def tuiles(elements):
+    """Une tuile par élément : picto en grand, libellé dessous (budget, Géraldine, 26/11/2026)."""
+    return "".join(f'<li>{pic(ic, "pic")}<span>{E(t)}</span></li>' for ic, t in elements)
 
 def liste_pictos(elements):
     return '<ul class="v2-liste">' + "".join(f'<li>{pic(ic, "pic-s")}<span>{E(t)}</span></li>' for ic, t in elements) + "</ul>"
@@ -140,20 +145,38 @@ def bloc(photo_html, titre_html, contenu, inverse=False, ton="bleu", ident="", p
 # Visite resserrée (retour de Brain validé par Géraldine, 26/11/2026) : chambres, salles d'eau, salon, piscine, équipement.
 # Le séjour, la cuisine et les terrasses sont déjà dans le trio : ils ne reviennent pas ici.
 CARTES = [
+    ("salon-vue", "canape", "Le salon", "Un canapé-lit dans la pièce de vie."),
     ("chambre-1-fenetre", "lit", "La première chambre", "13,91 m², un lit double et une salle d'eau privative avec douche à l'italienne."),
     ("chambre-2-lits", "ordi", "La seconde chambre", "12,88 m², deux lits simples de 80 × 200 cm ou un lit double de 160 cm, et un poste de travail. La fibre est installée dans le logement."),
     ("salle-eau-douche", "douche", "Les salles d'eau", "Deux salles d'eau, dont une privative, et un WC indépendant."),
-    ("salon-vue", "canape", "Le salon", "Un canapé-lit dans la pièce de vie."),
     ("piscine-jardin", "piscine", "La piscine", "Une piscine partagée dans le jardin de la villa, accessible selon les horaires prévus."),
 ]
-GALERIE_TOUT = b.GALERIE[:9] + [("salle-eau-vasque", "La salle d'eau privative de la première chambre", False), ("wc", "Le WC indépendant", False),
-                                 ("piscine-jardin", "La piscine partagée et le jardin", False), ("terrasse-salon", "La terrasse et ses fauteuils", False)]
+# Toutes les photos, dans l'ordre de la visite, regroupées par pièce (Géraldine, 26/11/2026). Fichiers dans assets/img/visite/.
+GALERIE_GROUPES = [
+    ("Le séjour", [("sejour", "Le séjour et la salle à manger, ouverts sur la terrasse"), ("salon-1", "Le coin salon et son canapé-lit déplié"),
+                   ("salon-2", "Le coin salon, ouvert sur la terrasse")]),
+    ("La cuisine", [("cuisine-1", "La cuisine ouverte et son îlot, face au séjour"), ("cuisine-2", "La cuisine : plan de travail, four, micro-ondes, réfrigérateur"),
+                    ("cuisine-3", "L'îlot de la cuisine"), ("cuisine-4", "La cuisine et l'entrée"), ("cuisine-5", "Four, micro-ondes et réfrigérateur-congélateur"),
+                    ("cuisine-6", "Plaque à induction et ustensiles"), ("cuisine-7", "Préparer le dîner dans la cuisine")]),
+    ("La première chambre", [("chambre1-1", "La première chambre, son lit double et sa fenêtre"), ("chambre1-2", "La première chambre et ses rangements")]),
+    ("Sa salle d'eau privative", [("sde-privative", "La salle d'eau privative, douche à l'italienne")]),
+    ("La seconde chambre", [("chambre2-1", "La seconde chambre et ses deux lits"), ("chambre2-2", "La seconde chambre côté fenêtre"),
+                            ("chambre2-3", "La seconde chambre, côté mur")]),
+    ("La grande salle d'eau et le WC", [("sde-grande", "La grande salle d'eau"), ("wc", "Le WC indépendant")]),
+    ("Les terrasses", [("terrasse-1", "La terrasse et ses fauteuils"), ("terrasse-2", "La terrasse face à la mer"), ("terrasse-3", "La table de la terrasse"),
+                       ("apero-1", "Un verre sur la terrasse"), ("apero-2", "La terrasse, le soir venu"), ("apero-3", "La terrasse et la mer"),
+                       ("apero-4", "Les tables de la terrasse vues d'en haut"), ("vue", "La vue sur la Baie des Anges")]),
+    ("Le jardin et la piscine partagée", [("piscine-1", "La piscine partagée"), ("piscine-2", "La piscine et la villa"), ("piscine-3", "Les bords de la piscine"),
+                                          ("jardin", "Le jardin de la villa"), ("piscine-ciel", "La piscine et le jardin vus du ciel")]),
+]
+NB_PHOTOS = sum(len(g) for _, g in GALERIE_GROUPES)
+GALERIE_TOUT = []
 ALT.update({n: a for n, a, _ in GALERIE_TOUT})
 ALT.update({"chambre-1-fenetre": "La première chambre, son lit double et sa fenêtre", "salon-vue": "Le salon et son canapé-lit, ouvert sur la terrasse", "chambre-1-lit": "La première chambre et son lit double", "chambre-2-lits": "La seconde chambre et ses deux lits simples",
             "salle-eau-douche": "La grande salle d'eau"})
 
 # Repères de localisation gardés (Géraldine : trajets vérifiés depuis le logement, hors trafic, 26/11/2026).
-REPERES_ACCES = [("bus", "Le bus 60 passe à 50 mètres de la villa"), ("pieton", "Le tram en bas de la colline, moins de 10 minutes de la porte au quai"),
+REPERES_ACCES = [("bus", "Le bus 60 passe à 50 mètres de la villa"), ("tram", "Moins de 10 minutes de la porte au quai du tram"),
                  ("parasol", "La plage à 300 mètres du bas de la colline"), ("parking", "Une place de parking privée comprise")]
 
 # Entrée employeur (retour de Brain validé par Géraldine, 26/11/2026) : espace, équipement, budget identifié, prise en charge.
@@ -194,7 +217,7 @@ def plan_nice():
               '<text class="p-piafs-sous" y="-36" text-anchor="middle">sur la colline de Bellet</text></g>')
     return (f'<figure class="plan-nice"><svg viewBox="0 0 1100 660" role="img" aria-label="Plan schématique de Nice : le logement sur la colline de Bellet, à 7 à 20 minutes en voiture de la plage, des hôpitaux, du campus et de l' + "'" + 'aéroport">'
             f'<rect class="p-terre" width="1100" height="660"/>{collines}{var}<path class="p-mer" d="{cote}"/>{vagues}{reperes}{traits}{points}{bords}{maison}</svg>'
-            '<figcaption>Plan schématique, pas à l' + "'" + 'échelle. Temps en voiture hors trafic, depuis le logement.</figcaption></figure>')
+            '<figcaption>Temps en voiture hors trafic, depuis le logement</figcaption></figure>')
 
 def carte(n, ic, t, x):
     return f'<figure class="v2-carte">{photo(n)}<figcaption>{pic(ic, "pic v2-pic")}<h3>{E(t)}</h3>{paras(x)}</figcaption></figure>'
@@ -206,13 +229,23 @@ def corps():
     # En attendant les photos du lave-linge et du sèche-linge (Géraldine, 26/11/2026) : les pictos en grand, au format des photos.
     visuel = '<div class="v2-carte-pictos" aria-hidden="true">' + "".join(pic(ic, "pic") for ic, _ in DETAILS) + "</div>"
     details = f'<div class="v2-carte v2-carte-details">{visuel}{pic("details", "pic v2-pic")}<h3>Les détails qui comptent</h3>{liste_pictos(DETAILS)}</div>'
-    gal = "".join(f'<a href="{{R}}assets/img/{n}.jpg"{" class=\"g\"" if g else ""}>{img(n, a)}</a>' for n, a, g in GALERIE_TOUT)
+    gal = "".join(f'<div class="v2-galerie-groupe"><h3>{E(t)}</h3><div class="galerie v2-gg">'
+                  + "".join(f'<a href="{{R}}assets/img/visite/{n}.jpg"><img src="{{R}}assets/img/visite/{n}-m.jpg" alt="{E(a)}" loading="lazy"></a>' for n, a in photos)
+                  + "</div></div>" for t, photos in GALERIE_GROUPES)
     fiche = "".join(f'<div class="fiche-bloc"><h3>{pic(ic)}{E(t)}</h3><dl>'
                     + "".join(f'<dt>{pic(PICTO_LIGNE.get(k, ic), "pic-s")}{E(k)}</dt><dd>{insecable(E(v))}</dd>' for k, v in lignes) + "</dl></div>" for t, ic, lignes in FICHE)
     faq = "".join(f"<details><summary>{b.fine(E(q))}</summary><p>{b.fine(E(r))}</p></details>" for q, r in FAQ)
     avis = "".join(f'<blockquote class="v2-citation"><p>« {E(q)} »</p><cite>{E(c)}</cite></blockquote>' for q, c in AVIS)
-    offre = f"""<aside class="v2-offre"><p class="v2-offre-titre">{E(OFFRE_TITRE)}</p>
-    {paras(OFFRE_TEXTE)}</aside>""" if OFFRE_10E_MOIS else ""
+    # Encadré réhiérarchisé (Géraldine, 26/11/2026) : mots de Themis inchangés, découpés pour la lecture.
+    offre = f"""<aside class="v2-offre">
+      <p class="v2-offre-sur">Bail de 10 mois mené à son terme :</p>
+      <p class="v2-offre-titre">le 10<sup>e</sup> loyer est offert</p>
+      <p class="v2-offre-cle">Si vous réglez les 9 premiers loyers de 3 475 € et restez jusqu'au terme du bail de 10 mois, le loyer du 10<sup>e</sup> mois (3 475 €) est offert, une seule fois.</p>
+      <ul class="v2-offre-conditions">
+        <li>Le loyer reste de 3 475 € par mois sur toute la durée</li>
+        <li>Le forfait de charges de 175 € reste dû chaque mois, le 10<sup>e</sup> compris</li>
+        <li>Un départ avant le terme ne donne pas droit à cette remise</li>
+      </ul></aside>""" if OFFRE_10E_MOIS else ""
     motifs = "".join(f"<option>{E(m)}</option>" for m in MOTIFS)
     publics = "".join(f'<li>{pic(ic, "pic-s")}<span>{t}</span></li>' for ic, t in
                       (("hopital", "Hôpitaux"), ("societe", "Entreprises"), ("campus", "Universités"), ("valise", "Services de mobilité")))
@@ -268,7 +301,7 @@ def corps():
 </div></section>
 <section class="v2-blanc v2-visite"><div class="v2-l">
   <div class="v2-cartes">{cartes}{details}</div>
-  <details class="v2-galerie-tout"><summary>Voir toutes les photos ({len(GALERIE_TOUT)})</summary><div class="galerie">{gal}</div></details>
+  <details class="v2-galerie-tout"><summary>Voir toutes les photos ({NB_PHOTOS})</summary><div class="v2-galerie-visite">{gal}</div></details>
 </div></section>
 
 <section class="v2-bleu v2-acces" id="acces"><div class="v2-l">
@@ -291,19 +324,24 @@ def corps():
   <p class="v2-montant">3 650 €<small>/ mois</small></p>
   <p class="v2-sous-prix">Charges comprises · De 1 à 10 mois</p>
   <p class="v2-detail-prix"><span>Loyer 3 475 €</span><span>+ forfait de charges 175 €</span></p>
-  <div class="v2-inclus">
-    <div><h3>Inclus</h3>{liste_pictos(INCLUS)}</div>
-    <div><h3>Non inclus</h3>{liste_pictos(NON_INCLUS)}<p class="v2-note">À votre charge.</p></div>
+  <div class="v2-budget">
+    <div class="v2-budget-col"><h3>Ce qui est inclus</h3><ul class="v2-tuiles">{tuiles(INCLUS)}</ul></div>
+    <div class="v2-budget-col v2-budget-charge"><h3>Ce qui n'est pas inclus, à votre charge</h3><ul class="v2-tuiles">{tuiles(NON_INCLUS)}</ul></div>
   </div>
   {offre}
   <p class="v2-centre"><a class="bouton corail" href="#demande">Demander les disponibilités</a></p>
 </div></section>
 
-<section class="v2-blanc" id="prescripteurs"><div class="v2-l">
-  {bloc(photo("vue-baie-de-nice"), lignes("Votre collaborateur vient pour plusieurs mois. Proposez-lui un endroit où vivre."),
-        liste_pictos(EMPLOYEUR)
-        + f'<ul class="v2-publics">{publics}</ul><p class="v2-reserve">{E(reserve)}</p>'
-        + f'<p><a class="bouton" href="#demande" data-pour="tiers">{E(parler)}</a></p>')}
+<section class="v2-bleu v2-employeur" id="prescripteurs"><div class="v2-l">
+  <h2 class="v2-t v2-titre-employeur"><span class="v2-ligne">Votre collaborateur vient pour plusieurs mois.</span><span class="v2-ligne v2-dore">Proposez-lui un endroit où vivre.</span></h2>
+  <div class="v2-employeur-grille">
+    <div>
+      {liste_pictos(EMPLOYEUR)}
+      <ul class="v2-publics">{publics}</ul><p class="v2-reserve">{E(reserve)}</p>
+      <p><a class="bouton corail" href="#demande" data-pour="tiers">{E(parler)}</a></p>
+    </div>
+    <div class="v2-employeur-photo"><img src="{{R}}assets/img/visite/cuisine-1.jpg" alt="La pièce de vie : cuisine ouverte, îlot et séjour face à la terrasse" loading="lazy"></div>
+  </div>
 </div></section>
 
 <section class="v2-marine" id="avis"><div class="v2-l">

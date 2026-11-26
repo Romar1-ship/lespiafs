@@ -307,3 +307,40 @@ main section[id],.v2-bloc[id]{scroll-margin-top:70px}
 .v2 .v2-carte-pictos .pic:nth-child(odd){stroke:var(--v2-dore)}
 .v2 .v2-carte-details .v2-liste .pic-s{color:var(--v2-bleu)}
 .v2 .v2-carte-details .v2-liste li{color:var(--v2-marine)}
+/* Galerie complète, dans l'ordre de la visite (Géraldine, 26/11/2026) */
+.v2-galerie-visite{margin-top:36px;text-align:left}
+.v2-galerie-groupe+.v2-galerie-groupe{margin-top:36px}
+.v2-galerie-groupe h3{font-weight:500;font-size:1.35rem;color:var(--v2-bleu);margin:0 0 14px}
+.v2 .galerie.v2-gg{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:auto;gap:10px;margin:0}
+.v2 .v2-gg a{aspect-ratio:4/3}
+.v2 .v2-gg img{width:100%;height:100%;object-fit:cover}
+@media(max-width:760px){.v2 .galerie.v2-gg{grid-template-columns:repeat(2,1fr)}}
+/* Budget réhiérarchisé : inclus et à votre charge en tuiles, encadré du 10e loyer lisible (Géraldine, 26/11/2026) */
+.v2-budget{display:grid;grid-template-columns:2.6fr 1fr;gap:28px;margin-top:48px;text-align:left}
+.v2 .v2-budget h3{color:#fff;font-weight:500;font-size:clamp(1.3rem,1.9vw,1.6rem);margin:0 0 16px;letter-spacing:-.01em;text-transform:none}
+.v2-tuiles{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px}
+.v2-tuiles li{background:rgba(255,255,255,.1);padding:20px 16px;display:flex;flex-direction:column;gap:12px;min-height:128px}
+.v2 .v2-tuiles .pic{width:38px;height:38px;margin:0;stroke:var(--v2-dore);stroke-width:1.4}
+.v2 .v2-tuiles span{font-size:1rem;line-height:1.35;font-weight:400;color:#fff}
+.v2-budget-charge .v2-tuiles{grid-template-columns:1fr}
+.v2-budget-charge .v2-tuiles li{background:transparent;border:2px solid rgba(255,255,255,.5);min-height:0;flex-direction:row;align-items:center}
+.v2 #prix .v2-offre{max-width:860px;margin:56px auto 0;padding:40px clamp(24px,4vw,56px);border:0;background:#fff;color:var(--v2-marine);text-align:center}
+.v2 .v2-offre-sur{font-weight:700;text-transform:uppercase;letter-spacing:.16em;font-size:.9rem;color:var(--v2-corail);margin:0 0 6px}
+.v2 #prix .v2-offre .v2-offre-titre{font-weight:600;font-size:clamp(2.2rem,4.4vw,3.6rem);line-height:1.05;color:var(--v2-bleu);margin:0 0 20px;text-transform:none;letter-spacing:-.02em}
+.v2 #prix .v2-offre .v2-offre-cle{font-size:clamp(1.1rem,1.6vw,1.3rem);line-height:1.5;font-weight:400;color:var(--v2-marine);max-width:640px;margin:0 auto 22px}
+.v2 .v2-offre-conditions{list-style:none;margin:0 auto;padding:18px 0 0;border-top:1px solid #dfe6f3;max-width:640px;display:grid;gap:8px}
+.v2 .v2-offre-conditions li{font-size:.95rem;line-height:1.45;color:var(--gris);font-weight:400}
+@media(max-width:860px){.v2-budget{grid-template-columns:1fr}}
+@media(max-width:420px){.v2-tuiles{grid-template-columns:1fr 1fr}}
+/* Entrée employeur mise en avant (Géraldine, 26/11/2026) */
+.v2 .v2-titre-employeur{font-size:clamp(2rem,3.3vw,3.1rem);font-weight:700;line-height:1.08;margin-bottom:.9em}
+.v2 .v2-dore{color:var(--v2-dore)}
+.v2-employeur-grille{display:grid;grid-template-columns:1fr 1.05fr;gap:clamp(28px,4vw,56px);align-items:start}
+.v2-employeur-photo img{width:100%;aspect-ratio:4/3;object-fit:cover}
+.v2 .v2-employeur .v2-liste li{color:#fff;font-size:1.12rem}
+.v2 .v2-employeur .v2-liste .pic-s{color:var(--v2-dore)}
+.v2 .v2-employeur .v2-publics li{background:#fff;border-left-color:var(--v2-corail)}
+.v2 .v2-employeur .v2-reserve{color:rgba(255,255,255,.85)}
+@media(max-width:860px){.v2-employeur-grille{grid-template-columns:1fr}.v2-employeur-photo{order:-1}}
+/* Pied de page : les deux mentions en italique (Géraldine, 26/11/2026) */
+.v2-page .pied .droit-pied{font-style:italic}
