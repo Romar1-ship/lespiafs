@@ -162,3 +162,29 @@ main section[id],.v2-bloc[id]{scroll-margin-top:70px}
 .v2-liste .pic-s{width:26px;height:26px;margin:0;color:var(--v2-dore);stroke-width:1.5}
 .v2-inclus .v2-note{margin:14px 0 0 40px}
 .v2-detail-prix span{display:block}
+/* Textes courants en regular (Géraldine, 26/11/2026) */
+.v2 p,.v2 li,.v2 dd,.v2 .v2-lead,.v2 .v2-liste li,.v2 details p,.v2 .v2-contact{font-weight:400}
+.v2 .v2-atouts,.v2 .v2-sous-prix{font-weight:700}
+.v2 .v2-prix,.v2 .v2-montant,.v2 .v2-offre-titre{font-weight:500}
+/* Introduction du premier écran, mise en valeur (Géraldine, 26/11/2026) */
+.v2-intro{border-left:4px solid var(--v2-dore);padding:4px 0 4px clamp(20px,3vw,32px);max-width:920px;margin:0 0 8px}
+.v2 .v2-intro p{font-size:clamp(1.25rem,2.1vw,1.7rem);line-height:1.45;margin:0}
+.v2 .v2-intro .v2-intro-1{font-size:clamp(1.5rem,2.8vw,2.3rem);font-weight:500;color:var(--v2-dore);margin-bottom:10px;line-height:1.2}
+.v2 .v2-intro strong{font-weight:600;color:#fff}
+/* Atouts sous les chiffres : un picto par atout (Géraldine, 26/11/2026) */
+.v2 ul.v2-atouts{list-style:none;display:flex;flex-wrap:wrap;justify-content:center;gap:14px 44px;padding:28px 0 0}
+.v2 .v2-atouts li{display:flex;align-items:center;gap:12px;font-weight:700}
+.v2 .v2-atouts .pic-s{width:30px;height:30px;margin:0;color:var(--v2-dore);stroke-width:1.5}
+@media(max-width:700px){.v2 ul.v2-atouts{justify-content:flex-start;flex-direction:column;gap:14px}}
+/* « Une mission temporaire. Un vrai chez-vous. » plus grand (Géraldine, 26/11/2026) */
+.v2 .v2-titre-xl{font-size:clamp(2.6rem,6.4vw,6rem);line-height:1.02;margin-bottom:.6em}
+#habiter .v2-bloc{align-items:start}
+@media(max-width:700px){.v2 .v2-titre-xl{font-size:7.4vw}}
+/* Bloc « Nice, côté colline » mis en valeur (Géraldine, 26/11/2026) */
+.v2 .v2-acces .v2-t{color:#fff}
+.v2 .v2-acces .v2-acces-1{font-size:clamp(1.3rem,2vw,1.65rem);line-height:1.45;margin:0 0 28px}
+.v2 .v2-acces strong{font-weight:600;color:var(--v2-dore)}
+.v2-acces-2{border:2px solid rgba(255,255,255,.85);padding:26px 28px 8px}
+.v2 .v2-acces-2 .v2-pic{stroke:var(--v2-dore);width:40px;height:40px;margin-bottom:12px}
+.v2 .v2-acces-2 .v2-acces-q{font-size:clamp(1.25rem,1.9vw,1.55rem);font-weight:500;color:var(--v2-dore);margin:0 0 8px}
+.v2 .v2-acces .v2-bloc{margin-bottom:0}

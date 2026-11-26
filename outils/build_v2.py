@@ -99,9 +99,13 @@ NON_INCLUS = [("menage", "Le ménage"), ("bouclier", "L'assurance habitation")]
 # Pictos propres à cette page, dans le trait des pictos du site (viewBox 32).
 PICTOS_V2 = {"goutte": '<path d="M16 4c-5 7-8 11-8 15a8 8 0 0016 0c0-4-3-8-8-15z"/>',
              "eclair": '<path d="M18 3L7 18h8l-2 11 12-16h-8z"/>',
-             "bouclier": '<path d="M16 3l11 4v8c0 7-5 12-11 14C10 27 5 22 5 15V7z"/>'}
+             "bouclier": '<path d="M16 3l11 4v8c0 7-5 12-11 14C10 27 5 22 5 15V7z"/>',
+             "details": '<rect x="6" y="4" width="20" height="24" rx="2"/><path d="M10 11l2 2 3.5-3.5M10 19l2 2 3.5-3.5M19 11.5h3M19 19.5h3"/>'}
 SPRITE_V2 = '<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>' + "".join(
     f'<symbol id="i-{n}" viewBox="0 0 32 32">{d}</symbol>' for n, d in PICTOS_V2.items()) + '</defs></svg>'
+
+ATOUTS = [("wifi", "Fibre"), ("cuisine", "Cuisine équipée"), ("parking", "Parking privé"), ("piscine", "Piscine partagée")]
+ATOUTS_HTML = "".join(f'<li>{pic(ic, "pic-s")}<span>{t}</span></li>' for ic, t in ATOUTS)
 
 def liste_pictos(elements):
     return '<ul class="v2-liste">' + "".join(f'<li>{pic(ic, "pic-s")}<span>{E(t)}</span></li>' for ic, t in elements) + "</ul>"
@@ -113,13 +117,13 @@ def photo(n, cls=""):
 
 # Un picto par descriptif du logement (Géraldine, 26/11/2026), pris dans le jeu de pictos du site.
 PICTOS = {"La pièce de vie": "table", "La cuisine": "cuisine", "La première chambre": "lit", "La seconde chambre": "ordi",
-          "Les salles d'eau": "douche", "Les terrasses": "soleil", "Les détails qui comptent": "machine", "La piscine": "piscine"}
+          "Les salles d'eau": "douche", "Les terrasses": "soleil", "Les détails qui comptent": "details", "La piscine": "piscine"}
 
 def bloc(photo_html, titre_html, contenu, inverse=False, ton="bleu", ident="", picto=""):
     """Bloc image et texte, à la façon de la page « Cannes en hiver » : grand titre en capitales, texte court, photo large."""
     i = f' id="{ident}"' if ident else ""
     pi = pic(picto, f"pic v2-pic {ton}") if picto else ""
-    return (f'<div class="v2-bloc{" inverse" if inverse else ""}"{i}><div class="v2-bloc-texte">{pi}<h2 class="v2-t {ton}">{titre_html}</h2>{contenu}</div>'
+    return (f'<div class="v2-bloc{" inverse" if inverse else ""}"{i}><div class="v2-bloc-texte">{pi}{f'<h2 class="v2-t {ton}">{titre_html}</h2>' if titre_html else ""}{contenu}</div>'
             f'<div class="v2-bloc-photo">{photo_html}</div></div>')
 
 def corps():
@@ -147,10 +151,10 @@ def corps():
     <h1><span class="h1-sur">Location meublée à Nice · Bail mobilité</span>À Nice pour travailler. <span class="v2-h1-2">Bien chez vous pour en profiter.</span></h1>
   </div>
   <div class="v2-l">
-    <p class="v2-lead">Votre mission vous amène à Nice. Installez-vous dans un appartement meublé de 77 m², avec deux chambres et deux terrasses face à la Baie des Anges. Pour 1 à 10 mois, sur la colline de Bellet.</p>
+    <div class="v2-intro"><p class="v2-intro-1">Votre mission vous amène à Nice.</p><p>Installez-vous dans un appartement meublé de <strong>77 m²</strong>, avec <strong>deux chambres</strong> et <strong>deux terrasses</strong> face à la <strong>Baie des Anges</strong>. Pour <strong>1 à 10 mois</strong>, sur la colline de Bellet.</p></div>
     <p class="v2-prix">3 650 € / mois <span>charges comprises</span></p>
     <p class="v2-actions"><a class="bouton blanc" href="#demande">Vérifier mes dates</a><a class="bouton contour" href="#logement">Voir l'appartement</a></p>
-    <p class="v2-micro">Location réservée aux personnes éligibles au bail mobilité.</p>
+    <p class="v2-micro">Location réservée aux personnes éligibles au bail mobilité</p>
     {mention_aqua}
   </div>
 </section>
@@ -161,12 +165,13 @@ def corps():
     <div><b>2<small>chambres</small></b><span>De la place pour s'installer</span></div>
     <div><b>26<small>m²</small></b><span>Deux terrasses vue mer</span></div>
   </div>
-  <p class="v2-atouts">Fibre · Cuisine équipée · Parking privé · Piscine partagée</p>
+  <ul class="v2-atouts">{ATOUTS_HTML}</ul>
 </div></section>
 <div class="store" aria-hidden="true"></div>
 
 <section class="v2-blanc" id="habiter"><div class="v2-l">
-  {bloc(photo("cuisine-sejour"), lignes("Une mission temporaire. Un vrai chez\u2011vous."),
+  <h2 class="v2-t bleu v2-titre-xl">{lignes("Une mission temporaire. Un vrai chez\u2011vous.")}</h2>
+  {bloc(photo("cuisine-sejour"), "",
         paras("Une cuisine pour garder vos habitudes. Deux chambres pour ne pas tout faire dans la même pièce. Une terrasse pour prendre le dîner dehors.",
               "Ici, vous louez un appartement entier, meublé et équipé. La vue est un plaisir en plus. Le confort du quotidien est déjà là.")
         + '<p><a class="bouton" href="#demande">Vérifier mes dates</a></p>')}
@@ -188,15 +193,17 @@ def corps():
   <p class="v2-centre"><a class="bouton" href="#demande">Vérifier mes dates</a></p>
 </div></section>
 
-<section class="v2-blanc v2-sans-haut" id="acces"><div class="v2-l">
+<section class="v2-bleu v2-acces" id="acces"><div class="v2-l">
   {bloc(photo("vue-baie-de-nice"), "Nice, côté colline.",
-        paras("Les Piafs se trouvent sur la colline de Bellet, à l'ouest de Nice. Une place de parking privée est comprise dans la location.",
-              "Vous venez pour une mission précise ? Indiquez-nous votre lieu de travail : vérifiez votre trajet quotidien avant de choisir vos dates."), inverse=True, ton="corail")}
+        '<p class="v2-acces-1">Les Piafs se trouvent sur la <strong>colline de Bellet</strong>, à l' + "'" + 'ouest de Nice. Une <strong>place de parking privée</strong> est comprise dans la location.</p>'
+        + '<div class="v2-acces-2">' + pic("repere", "pic v2-pic") + '<p class="v2-acces-q">Vous venez pour une mission précise ?</p>'
+        + '<p>Indiquez-nous votre lieu de travail : vérifiez votre trajet quotidien avant de choisir vos dates.</p>'
+        + '<p><a class="bouton corail" href="#demande">Vérifier mes dates</a></p></div>', inverse=True, ton="")}
 </div></section>
 
 <div class="store" aria-hidden="true"></div>
 <section class="v2-bleu" id="prix"><div class="v2-l">
-  <h2 class="v2-t">Un budget clair, avant de faire vos valises.</h2>
+  <h2 class="v2-t"><span class="v2-ligne">Un budget clair,</span><span class="v2-ligne">avant de faire vos valises.</span></h2>
   <p class="v2-montant">3 650 €<small>/ mois</small></p>
   <p class="v2-sous-prix">Charges comprises · De 1 à 10 mois</p>
   <p class="v2-detail-prix"><span>Loyer 3 475 €</span><span>+ forfait de charges 175 €</span></p>
