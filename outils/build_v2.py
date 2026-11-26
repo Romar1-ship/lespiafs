@@ -261,7 +261,7 @@ def corps():
       <p>Nice Bellet · De 1 à 10 mois</p>
     </div>
     <div class="v2-hero-action">
-      <p class="v2-prix">3 650 €/mois, <span>charges comprises</span></p>
+      <p class="v2-prix">3 650 €/mois <span>Charges comprises</span></p>
       <p class="v2-actions"><a class="bouton blanc" href="#demande">Vérifier mes dates</a></p>
       <p class="v2-micro">Prise en charge employeur possible</p>
     </div>

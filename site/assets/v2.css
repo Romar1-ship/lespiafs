@@ -370,3 +370,22 @@ main section[id],.v2-bloc[id]{scroll-margin-top:70px}
 .v2 .v2-carte-bleue>.v2-liste{grid-column:1/-1;display:grid;grid-template-columns:repeat(3,1fr);gap:12px 28px;margin-top:16px}
 @media(max-width:900px){.v2 .v2-carte-bleue>.v2-liste{grid-template-columns:1fr 1fr}}
 @media(max-width:600px){.v2 .v2-carte-bleue>.v2-liste{grid-template-columns:1fr}}
+/* Retouches mobiles, retour de Brain du 26/11/2026 */
+.v2-hero .v2-prix span{display:block;margin:6px 0 0}
+@media(max-width:700px){
+  /* photo bord à bord, sans bandes blanches sur les côtés */
+  .v2 .v2-hero{background:var(--v2-bleu)}
+  .v2-cadre{margin:0}
+  .v2-cadre img{height:46vh;object-position:28% 44%}
+  /* chiffres sur une ligne compacte : l'ouverture les a déjà donnés */
+  .v2 .v2-chiffres{padding:22px 0 28px}
+  .v2 .v2-geants{grid-template-columns:repeat(3,1fr);gap:8px;padding-top:18px}
+  .v2 .v2-geants b{font-size:2.3rem;letter-spacing:-.02em}
+  .v2 .v2-geants b small{font-size:.42em}
+  .v2 .v2-geants span{font-size:.62rem;letter-spacing:.06em;margin-top:6px;line-height:1.3}
+  .v2 ul.v2-atouts{flex-direction:row;flex-wrap:wrap;justify-content:center;gap:8px 16px;margin-top:18px;padding-top:16px}
+  .v2 .v2-atouts li{font-size:.72rem;gap:6px}
+  .v2 .v2-atouts .pic-s{width:20px;height:20px}
+  .v2 .v2-eligible{margin-top:14px;font-size:.8rem}
+}
+@media(max-width:700px){.v2 .v2-hero{padding-bottom:34px}}
