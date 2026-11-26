@@ -145,7 +145,7 @@ def bloc(photo_html, titre_html, contenu, inverse=False, ton="bleu", ident="", p
 # Visite resserrée (retour de Brain validé par Géraldine, 26/11/2026) : chambres, salles d'eau, salon, piscine, équipement.
 # Le séjour, la cuisine et les terrasses sont déjà dans le trio : ils ne reviennent pas ici.
 CARTES = [
-    ("visite/salon-ferme", "canape", "Le salon", "Un canapé-lit dans la pièce de vie."),
+    ("salon-vue", "canape", "Le salon", "Un canapé-lit dans la pièce de vie."),
     ("chambre-1-fenetre", "lit", "La première chambre", "13,91 m², un lit double et une salle d'eau privative avec douche à l'italienne."),
     ("chambre-2-lits", "ordi", "La seconde chambre", "12,88 m², deux lits simples de 80 × 200 cm ou un lit double de 160 cm, et un poste de travail. La fibre est installée dans le logement."),
     ("salle-eau-douche", "douche", "Les salles d'eau", "Deux salles d'eau, dont une privative, et un WC indépendant."),
