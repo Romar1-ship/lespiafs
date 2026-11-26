@@ -357,3 +357,8 @@ main section[id],.v2-bloc[id]{scroll-margin-top:70px}
 /* Hero : la vue retouchée, cadrée sur la mer et la côte (Géraldine, 26/11/2026) */
 .v2-cadre img{object-position:50% 62%}
 @media(max-width:700px){.v2-cadre img{object-position:20% 60%}}
+/* Hero : photo dans ses vraies couleurs, textes dans le ciel (Géraldine, 26/11/2026) */
+.v2-cadre::after{content:none}
+.v2-hero h1{top:clamp(28px,5vw,64px);bottom:auto;text-shadow:0 1px 14px rgba(0,40,120,.28)}
+@media(max-width:700px){.v2-hero h1{top:28px;bottom:auto}}
+.v2-cadre img{object-position:50% 40%}
