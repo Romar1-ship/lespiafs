@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
-"""Génère la fiche logement RH, 2 pages A4, dans contenu/kit-rh/fiche-logement.html, puis le PDF.
+"""Génère la fiche logement RH, une seule page A4 (recto, Géraldine 26/11/2026), dans contenu/kit-rh/fiche-logement.html, puis le PDF.
 
 Lancer :  python3 outils/fiche_rh.py
 Textes : sous-tâche ClickUp 1amye9cq1q8, relecture Themis du 26/11/2026, retours de Géraldine du 26/11/2026
-(2 pages, pictos à la place des puces, titres de rubrique en capitales, texte plus grand, capacité 4 personnes,
+(pictos à la place des puces, titres de rubrique en capitales, texte plus grand, capacité 4 personnes,
 grande salle d'eau avec WC et WC indépendant).
 """
 import subprocess, sys
@@ -37,7 +37,8 @@ CONFIG = [("lit", "<b>Chambre 1</b> · lit double et salle d'eau privative"),
           ("lit", "<b>Chambre 2</b> · deux lits simples de 80 × 200 cm ou un lit double de 160 cm"),
           ("canape", "<b>Salon</b> · canapé-lit"),
           ("douche", "<b>Grande salle d'eau</b> avec WC"),
-          ("porte", "<b>WC indépendant</b>")]
+          ("porte", "<b>WC indépendant</b>"),
+          ("personne", "<b>Jusqu'à 4 personnes</b> · couple, colocation ou famille avec deux enfants")]
 
 INCLUS = [("goutte", "Eau"), ("eclair", "Électricité"), ("clim", "Climatisation"), ("wifi", "Fibre"),
           ("parking", "Parking"), ("piscine", "Piscine partagée")]
@@ -45,7 +46,8 @@ INCLUS = [("goutte", "Eau"), ("eclair", "Électricité"), ("clim", "Climatisatio
 CONTRAT = [("plume", "Bail mobilité de 1 à 10 mois, signé par l'occupant éligible"),
            ("societe", "Prise en charge du loyer par l'employeur possible, avec lettre de prise en charge"),
            ("cle", "Aucun dépôt de garantie · garanties examinées avec le dossier"),
-           ("valise", "Remise des clés et état des lieux avec le bailleur")]
+           ("valise", "Remise des clés et état des lieux avec le bailleur"),
+           ("repere", "Nice, colline de Bellet · trajet à vérifier selon le lieu d'affectation")]
 
 CSS = """
 @font-face{font-family:"Outfit";font-weight:100 900;src:url(../../site/assets/fonts/outfit-latin-wght.woff2) format("woff2")}
@@ -115,6 +117,37 @@ h2{font-size:11pt;font-weight:700;text-transform:uppercase;letter-spacing:.12em;
 .action .liens{display:grid;gap:2mm}
 .action .liens a{display:flex;align-items:center;gap:2.6mm;font-size:11pt;font-weight:600}
 .pied{position:absolute;left:12mm;right:12mm;bottom:6mm;font-size:8pt;color:var(--gris);font-style:italic}
+
+/* recto seul */
+.une .bande{height:13mm}
+.une .hero{height:54mm}
+.une .hero img{object-position:50% 34%}
+.une .hero::after{content:none}
+.une .hero h1{top:6mm;bottom:auto;font-size:24pt;text-shadow:0 1px 10px rgba(0,40,120,.3)}
+.une .corps{padding:5mm 12mm 0}
+.une .accroche{font-size:15pt;margin:0 0 4.2mm}
+.une .reperes{margin:0 0 4.6mm}
+.une .reperes div{padding:2.4mm 1mm}
+.une .reperes b{font-size:16pt}
+.une .reperes .ic{width:7mm;height:7mm}
+.une h2{font-size:10pt;margin:0 0 2.4mm;letter-spacing:.08em}
+.une .pl{gap:1.7mm}
+.une .pl li{font-size:10.6pt;line-height:1.25;gap:2.8mm}
+.une .pl .ic{width:6mm;height:6mm}
+.une .cols{display:grid;grid-template-columns:1fr 1fr;gap:4.6mm 8mm}
+.une .budget{margin:0;padding:4.4mm 5mm;display:block}
+.une .prix{font-size:24pt}
+.une .cc{margin:1.2mm 0 1.6mm}
+.une .detail{font-size:10.4pt;margin:0 0 2.6mm}
+.une .tuiles{gap:1.8mm}
+.une .tuiles li{padding:1.8mm 1.8mm;font-size:9.4pt;gap:1mm}
+.une .tuiles .ic{width:5.6mm;height:5.6mm}
+.une .budget .plus{font-size:9.6pt;margin-top:2.4mm}
+.une .action{bottom:14mm;padding:3.6mm 5mm}
+.une .action p.q{font-size:11.6pt}
+.une .action .liens a{font-size:10.6pt}
+.une .action .ic{width:5.6mm;height:5.6mm}
+.une .pied{bottom:5mm;font-size:7.6pt}
 """
 
 def page1():
@@ -172,11 +205,44 @@ def page2():
   <footer class="pied">Sous réserve de disponibilités et de dossier accepté. Surface exacte : 77,51 m². DPE C · Climat A. Location meublée en bail mobilité (loi n° 89-462 du 6 juillet 1989, titre I<sup>er</sup> ter).</footer>
 </div>"""
 
+def page_unique():
+    reperes = "".join(f"<div>{ic(i)}<b>{n}</b><span>{t}</span></div>" for i, n, t in REPERES)
+    tuiles = "".join(f"<li>{ic(i)}<span>{t}</span></li>" for i, t in INCLUS)
+    return f"""
+<div class="page une">
+  <div class="bande"><div class="marque"><img class="oiseau" src="img/logo-oiseau-blanc.svg" alt=""><img class="nom" src="img/logo-nom-blanc.svg" alt="Les Piafs des Collines"></div>
+  <span class="lieu">Location meublée · Bail mobilité · Nice Bellet</span></div>
+  <div class="liseret"></div>
+  <div class="hero"><img src="img/vue-bateaux.jpg" alt="La Baie des Anges vue depuis l'appartement, à Nice Bellet">
+    <h1>Un vrai chez-soi<span>pour une mission à Nice.</span></h1></div>
+  <main class="corps">
+    <p class="accroche">Votre collaborateur vient pour plusieurs mois.<span>Proposez-lui un endroit où vivre.</span></p>
+    <div class="reperes">{reperes}</div>
+    <div class="cols">
+      <div><section><h2>Pour vivre, pas seulement pour dormir</h2>{liste(VIVRE)}</section>
+        <section style="margin-top:4.4mm"><h2>Configuration</h2>{liste(CONFIG)}</section></div>
+      <div><section class="budget"><h2>Budget</h2><p class="prix">3 650 €<small> / mois</small></p><p class="cc">Charges comprises</p>
+        <p class="detail"><span>Loyer 3 475 € + forfait de charges 175 €</span></p>
+        <ul class="tuiles">{tuiles}</ul>
+        <p class="plus"><b>Aussi compris :</b> linge de maison avec rechange.<br><b>Non compris :</b> ménage et assurance habitation.</p></section>
+        <section style="margin-top:4.4mm"><h2>Contrat</h2>{liste(CONTRAT)}</section></div>
+    </div>
+  </main>
+  <div class="action">
+    <p class="q">Une arrivée à préparer ? Envoyez-nous les dates, le nombre d'occupants et le lieu d'affectation.</p>
+    <div class="liens">
+      <a href="mailto:contact@lespiafsdescollines.com">{ic("enveloppe")}contact@lespiafsdescollines.com</a>
+      <a href="https://lespiafsdescollines.com/">{ic("maison")}lespiafsdescollines.com</a>
+    </div>
+  </div>
+  <footer class="pied">Sous réserve de disponibilités et de dossier accepté. Nombre d'occupants confirmé pour chaque demande, avant le bail. Surface exacte : 77,51 m². DPE C · Climat A. Location meublée en bail mobilité (loi n° 89-462 du 6 juillet 1989, titre I<sup>er</sup> ter).</footer>
+</div>"""
+
 if __name__ == "__main__":
     html = f"""<!doctype html>
 <!-- Généré par outils/fiche_rh.py : modifier le script, pas ce fichier. -->
 <html lang="fr"><head><meta charset="utf-8"><title>Les Piafs des Collines · Fiche logement · Bail mobilité à Nice</title>
-<style>{CSS}</style></head><body>{page1()}{page2()}</body></html>
+<style>{CSS}</style></head><body>{page_unique()}</body></html>
 """
     SORTIE.write_text(html, encoding="utf-8")
     print("  ", SORTIE.relative_to(RACINE))
