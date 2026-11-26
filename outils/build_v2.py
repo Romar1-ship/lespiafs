@@ -40,7 +40,7 @@ def paras(*ps):
 # Bloc 4 · le logement en images : (photo ou None, titre, texte)
 PIECES = [
     ("sejour-salle-a-manger", "La pièce de vie", "Un salon et un espace repas ouverts sur la cuisine, avec la mer à l'horizon."),
-    ("cuisine-ilot", "La cuisine", "Plaque à induction, four, lave-vaisselle et réfrigérateur-congélateur : de quoi cuisiner au quotidien."),
+    ("cuisine-ilot", "La cuisine", "Plaque à induction, four, micro-ondes, lave-vaisselle et réfrigérateur-congélateur : de quoi cuisiner au quotidien."),
     ("chambre-parentale", "La première chambre", "13,91 m² et une salle d'eau privative avec douche à l'italienne."),
     ("chambre-2", "La seconde chambre", "12,88 m² et un poste de travail. La fibre est installée dans le logement."),
     (None, "Les salles d'eau", "Deux salles d'eau, dont une privative, et un WC indépendant."),
@@ -76,7 +76,7 @@ FICHE = [
                              ("Salles d'eau", "2, dont 1 privative avec douche à l'italienne"), ("WC", "1 indépendant"),
                              ("Situation", "1er étage d'une villa, logement traversant"), ("Vue", "Baie des Anges")]),
     ("Énergie et confort", "energie", [("DPE", "C en énergie, A en climat"), ("Chauffage et climatisation", "Climatisation réversible"), ("Internet", "Fibre")]),
-    ("Équipements", "equipement", [("Cuisine", "Plaque à induction, four, lave-vaisselle, réfrigérateur-congélateur"),
+    ("Équipements", "equipement", [("Cuisine", "Plaque à induction, four, micro-ondes, lave-vaisselle, réfrigérateur-congélateur"),
                                     ("Linge", "Lave-linge, sèche-linge, linge de lit et de toilette fourni avec rechange"),
                                     ("Travail", "Poste de travail dans la seconde chambre"),
                                     ("Extérieur", "Table sous store sur la terrasse"), ("Stationnement", "1 place privée dans l'enceinte de la villa"),
