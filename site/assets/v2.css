@@ -1,0 +1,49 @@
+/* Page bail mobilité, version 2 (brief ClickUp 1amye9cq1n9, 26/11/2026). Chargée après style.css, sur cette page seule. */
+.v2-hero .legende{font-size:clamp(2.4rem,6vw,5.2rem)}
+.v2-hero .legende em{display:block}
+.v2-hero .h1-sur{line-height:1.5}
+main section[id]{scroll-margin-top:70px}
+.v2-prix{font-family:var(--serif);font-size:clamp(1.6rem,2.6vw,2.2rem);color:#fff;margin:6px 0 26px;font-variant-numeric:lining-nums}
+.v2-prix span{font-family:var(--titre);font-size:.42em;letter-spacing:.2em;text-transform:uppercase;color:var(--dore);margin-left:6px;vertical-align:middle}
+.v2-actions{display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin:0 0 18px}
+.v2-hero .v2-actions .bouton.clair{margin-left:0}
+.v2-micro,.v2-aqua{font-size:.86rem;color:rgba(255,255,255,.82);margin:0}
+.v2-aqua{margin-top:6px;font-style:italic}
+.v2-atouts{margin:56px 0 0;padding-top:26px;border-top:1px solid var(--ligne);text-align:center;font-family:var(--titre);font-size:.8rem;letter-spacing:.2em;text-transform:uppercase;color:var(--nuit)}
+.v2-ed h2{font-family:var(--serif);font-weight:500;font-size:clamp(2rem,3.8vw,3rem);letter-spacing:-.01em;line-height:1.12}
+.v2-ed h2 em{font-style:italic;color:var(--azur)}
+.v2-ed p{font-size:1.08rem;line-height:1.75}
+.v2-texte{max-width:680px}
+.v2-texte p{font-family:var(--serif);font-size:1.3rem;line-height:1.55;color:var(--nuit)}
+.v2-trio{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:44px}
+.v2-trio figure{margin:0}
+.v2-trio img{width:100%;aspect-ratio:3/4;object-fit:cover;border-radius:4px}
+.v2-trio figcaption{font-family:var(--serif);font-style:italic;font-size:1.3rem;line-height:1.35;color:var(--nuit);margin-top:14px}
+.v2-sans-photo{border-top:3px solid var(--corail);padding-top:22px;align-self:start}
+.v2-centre{text-align:center;margin-top:48px}
+#prix h2{color:#fff}
+#prix .phrase-prix{margin:10px 0 6px}
+.v2-sous-prix{font-family:var(--titre);font-size:.82rem;letter-spacing:.24em;text-transform:uppercase;color:var(--dore);margin:0 0 6px}
+.v2-offre{margin:40px 0 0;padding:24px 28px;border:1px solid var(--dore);border-radius:4px;max-width:760px}
+.v2-offre-titre{font-family:var(--serif);font-size:1.4rem;color:#fff;margin:0 0 8px}
+.v2-offre p{color:#fff}
+.v2-offre p:last-child{margin:0;opacity:.9;font-size:1rem}
+.v2-avis{display:grid;gap:48px;margin-top:40px}
+.v2-fiche>summary{font-size:1.6rem}
+.v2-fiche .fiche{margin-top:24px}
+.v2-form fieldset{border:0;padding:0;margin:0 0 20px;display:flex;flex-wrap:wrap;gap:10px 28px}
+.v2-form legend{font-family:var(--titre);font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;color:var(--gris);margin-bottom:8px;width:100%}
+.v2-form fieldset label{display:flex;align-items:center;gap:8px;text-transform:none;letter-spacing:0;font-family:var(--texte);font-size:1rem;color:var(--encre);margin:0}
+.v2-form fieldset input{width:auto}
+.v2-form [hidden]{display:none}
+@media(max-width:700px){
+  .v2-hero{height:auto;min-height:100svh;padding:84px 0 7vh}
+  .v2-hero .legende{font-size:9.4vw;margin-bottom:16px}
+  .v2-hero .lead{font-size:1rem;line-height:1.5;margin-bottom:14px}
+  .v2-prix{margin:0 0 18px;font-size:1.7rem}
+  .v2-prix span{display:block;margin:4px 0 0;font-size:.42em}
+  .v2-actions{gap:10px}
+  .v2-hero .v2-actions .bouton{padding:15px 24px}
+  .v2-trio{grid-template-columns:1fr}
+  .v2-trio img{aspect-ratio:4/3}
+}
