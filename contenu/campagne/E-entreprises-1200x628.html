@@ -1,0 +1,41 @@
+<!doctype html><html lang="fr"><head><meta charset="utf-8"><style>
+@font-face{font-family:"Outfit";font-weight:100 900;src:url(../../site/assets/fonts/outfit-latin-wght.woff2) format("woff2")}
+@font-face{font-family:"Outfit";font-weight:100 900;src:url(../../site/assets/fonts/outfit-latin-ext-wght.woff2) format("woff2");unicode-range:U+0100-02BA,U+1E00-1EFF,U+20A0-20C0}
+:root{--bleu:#0041B9;--dore:#F6D9A8;--corail:#F2735F;--u:1.0px}
+*{box-sizing:border-box;margin:0}
+body{width:1200px;height:628px;overflow:hidden;font-family:"Outfit",sans-serif;background:var(--bleu);color:#fff;display:flex;flex-direction:column}
+.bande{flex:none;height:calc(64*var(--u));display:flex;align-items:center;justify-content:space-between;padding:0 calc(56*var(--u))}
+.marque{display:flex;align-items:center;gap:calc(16*var(--u))}
+.marque .o{height:calc(36*var(--u))} .marque .n{height:calc(13*var(--u))}
+.bande .lieu{font-size:calc(14*var(--u));font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--dore)}
+.liseret{flex:none;height:calc(10*var(--u));background:repeating-linear-gradient(90deg,var(--bleu) 0 calc(34*var(--u)),#fff calc(34*var(--u)) calc(68*var(--u)))}
+.scene{flex:1 1 auto;min-height:0;display:flex;flex-direction:row}
+.photo{position:relative;flex:1 1 auto;min-height:0;min-width:0}
+.photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 60%;display:block}
+h1{font-weight:600;font-size:calc(34*var(--u));line-height:1.05;letter-spacing:-.02em;text-wrap:balance}
+.photo h1{position:absolute;left:calc(56*var(--u));right:calc(56*var(--u));top:calc(46*var(--u));text-shadow:0 calc(2*var(--u)) calc(18*var(--u)) rgba(0,40,120,.35)}
+.texte h1{margin-bottom:calc(16*var(--u))}
+h1 span{display:block;color:var(--dore)}
+h1 small{display:inline-block;font-size:calc(16*var(--u));font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#fff;background:var(--bleu);padding:calc(10*var(--u)) calc(18*var(--u));margin-bottom:calc(12*var(--u));text-shadow:none}
+.texte h1 small{background:var(--corail)}
+.texte{flex:none;width:54%;display:flex;flex-direction:column;justify-content:center;padding:calc(30*var(--u)) calc(44*var(--u))}
+.preuve{font-size:calc(21*var(--u));font-weight:600;line-height:1.15;text-wrap:balance;margin-bottom:calc(10*var(--u))}
+.repere{font-size:calc(18*var(--u));font-weight:500;color:var(--dore);margin-bottom:calc(14*var(--u))}
+.rh{font-size:calc(16*var(--u));font-weight:600;margin:calc(-4*var(--u)) 0 calc(14*var(--u))}
+.bas{display:flex;align-items:center;justify-content:space-between;gap:calc(24*var(--u))}
+.action{background:var(--corail);color:#fff;font-weight:700;font-size:calc(15*var(--u));letter-spacing:.04em;text-transform:uppercase;white-space:nowrap;padding:calc(12*var(--u)) calc(20*var(--u))}
+.site{font-size:calc(15*var(--u));font-weight:600;text-align:right}
+.mention{margin-top:calc(12*var(--u));font-size:calc(12*var(--u));line-height:1.35;opacity:.85}
+</style></head><body>
+<div class="bande"><div class="marque"><img class="o" src="img/logo-oiseau-blanc.svg" alt=""><img class="n" src="img/logo-nom-blanc.svg" alt="Les Piafs des Collines"></div><span class="lieu">Nice Bellet</span></div>
+<div class="liseret"></div>
+<div class="scene"><div class="photo"><img src="img/cuisine.jpg" alt=""></div>
+<div class="texte">
+  <h1><small>Location en bail mobilité</small><br>Votre collaborateur vient pour plusieurs mois.<span>Proposez-lui un endroit où vivre.</span></h1>
+  <p class="preuve">Nice Bellet · Appartement entier · 77 m² · 2 chambres</p>
+  <p class="repere">3 650 €/mois charges comprises · De 1 à 10 mois</p>
+  <p class="rh">Prise en charge employeur possible</p>
+  <div class="bas"><span class="action">Recevez la fiche logement</span><span class="site">lespiafsdescollines.com</span></div>
+  <p class="mention">Ménage et assurance habitation non compris<br>Bail mobilité sous conditions d'éligibilité et de disponibilité</p>
+</div></div>
+</body></html>
