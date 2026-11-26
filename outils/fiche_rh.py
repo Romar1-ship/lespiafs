@@ -52,8 +52,8 @@ CONTRAT = [("plume", "Bail mobilité de 1 à 10 mois, signé par l'occupant éli
 
 # Retour de Brain du 26/11/2026, transmis par Géraldine : une photo intérieure, chaque information à un seul endroit,
 # l'argument employeur traduit, un contrat en 4 lignes, une sortie avec lien et QR code.
-EMPLOYEUR = [("maison", "Un appartement déjà équipé"), ("facture", "Un budget mensuel identifié"),
-             ("societe", "Une prise en charge employeur possible")]
+EMPLOYEUR = [("maison", "Un appartement déjà équipé"), ("facture", "Un budget connu à l'avance"),
+             ("personne", "Pour venir seul ou accompagné")]
 PLACE = [("lit", "Deux chambres, dont une avec salle d'eau privative"),
          ("lit", "Seconde chambre : deux lits simples ou un lit double"),
          ("douche", "Deux salles d'eau et un WC indépendant"),
@@ -324,7 +324,7 @@ def page_resserree():
   <div class="sortie">
     <div>
       <p class="q">Votre collaborateur arrive à Nice ?<span>Envoyez-nous ses dates et le nombre d'occupants.</span></p>
-      <div class="liens"><a class="cta" href="https://www.lespiafsdescollines.com/">Voir l'appartement et demander les disponibilités</a>
+      <div class="liens"><a class="cta" href="https://www.lespiafsdescollines.com/">Découvrir l'appartement</a>
       <a class="mail" href="mailto:contact@lespiafsdescollines.com">{ic("enveloppe")}contact@lespiafsdescollines.com</a></div>
     </div>
     <div class="qr"><img src="img/qr-site.svg" alt="QR code vers lespiafsdescollines.com">lespiafsdescollines.com</div>
