@@ -199,7 +199,7 @@ def corps():
   <h2 class="v2-t">Un budget clair, avant de faire vos valises.</h2>
   <p class="v2-montant">3 650 €<small>/ mois</small></p>
   <p class="v2-sous-prix">Charges comprises · De 1 à 10 mois</p>
-  <p>Loyer : 3 475 € + forfait de charges : 175 €.</p>
+  <p class="v2-detail-prix"><span>Loyer 3 475 €</span><span>+ forfait de charges 175 €</span></p>
   <div class="v2-inclus">
     <div><h3>Inclus</h3>{liste_pictos(INCLUS)}</div>
     <div><h3>Non inclus</h3>{liste_pictos(NON_INCLUS)}<p class="v2-note">À votre charge.</p></div>
