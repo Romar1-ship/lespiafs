@@ -298,8 +298,8 @@ def corps():
   <p class="v2-note">Les informations transmises servent à traiter votre demande de logement. N'envoyez pas de pièce d'identité ni de document confidentiel dans ce formulaire.</p>
   </form>
   <div class="v2-contact">
+    <a class="v2-encadre-contact v2-tel" href="tel:{b.TEL_LIEN}">{pic("telephone", "pic-s")}<span>{b.TEL}</span></a>
     <a class="v2-encadre-contact" href="mailto:{b.MAIL}">{pic("enveloppe", "pic-s")}<span>{b.MAIL}</span></a>
-    <a class="v2-encadre-contact" href="tel:{b.TEL_LIEN}">{pic("telephone", "pic-s")}<span>{b.TEL}</span></a>
   </div>
 </div></section>
 </div>"""

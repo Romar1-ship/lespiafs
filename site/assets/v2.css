@@ -234,3 +234,12 @@ main section[id],.v2-bloc[id]{scroll-margin-top:70px}
 .v2-pparas>div{display:flex;align-items:flex-start;gap:16px}
 .v2 .v2-pparas p{margin:0}
 .v2-pparas .pic-s{width:30px;height:30px;margin:2px 0 0;color:var(--v2-bleu);stroke-width:1.5;flex:none}
+/* Téléphone plus grand (Géraldine, 26/11/2026) */
+.v2 .v2-contact{grid-template-columns:1fr;max-width:620px}
+.v2 .v2-encadre-contact.v2-tel{font-size:clamp(1.6rem,3.2vw,2.3rem);font-weight:600;padding:22px 26px;letter-spacing:.01em;font-variant-numeric:lining-nums}
+.v2 .v2-encadre-contact.v2-tel .pic-s{width:40px;height:40px}
+.v2 .v2-contact{order:0}
+/* Cadres ajustés à leur contenu (Géraldine, 26/11/2026) */
+.v2 .v2-contact{display:flex;flex-direction:column;align-items:flex-start;max-width:none}
+.v2 .v2-encadre-contact{width:fit-content;max-width:100%}
+.v2 .v2-encadre-contact.v2-tel{padding:16px 26px 16px 22px}
