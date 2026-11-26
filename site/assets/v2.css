@@ -344,3 +344,7 @@ main section[id],.v2-bloc[id]{scroll-margin-top:70px}
 @media(max-width:860px){.v2-employeur-grille{grid-template-columns:1fr}.v2-employeur-photo{order:-1}}
 /* Pied de page : les deux mentions en italique (Géraldine, 26/11/2026) */
 .v2-page .pied .droit-pied{font-style:italic}
+/* Trio en paysage : les photos sont prises en 4:3 paysage, on y voit tout (Géraldine, 26/11/2026) */
+.v2-trio img,.v2 .v2-trio img{aspect-ratio:4/3}
+.v2 .v2-blanc .v2-carte-bleue .v2-liste .pic-s{color:var(--v2-dore)}
+.v2 .v2-blanc .v2-carte-bleue .v2-liste li{color:#fff}

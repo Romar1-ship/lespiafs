@@ -226,9 +226,7 @@ def corps():
     fond = AQUARELLE or "hero-baie"
     mention_aqua = '<p class="v2-aqua">Interprétation aquarelle de la vue réelle.</p>' if AQUARELLE else ""
     cartes = "".join(carte(*c) for c in CARTES)
-    # En attendant les photos du lave-linge et du sèche-linge (Géraldine, 26/11/2026) : les pictos en grand, au format des photos.
-    visuel = '<div class="v2-carte-pictos" aria-hidden="true">' + "".join(pic(ic, "pic") for ic, _ in DETAILS) + "</div>"
-    details = f'<div class="v2-carte v2-carte-details">{visuel}{pic("details", "pic v2-pic")}<h3>Les détails qui comptent</h3>{liste_pictos(DETAILS)}</div>'
+    details = f'<div class="v2-carte v2-carte-bleue">{pic("details", "pic v2-pic")}<h3>Les détails qui comptent</h3>{liste_pictos(DETAILS)}</div>'
     gal = "".join(f'<div class="v2-galerie-groupe"><h3>{E(t)}</h3><div class="galerie v2-gg">'
                   + "".join(f'<a href="{{R}}assets/img/visite/{n}.jpg"><img src="{{R}}assets/img/visite/{n}-m.jpg" alt="{E(a)}" loading="lazy"></a>' for n, a in photos)
                   + "</div></div>" for t, photos in GALERIE_GROUPES)
