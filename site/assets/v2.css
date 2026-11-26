@@ -394,3 +394,7 @@ main section[id],.v2-bloc[id]{scroll-margin-top:70px}
 .pied.v2-pied h5 a{color:inherit;text-decoration:none}
 @media(max-width:900px){.pied.v2-pied .cols{grid-template-columns:1fr 1fr}}
 @media(max-width:560px){.pied.v2-pied .cols{grid-template-columns:1fr}}
+/* Pied de page en 3 colonnes, le carnet en un lien (Géraldine, 26/11/2026) */
+.pied.v2-pied .cols{grid-template-columns:1.2fr 1fr 1fr}
+@media(max-width:900px){.pied.v2-pied .cols{grid-template-columns:1fr 1fr}}
+@media(max-width:560px){.pied.v2-pied .cols{grid-template-columns:1fr}}

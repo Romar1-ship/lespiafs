@@ -398,10 +398,9 @@ location.href='mailto:'+f.dataset.to+'?subject='+encodeURIComponent(f.dataset.su
 def pied_v2(prof):
     """Pied de page de la page d'accueil : liens vers les sections, le carnet et ses articles, les pages légales."""
     r = "../" * prof
-    articles = [(f"carnet/{b.lire_md(f)['slug']}", b.lire_md(f)["titre"]) for f in sorted(b.CARNET.glob("*.md"))]
-    articles += [(f"guides/{b.lire_md(f)['slug']}", b.lire_md(f)["titre"]) for f in sorted(b.GUIDES.glob("*.md"))]
     page = [("#logement", "Le logement"), ("#acces", "Accès"), ("#prix", "Prix"), ("#prescripteurs", "Pour les entreprises"),
-            ("#fiche", "Fiche technique"), ("#demande", "Demander une disponibilité")]
+            ("#fiche", "Fiche technique"), ("#demande", "Demander une disponibilité"), ("carnet/", "Le carnet")]
+    # Le carnet : un seul lien, la page du carnet présente les articles (Géraldine, 26/11/2026).
     li = lambda liens: "".join(f'<li><a href="{(u if not prof else r + u) if u.startswith("#") else r + u}">{E(t)}</a></li>' for u, t in liens)
     legal = "".join(f'<li><a href="{r}{slug}.html">{E(nom)}</a></li>' for slug, nom in b.PAGES_LEGALES)
     return f"""<div class="store" aria-hidden="true"></div><footer class="pied v2-pied"><div class="wrap"><div class="cols">
@@ -409,7 +408,6 @@ def pied_v2(prof):
 <p><a href="mailto:{b.MAIL}">{b.MAIL}</a></p>
 <p><a class="reseau" href="{b.FACEBOOK}" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13.5 21v-7.5h2.6l.4-3h-3V8.6c0-.9.3-1.5 1.5-1.5h1.6V4.4c-.3 0-1.2-.1-2.3-.1-2.3 0-3.9 1.4-3.9 4v2.2H7.8v3h2.6V21z"/></svg></a></p></div>
 <div><h5>L'appartement</h5><ul>{li(page)}</ul></div>
-<div><h5><a href="{r}carnet/">Le carnet</a></h5><ul>{li(articles)}</ul></div>
 <div><h5>Informations</h5><ul>{legal}</ul></div>
 </div>
 <p class="note droit-pied mention-pied">En nous écrivant, vous reconnaissez avoir lu nos conditions de location et notre politique de confidentialité. Vos coordonnées servent uniquement à répondre à votre demande.</p>
