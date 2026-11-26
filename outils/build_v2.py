@@ -153,21 +153,17 @@ CARTES = [
 ]
 # Toutes les photos, dans l'ordre de la visite, regroupées par pièce (Géraldine, 26/11/2026). Fichiers dans assets/img/visite/.
 GALERIE_GROUPES = [
-    ("Le séjour", [("sejour", "Le séjour et la salle à manger, ouverts sur la terrasse"), ("salon-1", "Le coin salon et son canapé-lit déplié"),
-                   ("salon-2", "Le coin salon, ouvert sur la terrasse")]),
+    ("Le séjour", [("sejour", "Le séjour et la salle à manger, canapé replié"), ("salon-1", "Le coin salon, canapé-lit déplié")]),
     ("La cuisine", [("cuisine-1", "La cuisine ouverte et son îlot, face au séjour"), ("cuisine-2", "La cuisine : plan de travail, four, micro-ondes, réfrigérateur"),
                     ("cuisine-3", "L'îlot de la cuisine"), ("cuisine-4", "La cuisine et l'entrée"), ("cuisine-5", "Four, micro-ondes et réfrigérateur-congélateur"),
                     ("cuisine-6", "Plaque à induction et ustensiles"), ("cuisine-7", "Préparer le dîner dans la cuisine")]),
-    ("La première chambre", [("chambre1-1", "La première chambre, son lit double et sa fenêtre"), ("chambre1-2", "La première chambre et ses rangements")]),
-    ("Sa salle d'eau privative", [("sde-privative", "La salle d'eau privative, douche à l'italienne")]),
-    ("La seconde chambre", [("chambre2-1", "La seconde chambre et ses deux lits"), ("chambre2-2", "La seconde chambre côté fenêtre"),
-                            ("chambre2-3", "La seconde chambre, côté mur")]),
+    ("La première chambre et sa salle d'eau privative", [("chambre1-1", "La première chambre, son lit double et sa fenêtre"), ("chambre1-2", "La première chambre et ses rangements"),
+                                                          ("sde-privative", "La salle d'eau privative, douche à l'italienne")]),
+    ("La seconde chambre", [("chambre2-2", "La seconde chambre côté fenêtre"), ("chambre2-3", "La seconde chambre, côté mur")]),
     ("La grande salle d'eau et le WC", [("sde-grande", "La grande salle d'eau"), ("wc", "Le WC indépendant")]),
-    ("Les terrasses", [("terrasse-1", "La terrasse et ses fauteuils"), ("terrasse-2", "La terrasse face à la mer"), ("terrasse-3", "La table de la terrasse"),
-                       ("apero-1", "Un verre sur la terrasse"), ("apero-2", "La terrasse, le soir venu"), ("apero-3", "La terrasse et la mer"),
+    ("Les terrasses", [("terrasse-2", "La terrasse face à la mer"), ("terrasse-3", "La table de la terrasse"), ("apero-3", "La terrasse et la mer"),
                        ("apero-4", "Les tables de la terrasse vues d'en haut"), ("vue", "La vue sur la Baie des Anges")]),
-    ("Le jardin et la piscine partagée", [("piscine-1", "La piscine partagée"), ("piscine-2", "La piscine et la villa"), ("piscine-3", "Les bords de la piscine"),
-                                          ("jardin", "Le jardin de la villa"), ("piscine-ciel", "La piscine et le jardin vus du ciel")]),
+    ("Le jardin et la piscine partagée", [("piscine-3", "La piscine partagée et le jardin"), ("piscine-ciel", "La piscine et le jardin vus du ciel")]),
 ]
 NB_PHOTOS = sum(len(g) for _, g in GALERIE_GROUPES)
 GALERIE_TOUT = []
