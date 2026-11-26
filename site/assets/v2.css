@@ -353,3 +353,4 @@ main section[id],.v2-bloc[id]{scroll-margin-top:70px}
 .v2 .v2-bandeau img{aspect-ratio:4/3}
 .v2 .v2-bandeau figcaption{font-size:clamp(1.25rem,1.8vw,1.6rem);font-weight:500;margin-top:14px;padding:0 2px}
 @media(max-width:700px){.v2 .v2-bandeau{width:100%;margin-left:0;transform:none}}
+.v2 .v2-cadre-gauche{object-position:0% 55%}

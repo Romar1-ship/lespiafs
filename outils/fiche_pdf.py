@@ -9,7 +9,9 @@ from pathlib import Path
 
 RACINE = Path(__file__).resolve().parent.parent
 SOURCE = RACINE / "contenu/kit-rh/fiche-logement.html"
-SORTIE = RACINE / "site/assets/docs/fiche-logement-les-piafs-des-collines.pdf"
+SORTIE = RACINE / "site/assets/docs/fiche-logement-les-piafs-des-collines.pdf"   # pour le bouton de téléchargement de la page
+# Ce qui se partage va dans MEDIA/OUT, pas dans le dépôt (Géraldine, 26/11/2026)
+PARTAGE = RACINE.parent.parent / "MEDIA/OUT/LCCA/Clients/PIAFS/Location Bail Mobilité/Kit RH"
 PLAYWRIGHT = "/opt/homebrew/lib/node_modules/playwright"
 
 SCRIPT = f"""
@@ -28,3 +30,8 @@ if __name__ == "__main__":
     SORTIE.parent.mkdir(parents=True, exist_ok=True)
     subprocess.run(["node", "-e", SCRIPT], check=True)
     print("  ", SORTIE.relative_to(RACINE))
+    import shutil
+    PARTAGE.mkdir(parents=True, exist_ok=True)
+    shutil.copy2(SORTIE, PARTAGE / SORTIE.name)
+    shutil.copy2(RACINE / "contenu/kit-rh/emails.md", PARTAGE / "emails-kit-rh.md")
+    print("   partage :", PARTAGE)
