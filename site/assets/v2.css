@@ -220,3 +220,12 @@ main section[id],.v2-bloc[id]{scroll-margin-top:70px}
 .v2-ville p{font-size:1.08rem;line-height:1.65}
 @media(max-width:860px){.v2-ville{grid-template-columns:1fr}}
 #habiter .v2-titre-xl{font-weight:700}
+/* Un seul style pour tous les textes courants, plus fin (Géraldine, 26/11/2026) */
+.v2 p,.v2 li,.v2 dd,.v2 details p{font-weight:300}
+.v2 .v2-bloc-texte p,.v2 .v2-ville p,.v2 .v2-reperes p,.v2 details p,.v2 .v2-offre p,.v2 #prix .v2-detail-prix,.v2 .v2-liste li,.v2 .v2-acces-2 p,.v2 .v2-titre-section .v2-lead,.v2 #demande .v2-lead,.v2 .v2-citation p{font-size:1.08rem;line-height:1.65;font-weight:300}
+.v2 .v2-citation p{font-size:1.2rem;line-height:1.55}
+.v2 .v2-atouts li,.v2 .v2-sous-prix{font-weight:700}
+.v2 .v2-prix,.v2 .v2-montant,.v2 .v2-offre-titre,.v2 .v2-acces-q,.v2 .v2-intro-1{font-weight:500}
+.v2 strong{font-weight:600}
+.v2 .v2-reperes .v2-liste .pic-s{color:var(--v2-dore)}
+.v2 .v2-reperes .v2-liste li{color:#fff}

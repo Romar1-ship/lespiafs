@@ -106,12 +106,18 @@ PICTOS_V2 = {"goutte": '<path d="M16 4c-5 7-8 11-8 15a8 8 0 0016 0c0-4-3-8-8-15z
              "enveloppe": '<rect x="4" y="7" width="24" height="18" rx="2"/><path d="M4 9l12 9 12-9"/>',
              "telephone": '<path d="M8 4h5l2 6-3 2c1.5 3.5 4.5 6.5 8 8l2-3 6 2v5c0 1-1 2-2 2C14 26 6 18 6 6c0-1 1-2 2-2z"/>',
              "bus": '<rect x="6" y="4" width="20" height="21" rx="3"/><path d="M6 15h20M6 10h20M10 25v3M22 25v3"/><circle cx="11" cy="20" r="1.2"/><circle cx="21" cy="20" r="1.2"/>',
+             "seche": '<rect x="6" y="4" width="20" height="24" rx="2"/><path d="M6 9h20"/><circle cx="16" cy="18" r="6"/><path d="M13 16.5c1 1 2-1 3 0s2 1 3 0M13 19.5c1 1 2-1 3 0s2 1 3 0"/>',
+             "linge": '<path d="M5 12h22v5H5zM7 17h18v5H7zM5 22h22v5H5z"/><path d="M9 8c2-3 4-3 7 0s5 3 7 0"/>',
              "details": '<rect x="6" y="4" width="20" height="24" rx="2"/><path d="M10 11l2 2 3.5-3.5M10 19l2 2 3.5-3.5M19 11.5h3M19 19.5h3"/>'}
 SPRITE_V2 = '<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>' + "".join(
     f'<symbol id="i-{n}" viewBox="0 0 32 32">{d}</symbol>' for n, d in PICTOS_V2.items()) + '</defs></svg>'
 
 ATOUTS = [("wifi", "Fibre"), ("cuisine", "Cuisine équipée"), ("parking", "Parking privé"), ("piscine", "Piscine partagée")]
 ATOUTS_HTML = "".join(f'<li>{pic(ic, "pic-s")}<span>{t}</span></li>' for ic, t in ATOUTS)
+
+# « Les détails qui comptent » : un élément par ligne avec son picto (Géraldine, 26/11/2026).
+DETAILS = [("machine", "Lave-linge"), ("seche", "Sèche-linge"), ("linge", "Linge de maison fourni avec rechange"),
+           ("clim", "Climatisation réversible"), ("parking", "Une place de parking privée")]
 
 def liste_pictos(elements):
     return '<ul class="v2-liste">' + "".join(f'<li>{pic(ic, "pic-s")}<span>{E(t)}</span></li>' for ic, t in elements) + "</ul>"
@@ -139,7 +145,7 @@ def corps():
     sans_photo = [(t, x) for n, t, x in PIECES if not n]
     pieces = "".join(bloc(photo(n), E(t), paras(x), inverse=k % 2 == 1, ton="corail" if k % 2 else "bleu", picto=PICTOS[t]).replace('<h2 class="v2-t', '<h3 class="v2-t').replace("</h2>", "</h3>")
                      for k, (n, t, x) in enumerate(avec_photo))
-    reperes = "".join(f'<div>{pic(PICTOS[t], "pic v2-pic")}<h3>{E(t)}</h3>{paras(x)}</div>' for t, x in sans_photo)
+    reperes = "".join(f'<div>{pic(PICTOS[t], "pic v2-pic")}<h3>{E(t)}</h3>{liste_pictos(DETAILS) if t == "Les détails qui comptent" else paras(x)}</div>' for t, x in sans_photo)
     gal = "".join(f'<a href="{{R}}assets/img/{n}.jpg"{" class=\"g\"" if g else ""}>{img(n, a)}</a>' for n, a, g in b.GALERIE[:9])
     fiche = "".join(f'<div class="fiche-bloc"><h3>{pic(ic)}{E(t)}</h3><dl>'
                     + "".join(f'<dt>{pic(PICTO_LIGNE.get(k, ic), "pic-s")}{E(k)}</dt><dd>{insecable(E(v))}</dd>' for k, v in lignes) + "</dl></div>" for t, ic, lignes in FICHE)
