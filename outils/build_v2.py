@@ -79,10 +79,17 @@ FICHE = [
                                     ("Extérieur", "Table sous store sur la terrasse"), ("Stationnement", "1 place privée dans l'enceinte de la villa"),
                                     ("Piscine", "Partagée, selon horaires")]),
     ("Contrat", "plume", [("Bail", "Bail mobilité de 1 à 10 mois, signé par la personne logée"), ("Payeur", "Le locataire, ou son employeur avec une lettre de prise en charge"),
-                          ("Pièces", "Justificatif du motif de mobilité avant signature"),
+                          ("Pièces à fournir", "Justificatif du motif de mobilité avant signature"),
                           ("Garantie", "Aucun dépôt de garantie. Garanties examinées avec le dossier"),
                           ("Quittance", "Au nom du locataire, mentionnant le payeur"), ("Arrivée", "Remise des clés et état des lieux avec le bailleur")]),
 ]
+
+# Un picto par ligne de la fiche technique, pour la lecture en diagonale (Géraldine, 26/11/2026).
+PICTO_LIGNE = {"Surface habitable": "plan", "Terrasses": "soleil", "Véranda buanderie": "machine", "Pièces": "porte", "Chambres": "lit",
+               "Salles d'eau": "douche", "WC": "douche", "Situation": "maison", "Vue": "soleil", "DPE": "energie",
+               "Chauffage et climatisation": "clim", "Internet": "wifi", "Cuisine": "cuisine", "Linge": "machine", "Travail": "ordi",
+               "Extérieur": "table", "Stationnement": "parking", "Piscine": "piscine", "Bail": "plume", "Payeur": "societe",
+               "Pièces à fournir": "facture", "Garantie": "cle", "Quittance": "facture", "Arrivée": "valise"}
 
 MOTIFS = ["Mission professionnelle temporaire", "Mutation", "Formation professionnelle", "Études supérieures", "Apprentissage", "Stage", "Service civique"]
 
@@ -110,7 +117,7 @@ def corps():
     reperes = "".join(f'<div>{pic(PICTOS[t], "pic v2-pic")}<h3>{E(t)}</h3>{paras(x)}</div>' for t, x in sans_photo)
     gal = "".join(f'<a href="{{R}}assets/img/{n}.jpg"{" class=\"g\"" if g else ""}>{img(n, a)}</a>' for n, a, g in b.GALERIE[:9])
     fiche = "".join(f'<div class="fiche-bloc"><h3>{pic(ic)}{E(t)}</h3><dl>'
-                    + "".join(f"<dt>{E(k)}</dt><dd>{E(v)}</dd>" for k, v in lignes) + "</dl></div>" for t, ic, lignes in FICHE)
+                    + "".join(f'<dt>{pic(PICTO_LIGNE.get(k, ic), "pic-s")}{E(k)}</dt><dd>{insecable(E(v))}</dd>' for k, v in lignes) + "</dl></div>" for t, ic, lignes in FICHE)
     faq = "".join(f"<details><summary>{b.fine(E(q))}</summary><p>{b.fine(E(r))}</p></details>" for q, r in FAQ)
     avis = "".join(f'<blockquote class="v2-citation"><p>« {E(q)} »</p><cite>{E(c)}</cite></blockquote>' for q, c in AVIS)
     offre = f"""<aside class="v2-offre"><p class="v2-offre-titre">Vous restez 10 mois ? Le dernier mois de loyer est offert.</p>

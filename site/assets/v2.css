@@ -152,3 +152,7 @@ main section[id],.v2-bloc[id]{scroll-margin-top:70px}
 .v2 .v2-pic{width:52px;height:52px;stroke:var(--v2-bleu);stroke-width:1.3;margin:0 0 18px}
 .v2 .v2-pic.corail{stroke:var(--v2-corail)}
 .v2 .v2-reperes .v2-pic{stroke:var(--v2-dore);width:46px;height:46px}
+/* Pictos de la fiche technique */
+.v2 .fiche dt{display:flex;align-items:flex-start}
+.v2 .fiche dt .pic-s{width:22px;height:22px;color:var(--v2-bleu);stroke-width:1.5;margin:1px 12px 0 0}
+.v2 .fiche-bloc h3 .pic{stroke:var(--v2-bleu)}
