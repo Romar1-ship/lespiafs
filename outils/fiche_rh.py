@@ -60,7 +60,7 @@ PLACE = [("lit", "Deux chambres, dont une avec salle d'eau privative"),
          ("cuisine", "Cuisine équipée, buanderie et espace de travail")]
 CONTRAT_COURT = [("calendrier", "De 1 à 10 mois en bail mobilité"), ("plume", "Contrat signé par l'occupant éligible"),
                  ("societe", "Prise en charge employeur possible"), ("cle", "Aucun dépôt de garantie")]
-INCLUS2 = [("goutte", "Eau"), ("eclair", "Électricité"), ("clim", "Climatisation, chauffage"), ("wifi", "Fibre"),
+INCLUS2 = [("goutte", "Eau"), ("eclair", "Électricité"), ("clim", "Climatisation, chauffage"), ("wifi", "Fibre<small>Wi-Fi · 540 Mb/s mesurés</small>"),
            ("parking", "Parking"), ("piscine", "Piscine partagée"), ("linge", "Linge de maison avec rechange")]
 
 CSS = """
@@ -204,6 +204,9 @@ h2{font-size:11pt;font-weight:700;text-transform:uppercase;letter-spacing:.12em;
 .r .sortie .cta{margin:0 3mm 0 0}
 .r .sortie .liens{display:flex;align-items:center;flex-wrap:wrap;gap:2mm}
 .r .qr img{width:21mm;height:21mm}
+.r .tuiles li small{display:inline;font-size:7.4pt;opacity:.85;margin-left:1.6mm;font-weight:400;white-space:nowrap}
+.r .tuiles li:nth-child(4){grid-column:span 2}
+.r .tuiles li:last-child{grid-column:span 2}
 """
 
 def page1():
