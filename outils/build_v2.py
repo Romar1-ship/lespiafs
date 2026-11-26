@@ -220,7 +220,7 @@ def carte(n, ic, t, x):
     return f'<figure class="v2-carte">{photo(n)}<figcaption>{pic(ic, "pic v2-pic")}<h3>{E(t)}</h3>{paras(x)}</figcaption></figure>'
 
 def corps():
-    fond = AQUARELLE or "hero-baie"
+    fond = AQUARELLE or "hero-vue-v2"   # vue retouchée, ciel bleu et bateaux (Géraldine, 26/11/2026)
     mention_aqua = '<p class="v2-aqua">Interprétation aquarelle de la vue réelle.</p>' if AQUARELLE else ""
     cartes = "".join(carte(*c) for c in CARTES)
     details = f'<div class="v2-carte v2-carte-bleue">{pic("details", "pic v2-pic")}<h3>Les détails qui comptent</h3>{liste_pictos(DETAILS)}</div>'
@@ -250,7 +250,7 @@ def corps():
     return SPRITE_V2 + f"""<div class="v2">
 <section class="v2-hero">
   <div class="v2-cadre">
-    <picture><source media="(max-width:700px)" srcset="{{R}}assets/img/hero-baie-mobile.jpg"><img src="{{R}}assets/img/{fond}.jpg" alt="Vue sur la Baie des Anges depuis Les Piafs des Collines, à Nice Bellet." fetchpriority="high"></picture>
+    <picture><source media="(max-width:700px)" srcset="{{R}}assets/img/hero-vue-v2-mobile.jpg"><img src="{{R}}assets/img/{fond}.jpg" alt="Vue sur la Baie des Anges depuis Les Piafs des Collines, à Nice Bellet." fetchpriority="high"></picture>
     <h1><span class="h1-sur">Location meublée à Nice · Bail mobilité</span>À Nice pour travailler. <span class="v2-h1-2">Bien chez vous pour en profiter.</span></h1>
   </div>
   <div class="v2-l v2-hero-info">
