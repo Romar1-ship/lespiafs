@@ -30,6 +30,10 @@ def insecable(s):
     """Espaces insécables entre un nombre et son unité : « 175 € » ne se coupe pas en fin de ligne."""
     return re.sub(r"(\d) (€|m²|mois|minutes)", "\\1\u00a0\\2", s)
 
+def lignes(t):
+    """Un titre de deux phrases s'écrit sur deux lignes, une phrase par ligne (Géraldine, 26/11/2026)."""
+    return "".join(f'<span class="v2-ligne">{E(x)}</span>' for x in re.split(r"(?<=[.?!]) (?=[A-ZÀ-Ý])", t))
+
 def paras(*ps):
     return "".join(f"<p>{insecable(b.fine(E(x)))}</p>" for x in ps)
 
@@ -113,9 +117,9 @@ def corps():
 <section class="v2-hero">
   <div class="v2-cadre">
     <picture><source media="(max-width:700px)" srcset="{{R}}assets/img/hero-baie-mobile.jpg"><img src="{{R}}assets/img/{fond}.jpg" alt="Vue sur la Baie des Anges depuis Les Piafs des Collines, à Nice Bellet." fetchpriority="high"></picture>
-    <h1><span class="h1-sur">Location meublée à Nice · Bail mobilité</span>À Nice pour travailler. <span class="v2-h1-2">Bien chez vous pour en profiter.</span></h1>
   </div>
   <div class="v2-l">
+    <h1><span class="h1-sur">Location meublée à Nice · Bail mobilité</span>À Nice pour travailler. <span class="v2-h1-2">Bien chez vous pour en profiter.</span></h1>
     <p class="v2-lead">Votre mission vous amène à Nice. Installez-vous dans un appartement meublé de 77 m², avec deux chambres et deux terrasses face à la Baie des Anges. Pour 1 à 10 mois, sur la colline de Bellet.</p>
     <p class="v2-prix">3 650 € / mois <span>charges comprises</span></p>
     <p class="v2-actions"><a class="bouton blanc" href="#demande">Vérifier mes dates</a><a class="bouton contour" href="#logement">Voir l'appartement</a></p>
@@ -135,7 +139,7 @@ def corps():
 <div class="store" aria-hidden="true"></div>
 
 <section class="v2-blanc" id="habiter"><div class="v2-l">
-  {bloc(img("terrasse-vue-mer", "Terrasse de l'appartement avec table et vue sur la mer."), "Une mission temporaire. Un vrai chez\u2011vous.",
+  {bloc(photo("cuisine-sejour"), lignes("Une mission temporaire. Un vrai chez\u2011vous."),
         paras("Une cuisine pour garder vos habitudes. Deux chambres pour ne pas tout faire dans la même pièce. Une terrasse pour prendre le dîner dehors.",
               "Ici, vous louez un appartement entier, meublé et équipé. La vue est un plaisir en plus. Le confort du quotidien est déjà là.")
         + '<p><a class="bouton" href="#demande">Vérifier mes dates</a></p>')}
@@ -147,7 +151,7 @@ def corps():
 </div></section>
 
 <section class="v2-bleu v2-titre-section" id="logement"><div class="v2-l">
-  <h2 class="v2-t">Entrez. Vous avez de la place.</h2>
+  <h2 class="v2-t">{lignes("Entrez. Vous avez de la place.")}</h2>
   <p class="v2-lead">Au premier étage d'une villa, un appartement traversant de 77,51 m² avec deux chambres, deux salles d'eau et deux terrasses.</p>
 </div></section>
 <section class="v2-blanc v2-pieces"><div class="v2-l">
@@ -178,14 +182,14 @@ def corps():
 </div></section>
 
 <section class="v2-blanc" id="prescripteurs"><div class="v2-l">
-  {bloc(photo("cuisine-sejour"), "Vous logez un salarié ou un praticien en mobilité ?",
+  {bloc(photo("salon-canape-lit"), "Vous logez un salarié ou un praticien en mobilité ?",
         paras("Transmettez une proposition concrète : un appartement entier à Nice, deux chambres, un tarif mensuel charges comprises et les informations utiles réunies dans une fiche.",
               "Le bail mobilité est signé par la personne logée, si elle remplit les conditions d'éligibilité. Son employeur peut prendre en charge le loyer selon les modalités convenues.")
         + PRESCRIPTEUR_FIN)}
 </div></section>
 
 <section class="v2-marine" id="avis"><div class="v2-l">
-  <h2 class="v2-t">Ils ont habité ici. Ils en parlent mieux que nous.</h2>
+  <h2 class="v2-t">{lignes("Ils ont habité ici. Ils en parlent mieux que nous.")}</h2>
   <div class="v2-avis">{avis}</div>
   <p class="v2-note">Extraits du livre d'or de l'appartement.</p>
 </div></section>
