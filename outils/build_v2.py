@@ -283,7 +283,6 @@ def corps():
   <div class="champs">
     <div><label for="nom">Nom</label><input id="nom" name="Nom" autocomplete="name" required></div>
     <div><label for="email">Email</label><input id="email" name="Email" type="email" autocomplete="email" required></div>
-    <div><label for="tel">Téléphone (facultatif)</label><input id="tel" name="Téléphone" type="tel" autocomplete="tel"></div>
     <div><label for="occ">Nombre d'occupants</label><input id="occ" name="Nombre d'occupants" type="number" min="1" inputmode="numeric"></div>
     <div><label for="arr">Date d'arrivée souhaitée</label><input id="arr" name="Arrivée souhaitée" type="date"></div>
     <div><label for="dep">Date de départ souhaitée</label><input id="dep" name="Départ souhaité" type="date"></div>
@@ -298,8 +297,7 @@ def corps():
   <p class="v2-note">Les informations transmises servent à traiter votre demande de logement. N'envoyez pas de pièce d'identité ni de document confidentiel dans ce formulaire.</p>
   </form>
   <div class="v2-contact">
-    <a class="v2-encadre-contact v2-tel" href="tel:{b.TEL_LIEN}">{pic("telephone", "pic-s")}<span>{b.TEL}</span></a>
-    <a class="v2-encadre-contact" href="mailto:{b.MAIL}">{pic("enveloppe", "pic-s")}<span>{b.MAIL}</span></a>
+    <a class="v2-encadre-contact v2-tel" href="mailto:{b.MAIL}">{pic("enveloppe", "pic-s")}<span>{b.MAIL}</span></a>
   </div>
 </div></section>
 </div>"""
@@ -325,6 +323,8 @@ def generer():
     tete = tete.replace(f'href="{"../" * prof}assets/style.css">', f'href="{"../" * prof}assets/style.css">\n<link rel="stylesheet" href="{"../" * prof}assets/v2.css">')
     tete = tete.replace("<body>", '<body class="v2-page">', 1)
     contenu = tete + b.entete("mob", "", prof) + "<main>" + corps() + "</main>" + b.pied("mob", prof) + b.SCRIPT_GALERIE + SCRIPT_FORM + b.SCRIPT_REVEAL + "</body></html>\n"
+    # Contact par email uniquement sur cette page (Géraldine, 26/11/2026) : le téléphone du pied de page commun est retiré ici.
+    contenu = contenu.replace(f'<br><a href="tel:{b.TEL_LIEN}">{b.TEL}</a>', "")
     contenu = b.propre(contenu.replace("{R}", "../" * prof))
     contenu = b.poser_langues(contenu, None, "fr")
     f = b.SITE / CHEMIN
