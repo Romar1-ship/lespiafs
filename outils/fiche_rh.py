@@ -47,7 +47,7 @@ CONTRAT = [("plume", "Bail mobilité de 1 à 10 mois, signé par l'occupant éli
            ("societe", "Prise en charge du loyer par l'employeur possible, avec lettre de prise en charge"),
            ("cle", "Aucun dépôt de garantie · garanties examinées avec le dossier"),
            ("valise", "Remise des clés et état des lieux avec le bailleur"),
-           ("repere", "Nice, colline de Bellet · trajet à vérifier selon le lieu d'affectation")]
+           ("repere", "Nice, colline de Bellet · trajet selon le lieu d'affectation")]
 
 CSS = """
 @font-face{font-family:"Outfit";font-weight:100 900;src:url(../../site/assets/fonts/outfit-latin-wght.woff2) format("woff2")}
@@ -120,14 +120,14 @@ h2{font-size:11pt;font-weight:700;text-transform:uppercase;letter-spacing:.12em;
 
 /* recto seul */
 .une .bande{height:13mm}
-.une .hero{height:54mm}
+.une .hero{height:47mm}
 .une .hero img{object-position:50% 34%}
 .une .hero::after{content:none}
 .une .hero h1{top:6mm;bottom:auto;font-size:24pt;text-shadow:0 1px 10px rgba(0,40,120,.3)}
 .une .corps{padding:5mm 12mm 0}
-.une .accroche{font-size:15pt;margin:0 0 4.2mm}
-.une .reperes{margin:0 0 4.6mm}
-.une .reperes div{padding:2.4mm 1mm}
+.une .accroche{font-size:14.5pt;margin:0 0 3.6mm}
+.une .reperes{margin:0 0 4mm}
+.une .reperes div{padding:2mm 1mm;gap:.8mm}
 .une .reperes b{font-size:16pt}
 .une .reperes .ic{width:7mm;height:7mm}
 .une h2{font-size:10pt;margin:0 0 2.4mm;letter-spacing:.08em}
@@ -142,8 +142,8 @@ h2{font-size:11pt;font-weight:700;text-transform:uppercase;letter-spacing:.12em;
 .une .tuiles{gap:1.8mm}
 .une .tuiles li{padding:1.8mm 1.8mm;font-size:9.4pt;gap:1mm}
 .une .tuiles .ic{width:5.6mm;height:5.6mm}
-.une .budget .plus{font-size:9.6pt;margin-top:2.4mm}
-.une .action{bottom:14mm;padding:3.6mm 5mm}
+.une .budget .plus{font-size:9.6pt;margin-top:2.2mm}
+.une .action{bottom:13mm;padding:3.2mm 5mm}
 .une .action p.q{font-size:11.6pt}
 .une .action .liens a{font-size:10.6pt}
 .une .action .ic{width:5.6mm;height:5.6mm}
