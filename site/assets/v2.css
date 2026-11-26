@@ -243,3 +243,52 @@ main section[id],.v2-bloc[id]{scroll-margin-top:70px}
 .v2 .v2-contact{display:flex;flex-direction:column;align-items:flex-start;max-width:none}
 .v2 .v2-encadre-contact{width:fit-content;max-width:100%}
 .v2 .v2-encadre-contact.v2-tel{padding:16px 26px 16px 22px}
+/* ===== Passe du 26/11 après le retour de Brain validé par Géraldine ===== */
+/* Ouverture condensée : l'essentiel et le bouton dans le premier écran */
+.v2-cadre img{height:min(56vh,540px)}
+.v2 .v2-hero{padding-bottom:56px}
+.v2-hero-info{display:grid;grid-template-columns:1.2fr 1fr;gap:24px 48px;align-items:end;padding-top:34px}
+.v2 .v2-hero-faits p{font-size:clamp(1.35rem,2.4vw,2rem);font-weight:500;line-height:1.3;margin:0}
+.v2 .v2-hero-faits p+p{color:var(--v2-dore)}
+.v2 .v2-hero-action .v2-prix{margin:0 0 16px;font-size:clamp(1.9rem,3.4vw,2.8rem)}
+.v2 .v2-hero-action .v2-actions{margin:0 0 12px}
+.v2 .v2-hero .v2-micro{font-size:1rem;opacity:.95;font-weight:500}
+.v2 .v2-eligible{text-align:center;font-size:.92rem;opacity:.85;margin:22px 0 0}
+@media(max-width:860px){.v2-hero-info{grid-template-columns:1fr;gap:18px}}
+@media(max-width:700px){.v2-cadre img{height:44vh}.v2-hero-info{padding-top:24px}.v2 .v2-hero-faits p{font-size:1.25rem}}
+/* Habiter sans photo en double */
+.v2-habiter-texte{max-width:760px;margin:0 0 44px}
+/* Visite resserrée : cartes */
+.v2 .v2-visite{padding-top:80px}
+.v2-cartes{display:grid;grid-template-columns:repeat(3,1fr);gap:40px 28px}
+.v2-carte{margin:0}
+.v2-carte img{width:100%;aspect-ratio:4/3;object-fit:cover;margin-bottom:18px}
+.v2-carte .v2-pic{width:40px;height:40px;margin-bottom:10px}
+.v2-carte h3{font-weight:500;font-size:clamp(1.4rem,2vw,1.75rem);letter-spacing:-.01em;color:var(--v2-bleu);margin:0 0 .4em}
+.v2 .v2-carte p{margin:0}
+.v2-carte-bleue{background:var(--v2-bleu);color:#fff;padding:32px 30px}
+.v2-carte-bleue h3{color:#fff}
+.v2 .v2-carte-bleue .v2-pic{stroke:var(--v2-dore)}
+.v2 .v2-carte-bleue .v2-liste .pic-s{color:var(--v2-dore)}
+.v2-galerie-tout{margin-top:56px;background:none!important;border:0!important;padding:0!important;text-align:center}
+.v2 .v2-galerie-tout>summary{display:inline-block;padding:16px 30px;border:2px solid var(--v2-bleu);color:var(--v2-bleu);font-weight:700;text-transform:uppercase;letter-spacing:.06em;font-size:.95rem;cursor:pointer}
+.v2 .v2-galerie-tout>summary::after{content:none}
+.v2-galerie-tout .galerie{margin-top:32px;text-align:left}
+@media(max-width:900px){.v2-cartes{grid-template-columns:1fr 1fr}}
+@media(max-width:600px){.v2-cartes{grid-template-columns:1fr}}
+/* Localisation : plan et repères */
+.v2-acces-grille{display:grid;grid-template-columns:1.5fr 1fr;gap:clamp(28px,4vw,56px);align-items:start;margin-top:8px}
+.v2 .v2-acces .plan-nice{margin:0}
+.v2 .v2-acces .plan-nice svg{box-shadow:none;border-radius:0}
+.v2 .v2-acces .plan-nice figcaption{color:rgba(255,255,255,.8);font-size:.85rem}
+.v2 .v2-acces .v2-liste{margin:0 0 28px}
+.v2 .v2-acces .v2-liste li{color:#fff}
+.v2 .p-mer{fill:#0B5FA5}
+.v2 .p-trajet{stroke:var(--v2-corail)}
+.v2 .p-nom,.v2 .p-piafs-nom,.v2 .p-baie{font-family:"Outfit",system-ui,sans-serif}
+.v2 .p-min{font-family:"Outfit",system-ui,sans-serif;font-weight:700}
+.v2 .p-piafs-nom{font-weight:600}
+@media(max-width:900px){.v2-acces-grille{grid-template-columns:1fr}}
+.v2 .v2-blanc .v2-liste .pic-s{color:var(--v2-bleu)}
+.v2 .v2-acces-2 .v2-acces-q{line-height:1.25;margin-bottom:10px}
+#prescripteurs .v2-bloc .v2-t{font-size:clamp(1.9rem,3vw,2.7rem)}

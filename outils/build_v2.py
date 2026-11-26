@@ -23,6 +23,9 @@ AQUARELLE = None
 # Encadré « dernier mois offert » : ses effets en cas de départ anticipé sont à valider par le bailleur
 # et le référent juridique avant publication (brief, bloc 6). Passer à False pour l'omettre partout.
 OFFRE_10E_MOIS = True
+# Formulation de Themis, 26/11/2026 (art. 25-15 et 25-17 de la loi 89-462, art. 18, L121-3 c. conso.)
+OFFRE_TITRE = "Bail de 10 mois mené à son terme : le 10e loyer est offert"
+OFFRE_TEXTE = "Si vous réglez les 9 premiers loyers de 3 475 € et restez jusqu'au terme du bail de 10 mois, le loyer du 10e mois (3 475 €) est offert, une seule fois. Le loyer reste de 3 475 € par mois sur toute la durée, le forfait de charges de 175 € reste dû chaque mois, le 10e compris, et un départ avant le terme ne donne pas droit à cette remise."
 
 ALT = {n: a for n, a, _ in b.GALERIE}
 
@@ -36,18 +39,6 @@ def lignes(t):
 
 def paras(*ps):
     return "".join(f"<p>{insecable(b.fine(E(x)))}</p>" for x in ps)
-
-# Bloc 4 · le logement en images : (photo ou None, titre, texte)
-PIECES = [
-    ("sejour-salle-a-manger", "La pièce de vie", "Un salon et un espace repas ouverts sur la cuisine, avec la mer à l'horizon."),
-    ("cuisine-ilot", "La cuisine", "Plaque à induction, four, micro-ondes, lave-vaisselle et réfrigérateur-congélateur : de quoi cuisiner au quotidien."),
-    ("chambre-parentale", "La première chambre", "13,91 m² et une salle d'eau privative avec douche à l'italienne."),
-    ("chambre-2", "La seconde chambre", "12,88 m² et un poste de travail. La fibre est installée dans le logement."),
-    (None, "Les salles d'eau", "Deux salles d'eau, dont une privative, et un WC indépendant."),
-    ("terrasse-vue-mer", "Les terrasses", "Deux orientations, 26,33 m² au total, une table sous le store et une vue sur la Baie des Anges."),
-    (None, "Les détails qui comptent", "Lave-linge, sèche-linge, linge de maison fourni avec rechange, climatisation réversible et une place de parking privée."),
-    ("piscine-vue-aerienne", "La piscine", "Une piscine partagée dans le jardin de la villa, accessible selon les horaires prévus."),
-]
 
 # Bloc 8 · avis, citations fidèles au livre d'or
 AVIS = [("Une vue à couper le souffle, un appartement des plus agréables et d'une propreté irréprochable.", "Mélody, Nancy"),
@@ -63,7 +54,7 @@ FAQ = [
     ("Mon employeur peut-il payer ?", "Oui. Le bail reste signé par la personne logée. Une lettre de prise en charge permet d'organiser le paiement par l'employeur. La quittance est au nom du locataire et mentionne le payeur."),
     ("Faut-il un dépôt de garantie ?", "Non. Le bail mobilité interdit le dépôt de garantie. Une caution peut toutefois être demandée : les garanties sont examinées avec le dossier."),
     ("Qu'est-ce qui reste à ma charge ?", "Le ménage et l'assurance habitation ne sont pas compris. Le prix mensuel de 3 650 € comprend le loyer et le forfait de charges annoncé."),
-    ("Puis-je partir avant la fin ?", "Le locataire peut donner congé avec un préavis d'un mois, dans les conditions prévues par la loi."),
+    ("Puis-je partir avant la fin ?", "Oui. Vous pouvez quitter le logement à tout moment en donnant congé au bailleur avec un préavis d'un mois, par lettre recommandée avec avis de réception, par acte de commissaire de justice ou par remise en main propre contre récépissé. Le loyer et le forfait de charges restent dus jusqu'à la fin du préavis. Aucune indemnité de départ n'est demandée. Seule la remise du 10e loyer, réservée aux baux menés jusqu'à leur terme de 10 mois, n'est pas accordée."),
     ("Comment se passe l'arrivée ?", "La remise des clés et l'état des lieux sont organisés avec le bailleur."),
     ("La piscine est-elle privée ?", "Non. Elle est partagée, avec des horaires d'accès."),
     ("Peut-on louer pour des vacances ?", "Non. Cette offre concerne exclusivement la location en bail mobilité, avec justificatif d'éligibilité. Elle n'est pas proposée à la nuit."),
@@ -73,6 +64,7 @@ FAQ = [
 FICHE = [
     ("Le logement", "plan", [("Surface habitable", "77,51 m² (mesurage loi Boutin, 27/09/2026)"), ("Terrasses", "10,58 m² + 15,75 m², soit 26,33 m²"),
                              ("Véranda buanderie", "4,95 m², hors surface habitable"), ("Pièces", "3, dont 2 chambres"), ("Chambres", "13,91 m² et 12,88 m²"),
+                             ("Couchages", "Chambre 1 : lit double. Chambre 2 : deux lits simples de 80 × 200 cm ou un lit double de 160 cm. Salon : canapé-lit"),
                              ("Salles d'eau", "2, dont 1 privative avec douche à l'italienne"), ("WC", "1 indépendant"),
                              ("Situation", "1er étage d'une villa, logement traversant"), ("Vue", "Baie des Anges")]),
     ("Énergie et confort", "energie", [("DPE", "C en énergie, A en climat"), ("Chauffage et climatisation", "Climatisation réversible"), ("Internet", "Fibre")]),
@@ -88,7 +80,7 @@ FICHE = [
 ]
 
 # Un picto par ligne de la fiche technique, pour la lecture en diagonale (Géraldine, 26/11/2026).
-PICTO_LIGNE = {"Surface habitable": "plan", "Terrasses": "soleil", "Véranda buanderie": "machine", "Pièces": "porte", "Chambres": "lit",
+PICTO_LIGNE = {"Surface habitable": "plan", "Terrasses": "soleil", "Véranda buanderie": "machine", "Pièces": "porte", "Chambres": "lit", "Couchages": "lit",
                "Salles d'eau": "douche", "WC": "douche", "Situation": "maison", "Vue": "soleil", "DPE": "energie",
                "Chauffage et climatisation": "clim", "Internet": "wifi", "Cuisine": "cuisine", "Linge": "machine", "Travail": "ordi",
                "Extérieur": "table", "Stationnement": "parking", "Piscine": "piscine", "Bail": "plume", "Payeur": "societe",
@@ -110,6 +102,7 @@ PICTOS_V2 = {"goutte": '<path d="M16 4c-5 7-8 11-8 15a8 8 0 0016 0c0-4-3-8-8-15z
              "linge": '<path d="M5 12h22v5H5zM7 17h18v5H7zM5 22h22v5H5z"/><path d="M9 8c2-3 4-3 7 0s5 3 7 0"/>',
              "pieton": '<circle cx="17" cy="5" r="2.5"/><path d="M16 10l-5 5 1 5M16 10l3 5 5 2M16 10l-2 9 5 4 1 6M14 19l-4 5-3 4"/>',
              "lune": '<path d="M20 4a12 12 0 1 0 8 18A10 10 0 0 1 20 4z"/>',
+             "canape": '<path d="M4 14v10h24V14M4 14a2 2 0 0 1 4 0v4h16v-4a2 2 0 0 1 4 0M8 18v-8h16v8M7 24v3M25 24v3"/>',
              "details": '<rect x="6" y="4" width="20" height="24" rx="2"/><path d="M10 11l2 2 3.5-3.5M10 19l2 2 3.5-3.5M19 11.5h3M19 19.5h3"/>'}
 SPRITE_V2 = '<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>' + "".join(
     f'<symbol id="i-{n}" viewBox="0 0 32 32">{d}</symbol>' for n, d in PICTOS_V2.items()) + '</defs></svg>'
@@ -144,38 +137,102 @@ def bloc(photo_html, titre_html, contenu, inverse=False, ton="bleu", ident="", p
     return (f'<div class="v2-bloc{" inverse" if inverse else ""}"{i}><div class="v2-bloc-texte">{pi}{f'<h2 class="v2-t {ton}">{titre_html}</h2>' if titre_html else ""}{contenu}</div>'
             f'<div class="v2-bloc-photo">{photo_html}</div></div>')
 
+# Visite resserrée (retour de Brain validé par Géraldine, 26/11/2026) : chambres, salles d'eau, salon, piscine, équipement.
+# Le séjour, la cuisine et les terrasses sont déjà dans le trio : ils ne reviennent pas ici.
+CARTES = [
+    ("chambre-1-lit", "lit", "La première chambre", "13,91 m², un lit double et une salle d'eau privative avec douche à l'italienne."),
+    ("chambre-2-lits", "ordi", "La seconde chambre", "12,88 m², deux lits simples de 80 × 200 cm ou un lit double de 160 cm, et un poste de travail. La fibre est installée dans le logement."),
+    ("salle-eau-vasque", "douche", "Les salles d'eau", "Deux salles d'eau, dont une privative, et un WC indépendant."),
+    ("salon-canape-lit", "canape", "Le salon", "Un canapé-lit dans la pièce de vie."),
+    ("piscine-jardin", "piscine", "La piscine", "Une piscine partagée dans le jardin de la villa, accessible selon les horaires prévus."),
+]
+GALERIE_TOUT = b.GALERIE[:9] + [("salle-eau-douche", "La salle d'eau avec douche à l'italienne", False), ("wc", "Le WC indépendant", False),
+                                 ("piscine-jardin", "La piscine partagée et le jardin", False), ("terrasse-salon", "La terrasse et ses fauteuils", False)]
+ALT.update({n: a for n, a, _ in GALERIE_TOUT})
+ALT.update({"chambre-1-lit": "La première chambre et son lit double", "chambre-2-lits": "La seconde chambre et ses deux lits simples",
+            "salle-eau-vasque": "Une des deux salles d'eau"})
+
+# Repères de localisation gardés (Géraldine : trajets vérifiés depuis le logement, hors trafic, 26/11/2026).
+REPERES_ACCES = [("bus", "Le bus 60 passe à 50 mètres de la villa"), ("pieton", "Le tram en bas de la colline, moins de 10 minutes de la porte au quai"),
+                 ("parasol", "La plage à 300 mètres du bas de la colline"), ("parking", "Une place de parking privée comprise")]
+
+# Entrée employeur (retour de Brain validé par Géraldine, 26/11/2026) : espace, équipement, budget identifié, prise en charge.
+EMPLOYEUR = [("plan", "Un appartement entier de 77 m², deux chambres, deux salles d'eau"),
+             ("equipement", "Cuisine équipée, fibre, poste de travail, linge fourni"),
+             ("facture", "Un budget identifié : 3 650 € par mois charges comprises, de 1 à 10 mois"),
+             ("societe", "Prise en charge du loyer par l'employeur possible, bail au nom de l'occupant éligible")]
+
+def plan_nice():
+    """Plan schématique de Nice, repris de la page du 09/11 : pas une carte, positions composées à la main, ouest à gauche, mer en bas.
+    Monaco et Sophia Antipolis sont indiqués en direction, sans temps (retour de Brain, 26/11/2026)."""
+    cote = "M0 560 C 120 566, 230 572, 318 584 C 350 590, 372 604, 398 606 C 430 604, 470 568, 540 532 C 620 492, 700 462, 780 448 C 820 441, 850 446, 880 440 C 930 428, 1010 408, 1100 398 L 1100 660 L 0 660 Z"
+    vagues = "".join(f'<path class="p-vague" d="M{x} {y}q12 -8 24 0t24 0t24 0"/>' for x, y in ((120, 618), (300, 640), (520, 600), (700, 560), (900, 520), (980, 610), (640, 640)))
+    collines = ('<path class="p-colline c1" d="M190 430 C 270 330, 370 278, 455 282 C 560 288, 640 360, 705 430 Z"/>'
+                '<path class="p-colline c2" d="M300 440 C 370 392, 450 368, 530 378 C 590 388, 630 412, 665 440 Z"/>'
+                '<path class="p-colline c3" d="M660 410 C 740 330, 850 300, 960 322 C 1020 336, 1060 358, 1100 372 L 1100 420 Z"/>')
+    var = '<path class="p-var" d="M285 0 C 300 160, 270 330, 300 450 C 312 500, 316 545, 324 586"/>'
+    ax, ay = 450, 376
+    lieux = [("CHU Pasteur 2", "hopital", 905, 300, "15", 1), ("Campus Valrose", "campus", 790, 320, "13", 1),
+             ("Centre Lacassagne", "hopital", 590, 392, "16", 1), ("Clinique Kantys", "hopital", 735, 380, "12", 1),
+             ("Aéroport", "avion", 400, 590, "20", -1), ("La plage", "parasol", 545, 528, "7", -1)]
+    traits, points = "", ""
+    for nom, ico, x, y, mn, sens in lieux:
+        traits += f'<path class="p-trajet" d="M{ax} {ay} Q {(ax + x) / 2:.0f} {min(ay, y) - 12} {x} {y}"/>'
+        ty = 38 if sens > 0 else -50
+        points += (f'<g class="p-lieu" transform="translate({x} {y})"><circle r="17"/><use href="#i-{ico}" x="-11" y="-11" width="22" height="22"/>'
+                   f'<text class="p-nom" y="{ty}" text-anchor="middle">{E(nom)}</text><text class="p-min" y="{ty + 21}" text-anchor="middle">{mn} min</text></g>')
+    bords = ('<g class="p-bord" transform="translate(1030 170)"><use href="#i-couronne" x="-12" y="-38" width="24" height="24"/>'
+             '<text text-anchor="middle" class="p-nom">Monaco →</text></g>'
+             '<g class="p-bord" transform="translate(110 440)"><use href="#i-puce" x="-12" y="-38" width="24" height="24"/>'
+             '<text text-anchor="middle" class="p-nom">← Sophia Antipolis</text></g>')
+    reperes = ('<g class="p-ville" transform="translate(880 432)"><circle r="7"/><text x="14" y="-12">Centre-ville</text></g>'
+               '<text class="p-promenade" x="560" y="560" transform="rotate(-17 560 560)">Promenade des Anglais</text>'
+               '<text class="p-baie" x="680" y="625">Baie des Anges</text>'
+               '<text class="p-varnom" x="262" y="220" transform="rotate(86 262 220)">le Var</text>')
+    maison = (f'<g class="p-piafs" transform="translate({ax} {ay})"><circle r="36"/><image href="{{R}}assets/img/logo-oiseau-blanc.svg" x="-20" y="-24" width="40" height="44"/>'
+              '<text class="p-piafs-nom" y="-56" text-anchor="middle">Les Piafs des Collines</text>'
+              '<text class="p-piafs-sous" y="-36" text-anchor="middle">sur la colline de Bellet</text></g>')
+    return (f'<figure class="plan-nice"><svg viewBox="0 0 1100 660" role="img" aria-label="Plan schématique de Nice : le logement sur la colline de Bellet, à 7 à 20 minutes en voiture de la plage, des hôpitaux, du campus et de l' + "'" + 'aéroport">'
+            f'<rect class="p-terre" width="1100" height="660"/>{collines}{var}<path class="p-mer" d="{cote}"/>{vagues}{reperes}{traits}{points}{bords}{maison}</svg>'
+            '<figcaption>Plan schématique, pas à l' + "'" + 'échelle. Temps en voiture hors trafic, depuis le logement.</figcaption></figure>')
+
+def carte(n, ic, t, x):
+    return f'<figure class="v2-carte">{photo(n)}<figcaption>{pic(ic, "pic v2-pic")}<h3>{E(t)}</h3>{paras(x)}</figcaption></figure>'
+
 def corps():
     fond = AQUARELLE or "hero-baie"
     mention_aqua = '<p class="v2-aqua">Interprétation aquarelle de la vue réelle.</p>' if AQUARELLE else ""
-    avec_photo = [(n, t, x) for n, t, x in PIECES if n]
-    sans_photo = [(t, x) for n, t, x in PIECES if not n]
-    pieces = "".join(bloc(photo(n), E(t), paras(x), inverse=k % 2 == 1, ton="corail" if k % 2 else "bleu", picto=PICTOS[t]).replace('<h2 class="v2-t', '<h3 class="v2-t').replace("</h2>", "</h3>")
-                     for k, (n, t, x) in enumerate(avec_photo))
-    reperes = "".join(f'<div>{pic(PICTOS[t], "pic v2-pic")}<h3>{E(t)}</h3>{liste_pictos(DETAILS) if t == "Les détails qui comptent" else paras(x)}</div>' for t, x in sans_photo)
-    gal = "".join(f'<a href="{{R}}assets/img/{n}.jpg"{" class=\"g\"" if g else ""}>{img(n, a)}</a>' for n, a, g in b.GALERIE[:9])
+    cartes = "".join(carte(*c) for c in CARTES)
+    details = f'<div class="v2-carte v2-carte-bleue">{pic("details", "pic v2-pic")}<h3>Les détails qui comptent</h3>{liste_pictos(DETAILS)}</div>'
+    gal = "".join(f'<a href="{{R}}assets/img/{n}.jpg"{" class=\"g\"" if g else ""}>{img(n, a)}</a>' for n, a, g in GALERIE_TOUT)
     fiche = "".join(f'<div class="fiche-bloc"><h3>{pic(ic)}{E(t)}</h3><dl>'
                     + "".join(f'<dt>{pic(PICTO_LIGNE.get(k, ic), "pic-s")}{E(k)}</dt><dd>{insecable(E(v))}</dd>' for k, v in lignes) + "</dl></div>" for t, ic, lignes in FICHE)
     faq = "".join(f"<details><summary>{b.fine(E(q))}</summary><p>{b.fine(E(r))}</p></details>" for q, r in FAQ)
     avis = "".join(f'<blockquote class="v2-citation"><p>« {E(q)} »</p><cite>{E(c)}</cite></blockquote>' for q, c in AVIS)
-    offre = f"""<aside class="v2-offre"><p class="v2-offre-titre">Vous restez 10 mois ? Le dernier mois de loyer est offert.</p>
-    {paras("Une remise de 3 475 €, accordée une fois pour un bail de 10 mois. Le forfait de charges de 175 € reste dû le dernier mois. Les conditions d'application figurent au bail.")}</aside>""" if OFFRE_10E_MOIS else ""
+    offre = f"""<aside class="v2-offre"><p class="v2-offre-titre">{E(OFFRE_TITRE)}</p>
+    {paras(OFFRE_TEXTE)}</aside>""" if OFFRE_10E_MOIS else ""
     motifs = "".join(f"<option>{E(m)}</option>" for m in MOTIFS)
     publics = "".join(f'<li>{pic(ic, "pic-s")}<span>{t}</span></li>' for ic, t in
                       (("hopital", "Hôpitaux"), ("societe", "Entreprises"), ("campus", "Universités"), ("valise", "Services de mobilité")))
-    PRESCRIPTEUR_FIN = (f'<ul class="v2-publics">{publics}</ul>'
-                        + '<p class="v2-reserve">Sous réserve de disponibilités et d' + "'" + 'un dossier éligible</p>'
-                        + '<p><a class="bouton" href="#demande" data-pour="tiers">Nous parler d' + "'" + 'une arrivée</a></p>')
+    reserve = "Sous réserve de disponibilités et d'un dossier éligible"
+    parler = "Nous parler d'une arrivée"
+    acces_texte = "Les Piafs se trouvent sur la <strong>colline de Bellet</strong>, à l'ouest de Nice."
     return SPRITE_V2 + f"""<div class="v2">
 <section class="v2-hero">
   <div class="v2-cadre">
     <picture><source media="(max-width:700px)" srcset="{{R}}assets/img/hero-baie-mobile.jpg"><img src="{{R}}assets/img/{fond}.jpg" alt="Vue sur la Baie des Anges depuis Les Piafs des Collines, à Nice Bellet." fetchpriority="high"></picture>
     <h1><span class="h1-sur">Location meublée à Nice · Bail mobilité</span>À Nice pour travailler. <span class="v2-h1-2">Bien chez vous pour en profiter.</span></h1>
   </div>
-  <div class="v2-l">
-    <div class="v2-intro"><p class="v2-intro-1">Votre mission vous amène à Nice.</p><p class="v2-intro-lignes"><span>Installez-vous dans un appartement meublé de <strong>77 m²</strong>,</span><span>avec <strong>deux chambres</strong> et <strong>deux terrasses</strong> face à la <strong>Baie des Anges</strong>.</span><span>Pour <strong>1 à 10 mois</strong>, sur la colline de Bellet.</span></p></div>
-    <p class="v2-prix">3 650 € / mois <span>charges comprises</span></p>
-    <p class="v2-actions"><a class="bouton blanc" href="#demande">Vérifier mes dates</a><a class="bouton contour" href="#logement">Voir l'appartement</a></p>
-    <p class="v2-micro">Location réservée aux personnes éligibles au bail mobilité</p>
+  <div class="v2-l v2-hero-info">
+    <div class="v2-hero-faits">
+      <p>77 m² · 2 chambres · Terrasses vue mer</p>
+      <p>Nice Bellet · De 1 à 10 mois</p>
+    </div>
+    <div class="v2-hero-action">
+      <p class="v2-prix">3 650 €/mois, <span>charges comprises</span></p>
+      <p class="v2-actions"><a class="bouton blanc" href="#demande">Vérifier mes dates</a></p>
+      <p class="v2-micro">Prise en charge employeur possible</p>
+    </div>
     {mention_aqua}
   </div>
 </section>
@@ -187,54 +244,42 @@ def corps():
     <div><b>26<small>m²</small></b><span>Deux terrasses vue mer</span></div>
   </div>
   <ul class="v2-atouts">{ATOUTS_HTML}</ul>
+  <p class="v2-eligible">Location réservée aux personnes éligibles au bail mobilité</p>
 </div></section>
 <div class="store" aria-hidden="true"></div>
 
 <section class="v2-blanc" id="habiter"><div class="v2-l">
-  <h2 class="v2-t bleu v2-titre-xl">{lignes("Une mission temporaire. Un vrai chez\u2011vous.")}</h2>
-  {bloc(photo("cuisine-sejour"), "",
-        paras("Une cuisine pour garder vos habitudes. Deux chambres pour ne pas tout faire dans la même pièce. Une terrasse pour prendre le dîner dehors.",
-              "Ici, vous louez un appartement entier, meublé et équipé. La vue est un plaisir en plus. Le confort du quotidien est déjà là.")
-        + '<p><a class="bouton" href="#demande">Vérifier mes dates</a></p>')}
+  <h2 class="v2-t bleu v2-titre-xl">{lignes("Une mission temporaire. Un vrai chez‑vous.")}</h2>
+  <div class="v2-habiter-texte">{paras("Une cuisine pour garder vos habitudes. Deux chambres pour ne pas tout faire dans la même pièce. Une terrasse pour prendre le dîner dehors.",
+        "Ici, vous louez un appartement entier, meublé et équipé. La vue est un plaisir en plus. Le confort du quotidien est déjà là.")}</div>
   <div class="v2-trio">
     <figure>{img("terrasse-vue-mer", "Terrasse de l'appartement avec table et vue sur la mer.")}<figcaption>Le soir, changez d'horizon.</figcaption></figure>
     <figure>{img("sejour-salle-a-manger", "Séjour de l'appartement meublé des Piafs des Collines.")}<figcaption>De la place pour vivre, pas seulement pour dormir.</figcaption></figure>
     <figure>{img("cuisine-ilot", "La cuisine équipée et son îlot.")}<figcaption>Vos habitudes voyagent aussi.</figcaption></figure>
   </div>
+  <p class="v2-centre"><a class="bouton" href="#demande">Vérifier mes dates</a></p>
 </div></section>
 
 <section class="v2-bleu v2-titre-section" id="logement"><div class="v2-l">
   <h2 class="v2-t v2-titre-xl">{lignes("Entrez. Vous avez de la place.")}</h2>
-  <p class="v2-lead">Au premier étage d'une villa, un appartement traversant de 77,51 m² avec deux chambres, deux salles d'eau et deux terrasses.</p>
+  <p class="v2-lead">Au premier étage d'une villa, un appartement traversant de 77,51 m² avec deux chambres, deux salles d'eau et deux terrasses.</p>
 </div></section>
-<section class="v2-blanc v2-pieces"><div class="v2-l">
-  {pieces}
-  <div class="v2-reperes">{reperes}</div>
-  <div class="galerie">{gal}</div>
-  <p class="v2-centre"><a class="bouton" href="#demande">Vérifier mes dates</a></p>
+<section class="v2-blanc v2-visite"><div class="v2-l">
+  <div class="v2-cartes">{cartes}{details}</div>
+  <details class="v2-galerie-tout"><summary>Voir toutes les photos ({len(GALERIE_TOUT)})</summary><div class="galerie">{gal}</div></details>
 </div></section>
 
 <section class="v2-bleu v2-acces" id="acces"><div class="v2-l">
-  {bloc(photo("vue-baie-de-nice"), "Nice, côté colline.",
-        '<p class="v2-acces-1">Les Piafs se trouvent sur la <strong>colline de Bellet</strong>, à l' + "'" + 'ouest de Nice. Une <strong>place de parking privée</strong> est comprise dans la location.</p>'
-        + '<div class="v2-acces-2">' + pic("repere", "pic v2-pic") + '<p class="v2-acces-q">Vous venez pour une mission précise ?</p>'
-        + '<p>Indiquez-nous votre lieu de travail : vérifiez votre trajet quotidien avant de choisir vos dates.</p>'
-        + '<p><a class="bouton corail" href="#demande">Vérifier mes dates</a></p></div>', inverse=True, ton="")}
-</div></section>
-
-<section class="v2-blanc" id="ville"><div class="v2-l">
-  <span class="v2-sur">La ville</span><h2 class="v2-t bleu v2-titre-xl">Nice à portée</h2>
-  <div class="v2-ville">
-  <div>{pic("bus", "pic v2-pic")}<h3 class="v2-t bleu">Descendre en ville</h3>
-  {paras_pictos(("bus", "Le bus 60 passe à 50 mètres de la villa. En 5 minutes, il descend la colline jusqu'au tram : moins de 10 minutes de la porte au quai, hors attente du bus."),
-         ("pieton", "À pied, il faut compter 15 minutes pour descendre, et le tram est en bas. En voiture, 5 minutes suffisent pour descendre la colline, et la plage est à 300 mètres du bas de la colline."),
-         ("lune", "Le soir, inutile de chercher à se garer dans Nice. On descend en voiture ou non, et l'on remonte à pied ou, selon les horaires, en bus."),
-         ("repere", "Les rendez-vous restent à portée : Monaco à 22 minutes, Sophia Antipolis à 28, l'aéroport à 20."))}
-  <p class="v2-note">Temps en voiture hors trafic. Temps à pied et en bus estimés, hors attente du bus.</p></div>
-  <div>{pic("plume", "pic v2-pic corail")}<h3 class="v2-t corail">Une ville qui nourrit le travail</h3>
-  {paras("Henri Matisse arrive à Nice en décembre 1917. La lumière le retient, pour des années. En 1924, F. Scott Fitzgerald s'installe à Saint-Raphaël pour écrire The Great Gatsby.",
-         "Cette côte attire depuis longtemps ceux qui ont un travail à mener loin du bruit. Le musée Matisse et le musée Marc Chagall sont à Nice. L'Opéra de Nice, les théâtres, et de Cannes à Monaco, une programmation qui court toute l'année.",
-         "À midi, le marché du Cours Saleya, dans le vieux Nice, déborde de fleurs, de fruits et de poisson, du mardi au dimanche. Le soir, une socca, ou un dîner sur la terrasse, face à la baie.")}</div>
+  <h2 class="v2-t">Nice, côté colline.</h2>
+  <p class="v2-acces-1">{acces_texte}</p>
+  <div class="v2-acces-grille">
+    {plan_nice()}
+    <div>
+      {liste_pictos(REPERES_ACCES)}
+      <div class="v2-acces-2">{pic("repere", "pic v2-pic")}<p class="v2-acces-q">Vous venez pour une mission précise ?</p>
+      <p>Indiquez-nous votre lieu de travail : vérifiez votre trajet quotidien avant de choisir vos dates.</p>
+      <p><a class="bouton corail" href="#demande">Vérifier mes dates</a></p></div>
+    </div>
   </div>
 </div></section>
 
@@ -253,10 +298,10 @@ def corps():
 </div></section>
 
 <section class="v2-blanc" id="prescripteurs"><div class="v2-l">
-  {bloc(photo("salon-canape-lit"), "Vous logez un salarié ou un praticien en mobilité ?",
-        paras("Transmettez une proposition concrète : un appartement entier à Nice, deux chambres, un tarif mensuel charges comprises et les informations utiles réunies dans une fiche.",
-              "Le bail mobilité est signé par la personne logée, si elle remplit les conditions d'éligibilité. Son employeur peut prendre en charge le loyer selon les modalités convenues.")
-        + PRESCRIPTEUR_FIN)}
+  {bloc(photo("vue-baie-de-nice"), lignes("Votre collaborateur vient pour plusieurs mois. Proposez-lui un endroit où vivre."),
+        liste_pictos(EMPLOYEUR)
+        + f'<ul class="v2-publics">{publics}</ul><p class="v2-reserve">{E(reserve)}</p>'
+        + f'<p><a class="bouton" href="#demande" data-pour="tiers">{E(parler)}</a></p>')}
 </div></section>
 
 <section class="v2-marine" id="avis"><div class="v2-l">
