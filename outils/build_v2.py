@@ -65,7 +65,8 @@ FICHE = [
     ("Le logement", "plan", [("Surface habitable", "77,51 m² (mesurage loi Boutin, 27/09/2026)"), ("Terrasses", "10,58 m² + 15,75 m², soit 26,33 m²"),
                              ("Véranda buanderie", "4,95 m², hors surface habitable"), ("Pièces", "3, dont 2 chambres"), ("Chambres", "13,91 m² et 12,88 m²"),
                              ("Couchages", "Chambre 1 : lit double. Chambre 2 : deux lits simples de 80 × 200 cm ou un lit double de 160 cm. Salon : canapé-lit"),
-                             ("Salles d'eau", "2, dont 1 privative avec douche à l'italienne"), ("WC", "1 indépendant"),
+                             ("Capacité", "Jusqu'à 4 personnes : couple, colocation ou famille avec deux enfants"),
+                             ("Salles d'eau", "2, dont 1 privative avec douche à l'italienne"), ("WC", "2, dont 1 indépendant"),
                              ("Situation", "1er étage d'une villa, logement traversant"), ("Vue", "Baie des Anges")]),
     ("Énergie et confort", "energie", [("DPE", "C en énergie, A en climat"), ("Chauffage et climatisation", "Climatisation réversible"), ("Internet", "Fibre")]),
     ("Équipements", "equipement", [("Cuisine", "Plaque à induction, four, micro-ondes, lave-vaisselle, réfrigérateur-congélateur"),
@@ -80,7 +81,7 @@ FICHE = [
 ]
 
 # Un picto par ligne de la fiche technique, pour la lecture en diagonale (Géraldine, 26/11/2026).
-PICTO_LIGNE = {"Surface habitable": "plan", "Terrasses": "soleil", "Véranda buanderie": "machine", "Pièces": "porte", "Chambres": "lit", "Couchages": "lit",
+PICTO_LIGNE = {"Surface habitable": "plan", "Terrasses": "soleil", "Véranda buanderie": "machine", "Pièces": "porte", "Chambres": "lit", "Couchages": "lit", "Capacité": "personne",
                "Salles d'eau": "douche", "WC": "douche", "Situation": "maison", "Vue": "soleil", "DPE": "energie",
                "Chauffage et climatisation": "clim", "Internet": "wifi", "Cuisine": "cuisine", "Linge": "machine", "Travail": "ordi",
                "Extérieur": "table", "Stationnement": "parking", "Piscine": "piscine", "Bail": "plume", "Payeur": "societe",
@@ -148,7 +149,7 @@ CARTES = [
     ("salon-vue", "canape", "Le salon", "Un canapé-lit dans la pièce de vie."),
     ("chambre-1-fenetre", "lit", "La première chambre", "13,91 m², un lit double et une salle d'eau privative avec douche à l'italienne."),
     ("chambre-2-lits", "ordi", "La seconde chambre", "12,88 m², deux lits simples de 80 × 200 cm ou un lit double de 160 cm, et un poste de travail. La fibre est installée dans le logement."),
-    ("salle-eau-douche", "douche", "Les salles d'eau", "Deux salles d'eau, dont une privative, et un WC indépendant."),
+    ("salle-eau-douche", "douche", "Les salles d'eau", "Deux salles d'eau, dont une privative, la grande avec WC, et un WC indépendant."),
     ("visite/piscine-3", "piscine", "La piscine", "Une piscine partagée dans le jardin de la villa, accessible selon les horaires prévus."),
 ]
 # Toutes les photos, dans l'ordre de la visite, regroupées par pièce (Géraldine, 26/11/2026). Fichiers dans assets/img/visite/.

@@ -1,10 +1,6 @@
 <!doctype html>
-<!-- Fiche logement A4 pour les RH, affaires médicales et services de mobilité.
-     Source éditable. Textes : sous-tâche ClickUp 1amye9cq1q8 (26/11/2026), corrigés selon la relecture de Themis du 26/11/2026, couchages donnés par Géraldine le 26/11/2026.
-     PDF : python3 outils/fiche_pdf.py  →  site/assets/docs/fiche-logement-les-piafs-des-collines.pdf -->
-<html lang="fr"><head>
-<meta charset="utf-8">
-<title>Les Piafs des Collines · Fiche logement · Bail mobilité à Nice</title>
+<!-- Généré par outils/fiche_rh.py : modifier le script, pas ce fichier. -->
+<html lang="fr"><head><meta charset="utf-8"><title>Les Piafs des Collines · Fiche logement · Bail mobilité à Nice</title>
 <style>
 @font-face{font-family:"Outfit";font-weight:100 900;src:url(../../site/assets/fonts/outfit-latin-wght.woff2) format("woff2")}
 @font-face{font-family:"Outfit";font-weight:100 900;src:url(../../site/assets/fonts/outfit-latin-ext-wght.woff2) format("woff2");unicode-range:U+0100-02BA,U+1E00-1EFF,U+20A0-20C0}
@@ -12,132 +8,112 @@
 :root{--bleu:#0041B9;--marine:#1C2B45;--corail:#F2735F;--dore:#F6D9A8;--pale:#F1F5FC;--gris:#56627c}
 *{box-sizing:border-box}
 html,body{margin:0;padding:0}
-body{font-family:"Outfit",system-ui,sans-serif;color:var(--marine);font-size:9.6pt;line-height:1.42;-webkit-print-color-adjust:exact;print-color-adjust:exact}
-.page{width:210mm;height:297mm;position:relative;overflow:hidden;background:#fff}
+body{font-family:"Outfit",system-ui,sans-serif;color:var(--marine);font-size:11pt;line-height:1.4;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+.page{width:210mm;height:297mm;position:relative;overflow:hidden;background:#fff;page-break-after:always}
+.page:last-child{page-break-after:auto}
 a{color:var(--bleu);text-decoration:none}
-/* En-tête */
-.tete{background:var(--bleu);color:#fff;padding:6mm 12mm 5mm;position:relative}
-.marque{display:flex;align-items:center;gap:3mm}
-.marque .oiseau{height:10mm}
-.marque .nom{height:3.2mm}
-.marque small{display:block;font-size:6.6pt;letter-spacing:.2em;text-transform:uppercase;color:var(--dore);font-weight:700;margin-top:1.2mm}
-.tete h1{font-size:21pt;font-weight:600;line-height:1.05;letter-spacing:-.015em;margin:5mm 0 2mm}
-.tete .sous{font-size:9.6pt;font-weight:500;color:var(--dore);margin:0}
-.liseret{height:2.6mm;background:repeating-linear-gradient(90deg,var(--bleu) 0 6mm,#fff 6mm 12mm)}
-/* Photo et introduction */
-.vue{display:block;width:100%;height:38mm;object-fit:cover}
-.corps{padding:4.5mm 12mm 0}
-.intro{font-size:11.4pt;line-height:1.4;font-weight:400;margin:0 0 4mm}
-.intro strong{font-weight:600;color:var(--bleu)}
-.reperes{display:grid;grid-template-columns:repeat(4,1fr);border-top:.4mm solid var(--bleu);border-bottom:.4mm solid var(--bleu);margin:0 0 4mm}
-.reperes div{padding:2.6mm 0;text-align:center}
+b{font-weight:600}
+.ic{width:7mm;height:7mm;flex:none;fill:none;stroke:var(--bleu);stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+/* bandeau bleu fin et liseré */
+.bande{background:var(--bleu);color:#fff;height:15mm;padding:0 12mm;display:flex;align-items:center;justify-content:space-between}
+.marque{display:flex;align-items:center;gap:2.6mm}
+.marque .oiseau{height:8.5mm}
+.marque .nom{height:2.8mm}
+.bande .lieu{font-size:8.6pt;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--dore)}
+.liseret{height:2.4mm;background:repeating-linear-gradient(90deg,var(--bleu) 0 6mm,#fff 6mm 12mm)}
+/* photo d'ouverture, titre dans l'image */
+.hero{position:relative;height:92mm}
+.hero img{width:100%;height:100%;object-fit:cover;display:block}
+.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(0,30,90,.62) 100%)}
+.hero h1{position:absolute;z-index:1;left:12mm;right:12mm;bottom:8mm;margin:0;color:#fff;font-weight:600;font-size:27pt;line-height:1.05;letter-spacing:-.015em}
+.hero h1 span{display:block;color:var(--dore)}
+.corps{padding:7mm 12mm 0}
+.accroche{font-size:17pt;line-height:1.2;font-weight:600;color:var(--bleu);margin:0 0 6mm;letter-spacing:-.01em}
+.accroche span{display:block;color:var(--corail)}
+.reperes{display:grid;grid-template-columns:repeat(5,1fr);border-top:.5mm solid var(--bleu);border-bottom:.5mm solid var(--bleu);margin:0 0 7mm}
+.reperes div{padding:3.4mm 1mm;text-align:center;display:flex;flex-direction:column;align-items:center;gap:1.2mm}
 .reperes div+div{border-left:.3mm solid #cfd9ee}
-.reperes b{display:block;font-size:17pt;font-weight:700;color:var(--bleu);line-height:1}
-.reperes span{font-size:7.6pt;text-transform:uppercase;letter-spacing:.12em;font-weight:600;color:var(--gris)}
-/* Grille principale */
-.grille{display:grid;grid-template-columns:1fr 1fr;gap:4mm 7mm}
-h2{font-size:10.6pt;font-weight:600;color:var(--bleu);margin:0 0 1.6mm;letter-spacing:-.005em}
-ul{margin:0;padding:0;list-style:none}
-li{position:relative;padding-left:4mm;margin:0 0 .6mm}
-li::before{content:"";position:absolute;left:0;top:1.9mm;width:1.6mm;height:1.6mm;background:var(--corail)}
-p{margin:0 0 1.4mm}
-.photos{display:grid;grid-template-columns:1fr 1fr;gap:2.5mm;margin:0}
-.photos figure{margin:0}
-.photos img{width:100%;height:30mm;object-fit:cover;display:block}
-.photos figcaption{font-size:7.2pt;color:var(--gris);margin-top:.8mm}
-.contrat{margin-top:3.4mm}
-.budget{background:var(--bleu);color:#fff;padding:4mm 5mm}
+.reperes .ic{width:8mm;height:8mm;stroke:var(--corail)}
+.reperes b{font-size:18pt;font-weight:700;color:var(--bleu);line-height:1}
+.reperes span{font-size:7.6pt;text-transform:uppercase;letter-spacing:.1em;font-weight:600;color:var(--gris)}
+h2{font-size:11pt;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:var(--bleu);margin:0 0 3.4mm}
+.pl{list-style:none;margin:0;padding:0;display:grid;gap:2.6mm}
+.pl li{display:flex;align-items:center;gap:3.4mm;font-size:11.4pt;line-height:1.3}
+.deux{display:grid;grid-template-columns:1fr 1fr;gap:9mm}
+.photos3{display:grid;grid-template-columns:repeat(3,1fr);gap:3mm;position:absolute;left:12mm;right:12mm;bottom:14mm}
+.photos3 img{width:100%;height:54mm;object-fit:cover;display:block}
+.photos3 figcaption{font-size:8.6pt;color:var(--gris);margin-top:1.4mm}
+.suite{position:absolute;right:12mm;bottom:5mm;font-size:8.4pt;color:var(--gris);font-style:italic}
+/* page 2 */
+.capacite{display:flex;align-items:center;gap:4mm;background:var(--pale);border-left:1.4mm solid var(--corail);padding:4mm 5mm;margin:0 0 7mm}
+.capacite .ic{width:11mm;height:11mm;stroke:var(--corail)}
+.capacite p{margin:0;font-size:12pt;line-height:1.3}
+.capacite b{color:var(--bleu);font-size:14pt;display:block;font-weight:700}
+.budget{background:var(--bleu);color:#fff;padding:6mm 7mm;margin:0 0 7mm;display:grid;grid-template-columns:1fr 1.25fr;gap:7mm;align-items:start}
 .budget h2{color:var(--dore)}
-.budget .prix{font-size:22pt;font-weight:600;line-height:1;margin:0 0 1mm;letter-spacing:-.01em}
-.budget .prix small{font-size:10pt;font-weight:500;color:var(--dore)}
-.budget .cc{font-size:7.8pt;text-transform:uppercase;letter-spacing:.14em;font-weight:700;color:var(--dore);margin:0 0 2.4mm}
-.budget .detail{margin:0 0 2.4mm;font-size:9.6pt}
-.budget .detail span{display:block}
-.budget p{color:#fff;font-size:8.8pt}
-.budget p b{font-weight:600}
-/* Action */
-.action{position:absolute;left:12mm;right:12mm;bottom:18mm;margin:0;border:.5mm solid var(--bleu);padding:3.6mm 5mm;display:grid;grid-template-columns:1.25fr 1fr;gap:5mm;align-items:center}
-.action p.q{font-size:11pt;font-weight:600;color:var(--bleu);line-height:1.25;margin:0}
-.action .liens{font-size:10pt;font-weight:600}
-.action .liens a{display:block;margin:.6mm 0}
-/* Pied */
-.pied{position:absolute;left:12mm;right:12mm;bottom:6mm;font-size:7.4pt;color:var(--gris);font-style:italic;border-top:.3mm solid #dfe6f3;padding-top:2.4mm}
-</style>
-</head><body>
+.prix{font-size:30pt;font-weight:700;line-height:1;margin:0;letter-spacing:-.015em}
+.prix small{font-size:12pt;font-weight:500;color:var(--dore)}
+.cc{font-size:8.6pt;text-transform:uppercase;letter-spacing:.14em;font-weight:700;color:var(--dore);margin:2mm 0 3mm}
+.detail{margin:0;font-size:11pt}
+.detail span{display:block}
+.tuiles{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,1fr);gap:2.4mm}
+.tuiles li{background:rgba(255,255,255,.12);padding:2.6mm 2mm;display:flex;flex-direction:column;align-items:flex-start;gap:1.4mm;font-size:9.8pt;line-height:1.2}
+.tuiles .ic{stroke:var(--dore);width:6.5mm;height:6.5mm}
+.budget .plus{margin:3mm 0 0;font-size:10pt;line-height:1.35}
+.budget .plus b{color:var(--dore)}
+.loc{display:grid;grid-template-columns:1fr 1fr;gap:9mm;align-items:center;margin-top:7mm}
+.loc img{width:100%;height:38mm;object-fit:cover;display:block}
+.loc p{margin:0;font-size:11.4pt}
+.action{position:absolute;left:12mm;right:12mm;bottom:17mm;background:var(--pale);padding:5mm 6mm;display:grid;grid-template-columns:1.3fr 1fr;gap:6mm;align-items:center;border-top:1.4mm solid var(--bleu)}
+.action p.q{font-size:13pt;font-weight:600;color:var(--bleu);line-height:1.25;margin:0}
+.action .liens{display:grid;gap:2mm}
+.action .liens a{display:flex;align-items:center;gap:2.6mm;font-size:11pt;font-weight:600}
+.pied{position:absolute;left:12mm;right:12mm;bottom:6mm;font-size:8pt;color:var(--gris);font-style:italic}
+</style></head><body>
 <div class="page">
-  <header class="tete">
-    <div class="marque"><img class="oiseau" src="img/logo-oiseau-blanc.svg" alt=""><div><img class="nom" src="img/logo-nom-blanc.svg" alt="Les Piafs des Collines"><small>Location bail mobilité</small></div></div>
-    <h1>Un vrai chez-soi pour une mission à Nice.</h1>
-    <p class="sous">Les Piafs des Collines · Nice Bellet · Appartement meublé · De 1 à 10 mois</p>
-  </header>
+  <div class="bande"><div class="marque"><img class="oiseau" src="img/logo-oiseau-blanc.svg" alt=""><img class="nom" src="img/logo-nom-blanc.svg" alt="Les Piafs des Collines"></div>
+  <span class="lieu">Location meublée · Bail mobilité · Nice Bellet</span></div>
   <div class="liseret"></div>
-  <img class="vue" src="img/vue.jpg" alt="Vue sur la Baie des Anges depuis l'appartement, à Nice Bellet">
-
+  <div class="hero"><img src="img/vue-bateaux.jpg" alt="La Baie des Anges vue depuis l'appartement, à Nice Bellet">
+    <h1>Un vrai chez-soi<span>pour une mission à Nice.</span></h1></div>
   <main class="corps">
-    <p class="intro">Votre collaborateur vient pour plusieurs mois. <strong>Proposez-lui un endroit où vivre</strong> : un appartement entier au premier étage d'une villa, face à la Baie des Anges.</p>
-
-    <div class="reperes">
-      <div><b>77 m²</b><span>Appartement entier</span></div>
-      <div><b>2</b><span>Chambres</span></div>
-      <div><b>2</b><span>Salles d'eau</span></div>
-      <div><b>2</b><span>Terrasses vue mer</span></div>
-    </div>
-
-    <div class="grille">
-      <section>
-        <h2>Pour vivre, pas seulement pour dormir</h2>
-        <ul>
-          <li>De la place pour s'installer au quotidien</li>
-          <li>Une cuisine équipée pour garder ses habitudes</li>
-          <li>Lave-linge et sèche-linge pour le quotidien</li>
-          <li>Fibre, poste de travail et climatisation réversible</li>
-          <li>Une place de parking privée et une piscine partagée selon horaires</li>
-          <li>Linge de maison fourni avec rechange</li>
-        </ul>
-      </section>
-      <div class="photos">
-        <figure><img src="img/piece-de-vie.jpg" alt="La pièce de vie : cuisine ouverte, îlot et séjour"><figcaption>La pièce de vie et la cuisine</figcaption></figure>
-        <figure><img src="img/chambre.jpg" alt="La première chambre et son lit double"><figcaption>La première chambre</figcaption></figure>
-      </div>
-
-      <section>
-        <h2>Configuration</h2>
-        <ul>
-          <li>Chambre 1 : lit double et salle d'eau privative</li>
-          <li>Chambre 2 : deux lits simples de 80 × 200 cm ou un lit double de 160 cm</li>
-          <li>Salon : canapé-lit</li>
-          <li>Une seconde salle d'eau et un WC indépendant</li>
-          <li>Nombre d'occupants confirmé pour chaque demande, avant le bail</li>
-        </ul>
-        <h2 style="margin-top:3.4mm">Contrat</h2>
-        <p>Bail mobilité de 1 à 10 mois, signé par l'occupant après vérification de son éligibilité. Prise en charge du loyer par l'employeur possible, avec lettre de prise en charge. Aucun dépôt de garantie. Garanties examinées avec le dossier. Remise des clés et état des lieux avec le bailleur.</p>
-      </section>
-      <div>
-      <section class="budget">
-        <h2>Budget</h2>
-        <p class="prix">3 650 €<small> / mois</small></p>
-        <p class="cc">Charges comprises</p>
-        <p class="detail"><span>Loyer 3 475 €</span><span>+ forfait de charges 175 €</span></p>
-        <p><b>Compris dans le prix mensuel de 3 650 € :</b> eau, électricité, climatisation, fibre, parking et accès à la piscine partagée.</p>
-        <p><b>Non compris :</b> ménage et assurance habitation.</p>
-      </section>
-      <section class="contrat">
-        <h2>Localisation</h2>
-        <p>Nice, colline de Bellet. Trajet quotidien à vérifier selon le lieu d'affectation et les horaires.</p>
-      </section>
-      </div>
-
-    </div>
+    <p class="accroche">Votre collaborateur vient pour plusieurs mois.<span>Proposez-lui un endroit où vivre.</span></p>
+    <div class="reperes"><div><svg class="ic" viewBox="0 0 32 32" aria-hidden="true"><rect x="5" y="5" width="22" height="22"/><path d="M5 17h9v10M14 5v7M19 17h8"/></svg><b>77 m²</b><span>Appartement entier</span></div><div><svg class="ic" viewBox="0 0 32 32" aria-hidden="true"><path d="M4 25V8M4 19h24v6M28 19v-4a3 3 0 00-3-3H14v7M8 16a2 2 0 104 0 2 2 0 10-4 0"/></svg><b>2</b><span>Chambres</span></div><div><svg class="ic" viewBox="0 0 32 32" aria-hidden="true"><path d="M8 28V8a4 4 0 018 0v1M12 9h8l-1 3h-6zM13 16v1M16 16v2M19 16v1M14 21v1M18 21v1"/></svg><b>2</b><span>Salles d'eau</span></div><div><svg class="ic" viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="13" r="5"/><path d="M16 3v2M6 13H4M28 13h-2M8.9 5.9l1.4 1.4M23.1 5.9l-1.4 1.4M3 23c3-2 5-2 8 0s5 2 8 0 5-2 8 0M3 28c3-2 5-2 8 0s5 2 8 0 5-2 8 0"/></svg><b>2</b><span>Terrasses vue mer</span></div><div><svg class="ic" viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="10" r="5"/><path d="M6 28c0-6 4.5-10 10-10s10 4 10 10"/></svg><b>4</b><span>Personnes</span></div></div>
+    <h2>Pour vivre, pas seulement pour dormir</h2>
+    <div class="deux"><ul class="pl"><li><svg class="ic" viewBox="0 0 32 32" aria-hidden="true"><path d="M5 14h22v4a8 8 0 01-8 8h-6a8 8 0 01-8-8zM2 14h3M27 14h3M11 10c0-2 2-2 2-4M16 10c0-2 2-2 2-4M21 10c0-2 2-2 2-4"/></svg><span>Une cuisine équipée pour garder ses habitudes</span></li><li><svg class="ic" viewBox="0 0 32 32" aria-hidden="true"><rect x="6" y="4" width="20" height="24" rx="2"/><circle cx="16" cy="17" r="6"/><path d="M6 9h20M10 6.5h2"/></svg><span>Lave-linge et sèche-linge</span></li><li><svg class="ic" viewBox="0 0 32 32" aria-hidden="true"><rect x="6" y="7" width="20" height="13" rx="1"/><path d="M3 25h26l-2-5H5z"/></svg><span>Fibre et poste de travail</span></li><li><svg class="ic" viewBox="0 0 32 32" aria-hidden="true"><path d="M16 3v26M5 9.5l22 13M5 22.5l22-13M13 5l3 3 3-3M13 27l3-3 3 3"/></svg><span>Climatisation réversible</span></li></ul><ul class="pl"><li><svg class="ic" viewBox="0 0 32 32" aria-hidden="true"><path d="M5 12h22v5H5zM7 17h18v5H7zM5 22h22v5H5z"/><path d="M9 8c2-3 4-3 7 0s5 3 7 0"/></svg><span>Linge de maison fourni avec rechange</span></li><li><svg class="ic" viewBox="0 0 32 32" aria-hidden="true"><rect x="5" y="5" width="22" height="22" rx="3"/><path d="M13 23V10h5a4 4 0 010 8h-5"/></svg><span>Une place de parking privée</span></li><li><svg class="ic" viewBox="0 0 32 32" aria-hidden="true"><path d="M10 22V8a3 3 0 016 0M20 22V8a3 3 0 016 0M10 12h10M10 17h10M3 25c3-2 5-2 8 0s5 2 8 0 5-2 8 0"/></svg><span>Piscine partagée selon horaires</span></li></ul></div>
   </main>
-
+  <div class="photos3">
+    <figure style="margin:0"><img src="img/sejour.jpg" alt="Le séjour, le canapé et la table"><figcaption>Le séjour</figcaption></figure>
+    <figure style="margin:0"><img src="img/cuisine.jpg" alt="La cuisine équipée et son îlot"><figcaption>La cuisine</figcaption></figure>
+    <figure style="margin:0"><img src="img/chambre1.jpg" alt="La première chambre"><figcaption>La première chambre</figcaption></figure>
+  </div>
+  <p class="suite">Configuration, budget et contrat au verso</p>
+</div>
+<div class="page">
+  <div class="bande"><div class="marque"><img class="oiseau" src="img/logo-oiseau-blanc.svg" alt=""><img class="nom" src="img/logo-nom-blanc.svg" alt="Les Piafs des Collines"></div>
+  <span class="lieu">Fiche logement · Nice Bellet</span></div>
+  <div class="liseret"></div>
+  <main class="corps">
+    <div class="capacite"><svg class="ic" viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="10" r="5"/><path d="M6 28c0-6 4.5-10 10-10s10 4 10 10"/></svg><p><b>Jusqu'à 4 personnes</b>Un couple, une colocation ou une famille avec deux enfants. Nombre d'occupants confirmé pour chaque demande, avant le bail.</p></div>
+    <div class="deux">
+      <section><h2>Configuration</h2><ul class="pl"><li><svg class="ic" viewBox="0 0 32 32" aria-hidden="true"><path d="M4 25V8M4 19h24v6M28 19v-4a3 3 0 00-3-3H14v7M8 16a2 2 0 104 0 2 2 0 10-4 0"/></svg><span><b>Chambre 1</b> · lit double et salle d'eau privative</span></li><li><svg class="ic" viewBox="0 0 32 32" aria-hidden="true"><path d="M4 25V8M4 19h24v6M28 19v-4a3 3 0 00-3-3H14v7M8 16a2 2 0 104 0 2 2 0 10-4 0"/></svg><span><b>Chambre 2</b> · deux lits simples de 80 × 200 cm ou un lit double de 160 cm</span></li><li><svg class="ic" viewBox="0 0 32 32" aria-hidden="true"><path d="M4 14v10h24V14M4 14a2 2 0 0 1 4 0v4h16v-4a2 2 0 0 1 4 0M8 18v-8h16v8M7 24v3M25 24v3"/></svg><span><b>Salon</b> · canapé-lit</span></li><li><svg class="ic" viewBox="0 0 32 32" aria-hidden="true"><path d="M8 28V8a4 4 0 018 0v1M12 9h8l-1 3h-6zM13 16v1M16 16v2M19 16v1M14 21v1M18 21v1"/></svg><span><b>Grande salle d'eau</b> avec WC</span></li><li><svg class="ic" viewBox="0 0 32 32" aria-hidden="true"><path d="M7 28V4h18v24M3 28h26M20 16v2"/></svg><span><b>WC indépendant</b></span></li></ul></section>
+      <section><h2>Contrat</h2><ul class="pl"><li><svg class="ic" viewBox="0 0 32 32" aria-hidden="true"><path d="M26 5C16 6 9 13 7 25M26 5c0 8-6 14-14 15M7 25l-2 3M5 28h22"/></svg><span>Bail mobilité de 1 à 10 mois, signé par l'occupant éligible</span></li><li><svg class="ic" viewBox="0 0 32 32" aria-hidden="true"><path d="M5 28V8h13v20M18 13h9v15M3 28h26M9 12h2M13 12h2M9 17h2M13 17h2M9 22h2M13 22h2M22 18h2M22 23h2"/></svg><span>Prise en charge du loyer par l'employeur possible, avec lettre de prise en charge</span></li><li><svg class="ic" viewBox="0 0 32 32" aria-hidden="true"><circle cx="10" cy="16" r="5"/><path d="M15 16h13M24 16v4M28 16v3"/></svg><span>Aucun dépôt de garantie · garanties examinées avec le dossier</span></li><li><svg class="ic" viewBox="0 0 32 32" aria-hidden="true"><rect x="5" y="10" width="22" height="16" rx="2"/><path d="M12 10V6h8v4M11 10v16M21 10v16"/></svg><span>Remise des clés et état des lieux avec le bailleur</span></li></ul></section>
+    </div>
+    <div class="budget" style="margin-top:7mm">
+      <div><h2>Budget</h2><p class="prix">3 650 €<small> / mois</small></p><p class="cc">Charges comprises</p>
+        <p class="detail"><span>Loyer 3 475 €</span><span>+ forfait de charges 175 €</span></p></div>
+      <div><h2>Compris dans le prix mensuel</h2><ul class="tuiles"><li><svg class="ic" viewBox="0 0 32 32" aria-hidden="true"><path d="M16 4c-5 7-8 11-8 15a8 8 0 0016 0c0-4-3-8-8-15z"/></svg><span>Eau</span></li><li><svg class="ic" viewBox="0 0 32 32" aria-hidden="true"><path d="M18 3L7 18h8l-2 11 12-16h-8z"/></svg><span>Électricité</span></li><li><svg class="ic" viewBox="0 0 32 32" aria-hidden="true"><path d="M16 3v26M5 9.5l22 13M5 22.5l22-13M13 5l3 3 3-3M13 27l3-3 3 3"/></svg><span>Climatisation</span></li><li><svg class="ic" viewBox="0 0 32 32" aria-hidden="true"><path d="M4 12a17 17 0 0124 0M8 17a11 11 0 0116 0M12 21.5a5 5 0 018 0"/><circle cx="16" cy="25.5" r="1"/></svg><span>Fibre</span></li><li><svg class="ic" viewBox="0 0 32 32" aria-hidden="true"><rect x="5" y="5" width="22" height="22" rx="3"/><path d="M13 23V10h5a4 4 0 010 8h-5"/></svg><span>Parking</span></li><li><svg class="ic" viewBox="0 0 32 32" aria-hidden="true"><path d="M10 22V8a3 3 0 016 0M20 22V8a3 3 0 016 0M10 12h10M10 17h10M3 25c3-2 5-2 8 0s5 2 8 0 5-2 8 0"/></svg><span>Piscine partagée</span></li></ul>
+        <p class="plus"><b>Aussi compris :</b> linge de maison avec rechange.<br><b>Non compris :</b> ménage et assurance habitation.</p></div>
+    </div>
+    <div class="loc"><div><h2>Localisation</h2><p>Nice, colline de Bellet. Trajet quotidien à vérifier selon le lieu d'affectation et les horaires.</p></div>
+      <img src="img/terrasse.jpg" alt="La terrasse face à la mer"></div>
+  </main>
   <div class="action">
     <p class="q">Une arrivée à préparer ? Envoyez-nous les dates, le nombre d'occupants et le lieu d'affectation.</p>
     <div class="liens">
-      <a href="mailto:contact@lespiafsdescollines.com">contact@lespiafsdescollines.com</a>
-      <a href="https://lespiafsdescollines.com/bail-mobilite/">lespiafsdescollines.com/bail-mobilite</a>
+      <a href="mailto:contact@lespiafsdescollines.com"><svg class="ic" viewBox="0 0 32 32" aria-hidden="true"><rect x="4" y="7" width="24" height="18" rx="2"/><path d="M4 9l12 9 12-9"/></svg>contact@lespiafsdescollines.com</a>
+      <a href="https://lespiafsdescollines.com/"><svg class="ic" viewBox="0 0 32 32" aria-hidden="true"><path d="M4 15L16 5l12 10M7 13v14h18V13M13 27v-7h6v7"/></svg>lespiafsdescollines.com</a>
     </div>
   </div>
-
   <footer class="pied">Sous réserve de disponibilités et de dossier accepté. Surface exacte : 77,51 m². DPE C · Climat A. Location meublée en bail mobilité (loi n° 89-462 du 6 juillet 1989, titre I<sup>er</sup> ter).</footer>
-</div>
-</body></html>
+</div></body></html>
