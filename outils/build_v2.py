@@ -103,6 +103,8 @@ NON_INCLUS = [("menage", "Le ménage"), ("bouclier", "L'assurance habitation")]
 PICTOS_V2 = {"goutte": '<path d="M16 4c-5 7-8 11-8 15a8 8 0 0016 0c0-4-3-8-8-15z"/>',
              "eclair": '<path d="M18 3L7 18h8l-2 11 12-16h-8z"/>',
              "bouclier": '<path d="M16 3l11 4v8c0 7-5 12-11 14C10 27 5 22 5 15V7z"/>',
+             "enveloppe": '<rect x="4" y="7" width="24" height="18" rx="2"/><path d="M4 9l12 9 12-9"/>',
+             "telephone": '<path d="M8 4h5l2 6-3 2c1.5 3.5 4.5 6.5 8 8l2-3 6 2v5c0 1-1 2-2 2C14 26 6 18 6 6c0-1 1-2 2-2z"/>',
              "details": '<rect x="6" y="4" width="20" height="24" rx="2"/><path d="M10 11l2 2 3.5-3.5M10 19l2 2 3.5-3.5M19 11.5h3M19 19.5h3"/>'}
 SPRITE_V2 = '<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>' + "".join(
     f'<symbol id="i-{n}" viewBox="0 0 32 32">{d}</symbol>' for n, d in PICTOS_V2.items()) + '</defs></svg>'
@@ -266,7 +268,10 @@ def corps():
   <p class="v2-note">Le bouton ouvre votre messagerie avec votre demande préremplie, adressée à {b.MAIL}.</p>
   <p class="v2-note">Les informations transmises servent à traiter votre demande de logement. N'envoyez pas de pièce d'identité ni de document confidentiel dans ce formulaire.</p>
   </form>
-  <p class="v2-contact"><a href="mailto:{b.MAIL}">{b.MAIL}</a> · <a href="tel:{b.TEL_LIEN}">{b.TEL}</a></p>
+  <div class="v2-contact">
+    <a class="v2-encadre-contact" href="mailto:{b.MAIL}">{pic("enveloppe", "pic-s")}<span>{b.MAIL}</span></a>
+    <a class="v2-encadre-contact" href="tel:{b.TEL_LIEN}">{pic("telephone", "pic-s")}<span>{b.TEL}</span></a>
+  </div>
 </div></section>
 </div>"""
 

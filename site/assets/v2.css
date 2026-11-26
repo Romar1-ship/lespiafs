@@ -205,3 +205,10 @@ main section[id],.v2-bloc[id]{scroll-margin-top:70px}
 .v2 .v2-citation p{font-size:clamp(1.15rem,1.7vw,1.45rem);line-height:1.4;font-weight:400}
 .v2 .v2-avis{gap:44px 56px}
 #prescripteurs .v2-bloc{grid-template-columns:1.25fr 1fr}
+/* Contact en encadrés (Géraldine, 26/11/2026) */
+.v2 .v2-contact{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:32px}
+.v2 .v2-encadre-contact{display:flex;align-items:center;gap:14px;border:2px solid rgba(255,255,255,.85);padding:18px 22px;color:#fff;text-decoration:none;font-weight:600;font-size:1.08rem;word-break:break-word}
+.v2 .v2-encadre-contact:hover{background:rgba(255,255,255,.1)}
+.v2 .v2-encadre-contact .pic-s{width:28px;height:28px;margin:0;color:var(--v2-dore);stroke-width:1.5;flex:none}
+@media(max-width:700px){.v2 .v2-contact{grid-template-columns:1fr}}
+@media(max-width:700px){.v2 .v2-encadre-contact{font-size:.92rem;padding:16px 16px;gap:12px;word-break:normal;overflow-wrap:anywhere}}
