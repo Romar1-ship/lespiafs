@@ -411,3 +411,5 @@ main section[id],.v2-bloc[id]{scroll-margin-top:70px}
 .v2-page .c-tuiles{grid-template-columns:repeat(3,1fr);justify-content:stretch;gap:44px 28px;max-width:1180px;margin-left:auto;margin-right:auto}
 @media(max-width:900px){.v2-page .c-tuiles{grid-template-columns:1fr 1fr}}
 @media(max-width:560px){.v2-page .c-tuiles{grid-template-columns:1fr}}
+/* Carnet : images en portrait 3:4 (Géraldine, 26/11/2026) */
+.v2-page .c-tuile img{aspect-ratio:3/4}
