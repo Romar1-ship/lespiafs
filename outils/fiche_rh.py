@@ -28,7 +28,7 @@ REPERES = [("plan", "77 m²", "Appartement entier"), ("lit", "2", "Chambres"), (
 VIVRE = [("cuisine", "Une cuisine équipée pour garder ses habitudes"),
          ("machine", "Lave-linge et sèche-linge"),
          ("ordi", "Fibre et poste de travail"),
-         ("clim", "Climatisation réversible"),
+         ("clim", "Climatisation, chauffage"),
          ("linge", "Linge de maison fourni avec rechange"),
          ("parking", "Une place de parking privée"),
          ("piscine", "Piscine partagée selon horaires")]
@@ -38,9 +38,10 @@ CONFIG = [("lit", "<b>Chambre 1</b> · lit double et salle d'eau privative"),
           ("canape", "<b>Salon</b> · canapé-lit"),
           ("douche", "<b>Grande salle d'eau</b> avec WC"),
           ("porte", "<b>WC indépendant</b>"),
+          ("machine", "<b>Véranda d'entrée</b> · buanderie avec lave-linge, sèche-linge et petit réfrigérateur"),
           ("personne", "<b>Jusqu'à 4 personnes</b> · couple, colocation ou famille avec deux enfants")]
 
-INCLUS = [("goutte", "Eau"), ("eclair", "Électricité"), ("clim", "Climatisation"), ("wifi", "Fibre"),
+INCLUS = [("goutte", "Eau"), ("eclair", "Électricité"), ("clim", "Climatisation, chauffage"), ("wifi", "Fibre"),
           ("parking", "Parking"), ("piscine", "Piscine partagée")]
 
 CONTRAT = [("plume", "Bail mobilité de 1 à 10 mois, signé par l'occupant éligible"),
@@ -120,8 +121,8 @@ h2{font-size:11pt;font-weight:700;text-transform:uppercase;letter-spacing:.12em;
 
 /* recto seul */
 .une .bande{height:13mm}
-.une .hero{height:47mm}
-.une .hero img{object-position:50% 34%}
+.une .hero{height:49mm}
+.une .hero img{object-position:50% 50%}
 .une .hero::after{content:none}
 .une .hero h1{top:6mm;bottom:auto;font-size:24pt;text-shadow:0 1px 10px rgba(0,40,120,.3)}
 .une .corps{padding:5mm 12mm 0}
@@ -147,6 +148,8 @@ h2{font-size:11pt;font-weight:700;text-transform:uppercase;letter-spacing:.12em;
 .une .action p.q{font-size:11.6pt}
 .une .action .liens a{font-size:10.6pt}
 .une .action .ic{width:5.6mm;height:5.6mm}
+/* tous les pictos des listes : plus petits, en corail (Géraldine, 26/11/2026) */
+.une .pl .ic{width:5mm;height:5mm;stroke:var(--corail)}
 .une .pied{bottom:5mm;font-size:7.6pt}
 """
 
@@ -219,12 +222,12 @@ def page_unique():
     <p class="accroche">Votre collaborateur vient pour plusieurs mois.<span>Proposez-lui un endroit où vivre.</span></p>
     <div class="reperes">{reperes}</div>
     <div class="cols">
-      <div><section><h2>Pour vivre, pas seulement pour dormir</h2>{liste(VIVRE)}</section>
+      <div><section class="vivre"><h2>Pour vivre, pas seulement pour dormir</h2>{liste(VIVRE)}</section>
         <section style="margin-top:4.4mm"><h2>Configuration</h2>{liste(CONFIG)}</section></div>
       <div><section class="budget"><h2>Budget</h2><p class="prix">3 650 €<small> / mois</small></p><p class="cc">Charges comprises</p>
         <p class="detail"><span>Loyer 3 475 € + forfait de charges 175 €</span></p>
         <ul class="tuiles">{tuiles}</ul>
-        <p class="plus"><b>Aussi compris :</b> linge de maison avec rechange.<br><b>Non compris :</b> ménage et assurance habitation.</p></section>
+        <p class="plus"><b>Aussi compris :</b> linge de maison avec rechange<br><b>Non compris :</b> ménage et assurance habitation</p></section>
         <section style="margin-top:4.4mm"><h2>Contrat</h2>{liste(CONTRAT)}</section></div>
     </div>
   </main>
