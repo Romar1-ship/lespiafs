@@ -1,10 +1,10 @@
 ---
 titre: Se loger près du CHU Pasteur pour un internat à Nice
 title_seo: Logement interne CHU Nice | Les Piafs des Collines
-description: Logement pour un interne ou un fellow au CHU de Nice ou au Centre Lacassagne : un meublé de 77 m² à 15 min de Pasteur 2, en bail mobilité de 1 à 10 mois.
+description: Logement pour un interne ou un fellow au CHU de Nice ou au Centre Lacassagne : un appartement meublé de 77 m² vue mer, en bail mobilité de 1 à 10 mois, loyer payable par l'établissement.
 slug: logement-interne-chu-nice
 image: chambre-parentale
-chapo: Se loger à Nice pour un semestre d'internat | Les dates des semestres, les trajets vers Pasteur 2 et Lacassagne, le retour de garde. | Quand réserver pour votre prise de poste.
+chapo: Se loger à Nice pour un semestre d'internat | Les dates des semestres, l'appartement, le retour de garde, la prise en charge du loyer. | Quand réserver pour votre prise de poste.
 ---
 
 Votre affectation tombe à Nice. Vous avez quelques semaines pour trouver un logement pour un semestre, parfois deux.
@@ -31,14 +31,9 @@ L'hôpital Pasteur 2 du CHU de Nice est au 30 voie Romaine, à Nice. Le tram lig
 
 Le Centre Antoine Lacassagne est un centre de lutte contre le cancer. Il est au 33 avenue de Valombrose, à Nice.
 
-## Combien de temps pour aller à l'hôpital depuis le logement ?
+## Comment rejoindre l'hôpital depuis le logement ?
 
-L'appartement des Piafs des Collines est sur la colline de Bellet, à l'ouest de Nice. En voiture, hors trafic :
-
-- Clinique Kantys Centre : 12 min ;
-- campus Valrose : 13 min ;
-- CHU Pasteur 2 : 15 min ;
-- Centre Antoine Lacassagne : 16 min.
+L'appartement des Piafs des Collines est sur la colline de Bellet, à l'ouest de Nice. Le trajet quotidien se vérifie selon votre établissement d'affectation et vos horaires de travail.
 
 Sans voiture, le bus 60 s'arrête à 50 m. Il rejoint le tram ligne 2 à Magnan.
 
@@ -58,7 +53,7 @@ Le prix, par mois, charges comprises :
 
 Le prix est le même pour toutes les durées : loyer de 3 475 € et forfait de charges de 175 €, linge inclus. Pour un bail de 10 mois, le dernier mois de loyer est offert. Cette remise est accordée une seule fois, par bail, et ne modifie pas le loyer du bail.
 
-Pour un semestre de 6 mois, le mois est à 3 650 €. Ce que comprend ce prix est détaillé dans [le guide complet](/guides/bail-mobilite-nice-guide-complet).
+Pour un semestre de 6 mois, le mois est à 3 650 €. Le loyer peut être pris en charge par votre établissement ou votre employeur, avec une lettre de prise en charge. Ce que comprend ce prix est détaillé dans [le guide complet](/guides/bail-mobilite-nice-guide-complet).
 
 ## À quoi ressemble l'appartement ?
 

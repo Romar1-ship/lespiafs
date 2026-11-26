@@ -1,7 +1,7 @@
 ---
 titre: Work in Monaco, live in Nice
 title_seo: Work in Monaco, live in Nice | Les Piafs des Collines
-description: You work in Monaco and need a home in Nice for 1 to 10 months? Commute, formalities, contract: a 77 m² furnished flat with sea view, 22 min from Monaco.
+description: You work in Monaco and need a home in Nice for 1 to 10 months? Commute, formalities, contract: a 77 m² furnished flat with sea view, rent payable by your employer.
 slug: live-in-nice-work-in-monaco
 image: vue-baie-de-nice
 chapo: Working in Monaco and living in Nice | Train, car and bus, hiring formalities, taxes. | Why start with a transition home.
@@ -19,7 +19,7 @@ According to the IMSEE 2025 Employment Observatory, Monaco's statistics institut
 
 **By train.** The TER links Nice and Monaco Monte-Carlo. According to SNCF TER Sud, the line runs 65 return trips a day, with an average journey of 20 minutes.
 
-**By car.** From the Les Piafs des Collines apartment, Monaco is 22 minutes away, outside traffic.
+**By car.** Journey time varies with the hour: check it at your working hours.
 
 **By bus and tram.** Bus 60 stops 50 m from the home. It connects with tram line 2 at Magnan, which serves central Nice, including the Jean Médecin stop.
 
@@ -62,7 +62,7 @@ In the evening, you come back from Monaco and find the sea again from the terrac
 
 ## How do you prepare your housing request?
 
-Give your start date, the length you want and who pays the rent. If it is your employer, give the company name.
+Give your start date, the length you want and who pays the rent. If it is your employer, give the company name: they can pay the rent, with a letter of support.
 
 Ask whether the apartment is free on your start date.
 

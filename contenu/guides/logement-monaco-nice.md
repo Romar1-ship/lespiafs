@@ -1,7 +1,7 @@
 ---
 titre: Travailler à Monaco, habiter à Nice
 title_seo: Logement Monaco Nice | Les Piafs des Collines
-description: Vous travaillez à Monaco et cherchez un logement à Nice pour 1 à 10 mois ? Trajets, démarches, contrat : un meublé de 77 m² vue mer à 22 min de Monaco.
+description: Vous travaillez à Monaco et cherchez un logement à Nice pour 1 à 10 mois ? Trajets, démarches, contrat : un meublé de 77 m² vue mer, loyer payable par l'employeur.
 slug: logement-monaco-nice
 image: vue-baie-de-nice
 chapo: Travailler à Monaco et habiter à Nice | Le train, la voiture et le bus, les démarches d'embauche, les impôts. | Pourquoi commencer par un logement de transition.
@@ -19,7 +19,7 @@ Selon l'Observatoire de l'Emploi 2025 de l'IMSEE, l'institut statistique monéga
 
 **En train.** Le TER relie Nice et Monaco Monte-Carlo. Selon SNCF TER Sud, la ligne compte 65 allers-retours par jour, pour un trajet de 20 minutes en moyenne.
 
-**En voiture.** Depuis l'appartement des Piafs des Collines, Monaco est à 22 minutes, hors trafic.
+**En voiture.** La durée du trajet varie selon l'heure : vérifiez-la à vos horaires de travail.
 
 **En bus et en tram.** Le bus 60 s'arrête à 50 m du logement. Il rejoint le tram ligne 2 à Magnan, qui dessert le centre de Nice, dont l'arrêt Jean Médecin.
 
@@ -62,7 +62,7 @@ Le soir, vous rentrez de Monaco et vous retrouvez la mer depuis la terrasse, cet
 
 ## Comment préparer sa demande de logement ?
 
-Indiquez votre date de prise de poste, la durée souhaitée et qui paie le loyer. Si c'est votre employeur, précisez le nom de la société.
+Indiquez votre date de prise de poste, la durée souhaitée et qui paie le loyer. Si c'est votre employeur, précisez le nom de la société : le loyer peut être pris en charge par lui, avec une lettre de prise en charge.
 
 Demandez si l'appartement est libre à votre date de prise de poste.
 

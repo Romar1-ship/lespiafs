@@ -1,10 +1,10 @@
 ---
 titre: Housing near CHU Pasteur for a medical residency in Nice
 title_seo: Housing near CHU Nice | Les Piafs des Collines
-description: Housing for a medical intern or fellow at CHU Nice or Centre Lacassagne: a 77 m² furnished flat 15 min from Pasteur 2, on a 1 to 10 month bail mobilité.
+description: Housing for a medical intern or fellow at CHU Nice or Centre Lacassagne: a 77 m² furnished flat with sea view, on a 1 to 10 month bail mobilité, rent payable by the institution.
 slug: housing-near-chu-nice-medical-intern
 image: chambre-parentale
-chapo: Housing in Nice for a residency semester | Semester dates, journeys to Pasteur 2 and Lacassagne, coming home after a shift. | When to book for your start date.
+chapo: Housing in Nice for a residency semester | Semester dates, the apartment, coming home after a shift, rent paid by your employer. | When to book for your start date.
 ---
 
 Your posting is in Nice. You have a few weeks to find housing for one semester, sometimes two.
@@ -31,14 +31,9 @@ The Pasteur 2 hospital of the CHU de Nice is at 30 voie Romaine, Nice. Tram line
 
 The Centre Antoine Lacassagne is a cancer treatment centre. It is at 33 avenue de Valombrose, Nice.
 
-## How long does it take to get to the hospital from the home?
+## How do you get to the hospital from the home?
 
-The Les Piafs des Collines apartment is on Bellet hill, west of Nice. By car, outside traffic:
-
-- Clinique Kantys Centre: 12 min;
-- Valrose campus: 13 min;
-- CHU Pasteur 2: 15 min;
-- Centre Antoine Lacassagne: 16 min.
+The Les Piafs des Collines apartment is on Bellet hill, west of Nice. Check the daily journey against your place of work and your working hours.
 
 Without a car, bus 60 stops 50 m away. It connects with tram line 2 at Magnan.
 
@@ -58,7 +53,7 @@ The price, per month, charges included:
 
 The price is the same for every length: rent of €3,475 plus a flat service-charge fee of €175, linens included. On a 10-month lease, the last month's rent is free. This concession applies once per lease and does not change the lease rent.
 
-For a 6-month semester, the month is €3,650. What this price includes is detailed in [the complete guide](/en/guides/bail-mobilite-nice-complete-guide).
+For a 6-month semester, the month is €3,650. The rent can be paid by your institution or your employer, with a letter of support. What this price includes is detailed in [the complete guide](/en/guides/bail-mobilite-nice-complete-guide).
 
 ## What is the apartment like?
 

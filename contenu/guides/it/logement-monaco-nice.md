@@ -1,7 +1,7 @@
 ---
 titre: Lavorare a Monaco, vivere a Nizza
 title_seo: Lavorare a Monaco, vivere a Nizza | Les Piafs des Collines
-description: Lavora a Monaco e cerca un alloggio a Nizza per 1-10 mesi? Tragitti, pratiche, contratto: un arredato di 77 m² vista mare a 22 min da Monaco.
+description: Lavora a Monaco e cerca un alloggio a Nizza per 1-10 mesi? Tragitti, pratiche, contratto: un arredato di 77 m² vista mare, canone pagabile dal datore di lavoro.
 slug: vivere-a-nizza-lavorare-a-monaco
 image: vue-baie-de-nice
 chapo: Lavorare a Monaco e vivere a Nizza | Il treno, l'auto e l'autobus, le pratiche di assunzione, le tasse. | Perché cominciare con un alloggio di transizione.
@@ -19,7 +19,7 @@ Secondo l'Osservatorio dell'Occupazione 2025 dell'IMSEE, l'istituto statistico m
 
 **In treno.** Il TER collega Nizza e Monaco Monte-Carlo. Secondo SNCF TER Sud, la linea conta 65 corse di andata e ritorno al giorno, per un tragitto di 20 minuti in media.
 
-**In auto.** Dall'appartamento di Les Piafs des Collines, Monaco è a 22 minuti, senza traffico.
+**In auto.** La durata del tragitto varia secondo l'ora: la verifichi nei Suoi orari di lavoro.
 
 **In autobus e in tram.** L'autobus 60 ferma a 50 m dall'alloggio. Si collega alla linea 2 del tram a Magnan, che serve il centro di Nizza, compresa la fermata Jean Médecin.
 
@@ -62,7 +62,7 @@ La sera, rientra da Monaco e ritrova il mare dalla terrazza, questa volta dal la
 
 ## Come preparare la richiesta di alloggio?
 
-Indichi la data di presa di servizio, la durata desiderata e chi paga il canone. Se è il Suo datore di lavoro, precisi il nome della società.
+Indichi la data di presa di servizio, la durata desiderata e chi paga il canone. Se è il Suo datore di lavoro, precisi il nome della società: può pagare il canone, con una lettera di presa in carico.
 
 Chieda se l'appartamento è libero alla data della Sua presa di servizio.
 

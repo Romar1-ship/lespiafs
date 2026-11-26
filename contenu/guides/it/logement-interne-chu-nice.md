@@ -1,10 +1,10 @@
 ---
 titre: Alloggio vicino al CHU Pasteur per la specializzazione a Nizza
 title_seo: Alloggio specializzandi CHU Nizza | Les Piafs des Collines
-description: Alloggio per specializzandi o fellow al CHU di Nizza o al Centre Lacassagne: un arredato di 77 m² a 15 min dal Pasteur 2, in bail mobilité da 1 a 10 mesi.
+description: Alloggio per specializzandi o fellow al CHU di Nizza o al Centre Lacassagne: un arredato di 77 m² vista mare, in bail mobilité da 1 a 10 mesi, canone pagabile dall'ente.
 slug: alloggio-specializzandi-chu-nizza
 image: chambre-parentale
-chapo: Alloggiare a Nizza per un semestre di specializzazione | Le date dei semestri, i tragitti verso Pasteur 2 e Lacassagne, il rientro dalla guardia. | Quando prenotare per la Sua presa di servizio.
+chapo: Alloggiare a Nizza per un semestre di specializzazione | Le date dei semestri, l'appartamento, il rientro dalla guardia, il canone pagato dal datore di lavoro. | Quando prenotare per la Sua presa di servizio.
 ---
 
 La Sua assegnazione è a Nizza. Ha qualche settimana per trovare un alloggio per un semestre, a volte due.
@@ -31,14 +31,9 @@ L'ospedale Pasteur 2 del CHU di Nizza si trova al 30 voie Romaine, a Nizza. È s
 
 Il Centre Antoine Lacassagne è un centro per la lotta contro il cancro. Si trova al 33 avenue de Valombrose, a Nizza.
 
-## Quanto tempo per andare in ospedale dall'alloggio?
+## Come raggiungere l'ospedale dall'alloggio?
 
-L'appartamento di Les Piafs des Collines è sulla collina di Bellet, a ovest di Nizza. In auto, senza traffico:
-
-- Clinique Kantys Centre: 12 min;
-- campus Valrose: 13 min;
-- CHU Pasteur 2: 15 min;
-- Centre Antoine Lacassagne: 16 min.
+L'appartamento di Les Piafs des Collines è sulla collina di Bellet, a ovest di Nizza. Il tragitto quotidiano va verificato in base alla struttura di assegnazione e agli orari di lavoro.
 
 Senza auto, l'autobus 60 ferma a 50 m. Si collega alla linea 2 del tram a Magnan.
 
@@ -58,7 +53,7 @@ Il prezzo, al mese, spese comprese:
 
 Il prezzo è lo stesso per tutte le durate: canone di 3.475 € e forfait spese di 175 €, biancheria compresa. Per un contratto di 10 mesi, l'ultimo mese di canone è offerto. Lo sconto è concesso una sola volta per contratto e non modifica il canone del contratto.
 
-Per un semestre di 6 mesi, il mese costa 3.650 €. Cosa comprende questo prezzo è spiegato nella [guida completa](/it/guides/bail-mobilite-nizza-guida-completa).
+Per un semestre di 6 mesi, il mese costa 3.650 €. Il canone può essere pagato dal Suo ente o dal Suo datore di lavoro, con una lettera di presa in carico. Cosa comprende questo prezzo è spiegato nella [guida completa](/it/guides/bail-mobilite-nizza-guida-completa).
 
 ## Com'è l'appartamento?
 
