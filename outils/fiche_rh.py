@@ -50,6 +50,19 @@ CONTRAT = [("plume", "Bail mobilité de 1 à 10 mois, signé par l'occupant éli
            ("valise", "Remise des clés et état des lieux avec le bailleur"),
            ("repere", "Nice, colline de Bellet · trajet selon le lieu d'affectation")]
 
+# Retour de Brain du 26/11/2026, transmis par Géraldine : une photo intérieure, chaque information à un seul endroit,
+# l'argument employeur traduit, un contrat en 4 lignes, une sortie avec lien et QR code.
+EMPLOYEUR = [("maison", "Un appartement déjà équipé"), ("facture", "Un budget mensuel identifié"),
+             ("societe", "Une prise en charge employeur possible")]
+PLACE = [("lit", "Deux chambres, dont une avec salle d'eau privative"),
+         ("lit", "Seconde chambre : deux lits simples ou un lit double"),
+         ("douche", "Deux salles d'eau et un WC indépendant"),
+         ("cuisine", "Cuisine équipée, buanderie et espace de travail")]
+CONTRAT_COURT = [("calendrier", "De 1 à 10 mois en bail mobilité"), ("plume", "Contrat signé par l'occupant éligible"),
+                 ("societe", "Prise en charge employeur possible"), ("cle", "Aucun dépôt de garantie")]
+INCLUS2 = [("goutte", "Eau"), ("eclair", "Électricité"), ("clim", "Climatisation, chauffage"), ("wifi", "Fibre"),
+           ("parking", "Parking"), ("piscine", "Piscine partagée"), ("linge", "Linge de maison avec rechange")]
+
 CSS = """
 @font-face{font-family:"Outfit";font-weight:100 900;src:url(../../site/assets/fonts/outfit-latin-wght.woff2) format("woff2")}
 @font-face{font-family:"Outfit";font-weight:100 900;src:url(../../site/assets/fonts/outfit-latin-ext-wght.woff2) format("woff2");unicode-range:U+0100-02BA,U+1E00-1EFF,U+20A0-20C0}
@@ -151,6 +164,46 @@ h2{font-size:11pt;font-weight:700;text-transform:uppercase;letter-spacing:.12em;
 /* tous les pictos des listes : plus petits, en corail (Géraldine, 26/11/2026) */
 .une .pl .ic{width:5mm;height:5mm;stroke:var(--corail)}
 .une .pied{bottom:5mm;font-size:7.6pt}
+
+/* version resserrée (retour de Brain, 26/11/2026) */
+.r .hero{height:46mm}
+.r .accroche{margin:0 0 3mm}
+.r .atouts{display:grid;grid-template-columns:repeat(3,1fr);gap:3mm;margin:0 0 4mm}
+.r .atouts div{display:flex;align-items:center;gap:2.6mm;background:var(--pale);padding:2.6mm 3mm;font-size:10.6pt;font-weight:600;color:var(--bleu);line-height:1.2}
+.r .atouts .ic{width:6.5mm;height:6.5mm;stroke:var(--corail)}
+.r .duo{display:grid;grid-template-columns:1.08fr 1fr;gap:6mm;align-items:stretch;margin:0 0 4.4mm}
+.r .duo figure{margin:0;display:flex;flex-direction:column}
+.r .duo img{width:100%;flex:1;min-height:0;object-fit:cover;display:block}
+.r .duo figcaption{font-size:8.6pt;color:var(--gris);margin-top:1.2mm}
+.r .budget{margin:0}
+.r .tuiles{grid-template-columns:repeat(2,1fr)}
+.r .tuiles li{flex-direction:row;align-items:center;gap:2mm;padding:1.6mm 2mm;font-size:9.6pt}
+.r .tuiles li:last-child{grid-column:1/-1}
+.r .sortie{position:absolute;left:12mm;right:12mm;bottom:13mm;background:var(--pale);border-top:1.4mm solid var(--bleu);padding:4mm 5mm;display:grid;grid-template-columns:1fr auto;gap:5mm;align-items:center}
+.r .sortie p.q{font-size:12.6pt;font-weight:600;color:var(--bleu);line-height:1.22;margin:0 0 2.4mm}
+.r .sortie p.q span{display:block;font-weight:400;color:var(--marine);font-size:11pt}
+.r .sortie .cta{display:inline-block;background:var(--corail);color:#fff;font-weight:700;font-size:10pt;letter-spacing:.04em;padding:2.4mm 4mm;margin:0 0 2.4mm}
+.r .sortie .mail{display:flex;align-items:center;gap:2.4mm;font-size:10.6pt;font-weight:600}
+.r .sortie .mail .ic{width:5.4mm;height:5.4mm}
+.r .qr{text-align:center;font-size:7.6pt;color:var(--gris)}
+.r .qr img{width:24mm;height:24mm;display:block;margin:0 auto 1mm;background:#fff;padding:1.6mm}
+.r .hero{height:44mm}
+.r .atouts{margin:0 0 3.4mm}
+.r .atouts div{padding:2mm 3mm}
+.r .reperes{margin:0 0 3.6mm}
+.r .duo{align-items:start}
+.r .duo img{height:64mm;flex:none}
+.r .budget{padding:3.6mm 4.4mm}
+.r .budget .prix{font-size:22pt}
+.r .tuiles{grid-template-columns:repeat(3,1fr);gap:1.6mm}
+.r .tuiles li{padding:1.4mm 1.6mm;font-size:9pt;gap:1.4mm}
+.r .tuiles .ic{width:4.8mm;height:4.8mm}
+.r .tuiles li:last-child{grid-column:1/-1}
+.r .sortie{padding:3mm 5mm}
+.r .sortie p.q{margin:0 0 1.8mm}
+.r .sortie .cta{margin:0 3mm 0 0}
+.r .sortie .liens{display:flex;align-items:center;flex-wrap:wrap;gap:2mm}
+.r .qr img{width:21mm;height:21mm}
 """
 
 def page1():
@@ -241,11 +294,49 @@ def page_unique():
   <footer class="pied">Sous réserve de disponibilités et de dossier accepté. Nombre d'occupants confirmé pour chaque demande, avant le bail. Surface exacte : 77,51 m². DPE C · Climat A. Location meublée en bail mobilité (loi n° 89-462 du 6 juillet 1989, titre I<sup>er</sup> ter).</footer>
 </div>"""
 
+def page_resserree():
+    reperes = "".join(f"<div>{ic(i)}<b>{n}</b><span>{t}</span></div>" for i, n, t in REPERES)
+    tuiles = "".join(f"<li>{ic(i)}<span>{t}</span></li>" for i, t in INCLUS2)
+    atouts = "".join(f"<div>{ic(i)}<span>{t}</span></div>" for i, t in EMPLOYEUR)
+    return f"""
+<div class="page une r">
+  <div class="bande"><div class="marque"><img class="oiseau" src="img/logo-oiseau-blanc.svg" alt=""><img class="nom" src="img/logo-nom-blanc.svg" alt="Les Piafs des Collines"></div>
+  <span class="lieu">Location meublée · Bail mobilité · Nice Bellet</span></div>
+  <div class="liseret"></div>
+  <div class="hero"><img src="img/vue-bateaux.jpg" alt="La Baie des Anges vue depuis l'appartement, à Nice Bellet">
+    <h1>Un vrai chez-soi<span>pour une mission à Nice.</span></h1></div>
+  <main class="corps">
+    <p class="accroche">Votre collaborateur vient pour plusieurs mois.<span>Proposez-lui un endroit où vivre.</span></p>
+    <div class="atouts">{atouts}</div>
+    <div class="reperes">{reperes}</div>
+    <div class="duo">
+      <figure><img src="img/sejour-terrasse.jpg" alt="Le séjour, le canapé et la table, ouverts sur la terrasse"><figcaption>Le séjour, ouvert sur la terrasse et la mer</figcaption></figure>
+      <section class="budget"><h2>Budget</h2><p class="prix">3 650 €<small> / mois</small></p><p class="cc">Charges comprises</p>
+        <p class="detail"><span>Loyer 3 475 € + forfait de charges 175 €</span></p>
+        <ul class="tuiles">{tuiles}</ul>
+        <p class="plus"><b>Non compris :</b> ménage et assurance habitation</p></section>
+    </div>
+    <div class="cols">
+      <section><h2>De la place pour venir accompagné</h2>{liste(PLACE)}</section>
+      <section><h2>Contrat</h2>{liste(CONTRAT_COURT)}</section>
+    </div>
+  </main>
+  <div class="sortie">
+    <div>
+      <p class="q">Votre collaborateur arrive à Nice ?<span>Envoyez-nous ses dates et le nombre d'occupants.</span></p>
+      <div class="liens"><a class="cta" href="https://www.lespiafsdescollines.com/">Voir l'appartement et demander les disponibilités</a>
+      <a class="mail" href="mailto:contact@lespiafsdescollines.com">{ic("enveloppe")}contact@lespiafsdescollines.com</a></div>
+    </div>
+    <div class="qr"><img src="img/qr-site.svg" alt="QR code vers lespiafsdescollines.com">lespiafsdescollines.com</div>
+  </div>
+  <footer class="pied">Sous réserve de disponibilités et de dossier accepté. Nombre d'occupants confirmé pour chaque demande, avant le bail. Surface exacte : 77,51 m². DPE C · Climat A. Location meublée en bail mobilité (loi n° 89-462 du 6 juillet 1989, titre I<sup>er</sup> ter).</footer>
+</div>"""
+
 if __name__ == "__main__":
     html = f"""<!doctype html>
 <!-- Généré par outils/fiche_rh.py : modifier le script, pas ce fichier. -->
 <html lang="fr"><head><meta charset="utf-8"><title>Les Piafs des Collines · Fiche logement · Bail mobilité à Nice</title>
-<style>{CSS}</style></head><body>{page_unique()}</body></html>
+<style>{CSS}</style></head><body>{page_resserree()}</body></html>
 """
     SORTIE.write_text(html, encoding="utf-8")
     print("  ", SORTIE.relative_to(RACINE))
