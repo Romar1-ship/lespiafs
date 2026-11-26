@@ -147,6 +147,7 @@ def bloc(photo_html, titre_html, contenu, inverse=False, ton="bleu", ident="", p
 # Le séjour, la cuisine et les terrasses sont déjà dans le trio : ils ne reviennent pas ici.
 CARTES = [
     ("visite/salon-ferme", "canape", "Le salon", "Un canapé-lit dans la pièce de vie."),
+    ("visite/carte-cuisine", "cuisine", "La cuisine", "Plaque à induction, four, micro-ondes, lave-vaisselle et réfrigérateur-congélateur : de quoi cuisiner au quotidien."),
     ("chambre-1-fenetre", "lit", "La première chambre", "13,91 m², un lit double et une salle d'eau privative avec douche à l'italienne."),
     ("chambre-2-lits", "ordi", "La seconde chambre", "12,88 m², deux lits simples de 80 × 200 cm ou un lit double de 160 cm, et un poste de travail. La fibre est installée dans le logement."),
     ("salle-eau-douche", "douche", "Les salles d'eau", "Deux salles d'eau, dont une privative, la grande avec WC, et un WC indépendant."),
@@ -169,7 +170,7 @@ GALERIE_GROUPES = [
 NB_PHOTOS = sum(len(g) for _, g in GALERIE_GROUPES)
 GALERIE_TOUT = []
 ALT.update({n: a for n, a, _ in GALERIE_TOUT})
-ALT.update({"visite/salon-ferme": "Le salon et son canapé replié, contre le mur orange", "visite/piscine-3": "La piscine partagée et le jardin de la villa", "chambre-1-fenetre": "La première chambre, son lit double et sa fenêtre", "salon-vue": "Le salon et son canapé-lit, ouvert sur la terrasse", "chambre-1-lit": "La première chambre et son lit double", "chambre-2-lits": "La seconde chambre et ses deux lits simples",
+ALT.update({"visite/carte-cuisine": "La cuisine équipée : plan de travail, four, micro-ondes et réfrigérateur", "visite/salon-ferme": "Le salon et son canapé replié, contre le mur orange", "visite/piscine-3": "La piscine partagée et le jardin de la villa", "chambre-1-fenetre": "La première chambre, son lit double et sa fenêtre", "salon-vue": "Le salon et son canapé-lit, ouvert sur la terrasse", "chambre-1-lit": "La première chambre et son lit double", "chambre-2-lits": "La seconde chambre et ses deux lits simples",
             "salle-eau-douche": "La grande salle d'eau"})
 
 # Repères de localisation gardés (Géraldine : trajets vérifiés depuis le logement, hors trafic, 26/11/2026).

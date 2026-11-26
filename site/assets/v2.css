@@ -363,3 +363,10 @@ main section[id],.v2-bloc[id]{scroll-margin-top:70px}
 @media(max-width:700px){.v2-hero h1{top:28px;bottom:auto}}
 .v2-cadre img{object-position:50% 40%}
 .v2-cadre img{object-position:50% 52%}
+/* 7 cartes : « Les détails qui comptent » en bandeau sur toute la largeur (Géraldine, 26/11/2026) */
+.v2 .v2-cartes .v2-carte-bleue{grid-column:1/-1;display:grid;grid-template-columns:auto 1fr;gap:6px 28px;align-items:center;padding:30px 34px}
+.v2 .v2-carte-bleue>.v2-pic{grid-row:1;margin:0}
+.v2 .v2-carte-bleue>h3{grid-row:1;margin:0}
+.v2 .v2-carte-bleue>.v2-liste{grid-column:1/-1;display:grid;grid-template-columns:repeat(3,1fr);gap:12px 28px;margin-top:16px}
+@media(max-width:900px){.v2 .v2-carte-bleue>.v2-liste{grid-template-columns:1fr 1fr}}
+@media(max-width:600px){.v2 .v2-carte-bleue>.v2-liste{grid-template-columns:1fr}}
